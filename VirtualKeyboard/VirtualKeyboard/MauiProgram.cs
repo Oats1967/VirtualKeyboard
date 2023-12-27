@@ -20,6 +20,7 @@ namespace VirtualKeyboard
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 })
+                .RegisterServices()
                 .RegisterViewModels()
                 .RegisterPages();
 
@@ -71,6 +72,12 @@ namespace VirtualKeyboard
         public static MauiAppBuilder RegisterViewModels(this MauiAppBuilder builder)
         {
             builder.Services.AddSingleton<MainPageViewModel>();
+            return builder;
+        }
+
+        public static MauiAppBuilder RegisterServices(this MauiAppBuilder builder)
+        {
+            builder.Services.AddSingleton<ITCPService,TCPService>();
             return builder;
         }
     }
