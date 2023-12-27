@@ -18,12 +18,26 @@ namespace VirtualKeyboard.ViewModels
 
         private async void TcpService_OnKeyboardSelected(object sender, ServerEventArgs e)
         {
+            if (Shell.Current.CurrentPage is not MainPage) return;
+            switch (e.Text)
+            {
+                case "NK":
+                    OpenNumericKeyboard();
+                    const int width = 400;
+                    const int height = 600;
+                    WindowSizeService.ResizeWindow(1920 / 2 - width / 2, 1080 / 2 - height / 2, width, height);
+                    break;
+                default: break;
+            }
+                      
+            
+          
             _logger.LogInformation($"Window should be resized and {e.Text} should be activated");
-           
+        }
+
+        private async void OpenNumericKeyboard()
+        {
             await Shell.Current.GoToAsync(nameof(NumericKeyboardPage));
-            const int width = 1200;
-            const int height = 400;
-            WindowSizeService.ResizeWindow(1920 / 2 - width / 2, 1080 / 2 - height, width, height);
         }
     }
 }
