@@ -6,15 +6,9 @@ using System.Text;
 namespace VirtualKeyboard.Services
 {
    
-
-
- 
     public class TCPService : ITCPService
     {
         ILogger _logger;
-
-
-        
         public TCPService(ILogger<TCPService> logger)
         {
            _logger = logger;
@@ -36,22 +30,33 @@ namespace VirtualKeyboard.Services
             _logger.LogInformation("Server started listening");
 
             var handler = await server.AcceptAsync();
-
-            while(true)
+            try
             {
-                var buffer = new byte[1024];
-                var received = await handler.ReceiveAsync(buffer, SocketFlags.None);
-
-                var message = Encoding.UTF8.GetString(buffer, 0, received);
-                if(message != null)
+                while (true)
                 {
-                    _logger.LogInformation($"Server received message: {message}");
-                    ProcessMessage(message);
+                    var buffer = new byte[1024];
+                    var received = await handler.ReceiveAsync(buffer, SocketFlags.None);
 
-                    var response = "Server received message";
-                    var responseByte = Encoding.UTF8.GetBytes(response);
-                    await handler.SendAsync(responseByte, SocketFlags.None);
+                    var message = Encoding.UTF8.GetString(buffer, 0, received);
+                    if (message != null)
+                    {
+                        _logger.LogInformation($"Server received message: {message}");
+                        ProcessMessage(message);
+
+                        var response = "Server received message";
+                        var responseByte = Encoding.UTF8.GetBytes(response);
+                        await handler.SendAsync(responseByte, SocketFlags.None);
+                    }
                 }
+            }
+            catch(SocketException ex)
+            {
+                _logger.LogError($"Client disconnected: {ex.Message}");
+            }
+            finally
+            {
+                // Additional cleanup or logging if needed
+                handler.Close();
             }
         }
 

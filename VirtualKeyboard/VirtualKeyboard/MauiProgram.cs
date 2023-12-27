@@ -1,7 +1,7 @@
 ﻿using MetroLog.MicrosoftExtensions;
 using MetroLog.Operators;
 using Microsoft.Extensions.Logging;
-
+using VirtualKeyboard.Pages;
 using VirtualKeyboard.Services;
 using VirtualKeyboard.ViewModels;
 
@@ -45,6 +45,8 @@ namespace VirtualKeyboard
                         if (winuiAppWindow.Presenter is OverlappedPresenter p)
                         {
                             p.IsMinimizable = false;
+                            p.IsMaximizable = false;
+                            p.IsResizable = false;
                             p.SetBorderAndTitleBar(false, false);
                           
                           
@@ -90,12 +92,14 @@ namespace VirtualKeyboard
         public static MauiAppBuilder RegisterPages(this MauiAppBuilder builder)
         {
              builder.Services.AddSingleton<MainPage>();
+            builder.Services.AddSingleton<NumericKeyboardPage>();
             return builder;
         }
 
         public static MauiAppBuilder RegisterViewModels(this MauiAppBuilder builder)
         {
             builder.Services.AddSingleton<MainPageViewModel>();
+            builder.Services.AddSingleton<NumericKeyboardViewModel>();
             return builder;
         }
 

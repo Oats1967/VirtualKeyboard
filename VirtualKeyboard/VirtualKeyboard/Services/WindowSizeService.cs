@@ -23,6 +23,7 @@ namespace VirtualKeyboard.Services
                 var platformView = window.Handler?.PlatformView as MauiWinUIWindow;
                 var winUiWindow = platformView.AppWindow;
                 winUiWindow.MoveAndResize(new RectInt32(x, y, width, height));
+                
 #endif
         }
 

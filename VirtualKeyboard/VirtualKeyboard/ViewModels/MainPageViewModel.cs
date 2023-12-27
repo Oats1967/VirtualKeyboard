@@ -1,5 +1,6 @@
 ﻿using VirtualKeyboard.Services;
 using Microsoft.Extensions.Logging;
+using VirtualKeyboard.Pages;
 
 
 namespace VirtualKeyboard.ViewModels
@@ -15,10 +16,14 @@ namespace VirtualKeyboard.ViewModels
             tcpService.StartAsync();
         }
 
-        private void TcpService_OnKeyboardSelected(object sender, ServerEventArgs e)
+        private async void TcpService_OnKeyboardSelected(object sender, ServerEventArgs e)
         {
             _logger.LogInformation($"Window should be resized and {e.Text} should be activated");
-            WindowSizeService.ResizeWindow(0,0,1000, 1000);
+           
+            await Shell.Current.GoToAsync(nameof(NumericKeyboardPage));
+            const int width = 1200;
+            const int height = 400;
+            WindowSizeService.ResizeWindow(1920 / 2 - width / 2, 1080 / 2 - height, width, height);
         }
     }
 }

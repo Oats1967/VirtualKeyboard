@@ -13,7 +13,13 @@ namespace VirtualKeyboard
             BindingContext = viewModel;
           
         }
-       
+
+        protected override void OnAppearing()
+        {
+            WindowSizeService.ResizeWindow(0, 0, 0, 0);
+            base.OnAppearing();
+        }
+
     }
 
 }
