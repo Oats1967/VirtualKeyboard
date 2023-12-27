@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VirtualKeyboard.Services;
+using System.Net;
+using System.Net.Sockets;
 
 namespace VirtualKeyboard.ViewModels
 {
@@ -11,6 +13,7 @@ namespace VirtualKeyboard.ViewModels
     {
         public MainPageViewModel(ITCPService tcpService) : base(tcpService)
         {
+            tcpService.StartAsync();
         }
     }
 }

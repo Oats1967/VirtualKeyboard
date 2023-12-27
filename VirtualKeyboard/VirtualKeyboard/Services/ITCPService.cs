@@ -8,5 +8,6 @@ namespace VirtualKeyboard.Services
 {
     public interface ITCPService
     {
+        public void StartAsync();
     }
 }

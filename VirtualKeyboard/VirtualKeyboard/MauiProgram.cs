@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using MetroLog.MicrosoftExtensions;
+using MetroLog.Operators;
+using Microsoft.Extensions.Logging;
 using Microsoft.Maui.LifecycleEvents;
 using Microsoft.UI;
 using Microsoft.UI.Windowing;
@@ -50,13 +52,29 @@ namespace VirtualKeyboard
 
                 });
             });
-                
+
 #endif
 
+            builder.Logging
 #if DEBUG
-            builder.Logging.AddDebug();
+                        .AddTraceLogger(
+                            options =>
+                            {
+                                options.MinLevel = LogLevel.Trace;
+                                options.MaxLevel = LogLevel.Critical;
+                            }); // Will write to the Debug Output
 #endif
-          
+
+#if RELEASE
+         
+                        .AddConsoleLogger(
+                            options =>
+                            {
+                                options.MinLevel = LogLevel.Information;
+                                options.MaxLevel = LogLevel.Critical;
+                            }); // Will write to the Console Output (logcat for android)
+#endif
+            builder.Services.AddSingleton(LogOperatorRetriever.Instance);
             return builder.Build();
           
         }
