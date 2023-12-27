@@ -1,18 +1,13 @@
 ﻿using Microsoft.Extensions.Logging;
-using Microsoft.Maui;
-using Microsoft.UI.Xaml.Input;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading.Tasks;
-using Windows.UI.Core;
 
 namespace VirtualKeyboard.Services
 {
-    public delegate void MyEventHandler(object source, EventArgs e);
+   
+
+
  
     public class TCPService : ITCPService
     {
@@ -62,7 +57,7 @@ namespace VirtualKeyboard.Services
 
         private void ProcessMessage(string message)
         {
-            OnKeyboardSelected?.Invoke(this, new EventArgs());
+            OnKeyboardSelected?.Invoke(this, new ServerEventArgs(message) );
         }
     }
 }

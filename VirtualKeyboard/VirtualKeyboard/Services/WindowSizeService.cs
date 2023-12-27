@@ -1,25 +1,31 @@
-﻿using Microsoft.UI.Windowing;
+﻿#if WINDOWS
 using Microsoft.UI;
+using Microsoft.UI.Windowing;
 using Windows.Graphics;
+
+#endif
 
 namespace VirtualKeyboard.Services
 {
     internal static class WindowSizeService
     {
-        public static void ResizeWindow( int x, int y, int width, int height)
+        public static void ResizeWindow(int x, int y, int width, int height)
         {
-            var window = Microsoft.UI.Xaml.Window.Current;
-            window.ExtendsContentIntoTitleBar = false; /*This is important to prevent your app content extends into the title bar area.*/
-            IntPtr nativeWindowHandle = WinRT.Interop.WindowNative.GetWindowHandle(window);
-            WindowId win32WindowsId = Win32Interop.GetWindowIdFromWindow(nativeWindowHandle);
-            AppWindow winuiAppWindow = AppWindow.GetFromWindowId(win32WindowsId);
-            if (winuiAppWindow.Presenter is OverlappedPresenter p)
+
+            Microsoft.Maui.Handlers.WindowHandler.Mapper.AppendToMapping(nameof(IWindow), (handler, view) =>
             {
+#if WINDOWS
+            var mauiWindow = handler.VirtualView;
+            var nativeWindow = handler.PlatformView;
+            nativeWindow.Activate();
+            IntPtr windowHandle = WinRT.Interop.WindowNative.GetWindowHandle(nativeWindow);
+            WindowId windowId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(windowHandle);
+            AppWindow appWindow = Microsoft.UI.Windowing.AppWindow.GetFromWindowId(windowId);
+            appWindow.Resize(new SizeInt32(100, 100));
+#endif
+            });
 
-                p.SetBorderAndTitleBar(false, false);
-
-            }
-            winuiAppWindow.MoveAndResize(new RectInt32(0, 0, 0, 0));
         }
+
     }
 }
