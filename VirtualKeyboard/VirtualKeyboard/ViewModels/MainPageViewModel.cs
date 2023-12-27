@@ -18,6 +18,7 @@ namespace VirtualKeyboard.ViewModels
         private void TcpService_OnKeyboardSelected(object sender, ServerEventArgs e)
         {
             _logger.LogInformation($"Window should be resized and {e.Text} should be activated");
+            WindowSizeService.ResizeWindow(0,0,1000, 1000);
         }
     }
 }

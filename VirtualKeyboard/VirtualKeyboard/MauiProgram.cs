@@ -1,12 +1,17 @@
 ﻿using MetroLog.MicrosoftExtensions;
 using MetroLog.Operators;
 using Microsoft.Extensions.Logging;
+
+using VirtualKeyboard.Services;
+using VirtualKeyboard.ViewModels;
+
+
+#if WINDOWS
 using Microsoft.Maui.LifecycleEvents;
 using Microsoft.UI;
 using Microsoft.UI.Windowing;
-using VirtualKeyboard.Services;
-using VirtualKeyboard.ViewModels;
 using Windows.Graphics;
+#endif
 
 namespace VirtualKeyboard
 {
@@ -42,10 +47,11 @@ namespace VirtualKeyboard
                             p.IsMinimizable = false;
                             p.SetBorderAndTitleBar(false, false);
                           
+                          
                             
                             
                         }
-                        winuiAppWindow.MoveAndResize(new RectInt32(0, 0, 0, 0));
+                       WindowSizeService.ResizeWindow(0,0,0,0);
 
                     });
                    
