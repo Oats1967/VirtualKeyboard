@@ -2,6 +2,8 @@
 using Microsoft.Maui.LifecycleEvents;
 using Microsoft.UI;
 using Microsoft.UI.Windowing;
+using VirtualKeyboard.Services;
+using VirtualKeyboard.ViewModels;
 using Windows.Graphics;
 
 namespace VirtualKeyboard
@@ -18,6 +20,7 @@ namespace VirtualKeyboard
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 })
+                .RegisterViewModels()
                 .RegisterPages();
 
 #if WINDOWS
@@ -33,14 +36,13 @@ namespace VirtualKeyboard
                         AppWindow winuiAppWindow = AppWindow.GetFromWindowId(win32WindowsId);
                         if (winuiAppWindow.Presenter is OverlappedPresenter p)
                         {
-                           
+                            p.IsMinimizable = false;
                             p.SetBorderAndTitleBar(false, false);
                           
                             
                             
                         }
                         winuiAppWindow.MoveAndResize(new RectInt32(0, 0, 0, 0));
-
 
                     });
                    
@@ -63,6 +65,12 @@ namespace VirtualKeyboard
         public static MauiAppBuilder RegisterPages(this MauiAppBuilder builder)
         {
              builder.Services.AddSingleton<MainPage>();
+            return builder;
+        }
+
+        public static MauiAppBuilder RegisterViewModels(this MauiAppBuilder builder)
+        {
+            builder.Services.AddSingleton<MainPageViewModel>();
             return builder;
         }
     }

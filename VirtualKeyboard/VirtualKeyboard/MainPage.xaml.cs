@@ -1,30 +1,18 @@
-﻿namespace VirtualKeyboard
+﻿using VirtualKeyboard.ViewModels;
+
+namespace VirtualKeyboard
 {
     public partial class MainPage : ContentPage
     {
         int count = 0;
 
-        public MainPage()
+        public MainPage(MainPageViewModel viewModel)
         {
             InitializeComponent();
+            BindingContext = viewModel;
           
         }
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-        }
-
-        private void OnCounterClicked(object sender, EventArgs e)
-        {
-            count++;
-
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
-
-            SemanticScreenReader.Announce(CounterBtn.Text);
-        }
+       
     }
 
 }
