@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.Maui;
+using Microsoft.UI.Xaml.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,16 +8,24 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Core;
 
 namespace VirtualKeyboard.Services
 {
+    public delegate void MyEventHandler(object source, EventArgs e);
+ 
     public class TCPService : ITCPService
     {
         ILogger _logger;
+
+
+        
         public TCPService(ILogger<TCPService> logger)
         {
            _logger = logger;
         }
+
+        public event ITCPService.EventHandler OnKeyboardSelected;
 
         public async void StartAsync()
         {
@@ -42,6 +51,8 @@ namespace VirtualKeyboard.Services
                 if(message != null)
                 {
                     _logger.LogInformation($"Server received message: {message}");
+                    ProcessMessage(message);
+
                     var response = "Server received message";
                     var responseByte = Encoding.UTF8.GetBytes(response);
                     await handler.SendAsync(responseByte, SocketFlags.None);
@@ -49,5 +60,9 @@ namespace VirtualKeyboard.Services
             }
         }
 
+        private void ProcessMessage(string message)
+        {
+            OnKeyboardSelected?.Invoke(this, new EventArgs());
+        }
     }
 }
