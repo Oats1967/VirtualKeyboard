@@ -51,13 +51,13 @@ namespace CppCLRWinFormsProject {
 	private: System::Windows::Forms::Button^ button9;
 	private: System::Windows::Forms::Button^ button10;
 	private: System::Windows::Forms::Button^ button11;
-	private: System::Windows::Forms::Button^ button12;
+
 	private: System::Windows::Forms::Button^ button13;
 	private: System::Windows::Forms::Button^ button14;
 	private: System::Windows::Forms::Button^ button15;
 	private: System::Windows::Forms::CheckBox^ checkBox1;
-	private: System::Windows::Forms::Button^ button1;
-	private: System::Windows::Forms::Button^ button16;
+
+
 	private: System::Windows::Forms::Button^ button17;
 	private: System::Windows::Forms::Button^ button18;
 	private: System::Windows::Forms::Button^ button19;
@@ -104,13 +104,10 @@ namespace CppCLRWinFormsProject {
 			this->button9 = (gcnew System::Windows::Forms::Button());
 			this->button10 = (gcnew System::Windows::Forms::Button());
 			this->button11 = (gcnew System::Windows::Forms::Button());
-			this->button12 = (gcnew System::Windows::Forms::Button());
 			this->button13 = (gcnew System::Windows::Forms::Button());
 			this->button14 = (gcnew System::Windows::Forms::Button());
 			this->button15 = (gcnew System::Windows::Forms::Button());
 			this->checkBox1 = (gcnew System::Windows::Forms::CheckBox());
-			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->button16 = (gcnew System::Windows::Forms::Button());
 			this->button17 = (gcnew System::Windows::Forms::Button());
 			this->button18 = (gcnew System::Windows::Forms::Button());
 			this->button19 = (gcnew System::Windows::Forms::Button());
@@ -195,7 +192,7 @@ namespace CppCLRWinFormsProject {
 			this->button6->Name = L"button6";
 			this->button6->Size = System::Drawing::Size(52, 52);
 			this->button6->TabIndex = 10;
-			this->button6->Text = L"Z";
+			this->button6->Text = L"Y";
 			this->button6->UseVisualStyleBackColor = false;
 			// 
 			// button7
@@ -230,11 +227,11 @@ namespace CppCLRWinFormsProject {
 			this->button9->Font = (gcnew System::Drawing::Font(L"Times New Roman", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button9->ForeColor = System::Drawing::Color::White;
-			this->button9->Location = System::Drawing::Point(237, 123);
+			this->button9->Location = System::Drawing::Point(209, 123);
 			this->button9->Name = L"button9";
 			this->button9->Size = System::Drawing::Size(52, 52);
 			this->button9->TabIndex = 16;
-			this->button9->Text = L"U";
+			this->button9->Text = L"C";
 			this->button9->UseVisualStyleBackColor = false;
 			// 
 			// button10
@@ -243,11 +240,11 @@ namespace CppCLRWinFormsProject {
 			this->button10->Font = (gcnew System::Drawing::Font(L"Times New Roman", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button10->ForeColor = System::Drawing::Color::White;
-			this->button10->Location = System::Drawing::Point(179, 122);
+			this->button10->Location = System::Drawing::Point(151, 122);
 			this->button10->Name = L"button10";
 			this->button10->Size = System::Drawing::Size(52, 52);
 			this->button10->TabIndex = 17;
-			this->button10->Text = L"Y";
+			this->button10->Text = L"X";
 			this->button10->UseVisualStyleBackColor = false;
 			// 
 			// button11
@@ -256,25 +253,12 @@ namespace CppCLRWinFormsProject {
 			this->button11->Font = (gcnew System::Drawing::Font(L"Times New Roman", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button11->ForeColor = System::Drawing::Color::White;
-			this->button11->Location = System::Drawing::Point(121, 123);
+			this->button11->Location = System::Drawing::Point(93, 124);
 			this->button11->Name = L"button11";
 			this->button11->Size = System::Drawing::Size(52, 52);
 			this->button11->TabIndex = 14;
-			this->button11->Text = L"T";
+			this->button11->Text = L"Z";
 			this->button11->UseVisualStyleBackColor = false;
-			// 
-			// button12
-			// 
-			this->button12->BackColor = System::Drawing::Color::Black;
-			this->button12->Font = (gcnew System::Drawing::Font(L"Times New Roman", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->button12->ForeColor = System::Drawing::Color::White;
-			this->button12->Location = System::Drawing::Point(585, 6);
-			this->button12->Name = L"button12";
-			this->button12->Size = System::Drawing::Size(52, 52);
-			this->button12->TabIndex = 15;
-			this->button12->Text = L"Ü";
-			this->button12->UseVisualStyleBackColor = false;
 			// 
 			// button13
 			// 
@@ -319,42 +303,18 @@ namespace CppCLRWinFormsProject {
 			// 
 			this->checkBox1->Appearance = System::Windows::Forms::Appearance::Button;
 			this->checkBox1->BackColor = System::Drawing::Color::Black;
-			this->checkBox1->Font = (gcnew System::Drawing::Font(L"Times New Roman", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->checkBox1->Font = (gcnew System::Drawing::Font(L"Times New Roman", 19.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->checkBox1->ForeColor = System::Drawing::Color::White;
 			this->checkBox1->Location = System::Drawing::Point(5, 122);
 			this->checkBox1->Name = L"checkBox1";
 			this->checkBox1->Size = System::Drawing::Size(72, 52);
-			this->checkBox1->TabIndex = 2;
-			this->checkBox1->Text = L"Shift ↑";
+			this->checkBox1->TabIndex = 0;
+			this->checkBox1->Text = L"⇧";
+			this->checkBox1->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			this->checkBox1->TextImageRelation = System::Windows::Forms::TextImageRelation::TextAboveImage;
 			this->checkBox1->UseVisualStyleBackColor = false;
 			this->checkBox1->CheckedChanged += gcnew System::EventHandler(this, &Form1::checkBox1_CheckedChanged);
-			// 
-			// button1
-			// 
-			this->button1->BackColor = System::Drawing::Color::Black;
-			this->button1->Font = (gcnew System::Drawing::Font(L"Times New Roman", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->button1->ForeColor = System::Drawing::Color::White;
-			this->button1->Location = System::Drawing::Point(585, 64);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(52, 52);
-			this->button1->TabIndex = 28;
-			this->button1->Text = L"Ä";
-			this->button1->UseVisualStyleBackColor = false;
-			// 
-			// button16
-			// 
-			this->button16->BackColor = System::Drawing::Color::Black;
-			this->button16->Font = (gcnew System::Drawing::Font(L"Times New Roman", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->button16->ForeColor = System::Drawing::Color::White;
-			this->button16->Location = System::Drawing::Point(527, 64);
-			this->button16->Name = L"button16";
-			this->button16->Size = System::Drawing::Size(52, 52);
-			this->button16->TabIndex = 26;
-			this->button16->Text = L"Ö";
-			this->button16->UseVisualStyleBackColor = false;
 			// 
 			// button17
 			// 
@@ -362,7 +322,7 @@ namespace CppCLRWinFormsProject {
 			this->button17->Font = (gcnew System::Drawing::Font(L"Times New Roman", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button17->ForeColor = System::Drawing::Color::White;
-			this->button17->Location = System::Drawing::Point(469, 64);
+			this->button17->Location = System::Drawing::Point(498, 65);
 			this->button17->Name = L"button17";
 			this->button17->Size = System::Drawing::Size(52, 52);
 			this->button17->TabIndex = 27;
@@ -375,7 +335,7 @@ namespace CppCLRWinFormsProject {
 			this->button18->Font = (gcnew System::Drawing::Font(L"Times New Roman", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button18->ForeColor = System::Drawing::Color::White;
-			this->button18->Location = System::Drawing::Point(411, 64);
+			this->button18->Location = System::Drawing::Point(440, 64);
 			this->button18->Name = L"button18";
 			this->button18->Size = System::Drawing::Size(52, 52);
 			this->button18->TabIndex = 25;
@@ -388,7 +348,7 @@ namespace CppCLRWinFormsProject {
 			this->button19->Font = (gcnew System::Drawing::Font(L"Times New Roman", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button19->ForeColor = System::Drawing::Color::White;
-			this->button19->Location = System::Drawing::Point(353, 64);
+			this->button19->Location = System::Drawing::Point(382, 65);
 			this->button19->Name = L"button19";
 			this->button19->Size = System::Drawing::Size(52, 52);
 			this->button19->TabIndex = 23;
@@ -401,7 +361,7 @@ namespace CppCLRWinFormsProject {
 			this->button20->Font = (gcnew System::Drawing::Font(L"Times New Roman", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button20->ForeColor = System::Drawing::Color::White;
-			this->button20->Location = System::Drawing::Point(295, 64);
+			this->button20->Location = System::Drawing::Point(325, 65);
 			this->button20->Name = L"button20";
 			this->button20->Size = System::Drawing::Size(52, 52);
 			this->button20->TabIndex = 24;
@@ -414,7 +374,7 @@ namespace CppCLRWinFormsProject {
 			this->button21->Font = (gcnew System::Drawing::Font(L"Times New Roman", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button21->ForeColor = System::Drawing::Color::White;
-			this->button21->Location = System::Drawing::Point(237, 64);
+			this->button21->Location = System::Drawing::Point(267, 65);
 			this->button21->Name = L"button21";
 			this->button21->Size = System::Drawing::Size(52, 52);
 			this->button21->TabIndex = 21;
@@ -427,7 +387,7 @@ namespace CppCLRWinFormsProject {
 			this->button22->Font = (gcnew System::Drawing::Font(L"Times New Roman", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button22->ForeColor = System::Drawing::Color::White;
-			this->button22->Location = System::Drawing::Point(179, 64);
+			this->button22->Location = System::Drawing::Point(209, 65);
 			this->button22->Name = L"button22";
 			this->button22->Size = System::Drawing::Size(52, 52);
 			this->button22->TabIndex = 22;
@@ -440,7 +400,7 @@ namespace CppCLRWinFormsProject {
 			this->button23->Font = (gcnew System::Drawing::Font(L"Times New Roman", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button23->ForeColor = System::Drawing::Color::White;
-			this->button23->Location = System::Drawing::Point(121, 64);
+			this->button23->Location = System::Drawing::Point(151, 65);
 			this->button23->Name = L"button23";
 			this->button23->Size = System::Drawing::Size(52, 52);
 			this->button23->TabIndex = 19;
@@ -453,7 +413,7 @@ namespace CppCLRWinFormsProject {
 			this->button24->Font = (gcnew System::Drawing::Font(L"Times New Roman", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button24->ForeColor = System::Drawing::Color::White;
-			this->button24->Location = System::Drawing::Point(63, 64);
+			this->button24->Location = System::Drawing::Point(93, 65);
 			this->button24->Name = L"button24";
 			this->button24->Size = System::Drawing::Size(52, 52);
 			this->button24->TabIndex = 20;
@@ -466,7 +426,7 @@ namespace CppCLRWinFormsProject {
 			this->button25->Font = (gcnew System::Drawing::Font(L"Times New Roman", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button25->ForeColor = System::Drawing::Color::White;
-			this->button25->Location = System::Drawing::Point(5, 64);
+			this->button25->Location = System::Drawing::Point(35, 65);
 			this->button25->Name = L"button25";
 			this->button25->Size = System::Drawing::Size(52, 52);
 			this->button25->TabIndex = 18;
@@ -479,11 +439,11 @@ namespace CppCLRWinFormsProject {
 			this->button26->Font = (gcnew System::Drawing::Font(L"Times New Roman", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button26->ForeColor = System::Drawing::Color::White;
-			this->button26->Location = System::Drawing::Point(411, 123);
+			this->button26->Location = System::Drawing::Point(383, 123);
 			this->button26->Name = L"button26";
 			this->button26->Size = System::Drawing::Size(52, 52);
 			this->button26->TabIndex = 30;
-			this->button26->Text = L"U";
+			this->button26->Text = L"N";
 			this->button26->UseVisualStyleBackColor = false;
 			// 
 			// button27
@@ -492,11 +452,11 @@ namespace CppCLRWinFormsProject {
 			this->button27->Font = (gcnew System::Drawing::Font(L"Times New Roman", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button27->ForeColor = System::Drawing::Color::White;
-			this->button27->Location = System::Drawing::Point(353, 122);
+			this->button27->Location = System::Drawing::Point(325, 122);
 			this->button27->Name = L"button27";
 			this->button27->Size = System::Drawing::Size(52, 52);
 			this->button27->TabIndex = 31;
-			this->button27->Text = L"Y";
+			this->button27->Text = L"B";
 			this->button27->UseVisualStyleBackColor = false;
 			// 
 			// button28
@@ -505,11 +465,11 @@ namespace CppCLRWinFormsProject {
 			this->button28->Font = (gcnew System::Drawing::Font(L"Times New Roman", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button28->ForeColor = System::Drawing::Color::White;
-			this->button28->Location = System::Drawing::Point(295, 123);
+			this->button28->Location = System::Drawing::Point(267, 123);
 			this->button28->Name = L"button28";
 			this->button28->Size = System::Drawing::Size(52, 52);
 			this->button28->TabIndex = 29;
-			this->button28->Text = L"T";
+			this->button28->Text = L"V";
 			this->button28->UseVisualStyleBackColor = false;
 			// 
 			// button29
@@ -518,25 +478,26 @@ namespace CppCLRWinFormsProject {
 			this->button29->Font = (gcnew System::Drawing::Font(L"Times New Roman", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button29->ForeColor = System::Drawing::Color::White;
-			this->button29->Location = System::Drawing::Point(469, 123);
+			this->button29->Location = System::Drawing::Point(441, 123);
 			this->button29->Name = L"button29";
 			this->button29->Size = System::Drawing::Size(52, 52);
 			this->button29->TabIndex = 32;
-			this->button29->Text = L"U";
+			this->button29->Text = L"M";
 			this->button29->UseVisualStyleBackColor = false;
 			// 
 			// checkBox4
 			// 
 			this->checkBox4->Appearance = System::Windows::Forms::Appearance::Button;
 			this->checkBox4->BackColor = System::Drawing::Color::Black;
-			this->checkBox4->Font = (gcnew System::Drawing::Font(L"Times New Roman", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->checkBox4->Font = (gcnew System::Drawing::Font(L"Times New Roman", 13.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->checkBox4->ForeColor = System::Drawing::Color::White;
-			this->checkBox4->Location = System::Drawing::Point(565, 123);
+			this->checkBox4->Location = System::Drawing::Point(507, 122);
 			this->checkBox4->Name = L"checkBox4";
 			this->checkBox4->Size = System::Drawing::Size(72, 52);
 			this->checkBox4->TabIndex = 33;
-			this->checkBox4->Text = L"Shift ↑";
+			this->checkBox4->Text = L"⌫";
+			this->checkBox4->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			this->checkBox4->UseVisualStyleBackColor = false;
 			// 
 			// checkBox5
@@ -550,7 +511,6 @@ namespace CppCLRWinFormsProject {
 			this->checkBox5->Name = L"checkBox5";
 			this->checkBox5->Size = System::Drawing::Size(72, 52);
 			this->checkBox5->TabIndex = 34;
-			this->checkBox5->Text = L"Shift ↑";
 			this->checkBox5->UseVisualStyleBackColor = false;
 			// 
 			// checkBox6
@@ -564,7 +524,8 @@ namespace CppCLRWinFormsProject {
 			this->checkBox6->Name = L"checkBox6";
 			this->checkBox6->Size = System::Drawing::Size(72, 52);
 			this->checkBox6->TabIndex = 35;
-			this->checkBox6->Text = L"Shift ↑";
+			this->checkBox6->Text = L"@";
+			this->checkBox6->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			this->checkBox6->UseVisualStyleBackColor = false;
 			// 
 			// button30
@@ -575,9 +536,9 @@ namespace CppCLRWinFormsProject {
 			this->button30->ForeColor = System::Drawing::Color::White;
 			this->button30->Location = System::Drawing::Point(161, 180);
 			this->button30->Name = L"button30";
-			this->button30->Size = System::Drawing::Size(289, 52);
+			this->button30->Size = System::Drawing::Size(231, 52);
 			this->button30->TabIndex = 36;
-			this->button30->Text = L"U";
+			this->button30->Text = L"space";
 			this->button30->UseVisualStyleBackColor = false;
 			// 
 			// button31
@@ -586,7 +547,7 @@ namespace CppCLRWinFormsProject {
 			this->button31->Font = (gcnew System::Drawing::Font(L"Times New Roman", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button31->ForeColor = System::Drawing::Color::White;
-			this->button31->Location = System::Drawing::Point(456, 180);
+			this->button31->Location = System::Drawing::Point(398, 180);
 			this->button31->Name = L"button31";
 			this->button31->Size = System::Drawing::Size(52, 52);
 			this->button31->TabIndex = 37;
@@ -599,18 +560,19 @@ namespace CppCLRWinFormsProject {
 			this->button32->Font = (gcnew System::Drawing::Font(L"Times New Roman", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button32->ForeColor = System::Drawing::Color::White;
-			this->button32->Location = System::Drawing::Point(514, 180);
+			this->button32->Location = System::Drawing::Point(456, 180);
 			this->button32->Name = L"button32";
 			this->button32->Size = System::Drawing::Size(123, 52);
 			this->button32->TabIndex = 38;
-			this->button32->Text = L"Enter";
+			this->button32->Text = L"return";
 			this->button32->UseVisualStyleBackColor = false;
 			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(645, 239);
+			this->BackColor = System::Drawing::SystemColors::ControlDark;
+			this->ClientSize = System::Drawing::Size(586, 239);
 			this->Controls->Add(this->button32);
 			this->Controls->Add(this->button31);
 			this->Controls->Add(this->button30);
@@ -621,8 +583,6 @@ namespace CppCLRWinFormsProject {
 			this->Controls->Add(this->button26);
 			this->Controls->Add(this->button27);
 			this->Controls->Add(this->button28);
-			this->Controls->Add(this->button1);
-			this->Controls->Add(this->button16);
 			this->Controls->Add(this->button17);
 			this->Controls->Add(this->button18);
 			this->Controls->Add(this->button19);
@@ -635,7 +595,6 @@ namespace CppCLRWinFormsProject {
 			this->Controls->Add(this->button9);
 			this->Controls->Add(this->button10);
 			this->Controls->Add(this->button11);
-			this->Controls->Add(this->button12);
 			this->Controls->Add(this->button13);
 			this->Controls->Add(this->button14);
 			this->Controls->Add(this->button15);
