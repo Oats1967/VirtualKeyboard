@@ -5,8 +5,7 @@ namespace VirtualKeyboard
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
-
+       
 
         // toDo delete property
         private MainPageViewModel? ViewModel => BindingContext as MainPageViewModel;
