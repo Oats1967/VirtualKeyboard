@@ -8,6 +8,7 @@ namespace VirtualKeyboard
         int count = 0;
 
 
+        // toDo delete property
         private MainPageViewModel? ViewModel => BindingContext as MainPageViewModel;
         public MainPage(MainPageViewModel viewModel)
         {
