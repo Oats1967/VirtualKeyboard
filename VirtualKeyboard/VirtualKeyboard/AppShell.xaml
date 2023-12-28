@@ -12,6 +12,7 @@
         Title="Home"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" 
+        NavigationPage.HasNavigationBar="False"
        />
 
 </Shell>

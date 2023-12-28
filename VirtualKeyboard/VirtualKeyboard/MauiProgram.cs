@@ -47,6 +47,7 @@ namespace VirtualKeyboard
                             p.IsMinimizable = false;
                             p.IsMaximizable = false;
                             p.IsResizable = false;
+                            p.IsAlwaysOnTop = true;
                             p.SetBorderAndTitleBar(false, false);
                           
                           
