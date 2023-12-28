@@ -49,11 +49,12 @@ namespace VirtualKeyboard
                             p.IsResizable = false;
                             p.IsAlwaysOnTop = true;
                             p.SetBorderAndTitleBar(false, false);
-                          
+                            
                           
                             
                             
                         }
+                        
                         // toDo uncomment
                        //WindowSizeService.ResizeWindow(0,0,0,0);
 
