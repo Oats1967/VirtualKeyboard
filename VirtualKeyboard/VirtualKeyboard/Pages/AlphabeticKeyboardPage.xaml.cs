@@ -1,6 +1,9 @@
 using VirtualKeyboard.Services;
 using VirtualKeyboard.ViewModels;
 
+using WindowsInput;
+
+
 namespace VirtualKeyboard.Pages;
 
 [QueryProperty("Size", "Size")]
@@ -25,6 +28,20 @@ public partial class AlphabeticKeyboardPage : ContentPage
     {
         base.OnNavigatedFrom(args);
         WindowSizeService.ResizeWindow(0, 0, 0, 0);
+    }
+
+    private void Button_Clicked(object sender, EventArgs e)
+    {
+        var button = sender as Button;
+        var c = button?.Text;
+#if WINDOWS
+        // SendKeys dll
+#endif
+    }
+
+    private void Enter_Clicked(object sender, EventArgs e)
+    {
+        Shell.Current.GoToAsync("..");
     }
 
 }

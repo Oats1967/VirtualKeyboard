@@ -31,6 +31,15 @@ public partial class NumericKeyboardPage : ContentPage
 
     private void Button_Clicked(object sender, EventArgs e)
     {
+        var button = sender as Button;
+        var c = button?.Text;
+#if WINDOWS
+        // SendKeys dll
+#endif
+    }
+
+    private void Enter_Clicked(object sender, EventArgs e)
+    {
         Shell.Current.GoToAsync("..");
     }
 }
