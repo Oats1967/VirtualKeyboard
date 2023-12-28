@@ -54,7 +54,8 @@ namespace VirtualKeyboard
                             
                             
                         }
-                       WindowSizeService.ResizeWindow(0,0,0,0);
+                        // toDo uncomment
+                       //WindowSizeService.ResizeWindow(0,0,0,0);
 
                     });
                    
@@ -94,6 +95,7 @@ namespace VirtualKeyboard
         {
              builder.Services.AddSingleton<MainPage>();
             builder.Services.AddSingleton<NumericKeyboardPage>();
+            builder.Services.AddSingleton<AlphabeticKeyboardPage>();
             return builder;
         }
 
@@ -101,6 +103,7 @@ namespace VirtualKeyboard
         {
             builder.Services.AddSingleton<MainPageViewModel>();
             builder.Services.AddSingleton<NumericKeyboardViewModel>();
+            builder.Services.AddSingleton<AlphabeticKeyboardViewModel>();
             return builder;
         }
 

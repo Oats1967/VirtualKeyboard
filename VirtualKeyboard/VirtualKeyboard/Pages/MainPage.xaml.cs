@@ -7,6 +7,8 @@ namespace VirtualKeyboard
     {
         int count = 0;
 
+
+        private MainPageViewModel? ViewModel => BindingContext as MainPageViewModel;
         public MainPage(MainPageViewModel viewModel)
         {
             InitializeComponent();
@@ -16,7 +18,14 @@ namespace VirtualKeyboard
 
         protected override void OnAppearing()
         {
-            WindowSizeService.ResizeWindow(0, 0, 0, 0);
+            // toDo uncomment
+            // WindowSizeService.ResizeWindow(0, 0, 0, 0);
+
+            // toDo delete underneath
+            const int width = 400;
+            const int height = 600;
+            ViewModel?.OpenNumericKeyboardAsync(1920 / 2 - width / 2, 1080 / 2 - height / 2, width, height);
+
             base.OnAppearing();
         }
 
