@@ -7,10 +7,15 @@ using VirtualKeyboard.Services;
 
 namespace VirtualKeyboard.ViewModels
 {
+  
     public class NumericKeyboardViewModel : BaseViewModel
     {
+
+      
         public NumericKeyboardViewModel(ITCPService tcpService) : base(tcpService)
         {
         }
+
+
     }
 }

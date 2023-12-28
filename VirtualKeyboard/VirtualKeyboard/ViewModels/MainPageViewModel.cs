@@ -22,10 +22,10 @@ namespace VirtualKeyboard.ViewModels
             switch (e.Text)
             {
                 case "NK":
-                    OpenNumericKeyboard();
                     const int width = 400;
                     const int height = 600;
-                    WindowSizeService.ResizeWindow(1920 / 2 - width / 2, 1080 / 2 - height / 2, width, height);
+                    OpenNumericKeyboardAsync(1920 / 2 - width / 2, 1080 / 2 - height / 2, width, height);
+                
                     break;
                 default: break;
             }
@@ -35,9 +35,9 @@ namespace VirtualKeyboard.ViewModels
             _logger.LogInformation($"Window should be resized and {e.Text} should be activated");
         }
 
-        private async void OpenNumericKeyboard()
+        private async void OpenNumericKeyboardAsync(int x, int y , int width, int height)
         {
-            await Shell.Current.GoToAsync(nameof(NumericKeyboardPage));
+            await Shell.Current.GoToAsync($"{nameof(NumericKeyboardPage)}?Size={x},{y},{width},{height}");
         }
     }
 }

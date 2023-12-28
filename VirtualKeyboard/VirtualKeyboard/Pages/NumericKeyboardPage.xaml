@@ -4,7 +4,8 @@
              x:Class="VirtualKeyboard.Pages.NumericKeyboardPage"
              Title="NumericKeyboardPage"
              NavigationPage.HasNavigationBar="False"
-             Shell.FlyoutBehavior="Disabled">
+             Shell.FlyoutBehavior="Disabled"
+             BackgroundColor="Green">
     <VerticalStackLayout>
         <Button 
             
@@ -14,5 +15,12 @@
             Clicked="Button_Clicked">
            
         </Button>
+
+        <BoxView
+            HeightRequest="50"
+            WidthRequest="50"
+            BackgroundColor="Red">
+            
+        </BoxView>
     </VerticalStackLayout>
 </ContentPage>
