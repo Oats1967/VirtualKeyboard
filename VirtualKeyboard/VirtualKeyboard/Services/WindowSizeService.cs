@@ -1,4 +1,5 @@
 ﻿#if WINDOWS
+using Microsoft.UI.Windowing;
 using Windows.Graphics;
 #endif
 
@@ -22,6 +23,10 @@ namespace VirtualKeyboard.Services
                 });
                 var platformView = window.Handler?.PlatformView as MauiWinUIWindow;
                 var winUiWindow = platformView.AppWindow;
+            if (winUiWindow.Presenter is OverlappedPresenter p)
+            {
+                p.IsAlwaysOnTop = true;
+            }
                 winUiWindow.MoveAndResize(new RectInt32(x, y, width, height));
                 
 #endif

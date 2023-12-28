@@ -31,8 +31,8 @@ public partial class NumericKeyboardPage : ContentPage
 
 
     [ComVisible(true)]
-    [DllImport("SendKeysMAUI64.dll",EntryPoint = "SendKeys")]
-    private static extern int SendKeys(byte arg1);
+    [DllImport("SendKeysMAUI64.dll",EntryPoint = "SendKeys", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.StdCall)]
+    public static extern int SendKeys(byte arg);
 
     private void Button_Clicked(object sender, EventArgs e)
     {
