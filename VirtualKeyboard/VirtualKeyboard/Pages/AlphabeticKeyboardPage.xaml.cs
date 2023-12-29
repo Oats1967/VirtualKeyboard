@@ -11,7 +11,7 @@ namespace VirtualKeyboard.Pages;
 [QueryProperty("Size", "Size")]
 public partial class AlphabeticKeyboardPage : ContentPage
 {
-    public string Size { get;  set; }
+    public string Size { get; set; } = string.Empty;
     public AlphabeticKeyboardPage(AlphabeticKeyboardViewModel viewModel)
 	{
 		InitializeComponent();
@@ -33,26 +33,6 @@ public partial class AlphabeticKeyboardPage : ContentPage
     }
 
 
-    [ComVisible(true)]
-    [DllImport("SendKeysMAUI64.dll", EntryPoint = "SendKeys", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.StdCall)]
-    public static extern int SendKeys(byte arg);
-    private void Button_Clicked(object sender, EventArgs e)
-    {
-        var button = sender as Button;
-        var buttonText = button?.Text;
-        if (string.IsNullOrEmpty(buttonText)) return;
-
-        var utf8Bytes = Encoding.UTF8.GetBytes(buttonText);
-        var firstByte = utf8Bytes[0];
-        // Use the firstByte as needed
-#if WINDOWS
-        SendKeys(firstByte);
-#endif
-    }
-
-    private void Enter_Clicked(object sender, EventArgs e)
-    {
-        Shell.Current.GoToAsync("..");
-    }
+    
 
 }

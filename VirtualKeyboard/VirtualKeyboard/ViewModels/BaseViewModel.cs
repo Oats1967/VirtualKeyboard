@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,12 +8,8 @@ using VirtualKeyboard.Services;
 
 namespace VirtualKeyboard.ViewModels
 {
-    public class BaseViewModel
+    public class BaseViewModel : ObservableObject
     {
-        private  ITCPService _tcpService;
-        public BaseViewModel(ITCPService tcpService)
-        {
-            _tcpService = tcpService;   
-        }
+       
     }
 }

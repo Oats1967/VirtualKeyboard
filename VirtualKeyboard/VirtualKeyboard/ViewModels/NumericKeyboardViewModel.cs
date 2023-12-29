@@ -12,7 +12,7 @@ namespace VirtualKeyboard.ViewModels
     {
 
       
-        public NumericKeyboardViewModel(ITCPService tcpService) : base(tcpService)
+        public NumericKeyboardViewModel()
         {
         }
 

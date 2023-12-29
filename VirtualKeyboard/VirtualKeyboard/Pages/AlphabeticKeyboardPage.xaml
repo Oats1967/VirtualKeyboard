@@ -2,9 +2,166 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VirtualKeyboard.Pages.AlphabeticKeyboardPage"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:converter="clr-namespace:VirtualKeyboard.Converter"
              BackgroundColor="LightGrey"
           >
-    
+
+    <ContentPage.Resources>
+        <toolkit:BoolToObjectConverter
+            x:Key="CapsLockColorConverter"
+            TrueObject="#6B6B6B"
+            FalseObject="#F5F5F5">
+        </toolkit:BoolToObjectConverter>
+        <toolkit:BoolToObjectConverter
+            x:Key="QConverter"
+            TrueObject="Q"
+            FalseObject="q">
+        </toolkit:BoolToObjectConverter>
+        <toolkit:BoolToObjectConverter
+             x:Key="WConverter"
+             TrueObject="W"
+             FalseObject="w">
+        </toolkit:BoolToObjectConverter>
+        <toolkit:BoolToObjectConverter
+             x:Key="EConverter"
+             TrueObject="E"
+             FalseObject="e">
+        </toolkit:BoolToObjectConverter>
+        <toolkit:BoolToObjectConverter
+             x:Key="RConverter"
+             TrueObject="R"
+             FalseObject="r">
+        </toolkit:BoolToObjectConverter>
+        <toolkit:BoolToObjectConverter
+          x:Key="TConverter"
+          TrueObject="T"
+          FalseObject="t">
+        </toolkit:BoolToObjectConverter>
+        <toolkit:BoolToObjectConverter
+           x:Key="ZConverter"
+           TrueObject="Z"
+           FalseObject="z">
+        </toolkit:BoolToObjectConverter>
+        <toolkit:BoolToObjectConverter
+            x:Key="UConverter"
+            TrueObject="U"
+            FalseObject="u">
+        </toolkit:BoolToObjectConverter>
+        <toolkit:BoolToObjectConverter
+             x:Key="IConverter"
+             TrueObject="I"
+             FalseObject="i">
+        </toolkit:BoolToObjectConverter>
+        <toolkit:BoolToObjectConverter
+             x:Key="OConverter"
+             TrueObject="O"
+             FalseObject="o">
+        </toolkit:BoolToObjectConverter>
+        <toolkit:BoolToObjectConverter
+              x:Key="PConverter"
+              TrueObject="P"
+              FalseObject="p">
+        </toolkit:BoolToObjectConverter>
+        <toolkit:BoolToObjectConverter
+           x:Key="ÜConverter"
+           TrueObject="Ü"
+           FalseObject="ü">
+        </toolkit:BoolToObjectConverter>
+        <toolkit:BoolToObjectConverter
+           x:Key="AConverter"
+           TrueObject="A"
+           FalseObject="a">
+        </toolkit:BoolToObjectConverter>
+        <toolkit:BoolToObjectConverter
+            x:Key="SConverter"
+            TrueObject="S"
+            FalseObject="s">
+        </toolkit:BoolToObjectConverter>
+        <toolkit:BoolToObjectConverter
+          x:Key="DConverter"
+          TrueObject="D"
+          FalseObject="d">
+        </toolkit:BoolToObjectConverter>
+        <toolkit:BoolToObjectConverter
+           x:Key="FConverter"
+           TrueObject="F"
+           FalseObject="f">
+        </toolkit:BoolToObjectConverter>
+        <toolkit:BoolToObjectConverter
+           x:Key="GConverter"
+           TrueObject="G"
+           FalseObject="g">
+        </toolkit:BoolToObjectConverter>
+        <toolkit:BoolToObjectConverter
+            x:Key="HConverter"
+            TrueObject="H"
+            FalseObject="h">
+        </toolkit:BoolToObjectConverter>
+        <toolkit:BoolToObjectConverter
+             x:Key="JConverter"
+             TrueObject="J"
+             FalseObject="j">
+        </toolkit:BoolToObjectConverter>
+        <toolkit:BoolToObjectConverter
+          x:Key="KConverter"
+          TrueObject="K"
+          FalseObject="k">
+        </toolkit:BoolToObjectConverter>
+        <toolkit:BoolToObjectConverter
+          x:Key="LConverter"
+          TrueObject="L"
+          FalseObject="l">
+        </toolkit:BoolToObjectConverter>
+        <toolkit:BoolToObjectConverter
+           x:Key="ÖConverter"
+           TrueObject="Ö"
+           FalseObject="ö">
+        </toolkit:BoolToObjectConverter>
+        <toolkit:BoolToObjectConverter
+           x:Key="ÄConverter"
+           TrueObject="Ä"
+           FalseObject="ä">
+        </toolkit:BoolToObjectConverter>
+        <toolkit:BoolToObjectConverter
+            x:Key="YConverter"
+            TrueObject="Y"
+            FalseObject="y">
+        </toolkit:BoolToObjectConverter>
+        <toolkit:BoolToObjectConverter
+             x:Key="XConverter"
+             TrueObject="X"
+             FalseObject="x">
+        </toolkit:BoolToObjectConverter>
+        <toolkit:BoolToObjectConverter
+          x:Key="CConverter"
+          TrueObject="C"
+          FalseObject="c">
+        </toolkit:BoolToObjectConverter>
+        <toolkit:BoolToObjectConverter
+           x:Key="VConverter"
+           TrueObject="V"
+           FalseObject="v">
+        </toolkit:BoolToObjectConverter>
+        <toolkit:BoolToObjectConverter
+           x:Key="BConverter"
+           TrueObject="B"
+           FalseObject="b">
+        </toolkit:BoolToObjectConverter>
+        <toolkit:BoolToObjectConverter
+           x:Key="NConverter"
+           TrueObject="N"
+           FalseObject="n">
+        </toolkit:BoolToObjectConverter>
+        <toolkit:BoolToObjectConverter
+             x:Key="MConverter"
+             TrueObject="M"
+             FalseObject="m">
+        </toolkit:BoolToObjectConverter>
+
+
+    </ContentPage.Resources>
+  
     <Grid
         Padding="10"
         ColumnDefinitions="*,*,*,*,*,*,*,*,*,*,*,*,*,*"
@@ -21,7 +178,8 @@
             Text="1"
             VerticalOptions="FillAndExpand" 
             HorizontalOptions="FillAndExpand"
-            Clicked="Button_Clicked">
+            Command="{Binding KeyPressedCommand}"
+            CommandParameter="1">
         </Button>
         <Button 
             BackgroundColor="WhiteSmoke"
@@ -31,7 +189,8 @@
             Text="2"
             VerticalOptions="FillAndExpand" 
             HorizontalOptions="FillAndExpand"
-            Clicked="Button_Clicked">
+            Command="{Binding KeyPressedCommand}"
+            CommandParameter="2">
         </Button>
         <Button 
              BackgroundColor="WhiteSmoke"
@@ -41,7 +200,8 @@
              Text="3"
              VerticalOptions="FillAndExpand" 
              HorizontalOptions="FillAndExpand"
-             Clicked="Button_Clicked">
+             Command="{Binding KeyPressedCommand}"
+             CommandParameter="3">
         </Button>
         <Button 
              BackgroundColor="WhiteSmoke"
@@ -51,7 +211,8 @@
              Text="4"
              VerticalOptions="FillAndExpand" 
              HorizontalOptions="FillAndExpand"
-             Clicked="Button_Clicked">
+             Command="{Binding KeyPressedCommand}"
+             CommandParameter="4">
         </Button>
         <Button 
              BackgroundColor="WhiteSmoke"
@@ -61,7 +222,8 @@
              Text="5"
              VerticalOptions="FillAndExpand" 
              HorizontalOptions="FillAndExpand"
-             Clicked="Button_Clicked">
+             Command="{Binding KeyPressedCommand}"
+             CommandParameter="5">
         </Button>
         <Button 
              BackgroundColor="WhiteSmoke"
@@ -71,7 +233,8 @@
              Text="6"
              VerticalOptions="FillAndExpand" 
              HorizontalOptions="FillAndExpand"
-             Clicked="Button_Clicked">
+             Command="{Binding KeyPressedCommand}"
+             CommandParameter="6">
         </Button>
         <Button 
               BackgroundColor="WhiteSmoke"
@@ -81,7 +244,8 @@
               Text="7"
               VerticalOptions="FillAndExpand" 
               HorizontalOptions="FillAndExpand"
-              Clicked="Button_Clicked"> 
+              Command="{Binding KeyPressedCommand}"
+             CommandParameter="7"> 
         </Button>
         <Button 
               BackgroundColor="WhiteSmoke"
@@ -91,7 +255,8 @@
               Text="8"
               VerticalOptions="FillAndExpand" 
               HorizontalOptions="FillAndExpand"
-              Clicked="Button_Clicked"> 
+              Command="{Binding KeyPressedCommand}"
+             CommandParameter="8"> 
         </Button>
         <Button 
               BackgroundColor="WhiteSmoke"
@@ -101,7 +266,8 @@
               Text="9"
               VerticalOptions="FillAndExpand" 
               HorizontalOptions="FillAndExpand"
-              Clicked="Button_Clicked">
+              Command="{Binding KeyPressedCommand}"
+             CommandParameter="9">
         </Button>
         <Button 
               BackgroundColor="WhiteSmoke"
@@ -111,7 +277,8 @@
               Text="0"
               VerticalOptions="FillAndExpand" 
               HorizontalOptions="FillAndExpand"
-              Clicked="Button_Clicked">
+              Command="{Binding KeyPressedCommand}"
+             CommandParameter="0">
         </Button>
         <Button 
            BackgroundColor="WhiteSmoke"
@@ -121,7 +288,8 @@
            Text="ß"
            VerticalOptions="FillAndExpand" 
            HorizontalOptions="FillAndExpand"
-           Clicked="Button_Clicked">
+           Command="{Binding KeyPressedCommand}"
+             CommandParameter="ß">
         </Button>
         <Button 
             Grid.ColumnSpan="3"
@@ -132,7 +300,8 @@
              Text="⌫"
            VerticalOptions="FillAndExpand" 
            HorizontalOptions="FillAndExpand"
-           Clicked="Button_Clicked">
+           Command="{Binding KeyPressedCommand}"
+           CommandParameter="&quot;BACKSPACE&quot;">
         </Button>
 
         <!--Row 1-->
@@ -141,110 +310,121 @@
          TextColor="Black"
          Grid.Row="1"
          Grid.Column="0"
-         Text="Q"
+         Text="{Binding CapsLock,Converter={StaticResource QConverter}}"
          VerticalOptions="FillAndExpand" 
          HorizontalOptions="FillAndExpand"
-         Clicked="Button_Clicked">
+         Command="{Binding KeyPressedCommand}"
+         CommandParameter="{Binding CapsLock,Converter={StaticResource QConverter}}">
         </Button>
         <Button 
        BackgroundColor="WhiteSmoke"
        TextColor="Black"
        Grid.Row="1"
        Grid.Column="1"
-       Text="W"
+       Text="{Binding CapsLock,Converter={StaticResource WConverter}}"
        VerticalOptions="FillAndExpand" 
        HorizontalOptions="FillAndExpand"
-       Clicked="Button_Clicked">
+       Command="{Binding KeyPressedCommand}"
+            CommandParameter="{Binding CapsLock,Converter={StaticResource WConverter}}">
         </Button>
         <Button 
        BackgroundColor="WhiteSmoke"
        TextColor="Black"
        Grid.Row="1"
        Grid.Column="2"
-       Text="E"
+       Text="{Binding CapsLock,Converter={StaticResource EConverter}}"
        VerticalOptions="FillAndExpand" 
        HorizontalOptions="FillAndExpand"
-       Clicked="Button_Clicked">
+       Command="{Binding KeyPressedCommand}"
+            CommandParameter="{Binding CapsLock,Converter={StaticResource EConverter}}">
         </Button>
         <Button 
         BackgroundColor="WhiteSmoke"
         TextColor="Black"
         Grid.Row="1"
         Grid.Column="3"
-        Text="R"
+        Text="{Binding CapsLock,Converter={StaticResource RConverter}}"
         VerticalOptions="FillAndExpand" 
         HorizontalOptions="FillAndExpand"
-        Clicked="Button_Clicked">
+        Command="{Binding KeyPressedCommand}"
+            CommandParameter="{Binding CapsLock,Converter={StaticResource RConverter}}">
         </Button>
         <Button 
         BackgroundColor="WhiteSmoke"
         TextColor="Black"
         Grid.Row="1"
         Grid.Column="4"
-        Text="T"
+        Text="{Binding CapsLock,Converter={StaticResource TConverter}}"
         VerticalOptions="FillAndExpand" 
         HorizontalOptions="FillAndExpand"
-        Clicked="Button_Clicked">
+        Command="{Binding KeyPressedCommand}"
+            CommandParameter="{Binding CapsLock,Converter={StaticResource TConverter}}">
         </Button>
         <Button 
         BackgroundColor="WhiteSmoke"
         TextColor="Black"
         Grid.Row="1"
         Grid.Column="5"
-        Text="Z"
+        Text="{Binding CapsLock,Converter={StaticResource ZConverter}}"
         VerticalOptions="FillAndExpand" 
         HorizontalOptions="FillAndExpand"
-        Clicked="Button_Clicked">
+        Command="{Binding KeyPressedCommand}"
+            CommandParameter="{Binding CapsLock,Converter={StaticResource ZConverter}}">
         </Button>
         <Button 
          BackgroundColor="WhiteSmoke"
          TextColor="Black"
          Grid.Row="1"
          Grid.Column="6"
-         Text="U"
+         Text="{Binding CapsLock,Converter={StaticResource UConverter}}"
          VerticalOptions="FillAndExpand" 
          HorizontalOptions="FillAndExpand"
-         Clicked="Button_Clicked">
+         Command="{Binding KeyPressedCommand}"
+            CommandParameter="{Binding CapsLock,Converter={StaticResource UConverter}}">
         </Button>
         <Button 
          BackgroundColor="WhiteSmoke"
          TextColor="Black"
          Grid.Row="1"
          Grid.Column="7"
-         Text="I"
+         Text="{Binding CapsLock,Converter={StaticResource IConverter}}"
          VerticalOptions="FillAndExpand" 
          HorizontalOptions="FillAndExpand"
-         Clicked="Button_Clicked">
+         Command="{Binding KeyPressedCommand}"
+            CommandParameter="{Binding CapsLock,Converter={StaticResource IConverter}}">
         </Button>
         <Button 
          BackgroundColor="WhiteSmoke"
          TextColor="Black"
          Grid.Row="1"
          Grid.Column="8"
-         Text="O"
+         Text="{Binding CapsLock,Converter={StaticResource OConverter}}"
          VerticalOptions="FillAndExpand" 
          HorizontalOptions="FillAndExpand"
-         Clicked="Button_Clicked">
+         Command="{Binding KeyPressedCommand}"
+            CommandParameter="{Binding CapsLock,Converter={StaticResource OConverter}}">
         </Button>
         <Button 
          BackgroundColor="WhiteSmoke"
          TextColor="Black"
          Grid.Row="1"
          Grid.Column="9"
-         Text="P"
+         Text="{Binding CapsLock,Converter={StaticResource PConverter}}"
          VerticalOptions="FillAndExpand" 
          HorizontalOptions="FillAndExpand"
-         Clicked="Button_Clicked">
+         Command="{Binding KeyPressedCommand}"
+            CommandParameter="{Binding CapsLock,Converter={StaticResource PConverter}}">
         </Button>
         <Button 
          BackgroundColor="WhiteSmoke"
          TextColor="Black"
          Grid.Row="1"
          Grid.Column="10"
-         Text="Ü"
+         Text="{Binding CapsLock,Converter={StaticResource ÜConverter}}"
          VerticalOptions="FillAndExpand" 
          HorizontalOptions="FillAndExpand"
-         Clicked="Button_Clicked">
+         Command="{Binding KeyPressedCommand}"
+         CommandParameter="{Binding CapsLock,Converter={StaticResource ÜConverter}}">
         </Button>
         <Button 
           BackgroundColor="WhiteSmoke"
@@ -254,7 +434,8 @@
           Text="+"
           VerticalOptions="FillAndExpand" 
           HorizontalOptions="FillAndExpand"
-          Clicked="Button_Clicked">
+          Command="{Binding KeyPressedCommand}"
+            CommandParameter="+">
         </Button>
         <Button 
         Grid.ColumnSpan="2"
@@ -268,7 +449,7 @@
         Text="⏎"
         VerticalOptions="FillAndExpand" 
         HorizontalOptions="FillAndExpand"
-        Clicked="Enter_Clicked">
+        Command="{Binding KeyPressedCommand}">
         </Button>
         
         <!--Row 2-->
@@ -277,110 +458,121 @@
            TextColor="Black"
            Grid.Row="2"
            Grid.Column="0"
-           Text="A"
+           Text="{Binding CapsLock,Converter={StaticResource AConverter}}"
            VerticalOptions="FillAndExpand" 
            HorizontalOptions="FillAndExpand"
-           Clicked="Button_Clicked">
+           Command="{Binding KeyPressedCommand}"
+           CommandParameter="{Binding CapsLock,Converter={StaticResource AConverter}}">
         </Button>
         <Button 
              BackgroundColor="WhiteSmoke"
              TextColor="Black"
              Grid.Row="2"
              Grid.Column="1"
-             Text="S"
+             Text="{Binding CapsLock,Converter={StaticResource SConverter}}"
              VerticalOptions="FillAndExpand" 
              HorizontalOptions="FillAndExpand"
-             Clicked="Button_Clicked">
+             Command="{Binding KeyPressedCommand}"
+            CommandParameter="{Binding CapsLock,Converter={StaticResource SConverter}}">
         </Button>
         <Button 
              BackgroundColor="WhiteSmoke"
              TextColor="Black"
              Grid.Row="2"
              Grid.Column="2"
-             Text="D"
+             Text="{Binding CapsLock,Converter={StaticResource DConverter}}"
              VerticalOptions="FillAndExpand" 
              HorizontalOptions="FillAndExpand"
-             Clicked="Button_Clicked">
+             Command="{Binding KeyPressedCommand}"
+            CommandParameter="{Binding CapsLock,Converter={StaticResource DConverter}}">
         </Button>
         <Button 
               BackgroundColor="WhiteSmoke"
               TextColor="Black"
               Grid.Row="2"
               Grid.Column="3"
-              Text="F"
+              Text="{Binding CapsLock,Converter={StaticResource FConverter}}"
               VerticalOptions="FillAndExpand" 
               HorizontalOptions="FillAndExpand"
-              Clicked="Button_Clicked">
+              Command="{Binding KeyPressedCommand}"
+            CommandParameter="{Binding CapsLock,Converter={StaticResource FConverter}}">
         </Button>
         <Button 
               BackgroundColor="WhiteSmoke"
               TextColor="Black"
               Grid.Row="2"
               Grid.Column="4"
-              Text="G"
+              Text="{Binding CapsLock,Converter={StaticResource GConverter}}"
               VerticalOptions="FillAndExpand" 
               HorizontalOptions="FillAndExpand"
-              Clicked="Button_Clicked">
+              Command="{Binding KeyPressedCommand}"
+            CommandParameter="{Binding CapsLock,Converter={StaticResource GConverter}}">
         </Button>
         <Button 
           BackgroundColor="WhiteSmoke"
           TextColor="Black"
           Grid.Row="2"
           Grid.Column="5"
-          Text="H"
+          Text="{Binding CapsLock,Converter={StaticResource HConverter}}"
           VerticalOptions="FillAndExpand" 
           HorizontalOptions="FillAndExpand"
-          Clicked="Button_Clicked">
+          Command="{Binding KeyPressedCommand}"
+            CommandParameter="{Binding CapsLock,Converter={StaticResource HConverter}}">
         </Button>
         <Button 
            BackgroundColor="WhiteSmoke"
            TextColor="Black"
            Grid.Row="2"
            Grid.Column="6"
-           Text="J"
+           Text="{Binding CapsLock,Converter={StaticResource JConverter}}"
            VerticalOptions="FillAndExpand" 
            HorizontalOptions="FillAndExpand"
-           Clicked="Button_Clicked">
+           Command="{Binding KeyPressedCommand}"
+            CommandParameter="{Binding CapsLock,Converter={StaticResource JConverter}}">
         </Button>
         <Button 
            BackgroundColor="WhiteSmoke"
            TextColor="Black"
            Grid.Row="2"
            Grid.Column="7"
-           Text="K"
+           Text="{Binding CapsLock,Converter={StaticResource KConverter}}"
            VerticalOptions="FillAndExpand" 
            HorizontalOptions="FillAndExpand"
-           Clicked="Button_Clicked">
+           Command="{Binding KeyPressedCommand}"
+            CommandParameter="{Binding CapsLock,Converter={StaticResource KConverter}}">
         </Button>
         <Button 
            BackgroundColor="WhiteSmoke"
            TextColor="Black"
            Grid.Row="2"
            Grid.Column="8"
-           Text="L"
+           Text="{Binding CapsLock,Converter={StaticResource LConverter}}"
            VerticalOptions="FillAndExpand" 
            HorizontalOptions="FillAndExpand"
-           Clicked="Button_Clicked">
+           Command="{Binding KeyPressedCommand}"
+            CommandParameter="{Binding CapsLock,Converter={StaticResource LConverter}}">
         </Button>
         <Button 
            BackgroundColor="WhiteSmoke"
            TextColor="Black"
            Grid.Row="2"
            Grid.Column="9"
-           Text="Ö"
+           Text="{Binding CapsLock,Converter={StaticResource ÖConverter}}"
            VerticalOptions="FillAndExpand" 
            HorizontalOptions="FillAndExpand"
-           Clicked="Button_Clicked">
+           Command="{Binding KeyPressedCommand}"
+            CommandParameter="{Binding CapsLock,Converter={StaticResource ÖConverter}}">
         </Button>
         <Button 
            BackgroundColor="WhiteSmoke"
            TextColor="Black"
            Grid.Row="2"
            Grid.Column="10"
-           Text="Ä"
+           Text="{Binding CapsLock,Converter={StaticResource ÄConverter}}"
            VerticalOptions="FillAndExpand" 
            HorizontalOptions="FillAndExpand"
-           Clicked="Button_Clicked">
+           Command="{Binding KeyPressedCommand}"
+            CommandParameter="{Binding CapsLock,Converter={StaticResource ÄConverter}}">
         </Button>
         <Button 
             BackgroundColor="WhiteSmoke"
@@ -390,90 +582,111 @@
             Text="#"
             VerticalOptions="FillAndExpand" 
             HorizontalOptions="FillAndExpand"
-            Clicked="Button_Clicked">
+            Command="{Binding KeyPressedCommand}">
         </Button>
 
         <!--Row 3-->
-        <Button 
-            BackgroundColor="WhiteSmoke"
-            TextColor="Black"
+        <Frame
             Grid.Row="3"
             Grid.Column="0"
             Grid.ColumnSpan="2"
-            Text="△"
-            VerticalOptions="FillAndExpand" 
-            HorizontalOptions="FillAndExpand"
-            Clicked="Button_Clicked">
-        </Button>
+            BackgroundColor="{Binding CapsLock, Converter={StaticResource CapsLockColorConverter}}"
+            BorderColor="{Binding CapsLock, Converter={StaticResource CapsLockColorConverter}}"
+            CornerRadius="10">
+            <Label 
+     TextColor="Black"
+     HorizontalOptions="FillAndExpand"
+     VerticalOptions="FillAndExpand"
+     Text="△"
+     BackgroundColor="Transparent"
+     HorizontalTextAlignment="Center"
+     VerticalTextAlignment="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding CapsLockPressedCommand}" />
+                    <TapGestureRecognizer NumberOfTapsRequired="2" Command="{Binding LockCommand}" />
+
+                </Label.GestureRecognizers>
+            </Label>
+        </Frame>
+       
+            
+     
         <Button 
               BackgroundColor="WhiteSmoke"
               TextColor="Black"
               Grid.Row="3"
               Grid.Column="2"
-              Text="Y"
+              Text="{Binding CapsLock,Converter={StaticResource YConverter}}"
               VerticalOptions="FillAndExpand" 
               HorizontalOptions="FillAndExpand"
-              Clicked="Button_Clicked">
+              Command="{Binding KeyPressedCommand}"
+              CommandParameter="{Binding CapsLock,Converter={StaticResource YConverter}}">
         </Button>
         <Button 
            BackgroundColor="WhiteSmoke"
            TextColor="Black"
            Grid.Row="3"
            Grid.Column="3"
-           Text="X"
+           Text="{Binding CapsLock,Converter={StaticResource XConverter}}"
            VerticalOptions="FillAndExpand" 
            HorizontalOptions="FillAndExpand"
-           Clicked="Button_Clicked">
+           Command="{Binding KeyPressedCommand}"
+             CommandParameter="{Binding CapsLock,Converter={StaticResource XConverter}}">
         </Button>
         <Button 
            BackgroundColor="WhiteSmoke"
            TextColor="Black"
            Grid.Row="3"
            Grid.Column="4"
-           Text="C"
+           Text="{Binding CapsLock,Converter={StaticResource CConverter}}"
            VerticalOptions="FillAndExpand" 
            HorizontalOptions="FillAndExpand"
-           Clicked="Button_Clicked">
+           Command="{Binding KeyPressedCommand}"
+             CommandParameter="{Binding CapsLock,Converter={StaticResource CConverter}}">
         </Button>
         <Button 
            BackgroundColor="WhiteSmoke"
            TextColor="Black"
            Grid.Row="3"
            Grid.Column="5"
-           Text="V"
+           Text="{Binding CapsLock,Converter={StaticResource VConverter}}"
            VerticalOptions="FillAndExpand" 
            HorizontalOptions="FillAndExpand"
-           Clicked="Button_Clicked">
+           Command="{Binding KeyPressedCommand}"
+             CommandParameter="{Binding CapsLock,Converter={StaticResource VConverter}}">
         </Button>
         <Button 
             BackgroundColor="WhiteSmoke"
             TextColor="Black"
             Grid.Row="3"
             Grid.Column="6"
-            Text="B"
+            Text="{Binding CapsLock,Converter={StaticResource BConverter}}"
             VerticalOptions="FillAndExpand" 
             HorizontalOptions="FillAndExpand"
-            Clicked="Button_Clicked">
+            Command="{Binding KeyPressedCommand}"
+             CommandParameter="{Binding CapsLock,Converter={StaticResource BConverter}}">
         </Button>
         <Button 
             BackgroundColor="WhiteSmoke"
             TextColor="Black"
             Grid.Row="3"
             Grid.Column="7"
-            Text="N"
+            Text="{Binding CapsLock,Converter={StaticResource NConverter}}"
             VerticalOptions="FillAndExpand" 
             HorizontalOptions="FillAndExpand"
-            Clicked="Button_Clicked">
+            Command="{Binding KeyPressedCommand}"
+             CommandParameter="{Binding CapsLock,Converter={StaticResource NConverter}}">
         </Button>
         <Button 
             BackgroundColor="WhiteSmoke"
             TextColor="Black"
             Grid.Row="3"
             Grid.Column="8"
-            Text="M"
+            Text="{Binding CapsLock,Converter={StaticResource MConverter}}"
             VerticalOptions="FillAndExpand" 
             HorizontalOptions="FillAndExpand"
-            Clicked="Button_Clicked">
+            Command="{Binding KeyPressedCommand}"
+            CommandParameter="{Binding CapsLock,Converter={StaticResource MConverter}}">
         </Button>
         <Button 
             BackgroundColor="WhiteSmoke"
@@ -483,7 +696,8 @@
             Text=","
             VerticalOptions="FillAndExpand" 
             HorizontalOptions="FillAndExpand"
-            Clicked="Button_Clicked">
+            Command="{Binding KeyPressedCommand}"
+            CommandParameter=",">
         </Button>
         <Button 
             BackgroundColor="WhiteSmoke"
@@ -493,7 +707,8 @@
             Text="."
             VerticalOptions="FillAndExpand" 
             HorizontalOptions="FillAndExpand"
-            Clicked="Button_Clicked">
+            Command="{Binding KeyPressedCommand}"
+            CommandParameter=".">
         </Button>
         <Button 
              BackgroundColor="WhiteSmoke"
@@ -503,7 +718,8 @@
              Text="-"
              VerticalOptions="FillAndExpand" 
              HorizontalOptions="FillAndExpand"
-             Clicked="Button_Clicked">
+             Command="{Binding KeyPressedCommand}"
+             CommandParameter="-">
         </Button>
         
             <!--Row 4-->
@@ -516,7 +732,8 @@
     Text="◀"
     VerticalOptions="FillAndExpand" 
     HorizontalOptions="FillAndExpand"
-    Clicked="Button_Clicked">
+    Command="{Binding KeyPressedCommand}"
+            CommandParameter="&quot;{Left}&quot;">
         </Button>
         <Button 
      BackgroundColor="WhiteSmoke"
@@ -527,7 +744,8 @@
     Text="▶"
      VerticalOptions="FillAndExpand" 
      HorizontalOptions="FillAndExpand"
-     Clicked="Button_Clicked">
+     Command="{Binding KeyPressedCommand}"
+            CommandParameter="&quot;{Right}&quot;">
         </Button>
         <Button 
               BackgroundColor="WhiteSmoke"
@@ -537,7 +755,7 @@
               Grid.ColumnSpan="6"
               VerticalOptions="FillAndExpand" 
               HorizontalOptions="FillAndExpand"
-              Clicked="Button_Clicked">
+              Command="{Binding KeyPressedCommand}">
         </Button>
 
         

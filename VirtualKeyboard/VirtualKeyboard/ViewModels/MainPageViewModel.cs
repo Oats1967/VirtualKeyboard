@@ -9,7 +9,7 @@ namespace VirtualKeyboard.ViewModels
     {
 
         private ILogger _logger;
-        public MainPageViewModel(ITCPService tcpService, ILogger<MainPageViewModel> logger) : base(tcpService)
+        public MainPageViewModel(ITCPService tcpService, ILogger<MainPageViewModel> logger)
         {
             _logger = logger;
             tcpService.OnKeyboardSelected += TcpService_OnKeyboardSelected;

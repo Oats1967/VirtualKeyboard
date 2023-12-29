@@ -1,4 +1,5 @@
-﻿using MetroLog.MicrosoftExtensions;
+﻿using CommunityToolkit.Maui;
+using MetroLog.MicrosoftExtensions;
 using MetroLog.Operators;
 using Microsoft.Extensions.Logging;
 using System.Runtime.InteropServices;
@@ -23,6 +24,7 @@ namespace VirtualKeyboard
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
