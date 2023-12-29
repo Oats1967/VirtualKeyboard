@@ -586,31 +586,25 @@
         </Button>
 
         <!--Row 3-->
-        <Frame
+        
+        <Label 
+            TextColor="Black"
             Grid.Row="3"
             Grid.Column="0"
             Grid.ColumnSpan="2"
+            Text="△"
+            HorizontalTextAlignment="Center"
+            VerticalTextAlignment="Center"
             BackgroundColor="{Binding CapsLock, Converter={StaticResource CapsLockColorConverter}}"
-            BorderColor="{Binding CapsLock, Converter={StaticResource CapsLockColorConverter}}"
-            CornerRadius="10">
-            <Label 
-     TextColor="Black"
-     HorizontalOptions="FillAndExpand"
-     VerticalOptions="FillAndExpand"
-     Text="△"
-     BackgroundColor="Transparent"
-     HorizontalTextAlignment="Center"
-     VerticalTextAlignment="Center">
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding CapsLockPressedCommand}" />
+            VerticalOptions="FillAndExpand" 
+            HorizontalOptions="FillAndExpand">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding CapsLockPressedCommand}" />
                     <TapGestureRecognizer NumberOfTapsRequired="2" Command="{Binding LockCommand}" />
-
-                </Label.GestureRecognizers>
-            </Label>
-        </Frame>
-       
+               
+            </Label.GestureRecognizers>
             
-     
+        </Label>
         <Button 
               BackgroundColor="WhiteSmoke"
               TextColor="Black"
