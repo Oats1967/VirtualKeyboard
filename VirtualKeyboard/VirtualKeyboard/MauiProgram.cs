@@ -1,6 +1,7 @@
 ﻿using MetroLog.MicrosoftExtensions;
 using MetroLog.Operators;
 using Microsoft.Extensions.Logging;
+using System.Runtime.InteropServices;
 using VirtualKeyboard.Pages;
 using VirtualKeyboard.Services;
 using VirtualKeyboard.ViewModels;
@@ -54,6 +55,7 @@ namespace VirtualKeyboard
                             
                             
                         }
+                        SetWindowLong(nativeWindowHandle, GWL_EXSTYLE, GetWindowLong(nativeWindowHandle, GWL_EXSTYLE) | WS_EX_NOACTIVATE);
                         
                         // toDo uncomment
                        //WindowSizeService.ResizeWindow(0,0,0,0);
@@ -113,6 +115,16 @@ namespace VirtualKeyboard
             builder.Services.AddSingleton<ITCPService,TCPService>();
             return builder;
         }
+
+        //Invoke declarations for setting window styles
+        private const int GWL_EXSTYLE = -20;
+        private const int WS_EX_NOACTIVATE = 0x08000000;
+
+        [DllImport("user32.dll")]
+        private static extern int GetWindowLong(IntPtr hwnd, int index);
+
+        [DllImport("user32.dll")]
+        private static extern int SetWindowLong(IntPtr hwnd, int index, int newStyle);
     }
 
    

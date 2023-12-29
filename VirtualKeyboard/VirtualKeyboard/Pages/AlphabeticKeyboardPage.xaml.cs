@@ -1,3 +1,5 @@
+using System.Runtime.InteropServices;
+using System.Text;
 using VirtualKeyboard.Services;
 using VirtualKeyboard.ViewModels;
 
@@ -30,12 +32,21 @@ public partial class AlphabeticKeyboardPage : ContentPage
         WindowSizeService.ResizeWindow(0, 0, 0, 0);
     }
 
+
+    [ComVisible(true)]
+    [DllImport("SendKeysMAUI64.dll", EntryPoint = "SendKeys", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.StdCall)]
+    public static extern int SendKeys(byte arg);
     private void Button_Clicked(object sender, EventArgs e)
     {
         var button = sender as Button;
-        var c = button?.Text;
+        var buttonText = button?.Text;
+        if (string.IsNullOrEmpty(buttonText)) return;
+
+        var utf8Bytes = Encoding.UTF8.GetBytes(buttonText);
+        var firstByte = utf8Bytes[0];
+        // Use the firstByte as needed
 #if WINDOWS
-        // SendKeys dll
+        SendKeys(firstByte);
 #endif
     }
 
