@@ -185,6 +185,10 @@
             HorizontalOptions="FillAndExpand"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="1">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+                Opacity="0.8" />
+            </Button.Shadow>
         </Button>
         <Button 
             BackgroundColor="WhiteSmoke"
@@ -196,6 +200,10 @@
             HorizontalOptions="FillAndExpand"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="2">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+     Opacity="0.8" />
+            </Button.Shadow>
         </Button>
         <Button 
              BackgroundColor="WhiteSmoke"
@@ -207,6 +215,10 @@
              HorizontalOptions="FillAndExpand"
              Command="{Binding KeyPressedCommand}"
              CommandParameter="3">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+     Opacity="0.8" />
+            </Button.Shadow>
         </Button>
         <Button 
              BackgroundColor="WhiteSmoke"
@@ -218,6 +230,10 @@
              HorizontalOptions="FillAndExpand"
              Command="{Binding KeyPressedCommand}"
              CommandParameter="4">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+     Opacity="0.8" />
+            </Button.Shadow>
         </Button>
         <Button 
              BackgroundColor="WhiteSmoke"
@@ -229,6 +245,10 @@
              HorizontalOptions="FillAndExpand"
              Command="{Binding KeyPressedCommand}"
              CommandParameter="5">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+     Opacity="0.8" />
+            </Button.Shadow>
         </Button>
         <Button 
              BackgroundColor="WhiteSmoke"
@@ -240,6 +260,10 @@
              HorizontalOptions="FillAndExpand"
              Command="{Binding KeyPressedCommand}"
              CommandParameter="6">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+     Opacity="0.8" />
+            </Button.Shadow>
         </Button>
         <Button 
               BackgroundColor="WhiteSmoke"
@@ -250,7 +274,11 @@
               VerticalOptions="FillAndExpand" 
               HorizontalOptions="FillAndExpand"
               Command="{Binding KeyPressedCommand}"
-             CommandParameter="7"> 
+             CommandParameter="7">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+     Opacity="0.8" />
+            </Button.Shadow>
         </Button>
         <Button 
               BackgroundColor="WhiteSmoke"
@@ -261,7 +289,11 @@
               VerticalOptions="FillAndExpand" 
               HorizontalOptions="FillAndExpand"
               Command="{Binding KeyPressedCommand}"
-             CommandParameter="8"> 
+             CommandParameter="8">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+     Opacity="0.8" />
+            </Button.Shadow>
         </Button>
         <Button 
               BackgroundColor="WhiteSmoke"
@@ -273,6 +305,10 @@
               HorizontalOptions="FillAndExpand"
               Command="{Binding KeyPressedCommand}"
              CommandParameter="9">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+     Opacity="0.8" />
+            </Button.Shadow>
         </Button>
         <Button 
               BackgroundColor="WhiteSmoke"
@@ -284,6 +320,10 @@
               HorizontalOptions="FillAndExpand"
               Command="{Binding KeyPressedCommand}"
              CommandParameter="0">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+     Opacity="0.8" />
+            </Button.Shadow>
         </Button>
         <Button 
            BackgroundColor="WhiteSmoke"
@@ -295,6 +335,10 @@
            HorizontalOptions="FillAndExpand"
            Command="{Binding KeyPressedCommand}"
              CommandParameter="ß">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+     Opacity="0.8" />
+            </Button.Shadow>
         </Button>
         <Button 
             Grid.ColumnSpan="3"
@@ -307,6 +351,10 @@
            HorizontalOptions="FillAndExpand"
            Command="{Binding KeyPressedCommand}"
            CommandParameter="&quot;BACKSPACE&quot;">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+     Opacity="0.8" />
+            </Button.Shadow>
         </Button>
 
         <!--Row 1-->
@@ -320,6 +368,10 @@
          HorizontalOptions="FillAndExpand"
          Command="{Binding KeyPressedCommand}"
          CommandParameter="{Binding CapsLock,Converter={StaticResource QConverter}}">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+     Opacity="0.8" />
+            </Button.Shadow>
         </Button>
         <Button 
        BackgroundColor="WhiteSmoke"
@@ -331,6 +383,10 @@
        HorizontalOptions="FillAndExpand"
        Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock,Converter={StaticResource WConverter}}">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+     Opacity="0.8" />
+            </Button.Shadow>
         </Button>
         <Button 
        BackgroundColor="WhiteSmoke"
@@ -342,6 +398,10 @@
        HorizontalOptions="FillAndExpand"
        Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock,Converter={StaticResource EConverter}}">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+     Opacity="0.8" />
+            </Button.Shadow>
         </Button>
         <Button 
         BackgroundColor="WhiteSmoke"
@@ -353,6 +413,10 @@
         HorizontalOptions="FillAndExpand"
         Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock,Converter={StaticResource RConverter}}">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+     Opacity="0.8" />
+            </Button.Shadow>
         </Button>
         <Button 
         BackgroundColor="WhiteSmoke"
@@ -364,6 +428,10 @@
         HorizontalOptions="FillAndExpand"
         Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock,Converter={StaticResource TConverter}}">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+     Opacity="0.8" />
+            </Button.Shadow>
         </Button>
         <Button 
         BackgroundColor="WhiteSmoke"
@@ -375,6 +443,10 @@
         HorizontalOptions="FillAndExpand"
         Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock,Converter={StaticResource ZConverter}}">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+     Opacity="0.8" />
+            </Button.Shadow>
         </Button>
         <Button 
          BackgroundColor="WhiteSmoke"
@@ -386,6 +458,10 @@
          HorizontalOptions="FillAndExpand"
          Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock,Converter={StaticResource UConverter}}">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+     Opacity="0.8" />
+            </Button.Shadow>
         </Button>
         <Button 
          BackgroundColor="WhiteSmoke"
@@ -397,6 +473,10 @@
          HorizontalOptions="FillAndExpand"
          Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock,Converter={StaticResource IConverter}}">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+     Opacity="0.8" />
+            </Button.Shadow>
         </Button>
         <Button 
          BackgroundColor="WhiteSmoke"
@@ -408,6 +488,10 @@
          HorizontalOptions="FillAndExpand"
          Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock,Converter={StaticResource OConverter}}">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+     Opacity="0.8" />
+            </Button.Shadow>
         </Button>
         <Button 
          BackgroundColor="WhiteSmoke"
@@ -419,6 +503,10 @@
          HorizontalOptions="FillAndExpand"
          Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock,Converter={StaticResource PConverter}}">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+     Opacity="0.8" />
+            </Button.Shadow>
         </Button>
         <Button 
          BackgroundColor="WhiteSmoke"
@@ -430,6 +518,10 @@
          HorizontalOptions="FillAndExpand"
          Command="{Binding KeyPressedCommand}"
          CommandParameter="{Binding CapsLock,Converter={StaticResource ÜConverter}}">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+     Opacity="0.8" />
+            </Button.Shadow>
         </Button>
         <Button 
           BackgroundColor="WhiteSmoke"
@@ -441,6 +533,10 @@
           HorizontalOptions="FillAndExpand"
           Command="{Binding KeyPressedCommand}"
             CommandParameter="+">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+     Opacity="0.8" />
+            </Button.Shadow>
         </Button>
         <Button 
         Grid.ColumnSpan="2"
@@ -456,6 +552,10 @@
         HorizontalOptions="FillAndExpand"
         Command="{Binding KeyPressedCommand}"
             CommandParameter="&quot;{ENTER}&quot;">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+     Opacity="0.8" />
+            </Button.Shadow>
         </Button>
         
         <!--Row 2-->
@@ -469,6 +569,10 @@
            HorizontalOptions="FillAndExpand"
            Command="{Binding KeyPressedCommand}"
            CommandParameter="{Binding CapsLock,Converter={StaticResource AConverter}}">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+     Opacity="0.8" />
+            </Button.Shadow>
         </Button>
         <Button 
              BackgroundColor="WhiteSmoke"
@@ -480,6 +584,10 @@
              HorizontalOptions="FillAndExpand"
              Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock,Converter={StaticResource SConverter}}">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+     Opacity="0.8" />
+            </Button.Shadow>
         </Button>
         <Button 
              BackgroundColor="WhiteSmoke"
@@ -491,6 +599,10 @@
              HorizontalOptions="FillAndExpand"
              Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock,Converter={StaticResource DConverter}}">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+     Opacity="0.8" />
+            </Button.Shadow>
         </Button>
         <Button 
               BackgroundColor="WhiteSmoke"
@@ -502,6 +614,10 @@
               HorizontalOptions="FillAndExpand"
               Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock,Converter={StaticResource FConverter}}">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+     Opacity="0.8" />
+            </Button.Shadow>
         </Button>
         <Button 
               BackgroundColor="WhiteSmoke"
@@ -513,6 +629,10 @@
               HorizontalOptions="FillAndExpand"
               Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock,Converter={StaticResource GConverter}}">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+     Opacity="0.8" />
+            </Button.Shadow>
         </Button>
         <Button 
           BackgroundColor="WhiteSmoke"
@@ -524,6 +644,10 @@
           HorizontalOptions="FillAndExpand"
           Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock,Converter={StaticResource HConverter}}">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+     Opacity="0.8" />
+            </Button.Shadow>
         </Button>
         <Button 
            BackgroundColor="WhiteSmoke"
@@ -535,6 +659,10 @@
            HorizontalOptions="FillAndExpand"
            Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock,Converter={StaticResource JConverter}}">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+     Opacity="0.8" />
+            </Button.Shadow>
         </Button>
         <Button 
            BackgroundColor="WhiteSmoke"
@@ -546,6 +674,10 @@
            HorizontalOptions="FillAndExpand"
            Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock,Converter={StaticResource KConverter}}">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+     Opacity="0.8" />
+            </Button.Shadow>
         </Button>
         <Button 
            BackgroundColor="WhiteSmoke"
@@ -557,6 +689,10 @@
            HorizontalOptions="FillAndExpand"
            Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock,Converter={StaticResource LConverter}}">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+     Opacity="0.8" />
+            </Button.Shadow>
         </Button>
         <Button 
            BackgroundColor="WhiteSmoke"
@@ -568,6 +704,10 @@
            HorizontalOptions="FillAndExpand"
            Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock,Converter={StaticResource ÖConverter}}">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+     Opacity="0.8" />
+            </Button.Shadow>
         </Button>
         <Button 
            BackgroundColor="WhiteSmoke"
@@ -579,6 +719,10 @@
            HorizontalOptions="FillAndExpand"
            Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock,Converter={StaticResource ÄConverter}}">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+     Opacity="0.8" />
+            </Button.Shadow>
         </Button>
         <Button 
             BackgroundColor="WhiteSmoke"
@@ -589,6 +733,10 @@
             VerticalOptions="FillAndExpand" 
             HorizontalOptions="FillAndExpand"
             Command="{Binding KeyPressedCommand}">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+     Opacity="0.8" />
+            </Button.Shadow>
         </Button>
 
         <!--Row 3-->
@@ -618,7 +766,10 @@
                     </Setter>
                 </MultiTrigger>
             </Border.Triggers>
-
+            <Border.Shadow>
+                <Shadow Brush="Black"
+     Opacity="0.8" />
+            </Border.Shadow>
 
             <Label 
                  TextColor="Black"
@@ -645,6 +796,10 @@
               HorizontalOptions="FillAndExpand"
               Command="{Binding KeyPressedCommand}"
               CommandParameter="{Binding CapsLock,Converter={StaticResource YConverter}}">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+     Opacity="0.8" />
+            </Button.Shadow>
         </Button>
         <Button 
            BackgroundColor="WhiteSmoke"
@@ -656,6 +811,10 @@
            HorizontalOptions="FillAndExpand"
            Command="{Binding KeyPressedCommand}"
              CommandParameter="{Binding CapsLock,Converter={StaticResource XConverter}}">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+     Opacity="0.8" />
+            </Button.Shadow>
         </Button>
         <Button 
            BackgroundColor="WhiteSmoke"
@@ -667,6 +826,10 @@
            HorizontalOptions="FillAndExpand"
            Command="{Binding KeyPressedCommand}"
              CommandParameter="{Binding CapsLock,Converter={StaticResource CConverter}}">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+     Opacity="0.8" />
+            </Button.Shadow>
         </Button>
         <Button 
            BackgroundColor="WhiteSmoke"
@@ -678,6 +841,10 @@
            HorizontalOptions="FillAndExpand"
            Command="{Binding KeyPressedCommand}"
              CommandParameter="{Binding CapsLock,Converter={StaticResource VConverter}}">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+     Opacity="0.8" />
+            </Button.Shadow>
         </Button>
         <Button 
             BackgroundColor="WhiteSmoke"
@@ -689,6 +856,10 @@
             HorizontalOptions="FillAndExpand"
             Command="{Binding KeyPressedCommand}"
              CommandParameter="{Binding CapsLock,Converter={StaticResource BConverter}}">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+     Opacity="0.8" />
+            </Button.Shadow>
         </Button>
         <Button 
             BackgroundColor="WhiteSmoke"
@@ -700,6 +871,10 @@
             HorizontalOptions="FillAndExpand"
             Command="{Binding KeyPressedCommand}"
              CommandParameter="{Binding CapsLock,Converter={StaticResource NConverter}}">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+     Opacity="0.8" />
+            </Button.Shadow>
         </Button>
         <Button 
             BackgroundColor="WhiteSmoke"
@@ -711,6 +886,10 @@
             HorizontalOptions="FillAndExpand"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock,Converter={StaticResource MConverter}}">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+     Opacity="0.8" />
+            </Button.Shadow>
         </Button>
         <Button 
             BackgroundColor="WhiteSmoke"
@@ -722,6 +901,10 @@
             HorizontalOptions="FillAndExpand"
             Command="{Binding KeyPressedCommand}"
             CommandParameter=",">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+     Opacity="0.8" />
+            </Button.Shadow>
         </Button>
         <Button 
             BackgroundColor="WhiteSmoke"
@@ -733,6 +916,10 @@
             HorizontalOptions="FillAndExpand"
             Command="{Binding KeyPressedCommand}"
             CommandParameter=".">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+     Opacity="0.8" />
+            </Button.Shadow>
         </Button>
         <Button 
              BackgroundColor="WhiteSmoke"
@@ -744,7 +931,12 @@
              HorizontalOptions="FillAndExpand"
              Command="{Binding KeyPressedCommand}"
              CommandParameter="-">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+     Opacity="0.8" />
+            </Button.Shadow>
         </Button>
+        
         <!--Row 4-->
         <Button 
     BackgroundColor="WhiteSmoke"
@@ -757,6 +949,10 @@
     HorizontalOptions="FillAndExpand"
     Command="{Binding KeyPressedCommand}"
             CommandParameter="&quot;{Left}&quot;">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+     Opacity="0.8" />
+            </Button.Shadow>
         </Button>
         <Button 
      BackgroundColor="WhiteSmoke"
@@ -769,6 +965,10 @@
      HorizontalOptions="FillAndExpand"
      Command="{Binding KeyPressedCommand}"
             CommandParameter="&quot;{Right}&quot;">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+     Opacity="0.8" />
+            </Button.Shadow>
         </Button>
         <Button 
               BackgroundColor="WhiteSmoke"
@@ -779,6 +979,10 @@
               VerticalOptions="FillAndExpand" 
               HorizontalOptions="FillAndExpand"
               Command="{Binding KeyPressedCommand}">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+     Opacity="0.8" />
+            </Button.Shadow>
         </Button>
 
         
