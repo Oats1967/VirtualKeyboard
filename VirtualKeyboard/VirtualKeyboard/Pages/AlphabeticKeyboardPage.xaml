@@ -15,7 +15,7 @@
         </toolkit:BoolToObjectConverter>
         <converter:BoolToBrushConverter
             x:Key="BoolToBrushConverter"
-            TrueColor="#000000"
+            TrueColor="#6B6B6B"
             FalseColor="#F5F5F5">
         </converter:BoolToBrushConverter>
         <toolkit:BoolToObjectConverter
@@ -598,25 +598,41 @@
             Grid.Column="0"
             Grid.ColumnSpan="2"
             StrokeThickness="4"
-            Stroke="{Binding Locked, Converter={StaticResource BoolToBrushConverter}}"
+            Stroke="{Binding CapsLock, Converter={StaticResource BoolToBrushConverter}}"
             StrokeShape="RoundRectangle 10,10,10,10"
             BackgroundColor="{Binding CapsLock,Converter={StaticResource CapsLockColorConverter}}"
            >
-            
-           
+            <Border.Triggers>
+                <MultiTrigger TargetType="Border">
+                    <MultiTrigger.Conditions>
+                        <BindingCondition
+                            Binding="{Binding Locked}" Value="True">
+                        </BindingCondition>
+                        <BindingCondition
+                              Binding="{Binding CapsLock}"  Value="True">
+                        </BindingCondition>
+
+                    </MultiTrigger.Conditions>
+                    <Setter Property="Stroke" Value="Black">
+                        
+                    </Setter>
+                </MultiTrigger>
+            </Border.Triggers>
+
+
             <Label 
-     TextColor="Black"
-     Text="△"
-     HorizontalTextAlignment="Center"
-     VerticalTextAlignment="Center"
-     BackgroundColor="Transparent"
-     VerticalOptions="FillAndExpand" 
-     HorizontalOptions="FillAndExpand">
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding CapsLockPressedCommand}" />
-                    <TapGestureRecognizer NumberOfTapsRequired="2" Command="{Binding LockCommand}" />
-                </Label.GestureRecognizers>
-                   
+                 TextColor="Black"
+                 Text="△"
+                 HorizontalTextAlignment="Center"
+                 VerticalTextAlignment="Center"
+                 BackgroundColor="Transparent"
+                 VerticalOptions="FillAndExpand" 
+                 HorizontalOptions="FillAndExpand">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding CapsLockPressedCommand}" />
+                            <TapGestureRecognizer NumberOfTapsRequired="2" Command="{Binding LockCommand}" />
+                        </Label.GestureRecognizers>
+
             </Label>
         </Border>
         <Button 
