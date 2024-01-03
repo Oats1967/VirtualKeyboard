@@ -91,14 +91,14 @@ namespace VirtualKeyboard
 #endif
             builder.Services.AddSingleton(LogOperatorRetriever.Instance);
             return builder.Build();
-
+          
         }
 
-
-
+        
+        
         public static MauiAppBuilder RegisterPages(this MauiAppBuilder builder)
         {
-            builder.Services.AddSingleton<MainPage>();
+             builder.Services.AddSingleton<MainPage>();
             builder.Services.AddSingleton<NumericKeyboardPage>();
             builder.Services.AddSingleton<AlphabeticKeyboardPage>();
             return builder;
@@ -114,7 +114,7 @@ namespace VirtualKeyboard
 
         public static MauiAppBuilder RegisterServices(this MauiAppBuilder builder)
         {
-            builder.Services.AddSingleton<ITCPService, TCPService>();
+            builder.Services.AddSingleton<ITCPService,TCPService>();
             return builder;
         }
 
@@ -129,6 +129,5 @@ namespace VirtualKeyboard
         private static extern int SetWindowLong(IntPtr hwnd, int index, int newStyle);
     }
 
-
+   
 }
-

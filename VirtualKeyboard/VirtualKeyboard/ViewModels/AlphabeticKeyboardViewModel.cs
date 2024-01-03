@@ -29,8 +29,9 @@ namespace VirtualKeyboard.ViewModels
         [RelayCommand]
         public void Lock()
         {
-            Locked = !Locked;
+           
             CapsLock = !CapsLock;
+            Locked = CapsLock;
 
 
         }
@@ -48,8 +49,8 @@ namespace VirtualKeyboard.ViewModels
         [RelayCommand]
         public void KeyPressed(string c)
         {
-
-            var utf8Bytes = Encoding.UTF8.GetBytes(c);
+            
+            var utf8Bytes = Encoding.Unicode.GetBytes(c);
             var firstByte = utf8Bytes[0];
             // Use the firstByte as needed
             SendKeys(firstByte);

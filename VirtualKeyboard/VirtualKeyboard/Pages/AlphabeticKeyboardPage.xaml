@@ -13,6 +13,11 @@
             TrueObject="#6B6B6B"
             FalseObject="#F5F5F5">
         </toolkit:BoolToObjectConverter>
+        <converter:BoolToBrushConverter
+            x:Key="BoolToBrushConverter"
+            TrueColor="#000000"
+            FalseColor="#F5F5F5">
+        </converter:BoolToBrushConverter>
         <toolkit:BoolToObjectConverter
             x:Key="QConverter"
             TrueObject="Q"
@@ -449,7 +454,8 @@
         Text="⏎"
         VerticalOptions="FillAndExpand" 
         HorizontalOptions="FillAndExpand"
-        Command="{Binding KeyPressedCommand}">
+        Command="{Binding KeyPressedCommand}"
+            CommandParameter="&quot;{ENTER}&quot;">
         </Button>
         
         <!--Row 2-->
@@ -586,13 +592,18 @@
         </Button>
 
         <!--Row 3-->
-        <Frame
+        <Border
             Padding="0"
-            CornerRadius="10"
             Grid.Row="3"
             Grid.Column="0"
             Grid.ColumnSpan="2"
-             BackgroundColor="{Binding CapsLock, Converter={StaticResource CapsLockColorConverter}}">
+            StrokeThickness="4"
+            Stroke="{Binding Locked, Converter={StaticResource BoolToBrushConverter}}"
+            StrokeShape="RoundRectangle 10,10,10,10"
+            BackgroundColor="{Binding CapsLock,Converter={StaticResource CapsLockColorConverter}}"
+           >
+            
+           
             <Label 
      TextColor="Black"
      Text="△"
@@ -604,12 +615,10 @@
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding CapsLockPressedCommand}" />
                     <TapGestureRecognizer NumberOfTapsRequired="2" Command="{Binding LockCommand}" />
-
                 </Label.GestureRecognizers>
-
+                   
             </Label>
-        </Frame>
-       
+        </Border>
         <Button 
               BackgroundColor="WhiteSmoke"
               TextColor="Black"
@@ -720,8 +729,7 @@
              Command="{Binding KeyPressedCommand}"
              CommandParameter="-">
         </Button>
-        
-            <!--Row 4-->
+        <!--Row 4-->
         <Button 
     BackgroundColor="WhiteSmoke"
     TextColor="Black"
