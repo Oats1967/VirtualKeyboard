@@ -45,6 +45,7 @@ namespace VirtualKeyboard
                         IntPtr nativeWindowHandle = WinRT.Interop.WindowNative.GetWindowHandle(window);
                         WindowId win32WindowsId = Win32Interop.GetWindowIdFromWindow(nativeWindowHandle);
                         AppWindow winuiAppWindow = AppWindow.GetFromWindowId(win32WindowsId);
+                        winuiAppWindow.SetPresenter(AppWindowPresenterKind.Overlapped);
                         if (winuiAppWindow.Presenter is OverlappedPresenter p)
                         {
                             p.IsMinimizable = false;
