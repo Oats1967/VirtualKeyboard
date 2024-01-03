@@ -1428,7 +1428,7 @@
                         </BindingCondition>
 
                     </MultiTrigger.Conditions>
-                    <Setter Property="BorderColor" Value="Black">
+                    <Setter Property="BorderColor" Value="#F5F5F5">
 
                     </Setter>
                 </MultiTrigger>
