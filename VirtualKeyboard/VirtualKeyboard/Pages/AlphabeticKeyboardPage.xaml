@@ -3,21 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VirtualKeyboard.Pages.AlphabeticKeyboardPage"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             xmlns:converter="clr-namespace:VirtualKeyboard.Converter"
-             BackgroundColor="LightGrey"
-          >
-
+             BackgroundColor="Grey">
     <ContentPage.Resources>
         <toolkit:BoolToObjectConverter
             x:Key="CapsLockColorConverter"
             TrueObject="#6B6B6B"
             FalseObject="#F5F5F5">
         </toolkit:BoolToObjectConverter>
-        <converter:BoolToBrushConverter
-            x:Key="BoolToBrushConverter"
-            TrueColor="#6B6B6B"
-            FalseColor="#F5F5F5">
-        </converter:BoolToBrushConverter>
+       
         <toolkit:BoolToObjectConverter
             x:Key="QConverter"
             TrueObject="Q"
@@ -1406,32 +1399,32 @@
         </Button>
 
         <!--Row 3-->
-            <Button
-                 Padding="0"
-                 Grid.Row="3"
-                 Grid.Column="0"
-                 Grid.ColumnSpan="2"
-                BorderWidth="4"
-                BorderColor="{Binding CapsLock,Converter={StaticResource CapsLockColorConverter}}"
-                 TextColor="Black"
-                IsVisible="True"
-                 Text="△"
-                 BackgroundColor="{Binding CapsLock,Converter={StaticResource CapsLockColorConverter}}"
-                 VerticalOptions="FillAndExpand" 
-                 HorizontalOptions="FillAndExpand">
-                        <Button.GestureRecognizers>
-                            <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding CapsLockPressedCommand}" />
-                            <TapGestureRecognizer NumberOfTapsRequired="2" Command="{Binding LockCommand}" />
-                            
-                        </Button.GestureRecognizers>
+        <Button
+                Padding="0"
+                Grid.Row="3"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+            BorderWidth="2"
+            BorderColor="{Binding CapsLock,Converter={StaticResource CapsLockColorConverter}}"
+                TextColor="Black"
+            IsVisible="True"
+                Text="△"
+                BackgroundColor="{Binding CapsLock,Converter={StaticResource CapsLockColorConverter}}"
+                VerticalOptions="FillAndExpand" 
+                HorizontalOptions="FillAndExpand">
+            <Button.GestureRecognizers>
+                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding CapsLockPressedCommand}" />
+                <TapGestureRecognizer NumberOfTapsRequired="2" Command="{Binding LockCommand}" />
+
+            </Button.GestureRecognizers>
             <Button.Triggers>
                 <MultiTrigger TargetType="Button">
                     <MultiTrigger.Conditions>
                         <BindingCondition
-                 Binding="{Binding Locked}" Value="True">
+                Binding="{Binding Locked}" Value="True">
                         </BindingCondition>
                         <BindingCondition
-                   Binding="{Binding CapsLock}"  Value="True">
+                Binding="{Binding CapsLock}"  Value="True">
                         </BindingCondition>
 
                     </MultiTrigger.Conditions>
@@ -1442,7 +1435,7 @@
             </Button.Triggers>
             <Button.Shadow>
                 <Shadow Brush="Black"
-                        Opacity="0.8" />
+                    Opacity="0.8" />
             </Button.Shadow>
             <VisualStateManager.VisualStateGroups>
                 <VisualStateGroupList>
@@ -1450,13 +1443,13 @@
                         <VisualState x:Name="Normal">
                             <VisualState.Setters>
                                 <Setter Property="Scale"
-                Value="1" />
+            Value="1" />
                             </VisualState.Setters>
                         </VisualState>
                         <VisualState x:Name="Pressed">
                             <VisualState.Setters>
                                 <Setter Property="Scale"
-                Value="0.95" />
+            Value="0.95" />
                             </VisualState.Setters>
                         </VisualState>
                     </VisualStateGroup>
@@ -1467,7 +1460,6 @@
 
 
         </Button>
-       
         <Button 
               BackgroundColor="WhiteSmoke"
               TextColor="Black"

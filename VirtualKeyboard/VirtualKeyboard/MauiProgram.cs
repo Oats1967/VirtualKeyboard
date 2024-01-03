@@ -51,11 +51,7 @@ namespace VirtualKeyboard
                             p.IsMaximizable = false;
                             p.IsResizable = false;
                             p.IsAlwaysOnTop = true;
-                            p.SetBorderAndTitleBar(false, false);
-                            
-                          
-                            
-                            
+                            p.SetBorderAndTitleBar(false, false);   
                         }
                         SetWindowLong(nativeWindowHandle, GWL_EXSTYLE, GetWindowLong(nativeWindowHandle, GWL_EXSTYLE) | WS_EX_NOACTIVATE);
                         

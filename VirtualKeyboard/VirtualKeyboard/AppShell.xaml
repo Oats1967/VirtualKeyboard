@@ -6,6 +6,7 @@
     xmlns:local="clr-namespace:VirtualKeyboard"
     Shell.FlyoutBehavior="Disabled"
     Shell.NavBarIsVisible="False"
+   
    >
 
     <ShellContent
