@@ -8,14 +8,22 @@ using VirtualKeyboard.Services;
 namespace VirtualKeyboard.ViewModels
 {
   
-    public class NumericKeyboardViewModel : BaseViewModel
+    public class NumericKeyboardViewModel : KeyboardViewModel
     {
 
       
-        public NumericKeyboardViewModel()
+        public NumericKeyboardViewModel(IKeyboardService keyboardService) : base(keyboardService)
         {
         }
 
+        public override void BackspacePressed()
+        {
+            _keyboardService.SendKey(0x08);
+        }
 
+        public override void KeyPressed(string key)
+        {
+            _keyboardService.SendKey(Convert.ToChar(key));
+        }
     }
 }

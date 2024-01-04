@@ -8,7 +8,7 @@ namespace VirtualKeyboard
         {
             InitializeComponent();
             Routing.RegisterRoute(nameof(NumericKeyboardPage), typeof(NumericKeyboardPage));
-            Routing.RegisterRoute(nameof(AlphabeticKeyboardPage), typeof(AlphabeticKeyboardPage));
+            Routing.RegisterRoute(nameof(GermanKeyboardPage), typeof(GermanKeyboardPage));
         }
     }
 }

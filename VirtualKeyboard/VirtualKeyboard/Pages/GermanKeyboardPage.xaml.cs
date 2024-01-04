@@ -9,10 +9,10 @@ using VirtualKeyboard.ViewModels;
 namespace VirtualKeyboard.Pages;
 
 [QueryProperty("Size", "Size")]
-public partial class AlphabeticKeyboardPage : ContentPage
+public partial class GermanKeyboardPage : ContentPage
 {
     public string Size { get; set; } = string.Empty;
-    public AlphabeticKeyboardPage(AlphabeticKeyboardViewModel viewModel)
+    public GermanKeyboardPage(AlphabeticKeyboardViewModel viewModel)
 	{
 		InitializeComponent();
 		BindingContext = viewModel;

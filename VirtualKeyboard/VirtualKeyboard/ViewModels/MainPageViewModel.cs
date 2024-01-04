@@ -56,7 +56,7 @@ namespace VirtualKeyboard.ViewModels
         // toDo make private
         public async void OpenAlphabeticKeyboardAsync(int x, int y, int width, int height)
         {
-            await Shell.Current.GoToAsync($"{nameof(AlphabeticKeyboardPage)}?Size={x},{y},{width},{height}");
+            await Shell.Current.GoToAsync($"{nameof(GermanKeyboardPage)}?Size={x},{y},{width},{height}");
         }
     }
 }

@@ -7,13 +7,13 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace VirtualKeyboard.ViewModels
 {
-    public partial class AlphabeticKeyboardViewModel : BaseViewModel
+    public partial class AlphabeticKeyboardViewModel : KeyboardViewModel
     {
 
-        IKeyboardService _keyboardService;
-        public AlphabeticKeyboardViewModel( IKeyboardService keyboardService)
+       
+        public AlphabeticKeyboardViewModel( IKeyboardService keyboardService) : base(keyboardService)
         {
-            _keyboardService = keyboardService;
+           
             Locked = false;
             CapsLock = false;
         }
@@ -39,57 +39,30 @@ namespace VirtualKeyboard.ViewModels
         public void CapsLockPressed()
         {
             Locked = false;
-            CapsLock = !CapsLock;
-
-            
+            CapsLock = !CapsLock; 
         }
 
-
-
-
         [RelayCommand]
-        public void KeyPressed(string key)
+        public override void KeyPressed(string key)
         {
-           
+            if (!Locked)
+            {
+                CapsLock = false;
+            }
             _keyboardService.SendKey(Convert.ToChar(key));
+           
+        }
+
+        [RelayCommand]
+        public override void BackspacePressed()
+        {
+
             if (!Locked)
             {
                 CapsLock = false;
             }
-        }
-
-        [RelayCommand]
-        public void BackspacePressed()
-        {
-
             _keyboardService.SendKey(0x08);
-            if (!Locked)
-            {
-                CapsLock = false;
-            }
+           
         }
-
-        [RelayCommand]
-        public void LeftPressed()
-        {
-            _keyboardService.SendKey(0x25);
-        }
-
-        [RelayCommand]
-        public void RightPressed()
-        {
-            _keyboardService.SendKey(0x27);
-        }
-
-        [RelayCommand]
-        public void EnterPressed()
-        {
-            _keyboardService.SendKey(0x0D);
-        }
-
-
-
-
-
     }
 }

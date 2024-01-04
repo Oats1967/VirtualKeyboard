@@ -73,7 +73,7 @@
 	  <MauiXaml Update="Controls\Key.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\AlphabeticKeyboardPage.xaml">
+	  <MauiXaml Update="Pages\GermanKeyboardPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\NumericKeyboardPage.xaml">
@@ -83,6 +83,12 @@
 
 	<ItemGroup>
 	  <Folder Include="Converter\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Pages\GermanKeyboardPage.xaml.cs">
+	    <DependentUpon>GermanKeyboardPage.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 </Project>

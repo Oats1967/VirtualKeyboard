@@ -97,7 +97,7 @@ namespace VirtualKeyboard
         {
              builder.Services.AddSingleton<MainPage>();
             builder.Services.AddSingleton<NumericKeyboardPage>();
-            builder.Services.AddSingleton<AlphabeticKeyboardPage>();
+            builder.Services.AddSingleton<GermanKeyboardPage>();
             return builder;
         }
 
