@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VirtualKeyboard.Pages.GermanKeyboardPage"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:controls="clr-namespace:VirtualKeyboard.Controls"
              BackgroundColor="Grey">
     <ContentPage.Resources>
         <toolkit:BoolToObjectConverter
@@ -168,39 +169,12 @@
         ColumnSpacing="10">
         
         <!--Row 0-->
-        <Button 
-            BackgroundColor="WhiteSmoke"
-            TextColor="Black"
+        <controls:Key
+           
+            BackgroundColor="LightGray"
             Grid.Row="0"
-            Grid.Column="0"
-            Text="1"
-            VerticalOptions="FillAndExpand" 
-            HorizontalOptions="FillAndExpand"
-            Command="{Binding KeyPressedCommand}"
-            CommandParameter="1">
-            <Button.Shadow>
-                <Shadow Brush="Black"
-                Opacity="0.8" />
-            </Button.Shadow>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                            Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                            Value="0.95" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </VisualStateManager.VisualStateGroups>
-        </Button>
+            Grid.Column="0">
+        </controls:Key>
         <Button 
             BackgroundColor="WhiteSmoke"
             TextColor="Black"

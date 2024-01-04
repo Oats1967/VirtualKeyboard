@@ -31,8 +31,6 @@ namespace VirtualKeyboard.ViewModels
            
             CapsLock = !CapsLock;
             Locked = CapsLock;
-
-
         }
 
         [RelayCommand]
@@ -50,19 +48,16 @@ namespace VirtualKeyboard.ViewModels
                 CapsLock = false;
             }
             _keyboardService.SendKey(Convert.ToChar(key));
-           
         }
 
         [RelayCommand]
         public override void BackspacePressed()
         {
-
             if (!Locked)
             {
                 CapsLock = false;
             }
             _keyboardService.SendKey(0x08);
-           
         }
     }
 }
