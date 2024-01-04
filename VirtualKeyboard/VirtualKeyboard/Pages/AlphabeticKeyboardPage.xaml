@@ -507,7 +507,7 @@
            VerticalOptions="FillAndExpand" 
            HorizontalOptions="FillAndExpand"
            Command="{Binding KeyPressedCommand}"
-             CommandParameter="ß">
+            CommandParameter="ß">
             <Button.Shadow>
                 <Shadow Brush="Black"
      Opacity="0.8" />
@@ -533,15 +533,14 @@
         </Button>
         <Button 
             Grid.ColumnSpan="3"
-           BackgroundColor="IndianRed"
+           BackgroundColor="#dd0736"
            TextColor="Black"
            Grid.Row="0"
            Grid.Column="11"
              Text="⌫"
            VerticalOptions="FillAndExpand" 
            HorizontalOptions="FillAndExpand"
-           Command="{Binding KeyPressedCommand}"
-           CommandParameter="&quot;BACKSPACE&quot;">
+           Command="{Binding BackspacePressedCommand}">
             <Button.Shadow>
                 <Shadow Brush="Black"
      Opacity="0.8" />
@@ -967,7 +966,7 @@
         Grid.ColumnSpan="2"
         Grid.RowSpan="3"
         Opacity="0.75"
-        BackgroundColor="#234F1E"
+        BackgroundColor="#36dd07"
         TextColor="Black"
         Grid.Row="1"
         Grid.Column="12"
@@ -975,8 +974,8 @@
         Text="⏎"
         VerticalOptions="FillAndExpand" 
         HorizontalOptions="FillAndExpand"
-        Command="{Binding KeyPressedCommand}"
-            CommandParameter="&quot;{ENTER}&quot;">
+        Command="{Binding EnterPressedCommand}"
+       >
             <Button.Shadow>
                 <Shadow Brush="Black"
      Opacity="0.8" />
@@ -1373,7 +1372,8 @@
             Text="#"
             VerticalOptions="FillAndExpand" 
             HorizontalOptions="FillAndExpand"
-            Command="{Binding KeyPressedCommand}">
+            Command="{Binding KeyPressedCommand}"
+             CommandParameter="#">
             <Button.Shadow>
                 <Shadow Brush="Black"
      Opacity="0.8" />
@@ -1792,6 +1792,16 @@
         </Button>
         
         <!--Row 4-->
+
+
+        <Image
+            Source="firmenlogo_grey.jpg"
+            Aspect="Fill"
+            Grid.Row="4"
+            Grid.Column="0"
+            Grid.ColumnSpan="4">
+            
+        </Image>
         <Button 
     BackgroundColor="WhiteSmoke"
     TextColor="Black"
@@ -1801,8 +1811,8 @@
     Text="◀"
     VerticalOptions="FillAndExpand" 
     HorizontalOptions="FillAndExpand"
-    Command="{Binding KeyPressedCommand}"
-            CommandParameter="&quot;{Left}&quot;">
+    Command="{Binding LeftPressedCommand}"
+           >
             <Button.Shadow>
                 <Shadow Brush="Black"
      Opacity="0.8" />
@@ -1835,8 +1845,8 @@
     Text="▶"
      VerticalOptions="FillAndExpand" 
      HorizontalOptions="FillAndExpand"
-     Command="{Binding KeyPressedCommand}"
-            CommandParameter="&quot;{Right}&quot;">
+     Command="{Binding RightPressedCommand}"
+            >
             <Button.Shadow>
                 <Shadow Brush="Black"
      Opacity="0.8" />
@@ -1868,7 +1878,8 @@
               Grid.ColumnSpan="6"
               VerticalOptions="FillAndExpand" 
               HorizontalOptions="FillAndExpand"
-              Command="{Binding KeyPressedCommand}">
+              Command="{Binding KeyPressedCommand}"
+             CommandParameter=" ">
             <Button.Shadow>
                 <Shadow Brush="Black"
      Opacity="0.8" />

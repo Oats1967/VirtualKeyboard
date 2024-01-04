@@ -112,6 +112,7 @@ namespace VirtualKeyboard
         public static MauiAppBuilder RegisterServices(this MauiAppBuilder builder)
         {
             builder.Services.AddSingleton<ITCPService,TCPService>();
+            builder.Services.AddSingleton<IKeyboardService, KeyboardService>();
             return builder;
         }
 

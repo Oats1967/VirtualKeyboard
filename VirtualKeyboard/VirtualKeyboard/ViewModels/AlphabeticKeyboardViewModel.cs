@@ -10,11 +10,10 @@ namespace VirtualKeyboard.ViewModels
     public partial class AlphabeticKeyboardViewModel : BaseViewModel
     {
 
-        [ComVisible(true)]
-        [DllImport("SendKeysMAUI64.dll", EntryPoint = "SendKeys", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.StdCall)]
-        private static extern int SendKeys(byte arg);
-        public AlphabeticKeyboardViewModel()
+        IKeyboardService _keyboardService;
+        public AlphabeticKeyboardViewModel( IKeyboardService keyboardService)
         {
+            _keyboardService = keyboardService;
             Locked = false;
             CapsLock = false;
         }
@@ -46,22 +45,51 @@ namespace VirtualKeyboard.ViewModels
         }
 
 
+
+
         [RelayCommand]
-        public void KeyPressed(string c)
+        public void KeyPressed(string key)
         {
-            
-            var utf8Bytes = Encoding.Unicode.GetBytes(c);
-            var firstByte = utf8Bytes[0];
-            // Use the firstByte as needed
-            SendKeys(firstByte);
-            if(!Locked)
+           
+            _keyboardService.SendKey(Convert.ToChar(key));
+            if (!Locked)
             {
                 CapsLock = false;
             }
-           
-            if (c.Equals("{Enter}")) Shell.Current.GoToAsync("..");
-
         }
+
+        [RelayCommand]
+        public void BackspacePressed()
+        {
+
+            _keyboardService.SendKey(0x08);
+            if (!Locked)
+            {
+                CapsLock = false;
+            }
+        }
+
+        [RelayCommand]
+        public void LeftPressed()
+        {
+            _keyboardService.SendKey(0x25);
+        }
+
+        [RelayCommand]
+        public void RightPressed()
+        {
+            _keyboardService.SendKey(0x27);
+        }
+
+        [RelayCommand]
+        public void EnterPressed()
+        {
+            _keyboardService.SendKey(0x0D);
+        }
+
+
+
+
 
     }
 }
