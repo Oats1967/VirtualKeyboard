@@ -11,6 +11,8 @@
     <Color x:Key="SmaDoTecGreen">#36dd07</Color>
     <Color x:Key="Background">#808080</Color>
     <Color x:Key="NormalKey">#F5F5F5</Color>
+    <Color x:Key="NormalKeyText">#000000</Color>
+
 
 
 

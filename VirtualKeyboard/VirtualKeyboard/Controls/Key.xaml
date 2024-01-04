@@ -1,40 +1,35 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<Button xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="VirtualKeyboard.Controls.Key">
-    <ContentView.Resources>
-        <ControlTemplate x:Key="Key">
-            <Button 
-                 
-                 TextColor="Black"
-                 VerticalOptions="FillAndExpand" 
-                 HorizontalOptions="FillAndExpand"
-                 Text="{TemplateBinding Symbol}"
-                 Command="{TemplateBinding Command}"
-                 CommandParameter="{TemplateBinding CommandParameter}">
-                <Button.Shadow>
-                    <Shadow Brush="Black"
-                            Opacity="0.8" />
-                </Button.Shadow>
-                <VisualStateManager.VisualStateGroups>
-                    <VisualStateGroupList>
-                        <VisualStateGroup x:Name="CommonStates">
-                            <VisualState x:Name="Normal">
-                                <VisualState.Setters>
-                                    <Setter Property="Scale"
-                                            Value="1" />
-                                </VisualState.Setters>
-                            </VisualState>
-                            <VisualState x:Name="Pressed">
-                                <VisualState.Setters>
-                                    <Setter Property="Scale"
-                                            Value="0.95" />
-                                </VisualState.Setters>
-                            </VisualState>
-                        </VisualStateGroup>
-                    </VisualStateGroupList>
-                </VisualStateManager.VisualStateGroups>
-            </Button>
-        </ControlTemplate>
-    </ContentView.Resources>
-</ContentView>
+             x:Class="VirtualKeyboard.Controls.Key"
+        TextColor="{StaticResource NormalKeyText}"
+        VerticalOptions="FillAndExpand" 
+        HorizontalOptions="FillAndExpand">
+    <Button.Resources>
+        
+    </Button.Resources>
+       <Button.Shadow>
+           <Shadow Brush="Black"
+                   Opacity="0.8" />
+       </Button.Shadow>
+       <VisualStateManager.VisualStateGroups>
+           <VisualStateGroupList>
+               <VisualStateGroup x:Name="CommonStates">
+                   <VisualState x:Name="Normal">
+                       <VisualState.Setters>
+                           <Setter Property="Scale"
+                                   Value="1" />
+                       </VisualState.Setters>
+                   </VisualState>
+                   <VisualState x:Name="Pressed">
+                       <VisualState.Setters>
+                           <Setter Property="Scale"
+                                   Value="0.95" />
+                       </VisualState.Setters>
+                   </VisualState>
+               </VisualStateGroup>
+           </VisualStateGroupList>
+       </VisualStateManager.VisualStateGroups>
+</Button>
+
+

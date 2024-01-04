@@ -1,1888 +1,538 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="VirtualKeyboard.Pages.GermanKeyboardPage"
-             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             xmlns:controls="clr-namespace:VirtualKeyboard.Controls"
-             BackgroundColor="Grey">
+<ContentPage
+    x:Class="VirtualKeyboard.Pages.GermanKeyboardPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:VirtualKeyboard.Controls"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    BackgroundColor="Grey">
     <ContentPage.Resources>
         <toolkit:BoolToObjectConverter
             x:Key="CapsLockColorConverter"
-            TrueObject="#6B6B6B"
-            FalseObject="#F5F5F5">
-        </toolkit:BoolToObjectConverter>
-       
+            FalseObject="#F5F5F5"
+            TrueObject="#6B6B6B" />
+
         <toolkit:BoolToObjectConverter
             x:Key="QConverter"
-            TrueObject="Q"
-            FalseObject="q">
-        </toolkit:BoolToObjectConverter>
+            FalseObject="q"
+            TrueObject="Q" />
         <toolkit:BoolToObjectConverter
-             x:Key="WConverter"
-             TrueObject="W"
-             FalseObject="w">
-        </toolkit:BoolToObjectConverter>
+            x:Key="WConverter"
+            FalseObject="w"
+            TrueObject="W" />
         <toolkit:BoolToObjectConverter
-             x:Key="EConverter"
-             TrueObject="E"
-             FalseObject="e">
-        </toolkit:BoolToObjectConverter>
+            x:Key="EConverter"
+            FalseObject="e"
+            TrueObject="E" />
         <toolkit:BoolToObjectConverter
-             x:Key="RConverter"
-             TrueObject="R"
-             FalseObject="r">
-        </toolkit:BoolToObjectConverter>
+            x:Key="RConverter"
+            FalseObject="r"
+            TrueObject="R" />
         <toolkit:BoolToObjectConverter
-          x:Key="TConverter"
-          TrueObject="T"
-          FalseObject="t">
-        </toolkit:BoolToObjectConverter>
+            x:Key="TConverter"
+            FalseObject="t"
+            TrueObject="T" />
         <toolkit:BoolToObjectConverter
-           x:Key="ZConverter"
-           TrueObject="Z"
-           FalseObject="z">
-        </toolkit:BoolToObjectConverter>
+            x:Key="ZConverter"
+            FalseObject="z"
+            TrueObject="Z" />
         <toolkit:BoolToObjectConverter
             x:Key="UConverter"
-            TrueObject="U"
-            FalseObject="u">
-        </toolkit:BoolToObjectConverter>
+            FalseObject="u"
+            TrueObject="U" />
         <toolkit:BoolToObjectConverter
-             x:Key="IConverter"
-             TrueObject="I"
-             FalseObject="i">
-        </toolkit:BoolToObjectConverter>
+            x:Key="IConverter"
+            FalseObject="i"
+            TrueObject="I" />
         <toolkit:BoolToObjectConverter
-             x:Key="OConverter"
-             TrueObject="O"
-             FalseObject="o">
-        </toolkit:BoolToObjectConverter>
+            x:Key="OConverter"
+            FalseObject="o"
+            TrueObject="O" />
         <toolkit:BoolToObjectConverter
-              x:Key="PConverter"
-              TrueObject="P"
-              FalseObject="p">
-        </toolkit:BoolToObjectConverter>
+            x:Key="PConverter"
+            FalseObject="p"
+            TrueObject="P" />
         <toolkit:BoolToObjectConverter
-           x:Key="ÜConverter"
-           TrueObject="Ü"
-           FalseObject="ü">
-        </toolkit:BoolToObjectConverter>
+            x:Key="ÜConverter"
+            FalseObject="ü"
+            TrueObject="Ü" />
         <toolkit:BoolToObjectConverter
-           x:Key="AConverter"
-           TrueObject="A"
-           FalseObject="a">
-        </toolkit:BoolToObjectConverter>
+            x:Key="AConverter"
+            FalseObject="a"
+            TrueObject="A" />
         <toolkit:BoolToObjectConverter
             x:Key="SConverter"
-            TrueObject="S"
-            FalseObject="s">
-        </toolkit:BoolToObjectConverter>
+            FalseObject="s"
+            TrueObject="S" />
         <toolkit:BoolToObjectConverter
-          x:Key="DConverter"
-          TrueObject="D"
-          FalseObject="d">
-        </toolkit:BoolToObjectConverter>
+            x:Key="DConverter"
+            FalseObject="d"
+            TrueObject="D" />
         <toolkit:BoolToObjectConverter
-           x:Key="FConverter"
-           TrueObject="F"
-           FalseObject="f">
-        </toolkit:BoolToObjectConverter>
+            x:Key="FConverter"
+            FalseObject="f"
+            TrueObject="F" />
         <toolkit:BoolToObjectConverter
-           x:Key="GConverter"
-           TrueObject="G"
-           FalseObject="g">
-        </toolkit:BoolToObjectConverter>
+            x:Key="GConverter"
+            FalseObject="g"
+            TrueObject="G" />
         <toolkit:BoolToObjectConverter
             x:Key="HConverter"
-            TrueObject="H"
-            FalseObject="h">
-        </toolkit:BoolToObjectConverter>
+            FalseObject="h"
+            TrueObject="H" />
         <toolkit:BoolToObjectConverter
-             x:Key="JConverter"
-             TrueObject="J"
-             FalseObject="j">
-        </toolkit:BoolToObjectConverter>
+            x:Key="JConverter"
+            FalseObject="j"
+            TrueObject="J" />
         <toolkit:BoolToObjectConverter
-          x:Key="KConverter"
-          TrueObject="K"
-          FalseObject="k">
-        </toolkit:BoolToObjectConverter>
+            x:Key="KConverter"
+            FalseObject="k"
+            TrueObject="K" />
         <toolkit:BoolToObjectConverter
-          x:Key="LConverter"
-          TrueObject="L"
-          FalseObject="l">
-        </toolkit:BoolToObjectConverter>
+            x:Key="LConverter"
+            FalseObject="l"
+            TrueObject="L" />
         <toolkit:BoolToObjectConverter
-           x:Key="ÖConverter"
-           TrueObject="Ö"
-           FalseObject="ö">
-        </toolkit:BoolToObjectConverter>
+            x:Key="ÖConverter"
+            FalseObject="ö"
+            TrueObject="Ö" />
         <toolkit:BoolToObjectConverter
-           x:Key="ÄConverter"
-           TrueObject="Ä"
-           FalseObject="ä">
-        </toolkit:BoolToObjectConverter>
+            x:Key="ÄConverter"
+            FalseObject="ä"
+            TrueObject="Ä" />
         <toolkit:BoolToObjectConverter
             x:Key="YConverter"
-            TrueObject="Y"
-            FalseObject="y">
-        </toolkit:BoolToObjectConverter>
+            FalseObject="y"
+            TrueObject="Y" />
         <toolkit:BoolToObjectConverter
-             x:Key="XConverter"
-             TrueObject="X"
-             FalseObject="x">
-        </toolkit:BoolToObjectConverter>
+            x:Key="XConverter"
+            FalseObject="x"
+            TrueObject="X" />
         <toolkit:BoolToObjectConverter
-          x:Key="CConverter"
-          TrueObject="C"
-          FalseObject="c">
-        </toolkit:BoolToObjectConverter>
+            x:Key="CConverter"
+            FalseObject="c"
+            TrueObject="C" />
         <toolkit:BoolToObjectConverter
-           x:Key="VConverter"
-           TrueObject="V"
-           FalseObject="v">
-        </toolkit:BoolToObjectConverter>
+            x:Key="VConverter"
+            FalseObject="v"
+            TrueObject="V" />
         <toolkit:BoolToObjectConverter
-           x:Key="BConverter"
-           TrueObject="B"
-           FalseObject="b">
-        </toolkit:BoolToObjectConverter>
+            x:Key="BConverter"
+            FalseObject="b"
+            TrueObject="B" />
         <toolkit:BoolToObjectConverter
-           x:Key="NConverter"
-           TrueObject="N"
-           FalseObject="n">
-        </toolkit:BoolToObjectConverter>
+            x:Key="NConverter"
+            FalseObject="n"
+            TrueObject="N" />
         <toolkit:BoolToObjectConverter
-             x:Key="MConverter"
-             TrueObject="M"
-             FalseObject="m">
-        </toolkit:BoolToObjectConverter>
+            x:Key="MConverter"
+            FalseObject="m"
+            TrueObject="M" />
 
 
     </ContentPage.Resources>
-  
+
     <Grid
         Padding="10"
         ColumnDefinitions="*,*,*,*,*,*,*,*,*,*,*,*,*,*"
+        ColumnSpacing="10"
         RowDefinitions="*,*,*,*,*"
-        RowSpacing="10"
-        ColumnSpacing="10">
-        
-        <!--Row 0-->
+        RowSpacing="10">
+
+        <!--  Row 0  -->
         <controls:Key
-           
-            BackgroundColor="LightGray"
             Grid.Row="0"
-            Grid.Column="0">
-        </controls:Key>
-        <Button 
-            BackgroundColor="WhiteSmoke"
-            TextColor="Black"
+            Grid.Column="0"
+            BackgroundColor="{StaticResource NormalKey}"
+            Command="{Binding KeyPressedCommand}"
+            CommandParameter="1"
+            Text="1" />
+        <controls:Key
             Grid.Row="0"
             Grid.Column="1"
-            Text="2"
-            VerticalOptions="FillAndExpand" 
-            HorizontalOptions="FillAndExpand"
+            BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
-            CommandParameter="2">
-            <Button.Shadow>
-                <Shadow Brush="Black"
-     Opacity="0.8" />
-            </Button.Shadow>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                 Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                 Value="0.95" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </VisualStateManager.VisualStateGroups>
-        </Button>
-        <Button 
-             BackgroundColor="WhiteSmoke"
-             TextColor="Black"
-             Grid.Row="0"
-             Grid.Column="2"
-             Text="3"
-             VerticalOptions="FillAndExpand" 
-             HorizontalOptions="FillAndExpand"
-             Command="{Binding KeyPressedCommand}"
-             CommandParameter="3">
-            <Button.Shadow>
-                <Shadow Brush="Black"
-     Opacity="0.8" />
-            </Button.Shadow>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="0.95" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </VisualStateManager.VisualStateGroups>
-        </Button>
-        <Button 
-             BackgroundColor="WhiteSmoke"
-             TextColor="Black"
-             Grid.Row="0"
-             Grid.Column="3"
-             Text="4"
-             VerticalOptions="FillAndExpand" 
-             HorizontalOptions="FillAndExpand"
-             Command="{Binding KeyPressedCommand}"
-             CommandParameter="4">
-            <Button.Shadow>
-                <Shadow Brush="Black"
-     Opacity="0.8" />
-            </Button.Shadow>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="0.95" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </VisualStateManager.VisualStateGroups>
-        </Button>
-        <Button 
-             BackgroundColor="WhiteSmoke"
-             TextColor="Black"
-             Grid.Row="0"
-             Grid.Column="4"
-             Text="5"
-             VerticalOptions="FillAndExpand" 
-             HorizontalOptions="FillAndExpand"
-             Command="{Binding KeyPressedCommand}"
-             CommandParameter="5">
-            <Button.Shadow>
-                <Shadow Brush="Black"
-     Opacity="0.8" />
-            </Button.Shadow>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="0.95" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </VisualStateManager.VisualStateGroups>
-        </Button>
-        <Button 
-             BackgroundColor="WhiteSmoke"
-             TextColor="Black"
-             Grid.Row="0"
-             Grid.Column="5"
-             Text="6"
-             VerticalOptions="FillAndExpand" 
-             HorizontalOptions="FillAndExpand"
-             Command="{Binding KeyPressedCommand}"
-             CommandParameter="6">
-            <Button.Shadow>
-                <Shadow Brush="Black"
-     Opacity="0.8" />
-            </Button.Shadow>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="0.95" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </VisualStateManager.VisualStateGroups>
-        </Button>
-        <Button 
-              BackgroundColor="WhiteSmoke"
-              TextColor="Black"
-              Grid.Row="0"
-              Grid.Column="6"
-              Text="7"
-              VerticalOptions="FillAndExpand" 
-              HorizontalOptions="FillAndExpand"
-              Command="{Binding KeyPressedCommand}"
-             CommandParameter="7">
-            <Button.Shadow>
-                <Shadow Brush="Black"
-     Opacity="0.8" />
-            </Button.Shadow>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="0.95" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </VisualStateManager.VisualStateGroups>
-        </Button>
-        <Button 
-              BackgroundColor="WhiteSmoke"
-              TextColor="Black"
-              Grid.Row="0"
-              Grid.Column="7"
-              Text="8"
-              VerticalOptions="FillAndExpand" 
-              HorizontalOptions="FillAndExpand"
-              Command="{Binding KeyPressedCommand}"
-             CommandParameter="8">
-            <Button.Shadow>
-                <Shadow Brush="Black"
-     Opacity="0.8" />
-            </Button.Shadow>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="0.95" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </VisualStateManager.VisualStateGroups>
-        </Button>
-        <Button 
-              BackgroundColor="WhiteSmoke"
-              TextColor="Black"
-              Grid.Row="0"
-              Grid.Column="8"
-              Text="9"
-              VerticalOptions="FillAndExpand" 
-              HorizontalOptions="FillAndExpand"
-              Command="{Binding KeyPressedCommand}"
-             CommandParameter="9">
-            <Button.Shadow>
-                <Shadow Brush="Black"
-     Opacity="0.8" />
-            </Button.Shadow>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="0.95" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </VisualStateManager.VisualStateGroups>
-        </Button>
-        <Button 
-              BackgroundColor="WhiteSmoke"
-              TextColor="Black"
-              Grid.Row="0"
-              Grid.Column="9"
-              Text="0"
-              VerticalOptions="FillAndExpand" 
-              HorizontalOptions="FillAndExpand"
-              Command="{Binding KeyPressedCommand}"
-             CommandParameter="0">
-            <Button.Shadow>
-                <Shadow Brush="Black"
-     Opacity="0.8" />
-            </Button.Shadow>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="0.95" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </VisualStateManager.VisualStateGroups>
-        </Button>
-        <Button 
-           BackgroundColor="WhiteSmoke"
-           TextColor="Black"
-           Grid.Row="0"
-           Grid.Column="10"
-           Text="ß"
-           VerticalOptions="FillAndExpand" 
-           HorizontalOptions="FillAndExpand"
-           Command="{Binding KeyPressedCommand}"
-            CommandParameter="ß">
-            <Button.Shadow>
-                <Shadow Brush="Black"
-     Opacity="0.8" />
-            </Button.Shadow>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="0.95" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </VisualStateManager.VisualStateGroups>
-        </Button>
-        <Button 
+            CommandParameter="2"
+            Text="2" />
+        <controls:Key
+            Grid.Row="0"
+            Grid.Column="2"
+            BackgroundColor="{StaticResource NormalKey}"
+            Command="{Binding KeyPressedCommand}"
+            CommandParameter="3"
+            Text="3" />
+        <controls:Key
+            Grid.Row="0"
+            Grid.Column="3"
+            BackgroundColor="{StaticResource NormalKey}"
+            Command="{Binding KeyPressedCommand}"
+            CommandParameter="4"
+            Text="4" />
+        <controls:Key
+            Grid.Row="0"
+            Grid.Column="4"
+            BackgroundColor="{StaticResource NormalKey}"
+            Command="{Binding KeyPressedCommand}"
+            CommandParameter="5"
+            Text="5" />
+        <controls:Key
+            Grid.Row="0"
+            Grid.Column="5"
+            BackgroundColor="{StaticResource NormalKey}"
+            Command="{Binding KeyPressedCommand}"
+            CommandParameter="6"
+            Text="6" />
+        <controls:Key
+            Grid.Row="0"
+            Grid.Column="6"
+            BackgroundColor="{StaticResource NormalKey}"
+            Command="{Binding KeyPressedCommand}"
+            CommandParameter="7"
+            Text="7" />
+        <controls:Key
+            Grid.Row="0"
+            Grid.Column="7"
+            BackgroundColor="{StaticResource NormalKey}"
+            Command="{Binding KeyPressedCommand}"
+            CommandParameter="8"
+            Text="8" />
+        <controls:Key
+            Grid.Row="0"
+            Grid.Column="8"
+            BackgroundColor="{StaticResource NormalKey}"
+            Command="{Binding KeyPressedCommand}"
+            CommandParameter="9"
+            Text="9" />
+        <controls:Key
+            Grid.Row="0"
+            Grid.Column="9"
+            BackgroundColor="{StaticResource NormalKey}"
+            Command="{Binding KeyPressedCommand}"
+            CommandParameter="0"
+            Text="0" />
+        <controls:Key
+            Grid.Row="0"
+            Grid.Column="10"
+            BackgroundColor="{StaticResource NormalKey}"
+            Command="{Binding KeyPressedCommand}"
+            CommandParameter="ß"
+            Text="ß" />
+        <controls:Key
+            Grid.Row="0"
+            Grid.Column="11"
             Grid.ColumnSpan="3"
-           BackgroundColor="#dd0736"
-           TextColor="Black"
-           Grid.Row="0"
-           Grid.Column="11"
-             Text="⌫"
-           VerticalOptions="FillAndExpand" 
-           HorizontalOptions="FillAndExpand"
-           Command="{Binding BackspacePressedCommand}">
-            <Button.Shadow>
-                <Shadow Brush="Black"
-     Opacity="0.8" />
-            </Button.Shadow>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="0.95" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </VisualStateManager.VisualStateGroups>
-        </Button>
+            BackgroundColor="{StaticResource SmaDoTecRed}"
+            Command="{Binding BackspacePressedCommand}"
+            Text="⌫" />
 
-        <!--Row 1-->
-        <Button 
-         BackgroundColor="WhiteSmoke"
-         TextColor="Black"
-         Grid.Row="1"
-         Grid.Column="0"
-         Text="{Binding CapsLock,Converter={StaticResource QConverter}}"
-         VerticalOptions="FillAndExpand" 
-         HorizontalOptions="FillAndExpand"
-         Command="{Binding KeyPressedCommand}"
-         CommandParameter="{Binding CapsLock,Converter={StaticResource QConverter}}">
-            <Button.Shadow>
-                <Shadow Brush="Black"
-     Opacity="0.8" />
-            </Button.Shadow>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="0.95" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </VisualStateManager.VisualStateGroups>
-        </Button>
-        <Button 
-       BackgroundColor="WhiteSmoke"
-       TextColor="Black"
-       Grid.Row="1"
-       Grid.Column="1"
-       Text="{Binding CapsLock,Converter={StaticResource WConverter}}"
-       VerticalOptions="FillAndExpand" 
-       HorizontalOptions="FillAndExpand"
-       Command="{Binding KeyPressedCommand}"
-            CommandParameter="{Binding CapsLock,Converter={StaticResource WConverter}}">
-            <Button.Shadow>
-                <Shadow Brush="Black"
-     Opacity="0.8" />
-            </Button.Shadow>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="0.95" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </VisualStateManager.VisualStateGroups>
-        </Button>
-        <Button 
-       BackgroundColor="WhiteSmoke"
-       TextColor="Black"
-       Grid.Row="1"
-       Grid.Column="2"
-       Text="{Binding CapsLock,Converter={StaticResource EConverter}}"
-       VerticalOptions="FillAndExpand" 
-       HorizontalOptions="FillAndExpand"
-       Command="{Binding KeyPressedCommand}"
-            CommandParameter="{Binding CapsLock,Converter={StaticResource EConverter}}">
-            <Button.Shadow>
-                <Shadow Brush="Black"
-     Opacity="0.8" />
-            </Button.Shadow>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="0.95" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </VisualStateManager.VisualStateGroups>
-        </Button>
-        <Button 
-        BackgroundColor="WhiteSmoke"
-        TextColor="Black"
-        Grid.Row="1"
-        Grid.Column="3"
-        Text="{Binding CapsLock,Converter={StaticResource RConverter}}"
-        VerticalOptions="FillAndExpand" 
-        HorizontalOptions="FillAndExpand"
-        Command="{Binding KeyPressedCommand}"
-            CommandParameter="{Binding CapsLock,Converter={StaticResource RConverter}}">
-            <Button.Shadow>
-                <Shadow Brush="Black"
-     Opacity="0.8" />
-            </Button.Shadow>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="0.95" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </VisualStateManager.VisualStateGroups>
-        </Button>
-        <Button 
-        BackgroundColor="WhiteSmoke"
-        TextColor="Black"
-        Grid.Row="1"
-        Grid.Column="4"
-        Text="{Binding CapsLock,Converter={StaticResource TConverter}}"
-        VerticalOptions="FillAndExpand" 
-        HorizontalOptions="FillAndExpand"
-        Command="{Binding KeyPressedCommand}"
-            CommandParameter="{Binding CapsLock,Converter={StaticResource TConverter}}">
-            <Button.Shadow>
-                <Shadow Brush="Black"
-     Opacity="0.8" />
-            </Button.Shadow>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="0.95" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </VisualStateManager.VisualStateGroups>
-        </Button>
-        <Button 
-        BackgroundColor="WhiteSmoke"
-        TextColor="Black"
-        Grid.Row="1"
-        Grid.Column="5"
-        Text="{Binding CapsLock,Converter={StaticResource ZConverter}}"
-        VerticalOptions="FillAndExpand" 
-        HorizontalOptions="FillAndExpand"
-        Command="{Binding KeyPressedCommand}"
-            CommandParameter="{Binding CapsLock,Converter={StaticResource ZConverter}}">
-            <Button.Shadow>
-                <Shadow Brush="Black"
-     Opacity="0.8" />
-            </Button.Shadow>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="0.95" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </VisualStateManager.VisualStateGroups>
-        </Button>
-        <Button 
-         BackgroundColor="WhiteSmoke"
-         TextColor="Black"
-         Grid.Row="1"
-         Grid.Column="6"
-         Text="{Binding CapsLock,Converter={StaticResource UConverter}}"
-         VerticalOptions="FillAndExpand" 
-         HorizontalOptions="FillAndExpand"
-         Command="{Binding KeyPressedCommand}"
-            CommandParameter="{Binding CapsLock,Converter={StaticResource UConverter}}">
-            <Button.Shadow>
-                <Shadow Brush="Black"
-     Opacity="0.8" />
-            </Button.Shadow>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="0.95" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </VisualStateManager.VisualStateGroups>
-        </Button>
-        <Button 
-         BackgroundColor="WhiteSmoke"
-         TextColor="Black"
-         Grid.Row="1"
-         Grid.Column="7"
-         Text="{Binding CapsLock,Converter={StaticResource IConverter}}"
-         VerticalOptions="FillAndExpand" 
-         HorizontalOptions="FillAndExpand"
-         Command="{Binding KeyPressedCommand}"
-            CommandParameter="{Binding CapsLock,Converter={StaticResource IConverter}}">
-            <Button.Shadow>
-                <Shadow Brush="Black"
-     Opacity="0.8" />
-            </Button.Shadow>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="0.95" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </VisualStateManager.VisualStateGroups>
-        </Button>
-        <Button 
-         BackgroundColor="WhiteSmoke"
-         TextColor="Black"
-         Grid.Row="1"
-         Grid.Column="8"
-         Text="{Binding CapsLock,Converter={StaticResource OConverter}}"
-         VerticalOptions="FillAndExpand" 
-         HorizontalOptions="FillAndExpand"
-         Command="{Binding KeyPressedCommand}"
-            CommandParameter="{Binding CapsLock,Converter={StaticResource OConverter}}">
-            <Button.Shadow>
-                <Shadow Brush="Black"
-     Opacity="0.8" />
-            </Button.Shadow>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="0.95" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </VisualStateManager.VisualStateGroups>
-        </Button>
-        <Button 
-         BackgroundColor="WhiteSmoke"
-         TextColor="Black"
-         Grid.Row="1"
-         Grid.Column="9"
-         Text="{Binding CapsLock,Converter={StaticResource PConverter}}"
-         VerticalOptions="FillAndExpand" 
-         HorizontalOptions="FillAndExpand"
-         Command="{Binding KeyPressedCommand}"
-            CommandParameter="{Binding CapsLock,Converter={StaticResource PConverter}}">
-            <Button.Shadow>
-                <Shadow Brush="Black"
-     Opacity="0.8" />
-            </Button.Shadow>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="0.95" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </VisualStateManager.VisualStateGroups>
-        </Button>
-        <Button 
-         BackgroundColor="WhiteSmoke"
-         TextColor="Black"
-         Grid.Row="1"
-         Grid.Column="10"
-         Text="{Binding CapsLock,Converter={StaticResource ÜConverter}}"
-         VerticalOptions="FillAndExpand" 
-         HorizontalOptions="FillAndExpand"
-         Command="{Binding KeyPressedCommand}"
-         CommandParameter="{Binding CapsLock,Converter={StaticResource ÜConverter}}">
-            <Button.Shadow>
-                <Shadow Brush="Black"
-     Opacity="0.8" />
-            </Button.Shadow>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="0.95" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </VisualStateManager.VisualStateGroups>
-        </Button>
-        <Button 
-          BackgroundColor="WhiteSmoke"
-          TextColor="Black"
-          Grid.Row="1"
-          Grid.Column="11"
-          Text="+"
-          VerticalOptions="FillAndExpand" 
-          HorizontalOptions="FillAndExpand"
-          Command="{Binding KeyPressedCommand}"
-            CommandParameter="+">
-            <Button.Shadow>
-                <Shadow Brush="Black"
-     Opacity="0.8" />
-            </Button.Shadow>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="0.95" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </VisualStateManager.VisualStateGroups>
-        </Button>
-        <Button 
-        Grid.ColumnSpan="2"
-        Grid.RowSpan="3"
-        Opacity="0.75"
-        BackgroundColor="#36dd07"
-        TextColor="Black"
-        Grid.Row="1"
-        Grid.Column="12"
-        FontSize="Large" 
-        Text="⏎"
-        VerticalOptions="FillAndExpand" 
-        HorizontalOptions="FillAndExpand"
-        Command="{Binding EnterPressedCommand}"
-       >
-            <Button.Shadow>
-                <Shadow Brush="Black"
-     Opacity="0.8" />
-            </Button.Shadow>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="0.95" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </VisualStateManager.VisualStateGroups>
-        </Button>
-        
-        <!--Row 2-->
-        <Button 
-           BackgroundColor="WhiteSmoke"
-           TextColor="Black"
-           Grid.Row="2"
-           Grid.Column="0"
-           Text="{Binding CapsLock,Converter={StaticResource AConverter}}"
-           VerticalOptions="FillAndExpand" 
-           HorizontalOptions="FillAndExpand"
-           Command="{Binding KeyPressedCommand}"
-           CommandParameter="{Binding CapsLock,Converter={StaticResource AConverter}}">
-            <Button.Shadow>
-                <Shadow Brush="Black"
-     Opacity="0.8" />
-            </Button.Shadow>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="0.95" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </VisualStateManager.VisualStateGroups>
-        </Button>
-        <Button 
-             BackgroundColor="WhiteSmoke"
-             TextColor="Black"
-             Grid.Row="2"
-             Grid.Column="1"
-             Text="{Binding CapsLock,Converter={StaticResource SConverter}}"
-             VerticalOptions="FillAndExpand" 
-             HorizontalOptions="FillAndExpand"
-             Command="{Binding KeyPressedCommand}"
-            CommandParameter="{Binding CapsLock,Converter={StaticResource SConverter}}">
-            <Button.Shadow>
-                <Shadow Brush="Black"
-     Opacity="0.8" />
-            </Button.Shadow>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="0.95" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </VisualStateManager.VisualStateGroups>
-        </Button>
-        <Button 
-             BackgroundColor="WhiteSmoke"
-             TextColor="Black"
-             Grid.Row="2"
-             Grid.Column="2"
-             Text="{Binding CapsLock,Converter={StaticResource DConverter}}"
-             VerticalOptions="FillAndExpand" 
-             HorizontalOptions="FillAndExpand"
-             Command="{Binding KeyPressedCommand}"
-            CommandParameter="{Binding CapsLock,Converter={StaticResource DConverter}}">
-            <Button.Shadow>
-                <Shadow Brush="Black"
-     Opacity="0.8" />
-            </Button.Shadow>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="0.95" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </VisualStateManager.VisualStateGroups>
-        </Button>
-        <Button 
-              BackgroundColor="WhiteSmoke"
-              TextColor="Black"
-              Grid.Row="2"
-              Grid.Column="3"
-              Text="{Binding CapsLock,Converter={StaticResource FConverter}}"
-              VerticalOptions="FillAndExpand" 
-              HorizontalOptions="FillAndExpand"
-              Command="{Binding KeyPressedCommand}"
-            CommandParameter="{Binding CapsLock,Converter={StaticResource FConverter}}">
-            <Button.Shadow>
-                <Shadow Brush="Black"
-     Opacity="0.8" />
-            </Button.Shadow>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="0.95" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </VisualStateManager.VisualStateGroups>
-        </Button>
-        <Button 
-              BackgroundColor="WhiteSmoke"
-              TextColor="Black"
-              Grid.Row="2"
-              Grid.Column="4"
-              Text="{Binding CapsLock,Converter={StaticResource GConverter}}"
-              VerticalOptions="FillAndExpand" 
-              HorizontalOptions="FillAndExpand"
-              Command="{Binding KeyPressedCommand}"
-            CommandParameter="{Binding CapsLock,Converter={StaticResource GConverter}}">
-            <Button.Shadow>
-                <Shadow Brush="Black"
-     Opacity="0.8" />
-            </Button.Shadow>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="0.95" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </VisualStateManager.VisualStateGroups>
-        </Button>
-        <Button 
-          BackgroundColor="WhiteSmoke"
-          TextColor="Black"
-          Grid.Row="2"
-          Grid.Column="5"
-          Text="{Binding CapsLock,Converter={StaticResource HConverter}}"
-          VerticalOptions="FillAndExpand" 
-          HorizontalOptions="FillAndExpand"
-          Command="{Binding KeyPressedCommand}"
-            CommandParameter="{Binding CapsLock,Converter={StaticResource HConverter}}">
-            <Button.Shadow>
-                <Shadow Brush="Black"
-     Opacity="0.8" />
-            </Button.Shadow>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="0.95" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </VisualStateManager.VisualStateGroups>
-        </Button>
-        <Button 
-           BackgroundColor="WhiteSmoke"
-           TextColor="Black"
-           Grid.Row="2"
-           Grid.Column="6"
-           Text="{Binding CapsLock,Converter={StaticResource JConverter}}"
-           VerticalOptions="FillAndExpand" 
-           HorizontalOptions="FillAndExpand"
-           Command="{Binding KeyPressedCommand}"
-            CommandParameter="{Binding CapsLock,Converter={StaticResource JConverter}}">
-            <Button.Shadow>
-                <Shadow Brush="Black"
-     Opacity="0.8" />
-            </Button.Shadow>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="0.95" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </VisualStateManager.VisualStateGroups>
-        </Button>
-        <Button 
-           BackgroundColor="WhiteSmoke"
-           TextColor="Black"
-           Grid.Row="2"
-           Grid.Column="7"
-           Text="{Binding CapsLock,Converter={StaticResource KConverter}}"
-           VerticalOptions="FillAndExpand" 
-           HorizontalOptions="FillAndExpand"
-           Command="{Binding KeyPressedCommand}"
-            CommandParameter="{Binding CapsLock,Converter={StaticResource KConverter}}">
-            <Button.Shadow>
-                <Shadow Brush="Black"
-     Opacity="0.8" />
-            </Button.Shadow>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="0.95" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </VisualStateManager.VisualStateGroups>
-        </Button>
-        <Button 
-           BackgroundColor="WhiteSmoke"
-           TextColor="Black"
-           Grid.Row="2"
-           Grid.Column="8"
-           Text="{Binding CapsLock,Converter={StaticResource LConverter}}"
-           VerticalOptions="FillAndExpand" 
-           HorizontalOptions="FillAndExpand"
-           Command="{Binding KeyPressedCommand}"
-            CommandParameter="{Binding CapsLock,Converter={StaticResource LConverter}}">
-            <Button.Shadow>
-                <Shadow Brush="Black"
-     Opacity="0.8" />
-            </Button.Shadow>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="0.95" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </VisualStateManager.VisualStateGroups>
-        </Button>
-        <Button 
-           BackgroundColor="WhiteSmoke"
-           TextColor="Black"
-           Grid.Row="2"
-           Grid.Column="9"
-           Text="{Binding CapsLock,Converter={StaticResource ÖConverter}}"
-           VerticalOptions="FillAndExpand" 
-           HorizontalOptions="FillAndExpand"
-           Command="{Binding KeyPressedCommand}"
-            CommandParameter="{Binding CapsLock,Converter={StaticResource ÖConverter}}">
-            <Button.Shadow>
-                <Shadow Brush="Black"
-     Opacity="0.8" />
-            </Button.Shadow>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="0.95" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </VisualStateManager.VisualStateGroups>
-        </Button>
-        <Button 
-           BackgroundColor="WhiteSmoke"
-           TextColor="Black"
-           Grid.Row="2"
-           Grid.Column="10"
-           Text="{Binding CapsLock,Converter={StaticResource ÄConverter}}"
-           VerticalOptions="FillAndExpand" 
-           HorizontalOptions="FillAndExpand"
-           Command="{Binding KeyPressedCommand}"
-            CommandParameter="{Binding CapsLock,Converter={StaticResource ÄConverter}}">
-            <Button.Shadow>
-                <Shadow Brush="Black"
-     Opacity="0.8" />
-            </Button.Shadow>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="0.95" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </VisualStateManager.VisualStateGroups>
-        </Button>
-        <Button 
-            BackgroundColor="WhiteSmoke"
-            TextColor="Black"
+        <!--  Row 1  -->
+        <controls:Key
+            Grid.Row="1"
+            Grid.Column="0"
+            BackgroundColor="{StaticResource NormalKey}"
+            Command="{Binding KeyPressedCommand}"
+            CommandParameter="{Binding CapsLock, Converter={StaticResource QConverter}}"
+            Text="{Binding CapsLock, Converter={StaticResource QConverter}}" />
+        <controls:Key
+            Grid.Row="1"
+            Grid.Column="1"
+            BackgroundColor="{StaticResource NormalKey}"
+            Command="{Binding KeyPressedCommand}"
+            CommandParameter="{Binding CapsLock, Converter={StaticResource WConverter}}"
+            Text="{Binding CapsLock, Converter={StaticResource WConverter}}" />
+        <controls:Key
+            Grid.Row="1"
+            Grid.Column="2"
+            BackgroundColor="{StaticResource NormalKey}"
+            Command="{Binding KeyPressedCommand}"
+            CommandParameter="{Binding CapsLock, Converter={StaticResource EConverter}}"
+            Text="{Binding CapsLock, Converter={StaticResource EConverter}}" />
+        <controls:Key
+            Grid.Row="1"
+            Grid.Column="3"
+            BackgroundColor="{StaticResource NormalKey}"
+            Command="{Binding KeyPressedCommand}"
+            CommandParameter="{Binding CapsLock, Converter={StaticResource RConverter}}"
+            Text="{Binding CapsLock, Converter={StaticResource RConverter}}" />
+        <controls:Key
+            Grid.Row="1"
+            Grid.Column="4"
+            BackgroundColor="{StaticResource NormalKey}"
+            Command="{Binding KeyPressedCommand}"
+            CommandParameter="{Binding CapsLock, Converter={StaticResource TConverter}}"
+            Text="{Binding CapsLock, Converter={StaticResource TConverter}}" />
+        <controls:Key
+            Grid.Row="1"
+            Grid.Column="5"
+            BackgroundColor="{StaticResource NormalKey}"
+            Command="{Binding KeyPressedCommand}"
+            CommandParameter="{Binding CapsLock, Converter={StaticResource ZConverter}}"
+            Text="{Binding CapsLock, Converter={StaticResource ZConverter}}" />
+        <controls:Key
+            Grid.Row="1"
+            Grid.Column="6"
+            BackgroundColor="{StaticResource NormalKey}"
+            Command="{Binding KeyPressedCommand}"
+            CommandParameter="{Binding CapsLock, Converter={StaticResource UConverter}}"
+            Text="{Binding CapsLock, Converter={StaticResource UConverter}}" />
+        <controls:Key
+            Grid.Row="1"
+            Grid.Column="7"
+            BackgroundColor="{StaticResource NormalKey}"
+            Command="{Binding KeyPressedCommand}"
+            CommandParameter="{Binding CapsLock, Converter={StaticResource IConverter}}"
+            Text="{Binding CapsLock, Converter={StaticResource IConverter}}" />
+        <controls:Key
+            Grid.Row="1"
+            Grid.Column="8"
+            BackgroundColor="{StaticResource NormalKey}"
+            Command="{Binding KeyPressedCommand}"
+            CommandParameter="{Binding CapsLock, Converter={StaticResource OConverter}}"
+            Text="{Binding CapsLock, Converter={StaticResource OConverter}}" />
+        <controls:Key
+            Grid.Row="1"
+            Grid.Column="9"
+            BackgroundColor="{StaticResource NormalKey}"
+            Command="{Binding KeyPressedCommand}"
+            CommandParameter="{Binding CapsLock, Converter={StaticResource PConverter}}"
+            Text="{Binding CapsLock, Converter={StaticResource PConverter}}" />
+        <controls:Key
+            Grid.Row="1"
+            Grid.Column="10"
+            BackgroundColor="{StaticResource NormalKey}"
+            Command="{Binding KeyPressedCommand}"
+            CommandParameter="{Binding CapsLock, Converter={StaticResource ÜConverter}}"
+            Text="{Binding CapsLock, Converter={StaticResource ÜConverter}}" />
+        <controls:Key
+            Grid.Row="1"
+            Grid.Column="11"
+            BackgroundColor="{StaticResource NormalKey}"
+            Command="{Binding KeyPressedCommand}"
+            CommandParameter="+"
+            Text="+" />
+        <controls:Key
+            Grid.Row="1"
+            Grid.RowSpan="3"
+            Grid.Column="12"
+            Grid.ColumnSpan="2"
+            BackgroundColor="{StaticResource SmaDoTecGreen}"
+            Command="{Binding EnterPressedCommand}"
+            CommandParameter="⏎"
+            FontSize="Medium"
+            Opacity="0.75"
+            Text="⏎" />
+
+        <!--  Row 2  -->
+        <controls:Key
+            Grid.Row="2"
+            Grid.Column="0"
+            BackgroundColor="{StaticResource NormalKey}"
+            Command="{Binding KeyPressedCommand}"
+            CommandParameter="{Binding CapsLock, Converter={StaticResource AConverter}}"
+            Text="{Binding CapsLock, Converter={StaticResource AConverter}}" />
+        <controls:Key
+            Grid.Row="2"
+            Grid.Column="1"
+            BackgroundColor="{StaticResource NormalKey}"
+            Command="{Binding KeyPressedCommand}"
+            CommandParameter="{Binding CapsLock, Converter={StaticResource SConverter}}"
+            Text="{Binding CapsLock, Converter={StaticResource SConverter}}" />
+        <controls:Key
+            Grid.Row="2"
+            Grid.Column="2"
+            BackgroundColor="{StaticResource NormalKey}"
+            Command="{Binding KeyPressedCommand}"
+            CommandParameter="{Binding CapsLock, Converter={StaticResource DConverter}}"
+            Text="{Binding CapsLock, Converter={StaticResource DConverter}}" />
+        <controls:Key
+            Grid.Row="2"
+            Grid.Column="3"
+            BackgroundColor="{StaticResource NormalKey}"
+            Command="{Binding KeyPressedCommand}"
+            CommandParameter="{Binding CapsLock, Converter={StaticResource FConverter}}"
+            Text="{Binding CapsLock, Converter={StaticResource FConverter}}" />
+        <controls:Key
+            Grid.Row="2"
+            Grid.Column="4"
+            BackgroundColor="{StaticResource NormalKey}"
+            Command="{Binding KeyPressedCommand}"
+            CommandParameter="{Binding CapsLock, Converter={StaticResource GConverter}}"
+            Text="{Binding CapsLock, Converter={StaticResource GConverter}}" />
+        <controls:Key
+            Grid.Row="2"
+            Grid.Column="5"
+            BackgroundColor="{StaticResource NormalKey}"
+            Command="{Binding KeyPressedCommand}"
+            CommandParameter="{Binding CapsLock, Converter={StaticResource HConverter}}"
+            Text="{Binding CapsLock, Converter={StaticResource HConverter}}" />
+        <controls:Key
+            Grid.Row="2"
+            Grid.Column="6"
+            BackgroundColor="{StaticResource NormalKey}"
+            Command="{Binding KeyPressedCommand}"
+            CommandParameter="{Binding CapsLock, Converter={StaticResource JConverter}}"
+            Text="{Binding CapsLock, Converter={StaticResource JConverter}}" />
+        <controls:Key
+            Grid.Row="2"
+            Grid.Column="7"
+            BackgroundColor="{StaticResource NormalKey}"
+            Command="{Binding KeyPressedCommand}"
+            CommandParameter="{Binding CapsLock, Converter={StaticResource KConverter}}"
+            Text="{Binding CapsLock, Converter={StaticResource KConverter}}" />
+        <controls:Key
+            Grid.Row="2"
+            Grid.Column="8"
+            BackgroundColor="{StaticResource NormalKey}"
+            Command="{Binding KeyPressedCommand}"
+            CommandParameter="{Binding CapsLock, Converter={StaticResource LConverter}}"
+            Text="{Binding CapsLock, Converter={StaticResource LConverter}}" />
+        <controls:Key
+            Grid.Row="2"
+            Grid.Column="9"
+            BackgroundColor="{StaticResource NormalKey}"
+            Command="{Binding KeyPressedCommand}"
+            CommandParameter="{Binding CapsLock, Converter={StaticResource ÖConverter}}"
+            Text="{Binding CapsLock, Converter={StaticResource ÖConverter}}" />
+        <controls:Key
+            Grid.Row="2"
+            Grid.Column="10"
+            BackgroundColor="{StaticResource NormalKey}"
+            Command="{Binding KeyPressedCommand}"
+            CommandParameter="{Binding CapsLock, Converter={StaticResource ÄConverter}}"
+            Text="{Binding CapsLock, Converter={StaticResource ÄConverter}}" />
+        <controls:Key
             Grid.Row="2"
             Grid.Column="11"
-            Text="#"
-            VerticalOptions="FillAndExpand" 
-            HorizontalOptions="FillAndExpand"
+            BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
-             CommandParameter="#">
-            <Button.Shadow>
-                <Shadow Brush="Black"
-     Opacity="0.8" />
-            </Button.Shadow>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="0.95" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </VisualStateManager.VisualStateGroups>
-        </Button>
+            CommandParameter="#"
+            Text="#" />
 
-        <!--Row 3-->
-        <Button
-                Padding="0"
-                Grid.Row="3"
-                Grid.Column="0"
-                Grid.ColumnSpan="2"
+        <!--  Row 3  -->
+        <controls:Key
+            Grid.Row="3"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            BackgroundColor="{Binding CapsLock, Converter={StaticResource CapsLockColorConverter}}"
+            BorderColor="{Binding CapsLock, Converter={StaticResource CapsLockColorConverter}}"
             BorderWidth="2"
-            BorderColor="{Binding CapsLock,Converter={StaticResource CapsLockColorConverter}}"
-                TextColor="Black"
-            IsVisible="True"
-                Text="△"
-                BackgroundColor="{Binding CapsLock,Converter={StaticResource CapsLockColorConverter}}"
-                VerticalOptions="FillAndExpand" 
-                HorizontalOptions="FillAndExpand">
+            Text="△">
             <Button.GestureRecognizers>
-                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding CapsLockPressedCommand}" />
-                <TapGestureRecognizer NumberOfTapsRequired="2" Command="{Binding LockCommand}" />
-
+                <TapGestureRecognizer Command="{Binding CapsLockPressedCommand}" NumberOfTapsRequired="1" />
+                <TapGestureRecognizer Command="{Binding LockCommand}" NumberOfTapsRequired="2" />
             </Button.GestureRecognizers>
             <Button.Triggers>
                 <MultiTrigger TargetType="Button">
                     <MultiTrigger.Conditions>
-                        <BindingCondition
-                Binding="{Binding Locked}" Value="True">
-                        </BindingCondition>
-                        <BindingCondition
-                Binding="{Binding CapsLock}"  Value="True">
-                        </BindingCondition>
-
+                        <BindingCondition Binding="{Binding Locked}" Value="True" />
+                        <BindingCondition Binding="{Binding CapsLock}" Value="True" />
                     </MultiTrigger.Conditions>
-                    <Setter Property="BorderColor" Value="#F5F5F5">
-
-                    </Setter>
+                    <Setter Property="BorderColor" Value="#F5F5F5" />
                 </MultiTrigger>
             </Button.Triggers>
-            <Button.Shadow>
-                <Shadow Brush="Black"
-                    Opacity="0.8" />
-            </Button.Shadow>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-            Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-            Value="0.95" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </VisualStateManager.VisualStateGroups>
-
-
-
-
-        </Button>
-        <Button 
-              BackgroundColor="WhiteSmoke"
-              TextColor="Black"
-              Grid.Row="3"
-              Grid.Column="2"
-              Text="{Binding CapsLock,Converter={StaticResource YConverter}}"
-              VerticalOptions="FillAndExpand" 
-              HorizontalOptions="FillAndExpand"
-              Command="{Binding KeyPressedCommand}"
-              CommandParameter="{Binding CapsLock,Converter={StaticResource YConverter}}">
-            <Button.Shadow>
-                <Shadow Brush="Black"
-     Opacity="0.8" />
-            </Button.Shadow>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="0.95" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </VisualStateManager.VisualStateGroups>
-        </Button>
-        <Button 
-           BackgroundColor="WhiteSmoke"
-           TextColor="Black"
-           Grid.Row="3"
-           Grid.Column="3"
-           Text="{Binding CapsLock,Converter={StaticResource XConverter}}"
-           VerticalOptions="FillAndExpand" 
-           HorizontalOptions="FillAndExpand"
-           Command="{Binding KeyPressedCommand}"
-             CommandParameter="{Binding CapsLock,Converter={StaticResource XConverter}}">
-            <Button.Shadow>
-                <Shadow Brush="Black"
-     Opacity="0.8" />
-            </Button.Shadow>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="0.95" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </VisualStateManager.VisualStateGroups>
-        </Button>
-        <Button 
-           BackgroundColor="WhiteSmoke"
-           TextColor="Black"
-           Grid.Row="3"
-           Grid.Column="4"
-           Text="{Binding CapsLock,Converter={StaticResource CConverter}}"
-           VerticalOptions="FillAndExpand" 
-           HorizontalOptions="FillAndExpand"
-           Command="{Binding KeyPressedCommand}"
-             CommandParameter="{Binding CapsLock,Converter={StaticResource CConverter}}">
-            <Button.Shadow>
-                <Shadow Brush="Black"
-     Opacity="0.8" />
-            </Button.Shadow>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="0.95" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </VisualStateManager.VisualStateGroups>
-        </Button>
-        <Button 
-           BackgroundColor="WhiteSmoke"
-           TextColor="Black"
-           Grid.Row="3"
-           Grid.Column="5"
-           Text="{Binding CapsLock,Converter={StaticResource VConverter}}"
-           VerticalOptions="FillAndExpand" 
-           HorizontalOptions="FillAndExpand"
-           Command="{Binding KeyPressedCommand}"
-             CommandParameter="{Binding CapsLock,Converter={StaticResource VConverter}}">
-            <Button.Shadow>
-                <Shadow Brush="Black"
-     Opacity="0.8" />
-            </Button.Shadow>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="0.95" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </VisualStateManager.VisualStateGroups>
-        </Button>
-        <Button 
-            BackgroundColor="WhiteSmoke"
-            TextColor="Black"
+        </controls:Key>
+        <controls:Key
+            Grid.Row="3"
+            Grid.Column="2"
+            BackgroundColor="{StaticResource NormalKey}"
+            Command="{Binding KeyPressedCommand}"
+            CommandParameter="{Binding CapsLock, Converter={StaticResource YConverter}}"
+            Text="{Binding CapsLock, Converter={StaticResource YConverter}}" />
+        <controls:Key
+            Grid.Row="3"
+            Grid.Column="3"
+            BackgroundColor="{StaticResource NormalKey}"
+            Command="{Binding KeyPressedCommand}"
+            CommandParameter="{Binding CapsLock, Converter={StaticResource XConverter}}"
+            Text="{Binding CapsLock, Converter={StaticResource XConverter}}" />
+        <controls:Key
+            Grid.Row="3"
+            Grid.Column="4"
+            BackgroundColor="{StaticResource NormalKey}"
+            Command="{Binding KeyPressedCommand}"
+            CommandParameter="{Binding CapsLock, Converter={StaticResource CConverter}}"
+            Text="{Binding CapsLock, Converter={StaticResource CConverter}}" />
+        <controls:Key
+            Grid.Row="3"
+            Grid.Column="5"
+            BackgroundColor="{StaticResource NormalKey}"
+            Command="{Binding KeyPressedCommand}"
+            CommandParameter="{Binding CapsLock, Converter={StaticResource VConverter}}"
+            Text="{Binding CapsLock, Converter={StaticResource VConverter}}" />
+        <controls:Key
             Grid.Row="3"
             Grid.Column="6"
-            Text="{Binding CapsLock,Converter={StaticResource BConverter}}"
-            VerticalOptions="FillAndExpand" 
-            HorizontalOptions="FillAndExpand"
+            BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
-             CommandParameter="{Binding CapsLock,Converter={StaticResource BConverter}}">
-            <Button.Shadow>
-                <Shadow Brush="Black"
-     Opacity="0.8" />
-            </Button.Shadow>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="0.95" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </VisualStateManager.VisualStateGroups>
-        </Button>
-        <Button 
-            BackgroundColor="WhiteSmoke"
-            TextColor="Black"
+            CommandParameter="{Binding CapsLock, Converter={StaticResource BConverter}}"
+            Text="{Binding CapsLock, Converter={StaticResource BConverter}}" />
+        <controls:Key
             Grid.Row="3"
             Grid.Column="7"
-            Text="{Binding CapsLock,Converter={StaticResource NConverter}}"
-            VerticalOptions="FillAndExpand" 
-            HorizontalOptions="FillAndExpand"
+            BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
-             CommandParameter="{Binding CapsLock,Converter={StaticResource NConverter}}">
-            <Button.Shadow>
-                <Shadow Brush="Black"
-     Opacity="0.8" />
-            </Button.Shadow>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="0.95" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </VisualStateManager.VisualStateGroups>
-        </Button>
-        <Button 
-            BackgroundColor="WhiteSmoke"
-            TextColor="Black"
+            CommandParameter="{Binding CapsLock, Converter={StaticResource NConverter}}"
+            Text="{Binding CapsLock, Converter={StaticResource NConverter}}" />
+        <controls:Key
             Grid.Row="3"
             Grid.Column="8"
-            Text="{Binding CapsLock,Converter={StaticResource MConverter}}"
-            VerticalOptions="FillAndExpand" 
-            HorizontalOptions="FillAndExpand"
+            BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
-            CommandParameter="{Binding CapsLock,Converter={StaticResource MConverter}}">
-            <Button.Shadow>
-                <Shadow Brush="Black"
-     Opacity="0.8" />
-            </Button.Shadow>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="0.95" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </VisualStateManager.VisualStateGroups>
-        </Button>
-        <Button 
-            BackgroundColor="WhiteSmoke"
-            TextColor="Black"
+            CommandParameter="{Binding CapsLock, Converter={StaticResource MConverter}}"
+            Text="{Binding CapsLock, Converter={StaticResource MConverter}}" />
+        <controls:Key
             Grid.Row="3"
             Grid.Column="9"
-            Text=","
-            VerticalOptions="FillAndExpand" 
-            HorizontalOptions="FillAndExpand"
+            BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
-            CommandParameter=",">
-            <Button.Shadow>
-                <Shadow Brush="Black"
-     Opacity="0.8" />
-            </Button.Shadow>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="0.95" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </VisualStateManager.VisualStateGroups>
-        </Button>
-        <Button 
-            BackgroundColor="WhiteSmoke"
-            TextColor="Black"
+            CommandParameter=","
+            Text="," />
+        <controls:Key
             Grid.Row="3"
             Grid.Column="10"
-            Text="."
-            VerticalOptions="FillAndExpand" 
-            HorizontalOptions="FillAndExpand"
+            BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
-            CommandParameter=".">
-            <Button.Shadow>
-                <Shadow Brush="Black"
-     Opacity="0.8" />
-            </Button.Shadow>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="0.95" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </VisualStateManager.VisualStateGroups>
-        </Button>
-        <Button 
-             BackgroundColor="WhiteSmoke"
-             TextColor="Black"
-             Grid.Row="3"
-             Grid.Column="11"
-             Text="-"
-             VerticalOptions="FillAndExpand" 
-             HorizontalOptions="FillAndExpand"
-             Command="{Binding KeyPressedCommand}"
-             CommandParameter="-">
-            <Button.Shadow>
-                <Shadow Brush="Black"
-     Opacity="0.8" />
-            </Button.Shadow>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="0.95" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </VisualStateManager.VisualStateGroups>
-        </Button>
-        
-        <!--Row 4-->
+            CommandParameter="."
+            Text="." />
+        <controls:Key
+            Grid.Row="3"
+            Grid.Column="11"
+            BackgroundColor="{StaticResource NormalKey}"
+            Command="{Binding KeyPressedCommand}"
+            CommandParameter="-"
+            Text="-" />
 
-
+        <!--  Row 4  -->
         <Image
-            Source="firmenlogo_grey.jpg"
-            Aspect="Fill"
             Grid.Row="4"
             Grid.Column="0"
-            Grid.ColumnSpan="4">
-            
-        </Image>
-        <Button 
-    BackgroundColor="WhiteSmoke"
-    TextColor="Black"
-    Grid.Row="4"
-    Grid.Column="10"
-     Grid.ColumnSpan="2"
-    Text="◀"
-    VerticalOptions="FillAndExpand" 
-    HorizontalOptions="FillAndExpand"
-    Command="{Binding LeftPressedCommand}"
-           >
-            <Button.Shadow>
-                <Shadow Brush="Black"
-     Opacity="0.8" />
-            </Button.Shadow>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="0.95" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </VisualStateManager.VisualStateGroups>
-        </Button>
-        <Button 
-     BackgroundColor="WhiteSmoke"
-     TextColor="Black"
-     Grid.Row="4"
-     Grid.Column="12"
+            Grid.ColumnSpan="4"
+            Aspect="Fill"
+            Source="firmenlogo_grey.jpg" />
+        <controls:Key
+            Grid.Row="4"
+            Grid.Column="4"
+            Grid.ColumnSpan="6"
+            BackgroundColor="{StaticResource NormalKey}"
+            Command="{Binding KeyPressedCommand}"
+            CommandParameter=" "
+            Text=" " />
+        <controls:Key
+            Grid.Row="4"
+            Grid.Column="10"
             Grid.ColumnSpan="2"
-    Text="▶"
-     VerticalOptions="FillAndExpand" 
-     HorizontalOptions="FillAndExpand"
-     Command="{Binding RightPressedCommand}"
-            >
-            <Button.Shadow>
-                <Shadow Brush="Black"
-     Opacity="0.8" />
-            </Button.Shadow>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="0.95" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </VisualStateManager.VisualStateGroups>
-        </Button>
-        <Button 
-              BackgroundColor="WhiteSmoke"
-              TextColor="Black"
-              Grid.Row="4"
-              Grid.Column="4"
-              Grid.ColumnSpan="6"
-              VerticalOptions="FillAndExpand" 
-              HorizontalOptions="FillAndExpand"
-              Command="{Binding KeyPressedCommand}"
-             CommandParameter=" ">
-            <Button.Shadow>
-                <Shadow Brush="Black"
-     Opacity="0.8" />
-            </Button.Shadow>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                Value="0.95" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </VisualStateManager.VisualStateGroups>
-        </Button>
-
-        
-        
-
-
+            BackgroundColor="{StaticResource NormalKey}"
+            Command="{Binding LeftPressedCommand}"
+            Text="◀" />
+        <controls:Key
+            Grid.Row="4"
+            Grid.Column="12"
+            Grid.ColumnSpan="2"
+            BackgroundColor="{StaticResource NormalKey}"
+            Command="{Binding RightPressedCommand}"
+            CommandParameter="."
+            Text="▶" />
     </Grid>
-    
+
 
 </ContentPage>
