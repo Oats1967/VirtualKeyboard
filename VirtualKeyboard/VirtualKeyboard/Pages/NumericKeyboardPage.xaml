@@ -28,13 +28,14 @@
             Command="{Binding KeyPressedCommand}"
             CommandParameter="+"
             Text="+" />
-        <controls:Key
+        <controls:IconKey
+            Aspect="AspectFit"
             Grid.Row="0"
             Grid.Column="2"
             Grid.ColumnSpan="2"
             BackgroundColor="{StaticResource SmaDoTecRed}"
             Command="{Binding BackspacePressedCommand}"
-            Text="⌫" />
+            Source="erase.png" />
 
         <!--  Row 1  -->
         <controls:Key
@@ -88,14 +89,13 @@
             Command="{Binding KeyPressedCommand}"
             CommandParameter="6"
             Text="6" />
-        <controls:Key
+        <controls:IconKey
             Grid.Row="2"
             Grid.RowSpan="2"
             Grid.Column="3"
             BackgroundColor="{StaticResource SmaDoTecGreen}"
             Command="{Binding EnterPressedCommand}"
-            FontSize="Large"
-            Text="⏎" />
+            Source="enter.png" />
 
         <!--  Row 3  -->
         <controls:Key

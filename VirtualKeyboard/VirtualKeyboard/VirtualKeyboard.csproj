@@ -57,6 +57,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\enter.png" />
+	  <None Remove="Resources\Images\erase.png" />
 	  <None Remove="Resources\Images\firmenlogo_grey.jpg" />
 	</ItemGroup>
 
@@ -70,6 +72,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Controls\IconKey.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Controls\Key.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -86,6 +91,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Controls\IconKey.xaml.cs">
+	    <DependentUpon>IconKey.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Pages\GermanKeyboardPage.xaml.cs">
 	    <DependentUpon>GermanKeyboardPage.xaml</DependentUpon>
 	  </Compile>
