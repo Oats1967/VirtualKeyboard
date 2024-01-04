@@ -1,5 +1,3 @@
-using System.Runtime.InteropServices;
-using System.Text;
 using VirtualKeyboard.Services;
 using VirtualKeyboard.ViewModels;
 
