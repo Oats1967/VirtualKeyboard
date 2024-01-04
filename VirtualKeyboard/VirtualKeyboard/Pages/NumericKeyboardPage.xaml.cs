@@ -6,7 +6,7 @@ namespace VirtualKeyboard.Pages;
 [QueryProperty("Size", "Size")]
 public partial class NumericKeyboardPage : ContentPage
 {
-   public string Size { get; set; }
+   public string Size { get; set; } = string.Empty;
     public NumericKeyboardPage(NumericKeyboardViewModel viewModel)
 	{
 		InitializeComponent();
