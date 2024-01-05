@@ -16,7 +16,7 @@ namespace VirtualKeyboard.Services
         {
             
         }
-        public void Notify(byte[] buffer)
+        public void Process(byte[] buffer)
         {
             
             switch (buffer[2])
@@ -53,8 +53,8 @@ namespace VirtualKeyboard.Services
         private void NotifyTKSetShowPoint(byte[] buffer)
         {
             var layout = (Layout)buffer[3];
-            var x = (buffer[4] << 8) | buffer[5];
-            var y = (buffer[6] << 8) | buffer[7];
+            var x = (buffer[5] << 8) | buffer[4];
+            var y = (buffer[7] << 8) | buffer[6];
             WeakReferenceMessenger.Default.Send(new TKSetShowPoint(layout, x, y));
         }
 

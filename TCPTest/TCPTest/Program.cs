@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Windows;
 
 
 namespace TCPTest;
@@ -63,7 +64,6 @@ public class Program
             Console.WriteLine(answer);
         }
     }
-
     private static ArraySegment<byte> TKSetHide()
     {
         ConsoleKeyInfo userInput;
@@ -82,7 +82,6 @@ public class Program
 
         return byteStream;
     }
-
     private static ArraySegment<byte> TKSetShow()
     {
         ConsoleKeyInfo userInput;
@@ -111,7 +110,6 @@ public class Program
 
         return byteStream;
     }
-
     private static ArraySegment<byte> TKSetShowPoint()
     {
         ConsoleKeyInfo userInput;
@@ -142,8 +140,34 @@ public class Program
         byteStream[3] = Convert.ToByte(int.Parse(userInput.KeyChar.ToString()));
         Console.WriteLine("\n");
 
+        // X-Coordinate
+        const int lowerLimitX = 0;
+        const int upperLimitX = 1920;
+        Console.WriteLine($"Please choose your keyboard X-Coordinate! Please enter a number between {lowerLimitX} and {upperLimitX}");
+        int x;
+        while (!(int.TryParse(Console.ReadLine(), out x) && x >= lowerLimitX && x <= upperLimitX))
+        {
+            Console.WriteLine($"Invalid input. Please enter a number between {lowerLimitX} and {upperLimitX}");
+        }
+        byte[] xBytes = BitConverter.GetBytes(x);
+        byteStream[4] = xBytes[0];
+        byteStream[5] = xBytes[1]; 
+        Console.WriteLine();
 
-        
+        //Y - Coordinate
+        const int lowerLimitY = 0;
+        const int upperLimitY = 1080;
+        Console.WriteLine($"Please choose your keyboard X-Coordinate! Please enter a number between {lowerLimitY} and {upperLimitY}");
+        int y;
+        while (!(int.TryParse(Console.ReadLine(), out y) && y >= lowerLimitY && y <= upperLimitY))
+        {
+            Console.WriteLine($"Invalid input. Please enter a number between {lowerLimitY} and {upperLimitY}");
+        }
+        byte[] yBytes = BitConverter.GetBytes(y);
+        byteStream[6] = yBytes[0];
+        byteStream[7] = yBytes[1]; 
+        Console.WriteLine();
+
 
         byteStream[8] = 0x03;
 

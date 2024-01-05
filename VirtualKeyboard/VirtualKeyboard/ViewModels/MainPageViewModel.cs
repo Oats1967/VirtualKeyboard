@@ -22,7 +22,7 @@ namespace VirtualKeyboard.ViewModels
         public MainPageViewModel(ITCPService tcpService, ILogger<MainPageViewModel> logger)
         {
             _logger = logger;
-            tcpService.StartAsync();
+            
 
 
         }

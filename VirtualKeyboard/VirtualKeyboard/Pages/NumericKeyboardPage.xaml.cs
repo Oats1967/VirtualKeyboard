@@ -5,7 +5,7 @@ using VirtualKeyboard.ViewModels;
 
 namespace VirtualKeyboard.Pages;
 
-[QueryProperty("WindowInfo", "WindowInfo")]
+
 public partial class NumericKeyboardPage : ContentPage, IRecipient<TKSetSize>, IRecipient<TKSetShowPoint>
 {
     public static readonly double Ratio = 1.2;
@@ -18,7 +18,6 @@ public partial class NumericKeyboardPage : ContentPage, IRecipient<TKSetSize>, I
 	{
         WeakReferenceMessenger.Default.Register<TKSetSize>(this);
         WeakReferenceMessenger.Default.Register<TKSetShowPoint>(this);
-        
         InitializeComponent();
 		BindingContext = viewModel;
 	}

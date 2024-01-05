@@ -10,16 +10,15 @@ namespace VirtualKeyboard
     {
 
 
-       
-        public MainPage(MainPageViewModel viewModel)
+       // for dependency injection Pages have to be initialized through constructor
+        public MainPage(MainPageViewModel viewModel, NumericKeyboardPage numericKeyboardPage, GermanKeyboardPage germanKeyboardPage)
         {
             WeakReferenceMessenger.Default.Register<TKSetHide>(this);
             WeakReferenceMessenger.Default.Register<TKSetShow>(this);
             InitializeComponent();
             BindingContext = viewModel;
-
         }
-
+       
         protected override void OnAppearing()
         {
             WindowSizeService.ResizeWindow(0, 0, 0, 0);
@@ -28,38 +27,43 @@ namespace VirtualKeyboard
         }
 
         // toDo make private 
-        private async void OpenNumericKeyboardAsync()
+        private async Task OpenNumericKeyboardAsync()
         {
             await Shell.Current.GoToAsync(nameof(NumericKeyboardPage));
         }
 
+        private async Task CloseKeyboardAsync()
+        {
+            await Shell.Current.GoToAsync("..");
+        }
+
 
         // toDo make private
-        private async void OpenGermanKeyboardAsync()
+        private async Task OpenGermanKeyboardAsync()
         {
             await Shell.Current.GoToAsync(nameof(GermanKeyboardPage));
         }
 
 
-        void IRecipient<TKSetShow>.Receive(TKSetShow message)
+        async void IRecipient<TKSetShow>.Receive(TKSetShow message)
         {
             if (Shell.Current.CurrentPage is not MainPage) return;
             switch (message.Layout)
             {
                 case Services.Commands.Layout.Numeric:
-                    OpenNumericKeyboardAsync();
+                    await OpenNumericKeyboardAsync();
                     break;
                 case Services.Commands.Layout.German:
-                    OpenGermanKeyboardAsync();
+                    await OpenGermanKeyboardAsync();
                     break;
                 default: return;
             }
         }
 
-        void IRecipient<TKSetHide>.Receive(TKSetHide message)
+        async void IRecipient<TKSetHide>.Receive(TKSetHide message)
         {
             if (Shell.Current.CurrentPage is MainPage) return;
-             Shell.Current.GoToAsync("..");
+             await CloseKeyboardAsync();
             
         }
     }

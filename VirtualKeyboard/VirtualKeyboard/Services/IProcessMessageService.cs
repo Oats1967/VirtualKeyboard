@@ -8,6 +8,6 @@ namespace VirtualKeyboard.Services
 {
     public interface IProcessMessageService
     {
-        void Notify(byte[] buffer);
+        void Process(byte[] buffer);
     }
 }

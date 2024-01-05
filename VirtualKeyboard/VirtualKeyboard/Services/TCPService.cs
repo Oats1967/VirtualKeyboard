@@ -14,11 +14,12 @@ namespace VirtualKeyboard.Services
         {
            _logger = logger;
             _messageService = messageService;
+            StartAsync();
         }
 
-        public event ITCPService.EventHandler OnKeyboardSelected;
 
-        public async void StartAsync()
+
+        private async void StartAsync()
         {
              // info abut localhost -- includes ip adress
              IPHostEntry ipEntry = await Dns.GetHostEntryAsync(Dns.GetHostName());
@@ -44,15 +45,12 @@ namespace VirtualKeyboard.Services
                         byte[] receivedData = new byte[received];
                         Array.Copy(buffer, receivedData, received);
                         _logger.LogInformation($"Server received message");
-                        _messageService.Notify(receivedData);
+                        _messageService.Process(receivedData);
                         var response = "Server received message";
                         var responseByte = Encoding.UTF8.GetBytes(response);
                         await handler.SendAsync(responseByte, SocketFlags.None);
                         // Handle/process receivedData as needed
                     }
-                   
-                   
-                  
                 }
             }
             catch(SocketException ex)
