@@ -50,10 +50,10 @@ namespace VirtualKeyboard
             if (Shell.Current.CurrentPage is not MainPage) return;
             switch (message.Layout)
             {
-                case Services.Commands.Layout.Numeric:
+                case Layouts.Numeric:
                     await OpenNumericKeyboardAsync();
                     break;
-                case Services.Commands.Layout.German:
+                case Layouts.German:
                     await OpenGermanKeyboardAsync();
                     break;
                 default: return;

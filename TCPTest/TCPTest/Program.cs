@@ -15,7 +15,7 @@ public class Program
 
         IPHostEntry ipEntry = await Dns.GetHostEntryAsync(Dns.GetHostName());
         IPAddress ip = ipEntry.AddressList[0];
-        IPEndPoint iPEndPoint = new(ip, 1234);
+        IPEndPoint iPEndPoint = new(ip, 2000);
 
         // client socket
         using Socket client = new(ip.AddressFamily, SocketType.Stream, ProtocolType.Tcp);

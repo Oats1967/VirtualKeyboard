@@ -8,10 +8,10 @@ namespace VirtualKeyboard.Services.Commands
 {
     public class TKSetShow
     {
-        public TKSetShow(Layout layout) 
+        public TKSetShow(Layouts layout) 
         {
             Layout = layout;
         }
-        public Layout Layout {  get; private set; }
+        public Layouts Layout {  get; private set; }
     }
 }

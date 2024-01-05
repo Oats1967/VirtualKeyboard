@@ -9,17 +9,17 @@ namespace VirtualKeyboard.Services.Commands
 {
     public class TKSetSize
     {
-        public TKSetSize(Layout layout ,byte percentage)
+        public TKSetSize(Layouts layout ,byte percentage)
         {
             Layout = layout;
             double screenHeight = DeviceDisplay.MainDisplayInfo.Height;
             Height = (int) (screenHeight * ((double)percentage / 100)); ;
             switch (layout)
             {
-                case Layout.German:
+                case Layouts.German:
                     Width = (int)(Height / GermanKeyboardPage.Ratio);
                     break;
-                case Layout.Numeric:
+                case Layouts.Numeric:
                     Width = (int)(Height / NumericKeyboardPage.Ratio);
                     break;
                 default:
@@ -28,7 +28,7 @@ namespace VirtualKeyboard.Services.Commands
         }
         public int Width { get; private set; }
         public int Height { get; private set; }
-        public Layout Layout {  get; private set; }
+        public Layouts Layout {  get; private set; }
 
     }
 }

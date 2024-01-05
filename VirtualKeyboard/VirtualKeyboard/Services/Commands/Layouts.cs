@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VirtualKeyboard.Services.Commands
 {
-    public enum Layout
+    public enum Layouts
     {
         Numeric,
         German,

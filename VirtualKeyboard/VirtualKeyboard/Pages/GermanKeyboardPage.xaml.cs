@@ -42,7 +42,7 @@ public partial class GermanKeyboardPage : ContentPage , IRecipient<TKSetSize>, I
 
     void IRecipient<TKSetSize>.Receive(TKSetSize message)
     {
-        if (message.Layout != Services.Commands.Layout.German) return;
+        if (message.Layout != Layouts.German) return;
         WindowWidth = message.Width;
         WindowHeight = message.Height;
         if (Shell.Current!.CurrentPage is GermanKeyboardPage)
@@ -53,7 +53,7 @@ public partial class GermanKeyboardPage : ContentPage , IRecipient<TKSetSize>, I
 
     void IRecipient<TKSetShowPoint>.Receive(TKSetShowPoint message)
     {
-        if (message.Layout != Services.Commands.Layout.German) return;
+        if (message.Layout != Layouts.German) return;
         WindowX = message.X;
         WindowY = message.Y;
         if(Shell.Current!.CurrentPage is GermanKeyboardPage)

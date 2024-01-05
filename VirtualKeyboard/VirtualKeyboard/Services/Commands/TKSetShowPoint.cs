@@ -8,7 +8,7 @@ namespace VirtualKeyboard.Services.Commands
 {
     public class TKSetShowPoint
     {
-        public TKSetShowPoint(Layout layout ,int x , int y)
+        public TKSetShowPoint(Layouts layout ,int x , int y)
         {
             Layout = layout;
             X = x;
@@ -16,6 +16,6 @@ namespace VirtualKeyboard.Services.Commands
         }
         public int X { get; private set; }
         public int Y { get; private set; }
-        public Layout Layout { get; private set; }
+        public Layouts Layout { get; private set; }
     }
 }

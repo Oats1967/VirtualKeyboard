@@ -1,10 +1,12 @@
-﻿namespace VirtualKeyboard
+﻿using VirtualKeyboard.Services;
+
+namespace VirtualKeyboard
 {
     public partial class App : Application
     {
        
 
-        public App()
+        public App(ITCPService tcpService)
         {
             InitializeComponent();
 

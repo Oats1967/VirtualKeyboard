@@ -26,7 +26,7 @@ namespace VirtualKeyboard.Services
              // localhost ip
              IPAddress ip = ipEntry.AddressList[0];;
              // connects server socket to client socket
-             IPEndPoint ipEndPoint = new IPEndPoint(ip, 1234);
+             IPEndPoint ipEndPoint = new IPEndPoint(ip, 2000);
              using Socket server = new(ipEndPoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
              server.Bind(ipEndPoint);
              server.Listen();
