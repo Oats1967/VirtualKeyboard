@@ -10,7 +10,6 @@ namespace VirtualKeyboard.Services.Commands
     {
         Numeric,
         German,
-        French,
         NotUsed
     }
 }

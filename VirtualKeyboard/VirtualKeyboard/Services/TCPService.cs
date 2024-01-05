@@ -38,11 +38,20 @@ namespace VirtualKeyboard.Services
                 {
                     var buffer = new byte[1024];
                     var received = await handler.ReceiveAsync(buffer, SocketFlags.None);
-                    _logger.LogInformation($"Server received messae");
-                    _messageService.Notify(received);
-                    var response = "Server received message";
-                    var responseByte = Encoding.UTF8.GetBytes(response);
-                    await handler.SendAsync(responseByte, SocketFlags.None);
+                    if (received > 0)
+                    {
+                        // Process the received data in the buffer (up to 'received' bytes)
+                        byte[] receivedData = new byte[received];
+                        Array.Copy(buffer, receivedData, received);
+                        _logger.LogInformation($"Server received message");
+                        _messageService.Notify(receivedData);
+                        var response = "Server received message";
+                        var responseByte = Encoding.UTF8.GetBytes(response);
+                        await handler.SendAsync(responseByte, SocketFlags.None);
+                        // Handle/process receivedData as needed
+                    }
+                   
+                   
                   
                 }
             }

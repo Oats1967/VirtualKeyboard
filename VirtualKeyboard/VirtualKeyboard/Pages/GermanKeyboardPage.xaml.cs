@@ -1,6 +1,8 @@
+using CommunityToolkit.Mvvm.Messaging;
 using System.Runtime.InteropServices;
 using System.Text;
 using VirtualKeyboard.Services;
+using VirtualKeyboard.Services.Commands;
 using VirtualKeyboard.ViewModels;
 
 
@@ -8,14 +10,20 @@ using VirtualKeyboard.ViewModels;
 
 namespace VirtualKeyboard.Pages;
 
-[QueryProperty("WindowInfo", "WindowInfo")]
-public partial class GermanKeyboardPage : ContentPage
+
+public partial class GermanKeyboardPage : ContentPage , IRecipient<TKSetSize>, IRecipient<TKSetShowPoint>
 {
     public  static readonly double Ratio = 0.4;
-    public string WindowInfo { get; set; } = string.Empty;
+    private int WindowX { get; set; } = 0;
+    private int WindowY { get; set; } = 0;
+
+    private int WindowWidth { get; set; } = 1200;
+    private int WindowHeight { get; set; } = 480;
     public GermanKeyboardPage(AlphabeticKeyboardViewModel viewModel)
 	{
-		InitializeComponent();
+        WeakReferenceMessenger.Default.Register<TKSetSize>(this);
+        WeakReferenceMessenger.Default.Register<TKSetShowPoint>(this);
+        InitializeComponent();
 		BindingContext = viewModel;
 	}
 
@@ -23,8 +31,7 @@ public partial class GermanKeyboardPage : ContentPage
     {
 
         base.OnNavigatedTo(args);
-        var s = WindowInfo.Split('|').Select(int.Parse).ToArray();
-        WindowSizeService.ResizeWindow(s[0], s[1], s[2], s[3]);
+        WindowSizeService.ResizeWindow(WindowX, WindowY, WindowWidth, WindowHeight);
     }
 
     protected override void OnNavigatedFrom(NavigatedFromEventArgs args)
@@ -33,7 +40,26 @@ public partial class GermanKeyboardPage : ContentPage
         WindowSizeService.ResizeWindow(0, 0, 0, 0);
     }
 
+    void IRecipient<TKSetSize>.Receive(TKSetSize message)
+    {
+        if (message.Layout != Services.Commands.Layout.German) return;
+        WindowWidth = message.Width;
+        WindowHeight = message.Height;
+        if (Application.Current!.MainPage is GermanKeyboardPage)
+        {
+            WindowSizeService.ResizeWindow(WindowX, WindowY, WindowWidth, WindowHeight);
+        }
+    }
 
-    
+    void IRecipient<TKSetShowPoint>.Receive(TKSetShowPoint message)
+    {
+        if (message.Layout != Services.Commands.Layout.German) return;
+        WindowX = message.X;
+        WindowY = message.Y;
+        if(Application.Current!.MainPage is GermanKeyboardPage)
+        {
+           WindowSizeService.ResizeWindow(WindowX, WindowY, WindowWidth, WindowHeight);
+        }
+    }
 
 }

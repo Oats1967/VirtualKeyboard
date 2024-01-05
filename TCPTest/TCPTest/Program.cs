@@ -71,12 +71,60 @@ public class Program
 
     private static ArraySegment<byte> TKSetShow()
     {
-        throw new NotImplementedException();
+        ConsoleKeyInfo userInput;
+        Console.WriteLine();
+        Console.WriteLine("Press enter to show keyboard at desired position.");
+        while ((userInput = Console.ReadKey()).Key != ConsoleKey.Enter)
+        {
+            Console.WriteLine("\nInvalid input. Please press enter.");
+        }
+        Console.WriteLine("\n");
+        var byteStream = new ArraySegment<byte>(new byte[9]);
+        byteStream[0] = 0x02;
+        byteStream[1] = 3;
+        byteStream[2] = 0x14;
+        byteStream[3] = 0;
+
+        return byteStream;
     }
 
     private static ArraySegment<byte> TKSetShowPoint()
     {
-        throw new NotImplementedException();
+        ConsoleKeyInfo userInput;
+        Console.WriteLine();
+        Console.WriteLine("Let's configure your keyboard! Press enter to continue.");
+        while ((userInput = Console.ReadKey()).Key != ConsoleKey.Enter)
+        {
+            Console.WriteLine("\nInvalid input. Please press enter.");
+        }
+        Console.WriteLine("\n");
+
+        // no config needed
+        var byteStream = new ArraySegment<byte>(new byte[9]);
+        byteStream[0] = 0x02;
+        byteStream[1] = 7;
+        byteStream[2] = 0x13;
+
+
+        // Layout
+        Console.WriteLine("Please choose your keyboard layout! " +
+            "\n0 for NumericKeyboard" +
+            "\n1 for GermanKeyboard" +
+            "\n2 for Not used");
+        while (((userInput = Console.ReadKey()).Key != ConsoleKey.D0) && (userInput.Key != ConsoleKey.D1) && (userInput.Key != ConsoleKey.D2))
+        {
+            Console.WriteLine("\nInvalid input. Please enter '0' or '1' or '2'.");
+        }
+        byteStream[3] = Convert.ToByte(int.Parse(userInput.KeyChar.ToString()));
+        Console.WriteLine("\n");
+
+
+        
+
+        byteStream[8] = 0x03;
+
+
+        return byteStream;
     }
 
     private static ArraySegment<byte> TKSetSize()
@@ -99,12 +147,15 @@ public class Program
 
 
         // Layout
-        Console.WriteLine("Please choose your keyboard layout! Press 1 for numeric and 2 for alphabetic to continue.");
-        while (((userInput = Console.ReadKey()).Key != ConsoleKey.D1) && (userInput.Key != ConsoleKey.D2))
+        Console.WriteLine("Please choose your keyboard layout! " +
+            "\n0 for NumericKeyboard" +
+            "\n1 for GermanKeyboard" +
+            "\n2 for Not used");
+        while (((userInput = Console.ReadKey()).Key != ConsoleKey.D0) && (userInput.Key != ConsoleKey.D1) && (userInput.Key != ConsoleKey.D2))
         {
-            Console.WriteLine("\nInvalid input. Please enter '1' or '2'.");
+            Console.WriteLine("\nInvalid input. Please enter '0' or '1' or '2'.");
         }
-        byteStream[3] = Convert.ToByte(userInput.KeyChar);
+        byteStream[3] = Convert.ToByte(int.Parse(userInput.KeyChar.ToString()));
         Console.WriteLine("\n");
 
 
