@@ -11,15 +11,15 @@ public class Program
     public async static Task Main(string[] args)
     {
 
-    
-        //IPHostEntry ipEntry = await Dns.GetHostEntryAsync(Dns.GetHostName());
-        //IPAddress ip = ipEntry.AddressList[0];
-        //IPEndPoint iPEndPoint = new(ip,1234);
 
-        //// client socket
-        //using Socket client = new(ip.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+        IPHostEntry ipEntry = await Dns.GetHostEntryAsync(Dns.GetHostName());
+        IPAddress ip = ipEntry.AddressList[0];
+        IPEndPoint iPEndPoint = new(ip, 1234);
 
-        //await client.ConnectAsync(iPEndPoint);
+        // client socket
+        using Socket client = new(ip.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+
+        await client.ConnectAsync(iPEndPoint);
 
         while (true)
         {
@@ -42,30 +42,25 @@ public class Program
             switch (userInput.Key)
             {
                 case ConsoleKey.D1:
-                    buffer = TKSetSize();
+                    await client.SendAsync(TKSetSize(), SocketFlags.None);
                     break; 
                 case ConsoleKey.D2:
-                    buffer = TKSetShowPoint();
+                    await client.SendAsync(TKSetShowPoint(), SocketFlags.None);
                     break;
                 case ConsoleKey.D3:
-                    buffer = TKSetShow();
+                    await client.SendAsync(TKSetShow(), SocketFlags.None);
                     break;
                 case ConsoleKey.D4:
-                    buffer = TKSetHide();
+                    await client.SendAsync(TKSetHide(), SocketFlags.None);
                     break;
             }
-           
 
+            var responseBuffer = new byte[1024];
+            var received = await client.ReceiveAsync(responseBuffer, SocketFlags.None);
 
+            var answer = Encoding.UTF8.GetString(responseBuffer, 0, received);
 
-            //await client.SendAsync(byteStream, SocketFlags.None);
-
-            //var buffer = new byte[1024];
-            //var received = await client.ReceiveAsync(buffer, SocketFlags.None);
-
-            //var answer = Encoding.UTF8.GetString(buffer, 0, received);
-
-            //Console.WriteLine(answer);
+            Console.WriteLine(answer);
         }
     }
 

@@ -9,9 +9,11 @@ namespace VirtualKeyboard.Services
     public class TCPService : ITCPService
     {
         ILogger _logger;
-        public TCPService(ILogger<TCPService> logger)
+        IProcessMessageService _messageService;
+        public TCPService(ILogger<TCPService> logger, IProcessMessageService messageService)
         {
            _logger = logger;
+            _messageService = messageService;
         }
 
         public event ITCPService.EventHandler OnKeyboardSelected;
@@ -36,17 +38,12 @@ namespace VirtualKeyboard.Services
                 {
                     var buffer = new byte[1024];
                     var received = await handler.ReceiveAsync(buffer, SocketFlags.None);
-
-                    var message = Encoding.UTF8.GetString(buffer, 0, received);
-                    if (message != null)
-                    {
-                        _logger.LogInformation($"Server received message: {message}");
-                        ProcessMessage(message);
-
-                        var response = "Server received message";
-                        var responseByte = Encoding.UTF8.GetBytes(response);
-                        await handler.SendAsync(responseByte, SocketFlags.None);
-                    }
+                    _logger.LogInformation($"Server received messae");
+                    _messageService.Notify(received);
+                    var response = "Server received message";
+                    var responseByte = Encoding.UTF8.GetBytes(response);
+                    await handler.SendAsync(responseByte, SocketFlags.None);
+                  
                 }
             }
             catch(SocketException ex)
@@ -60,9 +57,6 @@ namespace VirtualKeyboard.Services
             }
         }
 
-        private void ProcessMessage(string message)
-        {
-            OnKeyboardSelected?.Invoke(this, new ServerEventArgs(message) );
-        }
+       
     }
 }

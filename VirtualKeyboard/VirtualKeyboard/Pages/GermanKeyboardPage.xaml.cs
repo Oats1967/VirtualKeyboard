@@ -8,10 +8,11 @@ using VirtualKeyboard.ViewModels;
 
 namespace VirtualKeyboard.Pages;
 
-[QueryProperty("Size", "Size")]
+[QueryProperty("WindowInfo", "WindowInfo")]
 public partial class GermanKeyboardPage : ContentPage
 {
-    public string Size { get; set; } = string.Empty;
+    public  static readonly double Ratio = 0.4;
+    public string WindowInfo { get; set; } = string.Empty;
     public GermanKeyboardPage(AlphabeticKeyboardViewModel viewModel)
 	{
 		InitializeComponent();
@@ -22,7 +23,7 @@ public partial class GermanKeyboardPage : ContentPage
     {
 
         base.OnNavigatedTo(args);
-        var s = Size.Split(',').Select(int.Parse).ToArray();
+        var s = WindowInfo.Split('|').Select(int.Parse).ToArray();
         WindowSizeService.ResizeWindow(s[0], s[1], s[2], s[3]);
     }
 

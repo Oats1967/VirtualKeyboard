@@ -114,6 +114,7 @@ namespace VirtualKeyboard
         {
             builder.Services.AddSingleton<ITCPService,TCPService>();
             builder.Services.AddSingleton<IKeyboardService, KeyboardService>();
+            builder.Services.AddSingleton<IProcessMessageService, ProcessMessageService>();
             return builder;
         }
 

@@ -1,14 +1,17 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using VirtualKeyboard.Services;
+using VirtualKeyboard.Services.Commands;
 
 namespace VirtualKeyboard.ViewModels
 {
-    public abstract partial class KeyboardViewModel : BaseViewModel
+    public abstract partial class KeyboardViewModel : BaseViewModel, IRecipient<TKSetHide>
     {
         protected readonly IKeyboardService _keyboardService;
         public KeyboardViewModel(IKeyboardService service)
         {
+            WeakReferenceMessenger.Default.Register(this);
             _keyboardService = service;
         }
 
@@ -28,11 +31,14 @@ namespace VirtualKeyboard.ViewModels
         public void EnterPressed()
         {
             _keyboardService.SendKey(0x0D);
-            Shell.Current.GoToAsync("..");
+           
         }
-
-      
         public abstract void BackspacePressed();
         public abstract void KeyPressed(string key);
+
+        void IRecipient<TKSetHide>.Receive(TKSetHide message)
+        {
+            Shell.Current.GoToAsync("..");
+        }
     }
 }

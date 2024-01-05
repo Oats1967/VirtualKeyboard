@@ -412,8 +412,7 @@
             Grid.Column="0"
             Grid.ColumnSpan="2"
             BackgroundColor="{Binding CapsLock, Converter={StaticResource CapsLockColorConverter}}"
-            Text="{StaticResource ArrowUpIcon}"
-            >
+            Text="{StaticResource ArrowUpIcon}">
             <Button.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding CapsLockPressedCommand}" NumberOfTapsRequired="1" />
                 <TapGestureRecognizer Command="{Binding LockCommand}" NumberOfTapsRequired="2" />

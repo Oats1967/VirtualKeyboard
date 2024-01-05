@@ -33,7 +33,9 @@ namespace VirtualKeyboard.Services
                 winUiWindow.MoveAndResize(new RectInt32(x, y, width, height));
                 
 #endif
-        }
+            }
+
+        
 
 
 
