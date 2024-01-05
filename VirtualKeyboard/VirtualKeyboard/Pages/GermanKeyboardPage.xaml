@@ -217,13 +217,13 @@
             Command="{Binding KeyPressedCommand}"
             CommandParameter="ß"
             Text="ß" />
-        <controls:Key
+        <controls:IconKey
             Grid.Row="0"
             Grid.Column="11"
             Grid.ColumnSpan="3"
             BackgroundColor="{StaticResource SmaDoTecRed}"
             Command="{Binding BackspacePressedCommand}"
-            Text="⌫" />
+            Text="{StaticResource BackspaceIcon}" />
 
         <!--  Row 1  -->
         <controls:Key
@@ -310,17 +310,15 @@
             Command="{Binding KeyPressedCommand}"
             CommandParameter="+"
             Text="+" />
-        <controls:Key
+        <controls:IconKey
             Grid.Row="1"
             Grid.RowSpan="3"
             Grid.Column="12"
             Grid.ColumnSpan="2"
             BackgroundColor="{StaticResource SmaDoTecGreen}"
             Command="{Binding EnterPressedCommand}"
-            CommandParameter="⏎"
-            FontSize="Medium"
             Opacity="0.75"
-            Text="⏎" />
+            Text="{StaticResource EnterIcon}" />
 
         <!--  Row 2  -->
         <controls:Key
@@ -409,14 +407,13 @@
             Text="#" />
 
         <!--  Row 3  -->
-        <controls:Key
+        <controls:IconKey
             Grid.Row="3"
             Grid.Column="0"
             Grid.ColumnSpan="2"
             BackgroundColor="{Binding CapsLock, Converter={StaticResource CapsLockColorConverter}}"
-            BorderColor="{Binding CapsLock, Converter={StaticResource CapsLockColorConverter}}"
-            BorderWidth="2"
-            Text="△">
+            Text="{StaticResource ArrowUpIcon}"
+            >
             <Button.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding CapsLockPressedCommand}" NumberOfTapsRequired="1" />
                 <TapGestureRecognizer Command="{Binding LockCommand}" NumberOfTapsRequired="2" />
@@ -427,10 +424,10 @@
                         <BindingCondition Binding="{Binding Locked}" Value="True" />
                         <BindingCondition Binding="{Binding CapsLock}" Value="True" />
                     </MultiTrigger.Conditions>
-                    <Setter Property="BorderColor" Value="#F5F5F5" />
+                    <Setter Property="Text" Value="{StaticResource DoubleArrowUpIcon}" />
                 </MultiTrigger>
             </Button.Triggers>
-        </controls:Key>
+        </controls:IconKey>
         <controls:Key
             Grid.Row="3"
             Grid.Column="2"
@@ -517,21 +514,20 @@
             Command="{Binding KeyPressedCommand}"
             CommandParameter=" "
             Text=" " />
-        <controls:Key
+        <controls:IconKey
             Grid.Row="4"
             Grid.Column="10"
             Grid.ColumnSpan="2"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding LeftPressedCommand}"
-            Text="◀" />
-        <controls:Key
+            Text="{StaticResource ArrowLeftIcon}" />
+        <controls:IconKey
             Grid.Row="4"
             Grid.Column="12"
             Grid.ColumnSpan="2"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding RightPressedCommand}"
-            CommandParameter="."
-            Text="▶" />
+            Text="{StaticResource ArrowRightIcon}" />
     </Grid>
 
 

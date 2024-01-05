@@ -21,15 +21,15 @@ namespace VirtualKeyboard
             // toDo uncomment
             // WindowSizeService.ResizeWindow(0, 0, 0, 0);
 
-           // toDo delete underneath
-            const int width = 500;
-            const int height = 600;
-            ViewModel?.OpenNumericKeyboardAsync(1920 / 2 - width / 2, 1080 / 2 - height / 2, width, height);
+           //// toDo delete underneath
+           // const int width = 500;
+           // const int height = 600;
+           // ViewModel?.OpenNumericKeyboardAsync(1920 / 2 - width / 2, 1080 / 2 - height / 2, width, height);
 
 
-            //const int width = 1000;
-            //const int height = 400;
-            //ViewModel?.OpenAlphabeticKeyboardAsync(1920 / 2 - width / 2, 1080 / 2 - height / 2, width, height);
+            const int width = 1000;
+            const int height = 400;
+            ViewModel?.OpenAlphabeticKeyboardAsync(1920 / 2 - width / 2, 1080 / 2 - height / 2, width, height);
 
             base.OnAppearing();
         }
