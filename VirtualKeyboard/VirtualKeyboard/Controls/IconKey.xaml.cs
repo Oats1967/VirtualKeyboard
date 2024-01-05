@@ -1,6 +1,6 @@
 namespace VirtualKeyboard.Controls;
 
-public partial class IconKey : ImageButton
+public partial class IconKey : Button
 {
 	public IconKey()
 	{

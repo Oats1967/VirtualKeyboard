@@ -29,13 +29,13 @@
             CommandParameter="+"
             Text="+" />
         <controls:IconKey
-            Aspect="AspectFit"
+           
             Grid.Row="0"
             Grid.Column="2"
             Grid.ColumnSpan="2"
             BackgroundColor="{StaticResource SmaDoTecRed}"
             Command="{Binding BackspacePressedCommand}"
-            Source="erase.png" />
+            Text="{StaticResource BackspaceIcon}" />
 
         <!--  Row 1  -->
         <controls:Key
@@ -95,7 +95,7 @@
             Grid.Column="3"
             BackgroundColor="{StaticResource SmaDoTecGreen}"
             Command="{Binding EnterPressedCommand}"
-            Source="enter.png" />
+            Text="{StaticResource EnterIcon}" />
 
         <!--  Row 3  -->
         <controls:Key
@@ -137,20 +137,19 @@
             Command="{Binding KeyPressedCommand}"
             CommandParameter="."
             Text="." />
-        <controls:Key
+        <controls:IconKey
             Grid.Row="4"
             Grid.Column="2"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding LeftPressedCommand}"
-            
-            Text="◀" />
-        <controls:Key
+            Text="{StaticResource ArrowLeftIcon}" />
+        <controls:IconKey
             Grid.Row="4"
             Grid.RowSpan="2"
             Grid.Column="3"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding RightPressedCommand}"
-            Text="▶" />
+            Text="{StaticResource ArrowRightIcon}" />
 
        
 

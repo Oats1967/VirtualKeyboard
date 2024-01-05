@@ -57,6 +57,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Fonts\MaterialIcons-Regular.ttf" />
 	  <None Remove="Resources\Images\enter.png" />
 	  <None Remove="Resources\Images\erase.png" />
 	  <None Remove="Resources\Images\firmenlogo_grey.jpg" />
