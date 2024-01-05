@@ -29,7 +29,7 @@ namespace VirtualKeyboard.ViewModels
             {
                 case "NK":
                      width = 400;
-                     height = 600;
+                     height = 480;
                     OpenNumericKeyboardAsync(1920 / 2 - width / 2, 1080 / 2 - height / 2, width, height);
                     break;
                 case "AK":

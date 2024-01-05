@@ -28,6 +28,7 @@ namespace VirtualKeyboard.ViewModels
         public void EnterPressed()
         {
             _keyboardService.SendKey(0x0D);
+            Shell.Current.GoToAsync("..");
         }
 
       

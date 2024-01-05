@@ -57,8 +57,8 @@ namespace VirtualKeyboard
                         }
                         SetWindowLong(nativeWindowHandle, GWL_EXSTYLE, GetWindowLong(nativeWindowHandle, GWL_EXSTYLE) | WS_EX_NOACTIVATE);
                         
-                        // toDo uncomment
-                       //WindowSizeService.ResizeWindow(0,0,0,0);
+                       
+                       WindowSizeService.ResizeWindow(0,0,0,0);
 
                     });
                    
