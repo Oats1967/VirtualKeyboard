@@ -4,7 +4,10 @@
              x:Class="VirtualKeyboard.Controls.Key"
         
         VerticalOptions="FillAndExpand" 
-        HorizontalOptions="FillAndExpand">
+        HorizontalOptions="FillAndExpand"
+        FontAutoScalingEnabled="True"
+        FontAttributes="Bold"
+        >
     
        <Button.Shadow>
            <Shadow Brush="Black"

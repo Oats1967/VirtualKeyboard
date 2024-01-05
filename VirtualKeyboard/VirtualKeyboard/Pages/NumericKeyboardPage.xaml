@@ -19,20 +19,25 @@
             Grid.Column="0"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
-            CommandParameter="-"
-            Text="-" />
+            CommandParameter="7"
+            Text="7" />
         <controls:Key
             Grid.Row="0"
             Grid.Column="1"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
-            CommandParameter="+"
-            Text="+" />
-        <controls:IconKey
-           
+            CommandParameter="8"
+            Text="8" />
+        <controls:Key
             Grid.Row="0"
             Grid.Column="2"
-            Grid.ColumnSpan="2"
+            BackgroundColor="{StaticResource NormalKey}"
+            Command="{Binding KeyPressedCommand}"
+            CommandParameter="9"
+            Text="9" />
+        <controls:IconKey
+            Grid.Row="0"
+            Grid.Column="3"
             BackgroundColor="{StaticResource SmaDoTecRed}"
             Command="{Binding BackspacePressedCommand}"
             Text="{StaticResource BackspaceIcon}" />
@@ -43,29 +48,31 @@
             Grid.Column="0"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
-            CommandParameter="7"
-            Text="7" />
+            CommandParameter="4"
+            Text="4" />
         <controls:Key
             Grid.Row="1"
             Grid.Column="1"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
-            CommandParameter="8"
-            Text="8" />
+            CommandParameter="5"
+            Text="5" />
         <controls:Key
             Grid.Row="1"
             Grid.Column="2"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
-            CommandParameter="9"
-            Text="9" />
-        <controls:Key
+            CommandParameter="6"
+            Text="6" />
+        <controls:IconKey
             Grid.Row="1"
+            Grid.RowSpan="2"
             Grid.Column="3"
-            BackgroundColor="{StaticResource NormalKey}"
-            Command="{Binding KeyPressedCommand}"
-            CommandParameter="/"
-            Text="/" />
+            BackgroundColor="{StaticResource SmaDoTecGreen}"
+            Command="{Binding EnterPressedCommand}"
+            Opacity="0.75"
+            Text="{StaticResource EnterIcon}" />
+
 
         <!--  Row 2  -->
         <controls:Key
@@ -73,47 +80,17 @@
             Grid.Column="0"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
-            CommandParameter="4"
-            Text="4" />
-        <controls:Key
-            Grid.Row="2"
-            Grid.Column="1"
-            BackgroundColor="{StaticResource NormalKey}"
-            Command="{Binding KeyPressedCommand}"
-            CommandParameter="5"
-            Text="5" />
-        <controls:Key
-            Grid.Row="2"
-            Grid.Column="2"
-            BackgroundColor="{StaticResource NormalKey}"
-            Command="{Binding KeyPressedCommand}"
-            CommandParameter="6"
-            Text="6" />
-        <controls:IconKey
-            Grid.Row="2"
-            Grid.RowSpan="2"
-            Grid.Column="3"
-            BackgroundColor="{StaticResource SmaDoTecGreen}"
-            Command="{Binding EnterPressedCommand}"
-            Text="{StaticResource EnterIcon}" />
-
-        <!--  Row 3  -->
-        <controls:Key
-            Grid.Row="3"
-            Grid.Column="0"
-            BackgroundColor="{StaticResource NormalKey}"
-            Command="{Binding KeyPressedCommand}"
             CommandParameter="1"
             Text="1" />
         <controls:Key
-            Grid.Row="3"
+            Grid.Row="2"
             Grid.Column="1"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="2"
             Text="2" />
         <controls:Key
-            Grid.Row="3"
+            Grid.Row="2"
             Grid.Column="2"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
@@ -121,22 +98,43 @@
             Text="3" />
 
 
-        <!--  Row 4  -->
-
+        <!--  Row 3  -->
         <controls:Key
-            Grid.Row="4"
+            Grid.Row="3"
             Grid.Column="0"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="0"
             Text="0" />
         <controls:Key
-            Grid.Row="4"
+            Grid.Row="3"
             Grid.Column="1"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="."
             Text="." />
+        <controls:Key
+            Grid.Row="3"
+            Grid.Column="2"
+            BackgroundColor="{StaticResource NormalKey}"
+            Command="{Binding KeyPressedCommand}"
+            CommandParameter="-"
+            Text="-" />
+        <controls:Key
+            Grid.Row="3"
+            Grid.Column="3"
+            BackgroundColor="{StaticResource NormalKey}"
+            Command="{Binding KeyPressedCommand}"
+            CommandParameter="+"
+            Text="+" />
+        
+        <!--  Row 4  -->
+        <Image
+            Grid.Row="4"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Aspect="AspectFit"
+            Source="firmenlogo_grey.jpg" />
         <controls:IconKey
             Grid.Row="4"
             Grid.Column="2"
@@ -145,16 +143,9 @@
             Text="{StaticResource ArrowLeftIcon}" />
         <controls:IconKey
             Grid.Row="4"
-            Grid.RowSpan="2"
             Grid.Column="3"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding RightPressedCommand}"
             Text="{StaticResource ArrowRightIcon}" />
-
-       
-
-
-
-
     </Grid>
 </ContentPage>

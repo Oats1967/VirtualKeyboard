@@ -5,7 +5,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     HorizontalOptions="FillAndExpand"
     Style="{StaticResource MaterialIcon}"
-    VerticalOptions="FillAndExpand">
+    VerticalOptions="FillAndExpand"
+    >
     <Button.Shadow>
         <Shadow Brush="Black" Opacity="0.8" />
     </Button.Shadow>
