@@ -38,10 +38,10 @@ public partial class NumericKeyboardPage : ContentPage, IRecipient<TKSetSize>, I
 
     void IRecipient<TKSetSize>.Receive(TKSetSize message)
     {
-        if (message.Layout != Services.Commands.Layout.German) return;
+        if (message.Layout != Services.Commands.Layout.Numeric) return;
         WindowWidth = message.Width;
         WindowHeight = message.Height;
-        if (Application.Current!.MainPage is GermanKeyboardPage)
+        if (Shell.Current.CurrentPage is NumericKeyboardPage)
         {
             WindowSizeService.ResizeWindow(WindowX, WindowY, WindowWidth, WindowHeight);
         }
@@ -49,10 +49,10 @@ public partial class NumericKeyboardPage : ContentPage, IRecipient<TKSetSize>, I
 
     void IRecipient<TKSetShowPoint>.Receive(TKSetShowPoint message)
     {
-        if (message.Layout != Services.Commands.Layout.German) return;
+        if (message.Layout != Services.Commands.Layout.Numeric) return;
         WindowX = message.X;
         WindowY = message.Y;
-        if (Application.Current!.MainPage is GermanKeyboardPage)
+        if (Shell.Current!.CurrentPage is NumericKeyboardPage)
         {
             WindowSizeService.ResizeWindow(WindowX, WindowY, WindowWidth, WindowHeight);
         }

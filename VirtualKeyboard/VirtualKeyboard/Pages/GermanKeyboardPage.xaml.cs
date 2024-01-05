@@ -45,7 +45,7 @@ public partial class GermanKeyboardPage : ContentPage , IRecipient<TKSetSize>, I
         if (message.Layout != Services.Commands.Layout.German) return;
         WindowWidth = message.Width;
         WindowHeight = message.Height;
-        if (Application.Current!.MainPage is GermanKeyboardPage)
+        if (Shell.Current!.CurrentPage is GermanKeyboardPage)
         {
             WindowSizeService.ResizeWindow(WindowX, WindowY, WindowWidth, WindowHeight);
         }
@@ -56,7 +56,7 @@ public partial class GermanKeyboardPage : ContentPage , IRecipient<TKSetSize>, I
         if (message.Layout != Services.Commands.Layout.German) return;
         WindowX = message.X;
         WindowY = message.Y;
-        if(Application.Current!.MainPage is GermanKeyboardPage)
+        if(Shell.Current!.CurrentPage is GermanKeyboardPage)
         {
            WindowSizeService.ResizeWindow(WindowX, WindowY, WindowWidth, WindowHeight);
         }

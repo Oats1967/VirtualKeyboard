@@ -66,14 +66,9 @@ public class Program
 
     private static ArraySegment<byte> TKSetHide()
     {
-        throw new NotImplementedException();
-    }
-
-    private static ArraySegment<byte> TKSetShow()
-    {
         ConsoleKeyInfo userInput;
         Console.WriteLine();
-        Console.WriteLine("Press enter to show keyboard at desired position.");
+        Console.WriteLine("Press enter to hide keyboard.");
         while ((userInput = Console.ReadKey()).Key != ConsoleKey.Enter)
         {
             Console.WriteLine("\nInvalid input. Please press enter.");
@@ -81,9 +76,38 @@ public class Program
         Console.WriteLine("\n");
         var byteStream = new ArraySegment<byte>(new byte[9]);
         byteStream[0] = 0x02;
+        byteStream[1] = 2;
+        byteStream[2] = 0x15;
+        
+
+        return byteStream;
+    }
+
+    private static ArraySegment<byte> TKSetShow()
+    {
+        ConsoleKeyInfo userInput;
+        Console.WriteLine();
+        Console.WriteLine("Choose keyboard to show at desired position." +
+            "\n0 for NumericKeyboard" +
+            "\n1 for GermanKeyboard" +
+            "\n2 for Not used");
+        while (((userInput = Console.ReadKey()).Key != ConsoleKey.D0) && (userInput.Key != ConsoleKey.D1) && (userInput.Key != ConsoleKey.D2))
+        {
+            Console.WriteLine("\nInvalid input. Please enter '0' or '1' or '2'.");
+        }
+        var byteStream = new ArraySegment<byte>(new byte[4]);
+        byteStream[0] = 0x02;
         byteStream[1] = 3;
         byteStream[2] = 0x14;
-        byteStream[3] = 0;
+        byteStream[3] = Convert.ToByte(int.Parse(userInput.KeyChar.ToString()));
+        Console.WriteLine("\n");
+
+        Console.WriteLine("Press enter to show keyboard.");
+        while ((userInput = Console.ReadKey()).Key != ConsoleKey.Enter)
+        {
+            Console.WriteLine("\nInvalid input. Please press enter.");
+        }
+        Console.WriteLine("\n");
 
         return byteStream;
     }

@@ -43,7 +43,7 @@ namespace VirtualKeyboard
 
         void IRecipient<TKSetShow>.Receive(TKSetShow message)
         {
-            if (Shell.Current.CurrentPage is MainPage) return;
+            if (Shell.Current.CurrentPage is not MainPage) return;
             switch (message.Layout)
             {
                 case Services.Commands.Layout.Numeric:
@@ -58,10 +58,9 @@ namespace VirtualKeyboard
 
         void IRecipient<TKSetHide>.Receive(TKSetHide message)
         {
-            if (Shell.Current.CurrentPage is GermanKeyboardPage)
-            {
-                Shell.Current.GoToAsync("..");
-            }
+            if (Shell.Current.CurrentPage is MainPage) return;
+             Shell.Current.GoToAsync("..");
+            
         }
     }
 
