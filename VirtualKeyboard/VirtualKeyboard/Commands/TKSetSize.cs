@@ -14,8 +14,8 @@ namespace VirtualKeyboard.Commands
             Layout = layout;
             percentage = (byte) Math.Max(0, Math.Min((int)percentage, 100));
 
-            double screenHeight = DeviceDisplay.MainDisplayInfo.Height;
-            double screenWidth = DeviceDisplay.MainDisplayInfo.Width;
+            var screenHeight = DeviceDisplay.MainDisplayInfo.Height;
+            var screenWidth = DeviceDisplay.MainDisplayInfo.Width;
             switch (layout)
             {
                 case Layouts.German:
