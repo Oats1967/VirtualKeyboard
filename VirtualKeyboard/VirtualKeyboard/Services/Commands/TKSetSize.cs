@@ -13,13 +13,15 @@ namespace VirtualKeyboard.Services.Commands
         {
             Layout = layout;
             double screenHeight = DeviceDisplay.MainDisplayInfo.Height;
-            Height = (int) (screenHeight * ((double)percentage / 100)); ;
+            double screenWidth = DeviceDisplay.MainDisplayInfo.Width;
             switch (layout)
             {
                 case Layouts.German:
-                    Width = (int)(Height / GermanKeyboardPage.Ratio);
+                    Width = (int)(screenWidth * ((double)percentage / 100)); ;
+                    Height = (int)(Width * GermanKeyboardPage.Ratio);
                     break;
                 case Layouts.Numeric:
+                    Height = (int)(screenHeight * ((double)percentage / 100)); ;
                     Width = (int)(Height / NumericKeyboardPage.Ratio);
                     break;
                 default:

@@ -60,7 +60,7 @@ namespace VirtualKeyboard.Services
                 // Additional cleanup or logging if needed
                 handler.Close();
                 Application.Current?.CloseWindow(Application.Current!.MainPage!.Window);
-                _logger.LogError($"Application shutdown forced by client");
+                _logger.LogInformation($"Application shutdown forced by client");
             }
         }
 

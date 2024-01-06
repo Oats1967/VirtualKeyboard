@@ -82,9 +82,9 @@ public class Program
         ConsoleKeyInfo userInput;
         Console.WriteLine();
         Console.WriteLine("Choose keyboard to show at desired position." +
-            "\n0 for NumericKeyboard" +
-            "\n1 for GermanKeyboard" +
-            "\n2 for Not used");
+           "\n0 for Not used" +
+            "\n1 for NumericKeyboard" +
+            "\n2 for GermanKeyboard");
         while (((userInput = Console.ReadKey()).Key != ConsoleKey.D0) && (userInput.Key != ConsoleKey.D1) && (userInput.Key != ConsoleKey.D2))
         {
             Console.WriteLine("\nInvalid input. Please enter '0' or '1' or '2'.");
@@ -125,9 +125,9 @@ public class Program
 
         // Layout
         Console.WriteLine("Please choose your keyboard layout! " +
-            "\n0 for NumericKeyboard" +
-            "\n1 for GermanKeyboard" +
-            "\n2 for Not used");
+           "\n0 for Not used" +
+            "\n1 for NumericKeyboard" +
+            "\n2 for GermanKeyboard");
         while (((userInput = Console.ReadKey()).Key != ConsoleKey.D0) && (userInput.Key != ConsoleKey.D1) && (userInput.Key != ConsoleKey.D2))
         {
             Console.WriteLine("\nInvalid input. Please enter '0' or '1' or '2'.");
@@ -152,7 +152,7 @@ public class Program
         //Y - Coordinate
         const int lowerLimitY = 0;
         const int upperLimitY = 1080;
-        Console.WriteLine($"Please choose your keyboard X-Coordinate! Please enter a number between {lowerLimitY} and {upperLimitY}");
+        Console.WriteLine($"Please choose your keyboard Y-Coordinate! Please enter a number between {lowerLimitY} and {upperLimitY}");
         int y;
         while (!(int.TryParse(Console.ReadLine(), out y) && y >= lowerLimitY && y <= upperLimitY))
         {
@@ -191,9 +191,9 @@ public class Program
 
         // Layout
         Console.WriteLine("Please choose your keyboard layout! " +
-            "\n0 for NumericKeyboard" +
-            "\n1 for GermanKeyboard" +
-            "\n2 for Not used");
+            "\n0 for Not used" +
+            "\n1 for NumericKeyboard" +
+            "\n2 for GermanKeyboard");
         while (((userInput = Console.ReadKey()).Key != ConsoleKey.D0) && (userInput.Key != ConsoleKey.D1) && (userInput.Key != ConsoleKey.D2))
         {
             Console.WriteLine("\nInvalid input. Please enter '0' or '1' or '2'.");

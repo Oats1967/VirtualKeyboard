@@ -8,8 +8,9 @@ namespace VirtualKeyboard.Services.Commands
 {
     public enum Layouts
     {
+        NotUsed,
         Numeric,
-        German,
-        NotUsed
+        German
+        
     }
 }
