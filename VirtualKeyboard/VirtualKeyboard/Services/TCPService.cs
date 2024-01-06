@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using System.Collections;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -21,11 +22,8 @@ namespace VirtualKeyboard.Services
 
         private async void StartAsync()
         {
-             // info abut localhost -- includes ip adress
-             IPHostEntry ipEntry = await Dns.GetHostEntryAsync(Dns.GetHostName());
-             // localhost ip
-             IPAddress ip = ipEntry.AddressList[0];;
-             // connects server socket to client socket
+             
+             IPAddress ip = IPAddress.Loopback; // Use loopback address for local host
              IPEndPoint ipEndPoint = new IPEndPoint(ip, 2000);
              using Socket server = new(ipEndPoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
              server.Bind(ipEndPoint);
@@ -35,21 +33,21 @@ namespace VirtualKeyboard.Services
             var handler = await server.AcceptAsync();
             try
             {
+                var buffer = new byte[1024];
                 while (true)
                 {
-                    var buffer = new byte[1024];
+                   
                     var received = await handler.ReceiveAsync(buffer, SocketFlags.None);
+                    
                     if (received > 0)
                     {
                         // Process the received data in the buffer (up to 'received' bytes)
                         byte[] receivedData = new byte[received];
                         Array.Copy(buffer, receivedData, received);
-                        _logger.LogInformation($"Server received message");
+                        string hexRepresentation = BitConverter.ToString(receivedData).Replace("-", " ");
+                        _logger.LogInformation($"Server received message: {hexRepresentation}");
                         _messageService.Process(receivedData);
-                        var response = "Server received message";
-                        var responseByte = Encoding.UTF8.GetBytes(response);
-                        await handler.SendAsync(responseByte, SocketFlags.None);
-                        // Handle/process receivedData as needed
+                       
                     }
                 }
             }
@@ -61,6 +59,8 @@ namespace VirtualKeyboard.Services
             {
                 // Additional cleanup or logging if needed
                 handler.Close();
+                Application.Current?.CloseWindow(Application.Current!.MainPage!.Window);
+                _logger.LogError($"Application shutdown forced by client");
             }
         }
 

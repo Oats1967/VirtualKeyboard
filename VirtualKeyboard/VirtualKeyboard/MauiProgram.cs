@@ -79,7 +79,16 @@ namespace VirtualKeyboard
 #endif
 
 #if RELEASE
-         
+
+
+                        .AddStreamingFileLogger(
+                            options =>
+                            {
+                                options.RetainDays = 2;
+                                options.FolderPath = Path.Combine(
+                                Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
+                                "MetroLogs");
+                            })
                         .AddConsoleLogger(
                             options =>
                             {

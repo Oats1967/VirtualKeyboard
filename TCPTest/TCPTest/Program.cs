@@ -13,9 +13,9 @@ public class Program
     {
 
 
-        IPHostEntry ipEntry = await Dns.GetHostEntryAsync(Dns.GetHostName());
-        IPAddress ip = ipEntry.AddressList[0];
-        IPEndPoint iPEndPoint = new(ip, 2000);
+        
+        IPAddress ip = IPAddress.Loopback; // Use loopback address for local host
+        IPEndPoint iPEndPoint = new IPEndPoint(ip, 2000);
 
         // client socket
         using Socket client = new(ip.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
@@ -56,12 +56,7 @@ public class Program
                     break;
             }
 
-            var responseBuffer = new byte[1024];
-            var received = await client.ReceiveAsync(responseBuffer, SocketFlags.None);
-
-            var answer = Encoding.UTF8.GetString(responseBuffer, 0, received);
-
-            Console.WriteLine(answer);
+           
         }
     }
     private static ArraySegment<byte> TKSetHide()
