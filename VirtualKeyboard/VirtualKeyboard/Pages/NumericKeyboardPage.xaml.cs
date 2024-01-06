@@ -1,6 +1,6 @@
 using CommunityToolkit.Mvvm.Messaging;
+using VirtualKeyboard.Commands;
 using VirtualKeyboard.Services;
-using VirtualKeyboard.Services.Commands;
 using VirtualKeyboard.ViewModels;
 
 namespace VirtualKeyboard.Pages;
@@ -40,6 +40,7 @@ public partial class NumericKeyboardPage : ContentPage, IRecipient<TKSetSize>, I
         if (message.Layout != Layouts.Numeric) return;
         WindowWidth = message.Width;
         WindowHeight = message.Height;
+        CorrectOutOfBounds();
         if (Shell.Current.CurrentPage is NumericKeyboardPage)
         {
             WindowSizeService.ResizeWindow(WindowX, WindowY, WindowWidth, WindowHeight);
@@ -51,11 +52,29 @@ public partial class NumericKeyboardPage : ContentPage, IRecipient<TKSetSize>, I
         if (message.Layout != Layouts.Numeric) return;
         WindowX = message.X;
         WindowY = message.Y;
+        CorrectOutOfBounds();
         if (Shell.Current!.CurrentPage is NumericKeyboardPage)
         {
             WindowSizeService.ResizeWindow(WindowX, WindowY, WindowWidth, WindowHeight);
         }
     }
 
-    
+    private void CorrectOutOfBounds()
+    {
+        WindowX = CorrectDimension(WindowX, WindowWidth, (int)DeviceDisplay.MainDisplayInfo.Width);
+        WindowY = CorrectDimension(WindowY, WindowHeight, (int)DeviceDisplay.MainDisplayInfo.Height);
+    }
+
+    private int CorrectDimension(int coordinate, int size, int screenSize)
+    {
+        var endCoordinate = coordinate + size;
+
+        if (endCoordinate > screenSize)
+        {
+            return Math.Max(0, coordinate - (endCoordinate - screenSize));
+        }
+        return coordinate;
+    }
+
+
 }

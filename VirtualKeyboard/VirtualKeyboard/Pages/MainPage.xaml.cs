@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.Messaging;
+using VirtualKeyboard.Commands;
 using VirtualKeyboard.Pages;
 using VirtualKeyboard.Services;
-using VirtualKeyboard.Services.Commands;
 using VirtualKeyboard.ViewModels;
 
 namespace VirtualKeyboard

@@ -1,34 +1,16 @@
-﻿using VirtualKeyboard.Services;
-using Microsoft.Extensions.Logging;
-using VirtualKeyboard.Pages;
-using CommunityToolkit.Mvvm.Messaging;
-using VirtualKeyboard.Services.Commands;
-using System.Drawing;
-using System.Runtime.Versioning;
+﻿using Microsoft.Extensions.Logging;
 
 
 
 
 namespace VirtualKeyboard.ViewModels
 {
-    public class MainPageViewModel : BaseViewModel 
-    {
-
+    public class MainPageViewModel : BaseViewModel
+    { 
         private ILogger _logger;
-      
-
-
         public MainPageViewModel( ILogger<MainPageViewModel> logger)
         {
             _logger = logger;
-            
-
-
-        }
-
-       
-
-        
-           
+        }   
     }
 }

@@ -5,13 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using VirtualKeyboard.Pages;
 
-namespace VirtualKeyboard.Services.Commands
+namespace VirtualKeyboard.Commands
 {
     public class TKSetSize
     {
-        public TKSetSize(Layouts layout ,byte percentage)
+        public TKSetSize(Layouts layout, byte percentage)
         {
             Layout = layout;
+            percentage = (byte) Math.Max(0, Math.Min((int)percentage, 100));
+
             double screenHeight = DeviceDisplay.MainDisplayInfo.Height;
             double screenWidth = DeviceDisplay.MainDisplayInfo.Width;
             switch (layout)
@@ -30,7 +32,7 @@ namespace VirtualKeyboard.Services.Commands
         }
         public int Width { get; private set; }
         public int Height { get; private set; }
-        public Layouts Layout {  get; private set; }
+        public Layouts Layout { get; private set; }
 
     }
 }

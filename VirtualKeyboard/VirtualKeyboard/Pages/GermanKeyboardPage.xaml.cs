@@ -1,8 +1,6 @@
 using CommunityToolkit.Mvvm.Messaging;
-using System.Runtime.InteropServices;
-using System.Text;
+using VirtualKeyboard.Commands;
 using VirtualKeyboard.Services;
-using VirtualKeyboard.Services.Commands;
 using VirtualKeyboard.ViewModels;
 
 
@@ -45,6 +43,7 @@ public partial class GermanKeyboardPage : ContentPage , IRecipient<TKSetSize>, I
         if (message.Layout != Layouts.German) return;
         WindowWidth = message.Width;
         WindowHeight = message.Height;
+        CorrectOutOfBounds();
         if (Shell.Current!.CurrentPage is GermanKeyboardPage)
         {
             WindowSizeService.ResizeWindow(WindowX, WindowY, WindowWidth, WindowHeight);
@@ -56,10 +55,28 @@ public partial class GermanKeyboardPage : ContentPage , IRecipient<TKSetSize>, I
         if (message.Layout != Layouts.German) return;
         WindowX = message.X;
         WindowY = message.Y;
+        CorrectOutOfBounds();
         if(Shell.Current!.CurrentPage is GermanKeyboardPage)
         {
            WindowSizeService.ResizeWindow(WindowX, WindowY, WindowWidth, WindowHeight);
         }
+    }
+
+    private void CorrectOutOfBounds()
+    {
+        WindowX = CorrectDimension( WindowX, WindowWidth, (int)DeviceDisplay.MainDisplayInfo.Width);
+        WindowY = CorrectDimension( WindowY, WindowHeight, (int)DeviceDisplay.MainDisplayInfo.Height);
+    }
+
+    private int CorrectDimension( int coordinate, int size, int screenSize)
+    {
+        var endCoordinate = coordinate + size;
+
+        if (endCoordinate > screenSize)
+        {
+            return Math.Max(0, coordinate - (endCoordinate - screenSize));
+        }
+        return coordinate;
     }
 
 }

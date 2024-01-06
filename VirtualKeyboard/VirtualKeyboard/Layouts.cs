@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VirtualKeyboard.Services.Commands
+namespace VirtualKeyboard
 {
     public enum Layouts
     {
         NotUsed,
         Numeric,
         German
-        
+
     }
 }
