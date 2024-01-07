@@ -16,6 +16,17 @@ namespace VirtualKeyboard.ViewModels
         public NumericKeyboardViewModel(IKeyboardService keyboardService) : base(keyboardService)
         {
         }
+
+        protected override int InitWidth => (int)(DeviceDisplay.Current.MainDisplayInfo.Height / 2);
+
+        protected override int InitHeight => (int)(Width * ResolutionConfig.ResolutionToKeyboardRatio[(DeviceDisplay.Current.MainDisplayInfo.Width, DeviceDisplay.Current.MainDisplayInfo.Height)].numericRatio);
+
+        protected override int InitX => (int)((DeviceDisplay.Current.MainDisplayInfo.Width - Width) / 2);
+        protected override int InitY => (int)((DeviceDisplay.Current.MainDisplayInfo.Height - Height) / 2);
+
+
+        protected override (double current, double max) SizeRef => (Application.Current!.Windows[0].Height, DeviceDisplay.Current.MainDisplayInfo.Height);
+
         [RelayCommand]
         public override void BackspacePressed()
         {

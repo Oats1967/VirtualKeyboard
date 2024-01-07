@@ -9,9 +9,7 @@
     BackgroundColor="Grey">
     <ContentPage.Resources>
 
-        <converter:DoubleScaler
-         x:Key="FontSizeScaler"
-         Factor="2.0"/>
+        <converter:DoubleScaler x:Key="FontSizeScaler" Factor="2.0" />
 
         <toolkit:BoolToObjectConverter
             x:Key="CapsLockColorConverter"

@@ -7,7 +7,7 @@ using VirtualKeyboard.Pages;
 
 namespace VirtualKeyboard.Commands
 {
-    public class TKSetSize
+    public class TKSetSize 
     {
         public TKSetSize(Layouts layout, byte percentage)
         {
@@ -20,11 +20,11 @@ namespace VirtualKeyboard.Commands
             {
                 case Layouts.German:
                     Width = (int)(screenWidth * ((double)percentage / 100)); ;
-                    Height = (int)(Width * GermanKeyboardPage.Ratio);
+                    Height = (int)(Width * ResolutionConfig.ResolutionToKeyboardRatio[(screenWidth,screenHeight)].alphaRatio);
                     break;
                 case Layouts.Numeric:
                     Height = (int)(screenHeight * ((double)percentage / 100)); ;
-                    Width = (int)(Height / NumericKeyboardPage.Ratio);
+                    Width = (int)(Height / ResolutionConfig.ResolutionToKeyboardRatio[(screenWidth, screenHeight)].numericRatio);
                     break;
                 default:
                     return;

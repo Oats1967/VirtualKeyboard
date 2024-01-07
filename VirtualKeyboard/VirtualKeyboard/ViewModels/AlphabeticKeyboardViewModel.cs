@@ -3,6 +3,7 @@ using System.Text;
 using VirtualKeyboard.Services;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
+using VirtualKeyboard.Controls;
 
 
 namespace VirtualKeyboard.ViewModels
@@ -10,10 +11,10 @@ namespace VirtualKeyboard.ViewModels
     public partial class AlphabeticKeyboardViewModel : KeyboardViewModel
     {
 
-       
-        public AlphabeticKeyboardViewModel( IKeyboardService keyboardService) : base(keyboardService)
+
+        public AlphabeticKeyboardViewModel(IKeyboardService keyboardService) : base(keyboardService)
         {
-           
+
             Locked = false;
             CapsLock = false;
         }
@@ -28,7 +29,7 @@ namespace VirtualKeyboard.ViewModels
         [RelayCommand]
         public void Lock()
         {
-           
+
             CapsLock = !CapsLock;
             Locked = CapsLock;
         }
@@ -37,7 +38,7 @@ namespace VirtualKeyboard.ViewModels
         public void CapsLockPressed()
         {
             Locked = false;
-            CapsLock = !CapsLock; 
+            CapsLock = !CapsLock;
         }
 
         [RelayCommand]
@@ -59,5 +60,25 @@ namespace VirtualKeyboard.ViewModels
             }
             _keyboardService.SendKey(0x08);
         }
+
+        protected override int InitWidth => (int)(DeviceDisplay.Current.MainDisplayInfo.Width / 2);
+
+       
+        protected override int InitHeight => (int)(Width * ResolutionConfig.ResolutionToKeyboardRatio[(DeviceDisplay.Current.MainDisplayInfo.Width, DeviceDisplay.Current.MainDisplayInfo.Height)].alphaRatio);
+        
+
+        protected override int InitX => (int)((DeviceDisplay.Current.MainDisplayInfo.Width - Width) / 2);
+
+        
+
+        protected override int InitY => (int)((DeviceDisplay.Current.MainDisplayInfo.Height - Height) / 2);
+        
+
+        protected override (double current, double max) SizeRef => (Application.Current!.Windows[0].Width, DeviceDisplay.Current.MainDisplayInfo.Width);
+        
+
+       
+        
+        
     }
 }
