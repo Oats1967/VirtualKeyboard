@@ -6,17 +6,21 @@ using VirtualKeyboard.ViewModels;
 
 namespace VirtualKeyboard
 {
-    public partial class MainPage : ContentPage, IRecipient<TKSetShow>, IRecipient<TKSetHide>
+    public partial class MainPage : ContentPage, IRecipient<TKSetShow>, IRecipient<TKSetHide>, IRecipient<TKSetShowPoint>
     {
 
 
        // for dependency injection Pages have to be initialized through constructor
         public MainPage(MainPageViewModel viewModel, NumericKeyboardPage numericKeyboardPage, GermanKeyboardPage germanKeyboardPage)
         {
+            WeakReferenceMessenger.Default.Register<TKSetShowPoint>(this);
             WeakReferenceMessenger.Default.Register<TKSetHide>(this);
             WeakReferenceMessenger.Default.Register<TKSetShow>(this);
             InitializeComponent();
             BindingContext = viewModel;
+
+            
+
         }
        
         protected override void OnAppearing()
@@ -47,7 +51,10 @@ namespace VirtualKeyboard
 
         async void IRecipient<TKSetShow>.Receive(TKSetShow message)
         {
-            if (Shell.Current.CurrentPage is not MainPage) return;
+            if (Shell.Current.CurrentPage is not MainPage)
+            {
+                await CloseKeyboardAsync();
+            };
             switch (message.Layout)
             {
                 case Layouts.Numeric:
@@ -65,6 +72,21 @@ namespace VirtualKeyboard
             if (Shell.Current.CurrentPage is MainPage) return;
              await CloseKeyboardAsync();
             
+        }
+
+        async void IRecipient<TKSetShowPoint>.Receive(TKSetShowPoint message)
+        {
+            if (Shell.Current.CurrentPage is not MainPage) return;
+            switch (message.Layout)
+            {
+                case Layouts.Numeric:
+                    await OpenNumericKeyboardAsync();
+                    break;
+                case Layouts.German:
+                    await OpenGermanKeyboardAsync();
+                    break;
+                default: return;
+            }
         }
     }
 

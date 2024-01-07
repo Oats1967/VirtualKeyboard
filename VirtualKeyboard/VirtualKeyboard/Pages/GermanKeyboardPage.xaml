@@ -4,9 +4,15 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:VirtualKeyboard.Controls"
+    xmlns:converter="clr-namespace:VirtualKeyboard.Converter"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     BackgroundColor="Grey">
     <ContentPage.Resources>
+
+        <converter:DoubleScaler
+         x:Key="FontSizeScaler"
+         Factor="2.0"/>
+
         <toolkit:BoolToObjectConverter
             x:Key="CapsLockColorConverter"
             FalseObject="#F5F5F5"
@@ -133,11 +139,11 @@
     </ContentPage.Resources>
 
     <Grid
-        Padding="10"
+        Padding="{Binding KeySpacing}"
         ColumnDefinitions="*,*,*,*,*,*,*,*,*,*,*,*,*,*"
-        ColumnSpacing="10"
+        ColumnSpacing="{Binding KeySpacing}"
         RowDefinitions="*,*,*,*,*"
-        RowSpacing="10">
+        RowSpacing="{Binding KeySpacing}">
 
         <!--  Row 0  -->
         <controls:Key
@@ -146,6 +152,7 @@
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="1"
+            FontSize="{Binding FontSize}"
             Text="1" />
         <controls:Key
             Grid.Row="0"
@@ -153,6 +160,7 @@
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="2"
+            FontSize="{Binding FontSize}"
             Text="2" />
         <controls:Key
             Grid.Row="0"
@@ -160,6 +168,7 @@
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="3"
+            FontSize="{Binding FontSize}"
             Text="3" />
         <controls:Key
             Grid.Row="0"
@@ -167,6 +176,7 @@
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="4"
+            FontSize="{Binding FontSize}"
             Text="4" />
         <controls:Key
             Grid.Row="0"
@@ -174,6 +184,7 @@
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="5"
+            FontSize="{Binding FontSize}"
             Text="5" />
         <controls:Key
             Grid.Row="0"
@@ -181,6 +192,7 @@
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="6"
+            FontSize="{Binding FontSize}"
             Text="6" />
         <controls:Key
             Grid.Row="0"
@@ -188,6 +200,7 @@
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="7"
+            FontSize="{Binding FontSize}"
             Text="7" />
         <controls:Key
             Grid.Row="0"
@@ -195,6 +208,7 @@
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="8"
+            FontSize="{Binding FontSize}"
             Text="8" />
         <controls:Key
             Grid.Row="0"
@@ -202,6 +216,7 @@
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="9"
+            FontSize="{Binding FontSize}"
             Text="9" />
         <controls:Key
             Grid.Row="0"
@@ -209,6 +224,7 @@
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="0"
+            FontSize="{Binding FontSize}"
             Text="0" />
         <controls:Key
             Grid.Row="0"
@@ -216,6 +232,7 @@
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="ß"
+            FontSize="{Binding FontSize}"
             Text="ß" />
         <controls:IconKey
             Grid.Row="0"
@@ -223,6 +240,7 @@
             Grid.ColumnSpan="3"
             BackgroundColor="{StaticResource SmaDoTecRed}"
             Command="{Binding BackspacePressedCommand}"
+            FontSize="{Binding FontSize, Converter={StaticResource FontSizeScaler}}"
             Text="{StaticResource BackspaceIcon}" />
 
         <!--  Row 1  -->
@@ -232,6 +250,7 @@
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource QConverter}}"
+            FontSize="{Binding FontSize}"
             Text="{Binding CapsLock, Converter={StaticResource QConverter}}" />
         <controls:Key
             Grid.Row="1"
@@ -239,6 +258,7 @@
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource WConverter}}"
+            FontSize="{Binding FontSize}"
             Text="{Binding CapsLock, Converter={StaticResource WConverter}}" />
         <controls:Key
             Grid.Row="1"
@@ -246,6 +266,7 @@
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource EConverter}}"
+            FontSize="{Binding FontSize}"
             Text="{Binding CapsLock, Converter={StaticResource EConverter}}" />
         <controls:Key
             Grid.Row="1"
@@ -253,6 +274,7 @@
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource RConverter}}"
+            FontSize="{Binding FontSize}"
             Text="{Binding CapsLock, Converter={StaticResource RConverter}}" />
         <controls:Key
             Grid.Row="1"
@@ -260,6 +282,7 @@
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource TConverter}}"
+            FontSize="{Binding FontSize}"
             Text="{Binding CapsLock, Converter={StaticResource TConverter}}" />
         <controls:Key
             Grid.Row="1"
@@ -267,6 +290,7 @@
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource ZConverter}}"
+            FontSize="{Binding FontSize}"
             Text="{Binding CapsLock, Converter={StaticResource ZConverter}}" />
         <controls:Key
             Grid.Row="1"
@@ -274,6 +298,7 @@
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource UConverter}}"
+            FontSize="{Binding FontSize}"
             Text="{Binding CapsLock, Converter={StaticResource UConverter}}" />
         <controls:Key
             Grid.Row="1"
@@ -281,6 +306,7 @@
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource IConverter}}"
+            FontSize="{Binding FontSize}"
             Text="{Binding CapsLock, Converter={StaticResource IConverter}}" />
         <controls:Key
             Grid.Row="1"
@@ -288,6 +314,7 @@
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource OConverter}}"
+            FontSize="{Binding FontSize}"
             Text="{Binding CapsLock, Converter={StaticResource OConverter}}" />
         <controls:Key
             Grid.Row="1"
@@ -295,6 +322,7 @@
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource PConverter}}"
+            FontSize="{Binding FontSize}"
             Text="{Binding CapsLock, Converter={StaticResource PConverter}}" />
         <controls:Key
             Grid.Row="1"
@@ -302,6 +330,7 @@
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource ÜConverter}}"
+            FontSize="{Binding FontSize}"
             Text="{Binding CapsLock, Converter={StaticResource ÜConverter}}" />
         <controls:Key
             Grid.Row="1"
@@ -309,6 +338,7 @@
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="+"
+            FontSize="{Binding FontSize}"
             Text="+" />
         <controls:IconKey
             Grid.Row="1"
@@ -317,6 +347,7 @@
             Grid.ColumnSpan="2"
             BackgroundColor="{StaticResource SmaDoTecGreen}"
             Command="{Binding EnterPressedCommand}"
+            FontSize="{Binding FontSize, Converter={StaticResource FontSizeScaler}}"
             Opacity="0.75"
             Text="{StaticResource EnterIcon}" />
 
@@ -327,6 +358,7 @@
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource AConverter}}"
+            FontSize="{Binding FontSize}"
             Text="{Binding CapsLock, Converter={StaticResource AConverter}}" />
         <controls:Key
             Grid.Row="2"
@@ -334,6 +366,7 @@
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource SConverter}}"
+            FontSize="{Binding FontSize}"
             Text="{Binding CapsLock, Converter={StaticResource SConverter}}" />
         <controls:Key
             Grid.Row="2"
@@ -341,6 +374,7 @@
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource DConverter}}"
+            FontSize="{Binding FontSize}"
             Text="{Binding CapsLock, Converter={StaticResource DConverter}}" />
         <controls:Key
             Grid.Row="2"
@@ -348,6 +382,7 @@
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource FConverter}}"
+            FontSize="{Binding FontSize}"
             Text="{Binding CapsLock, Converter={StaticResource FConverter}}" />
         <controls:Key
             Grid.Row="2"
@@ -355,6 +390,7 @@
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource GConverter}}"
+            FontSize="{Binding FontSize}"
             Text="{Binding CapsLock, Converter={StaticResource GConverter}}" />
         <controls:Key
             Grid.Row="2"
@@ -362,6 +398,7 @@
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource HConverter}}"
+            FontSize="{Binding FontSize}"
             Text="{Binding CapsLock, Converter={StaticResource HConverter}}" />
         <controls:Key
             Grid.Row="2"
@@ -369,6 +406,7 @@
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource JConverter}}"
+            FontSize="{Binding FontSize}"
             Text="{Binding CapsLock, Converter={StaticResource JConverter}}" />
         <controls:Key
             Grid.Row="2"
@@ -376,6 +414,7 @@
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource KConverter}}"
+            FontSize="{Binding FontSize}"
             Text="{Binding CapsLock, Converter={StaticResource KConverter}}" />
         <controls:Key
             Grid.Row="2"
@@ -383,6 +422,7 @@
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource LConverter}}"
+            FontSize="{Binding FontSize}"
             Text="{Binding CapsLock, Converter={StaticResource LConverter}}" />
         <controls:Key
             Grid.Row="2"
@@ -390,6 +430,7 @@
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource ÖConverter}}"
+            FontSize="{Binding FontSize}"
             Text="{Binding CapsLock, Converter={StaticResource ÖConverter}}" />
         <controls:Key
             Grid.Row="2"
@@ -397,6 +438,7 @@
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource ÄConverter}}"
+            FontSize="{Binding FontSize}"
             Text="{Binding CapsLock, Converter={StaticResource ÄConverter}}" />
         <controls:Key
             Grid.Row="2"
@@ -404,6 +446,7 @@
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="#"
+            FontSize="{Binding FontSize}"
             Text="#" />
 
         <!--  Row 3  -->
@@ -412,6 +455,7 @@
             Grid.Column="0"
             Grid.ColumnSpan="2"
             BackgroundColor="{Binding CapsLock, Converter={StaticResource CapsLockColorConverter}}"
+            FontSize="{Binding FontSize, Converter={StaticResource FontSizeScaler}}"
             Text="{StaticResource ArrowUpIcon}">
             <Button.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding CapsLockPressedCommand}" NumberOfTapsRequired="1" />
@@ -433,6 +477,7 @@
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource YConverter}}"
+            FontSize="{Binding FontSize}"
             Text="{Binding CapsLock, Converter={StaticResource YConverter}}" />
         <controls:Key
             Grid.Row="3"
@@ -440,6 +485,7 @@
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource XConverter}}"
+            FontSize="{Binding FontSize}"
             Text="{Binding CapsLock, Converter={StaticResource XConverter}}" />
         <controls:Key
             Grid.Row="3"
@@ -447,6 +493,7 @@
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource CConverter}}"
+            FontSize="{Binding FontSize}"
             Text="{Binding CapsLock, Converter={StaticResource CConverter}}" />
         <controls:Key
             Grid.Row="3"
@@ -454,6 +501,7 @@
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource VConverter}}"
+            FontSize="{Binding FontSize}"
             Text="{Binding CapsLock, Converter={StaticResource VConverter}}" />
         <controls:Key
             Grid.Row="3"
@@ -461,6 +509,7 @@
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource BConverter}}"
+            FontSize="{Binding FontSize}"
             Text="{Binding CapsLock, Converter={StaticResource BConverter}}" />
         <controls:Key
             Grid.Row="3"
@@ -468,6 +517,7 @@
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource NConverter}}"
+            FontSize="{Binding FontSize}"
             Text="{Binding CapsLock, Converter={StaticResource NConverter}}" />
         <controls:Key
             Grid.Row="3"
@@ -475,6 +525,7 @@
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource MConverter}}"
+            FontSize="{Binding FontSize}"
             Text="{Binding CapsLock, Converter={StaticResource MConverter}}" />
         <controls:Key
             Grid.Row="3"
@@ -482,6 +533,7 @@
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter=","
+            FontSize="{Binding FontSize}"
             Text="," />
         <controls:Key
             Grid.Row="3"
@@ -489,6 +541,7 @@
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="."
+            FontSize="{Binding FontSize}"
             Text="." />
         <controls:Key
             Grid.Row="3"
@@ -496,6 +549,7 @@
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="-"
+            FontSize="{Binding FontSize}"
             Text="-" />
 
         <!--  Row 4  -->
@@ -512,6 +566,7 @@
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter=" "
+            FontSize="{Binding FontSize}"
             Text=" " />
         <controls:IconKey
             Grid.Row="4"
@@ -519,6 +574,7 @@
             Grid.ColumnSpan="2"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding LeftPressedCommand}"
+            FontSize="{Binding FontSize, Converter={StaticResource FontSizeScaler}}"
             Text="{StaticResource ArrowLeftIcon}" />
         <controls:IconKey
             Grid.Row="4"
@@ -526,6 +582,7 @@
             Grid.ColumnSpan="2"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding RightPressedCommand}"
+            FontSize="{Binding FontSize, Converter={StaticResource FontSizeScaler}}"
             Text="{StaticResource ArrowRightIcon}" />
     </Grid>
 

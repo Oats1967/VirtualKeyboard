@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using VirtualKeyboard.Services;
 
 namespace VirtualKeyboard.ViewModels
@@ -10,6 +11,12 @@ namespace VirtualKeyboard.ViewModels
         { 
             _keyboardService = service;
         }
+
+        [ObservableProperty]
+        double fontSize;
+
+        [ObservableProperty]
+        double keySpacing;
 
         [RelayCommand]
         public void LeftPressed()

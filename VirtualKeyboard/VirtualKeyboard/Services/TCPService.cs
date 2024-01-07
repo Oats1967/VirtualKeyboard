@@ -38,6 +38,7 @@ namespace VirtualKeyboard.Services
                 {
                    
                     var received = await handler.ReceiveAsync(buffer, SocketFlags.None);
+                    _logger.LogInformation($"received variable contains value: {received}");
                     
                     if (received > 0)
                     {
@@ -49,6 +50,7 @@ namespace VirtualKeyboard.Services
                         _messageService.Process(receivedData);
                        
                     }
+                    else { break; }
                 }
             }
             catch(SocketException ex)

@@ -5,8 +5,8 @@
         
         VerticalOptions="FillAndExpand" 
         HorizontalOptions="FillAndExpand"
-        FontAutoScalingEnabled="True"
         FontAttributes="Bold"
+        Padding="0"
         >
     
        <Button.Shadow>
