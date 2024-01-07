@@ -38,8 +38,6 @@ namespace VirtualKeyboard.Services
                 {
                    
                     var received = await handler.ReceiveAsync(buffer, SocketFlags.None);
-                    _logger.LogInformation($"received variable contains value: {received}");
-                    
                     if (received > 0)
                     {
                         // Process the received data in the buffer (up to 'received' bytes)
@@ -48,9 +46,14 @@ namespace VirtualKeyboard.Services
                         string hexRepresentation = BitConverter.ToString(receivedData).Replace("-", " ");
                         _logger.LogInformation($"Server received message: {hexRepresentation}");
                         _messageService.Process(receivedData);
+                        Array.Clear(receivedData, 0, receivedData.Length);
                        
                     }
-                    else { break; }
+                    else 
+                    { 
+                         _logger.LogInformation($"Server received message: shutdown");
+                        break;
+                    }
                 }
             }
             catch(SocketException ex)

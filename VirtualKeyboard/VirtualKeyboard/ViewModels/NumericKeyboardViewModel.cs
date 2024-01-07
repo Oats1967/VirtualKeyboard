@@ -1,4 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using MetroLog;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +15,7 @@ namespace VirtualKeyboard.ViewModels
     {
 
       
-        public NumericKeyboardViewModel(IKeyboardService keyboardService) : base(keyboardService)
+        public NumericKeyboardViewModel(IKeyboardService keyboardService, ILogger<NumericKeyboardViewModel> logger) : base(keyboardService, logger)
         {
         }
 

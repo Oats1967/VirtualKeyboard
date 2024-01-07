@@ -75,12 +75,7 @@ namespace VirtualKeyboard
                             {
                                 options.MinLevel = LogLevel.Trace;
                                 options.MaxLevel = LogLevel.Critical;
-                            }); // Will write to the Debug Output
-#endif
-
-#if RELEASE
-
-
+                            }) // Will write to the Debug Output
                         .AddStreamingFileLogger(
                             options =>
                             {
@@ -88,7 +83,13 @@ namespace VirtualKeyboard
                                 options.FolderPath = Path.Combine(
                                 Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
                                 "MetroLogs");
-                            })
+                            });
+#endif
+
+#if RELEASE
+
+
+                       
                         .AddConsoleLogger(
                             options =>
                             {

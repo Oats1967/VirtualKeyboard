@@ -4,6 +4,7 @@ using VirtualKeyboard.Services;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using VirtualKeyboard.Controls;
+using Microsoft.Extensions.Logging;
 
 
 namespace VirtualKeyboard.ViewModels
@@ -12,9 +13,8 @@ namespace VirtualKeyboard.ViewModels
     {
 
 
-        public AlphabeticKeyboardViewModel(IKeyboardService keyboardService) : base(keyboardService)
+        public AlphabeticKeyboardViewModel(IKeyboardService keyboardService, ILogger<AlphabeticKeyboardViewModel> logger) : base(keyboardService,logger)
         {
-
             Locked = false;
             CapsLock = false;
         }

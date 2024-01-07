@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using Microsoft.Extensions.Logging;
 using VirtualKeyboard.Commands;
 using VirtualKeyboard.Pages;
 using VirtualKeyboard.Services;
@@ -19,7 +20,7 @@ namespace VirtualKeyboard.ViewModels
 
         protected abstract (double current, double max) SizeRef { get; }
 
-        public KeyboardViewModel(IKeyboardService service)
+        public KeyboardViewModel(IKeyboardService service, ILogger<KeyboardViewModel> logger) : base(logger)
         {
             Width = InitWidth;
             Height = InitHeight;
@@ -51,25 +52,24 @@ namespace VirtualKeyboard.ViewModels
 
         public void SizeChanged(object? sender, EventArgs e)
         {
-            
+            _logger.LogInformation("SizeChanged");
             var fontSize = ResolutionConfig.ResolutionToFontSize[(DeviceDisplay.Current.MainDisplayInfo.Width, DeviceDisplay.Current.MainDisplayInfo.Height)];
             var keySpacing = ResolutionConfig.ResolutionToSpacing[(DeviceDisplay.Current.MainDisplayInfo.Width, DeviceDisplay.Current.MainDisplayInfo.Height)];
-
             FontSize = ValueScaler.MapLinear(SizeRef.current, 0, SizeRef.max, fontSize.alphaMin, fontSize.alphaMax);
             KeySpacing = ValueScaler.MapLinear(SizeRef.current, 0, SizeRef.max, keySpacing.alphaMin, keySpacing.alphaMax);
-            
         }
 
         public void NavigatedTo(object? sender, NavigatedToEventArgs e)
         {
-           
             WindowSizeService.ResizeWindow(X, Y, Width, Height);
+            _logger.LogInformation($"Window was resized to {X} {Y} {Width} {Height}");
         }
 
         public void NavigatedFrom(object? sender, NavigatedFromEventArgs e)
         {
-           
-            WindowSizeService.ResizeWindow(0, 0, 0, 0);
+            var x = 0; var y = 0; var width = 0; var height = 0;
+            WindowSizeService.ResizeWindow(x, y, width, height);
+            _logger.LogInformation($"Window was resized to {x} {y} {width} {height}");
         }
 
 
@@ -98,24 +98,28 @@ namespace VirtualKeyboard.ViewModels
         public void Receive(TKSetSize message)
         {
             if (!message.Layout.Equals(Layout)) return;
+            _logger.LogInformation($"TKSetSize received");
             Width = message.Width;
             Height = message.Height;
             CorrectOutOfBounds();
             if (Shell.Current!.CurrentPage is GermanKeyboardPage)
             {
                 WindowSizeService.ResizeWindow(X, Y, Width, Height);
+                _logger.LogInformation($"Window was resized to {X} {Y} {Width} {Height}");
             }
         }
 
         public void Receive(TKSetShowPoint message)
         {
             if (!message.Layout.Equals(Layout)) return;
+            _logger.LogInformation($"TKSetShowPoint received");
             X = message.X;
             Y = message.Y;
             CorrectOutOfBounds();
             if (Shell.Current!.CurrentPage is GermanKeyboardPage)
             {
                 WindowSizeService.ResizeWindow(X, Y, Width, Height);
+                _logger.LogInformation($"Window was shifted to {X} {Y} {Width} {Height}");
             }
         }
 

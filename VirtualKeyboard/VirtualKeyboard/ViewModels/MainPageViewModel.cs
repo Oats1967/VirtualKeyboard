@@ -11,21 +11,23 @@ namespace VirtualKeyboard.ViewModels
 {
     public class MainPageViewModel : BaseViewModel, IRecipient<TKSetShow>, IRecipient<TKSetHide>, IRecipient<TKSetShowPoint>
     { 
-        private ILogger _logger;
-        public MainPageViewModel( ILogger<MainPageViewModel> logger)
+      
+        public MainPageViewModel( ILogger<MainPageViewModel> logger) : base(logger)
         {
             WeakReferenceMessenger.Default.RegisterAll(this);
-            _logger = logger;
         }
 
         public void Appearing(object? sender, EventArgs e)
         {
-            WindowSizeService.ResizeWindow(0, 0, 0, 0);
+            var x = 0; var y = 0; var width = 0; var height = 0;    
+            WindowSizeService.ResizeWindow(x, y, width, height);
+            _logger.LogInformation($"Window was resized to {x} {y} {width} {height}");
         }
 
 
         async void IRecipient<TKSetShow>.Receive(TKSetShow message)
         {
+            _logger.LogInformation($"TKSetShow received");
             if (Shell.Current.CurrentPage is not MainPage)
             {
                 await CloseKeyboardAsync();
@@ -44,6 +46,7 @@ namespace VirtualKeyboard.ViewModels
 
         async void IRecipient<TKSetHide>.Receive(TKSetHide message)
         {
+            _logger.LogInformation($"TKSetHide received");
             if (Shell.Current.CurrentPage is MainPage) return;
             await CloseKeyboardAsync();
 
@@ -51,6 +54,7 @@ namespace VirtualKeyboard.ViewModels
 
         async void IRecipient<TKSetShowPoint>.Receive(TKSetShowPoint message)
         {
+            _logger.LogInformation($"TKSetShowPoint received");
             if (Shell.Current.CurrentPage is not MainPage) return;
             switch (message.Layout)
             {
@@ -68,14 +72,18 @@ namespace VirtualKeyboard.ViewModels
         
         private async Task OpenNumericKeyboardAsync()
         {
+            _logger.LogInformation($"Opening {nameof(NumericKeyboardPage)}");
             await Shell.Current.GoToAsync(nameof(NumericKeyboardPage));
+            
         }
         private async Task CloseKeyboardAsync()
         {
+            _logger.LogInformation($"Opening {nameof(MainPage)}");
             await Shell.Current.GoToAsync("..");
         }
         private async Task OpenGermanKeyboardAsync()
         {
+            _logger.LogInformation($"Opening {nameof(GermanKeyboardPage)}");
             await Shell.Current.GoToAsync(nameof(GermanKeyboardPage));
         }
     }
