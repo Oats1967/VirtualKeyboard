@@ -9,7 +9,7 @@ public class Program
     
     private static readonly List<(ArraySegment<byte> byteStream, string commandMessage)> Commands = new()
      {
-        //#region TKSetSize
+        #region TKSetSize
           ( new ArraySegment<byte>([0x02, 7, 0x11, 1, 0x64, 0, 0, 0, 0x03]), "TKSetSize Numeric 100%" ) ,
            ( new ArraySegment<byte>([0x02, 7, 0x11, 1, 0x4b, 0, 0, 0, 0x03]), "TKSetSize Numeric 75%" ) ,
           ( new ArraySegment<byte>([0x02, 7, 0x11, 1, 0x32, 0, 0, 0, 0x03]), "TKSetSize Numeric 50%" ) ,
@@ -22,11 +22,11 @@ public class Program
           ( new ArraySegment<byte>([0x02, 7, 0x11, 3, 0x4b, 0, 0, 0, 0x03]), "TKSetSize Not used 75%" ) ,
           ( new ArraySegment<byte>([0x02, 7, 0x11, 3, 0x32, 0, 0, 0, 0x03]), "TKSetSize Not used 50%" ) ,
            
-        //#endregion
+        #endregion
 
 
 
-        //#region TKSetShowPoint
+        #region TKSetShowPoint
            ( new ArraySegment<byte>([0x02, 7, 0x13, 1, 0, 0, 0, 0, 0x03]), "TKSetShowPoint Numeric 0 0" ) ,
           ( new ArraySegment<byte>([0x02, 7, 0x13, 1, 0x90, 0x01, 0x90, 0x01, 0x03]), "TKSetShowPoint Numeric 400 400" ) ,
 
@@ -37,22 +37,22 @@ public class Program
           ( new ArraySegment<byte>([0x02, 7, 0x13, 3, 0x90, 0x01, 0x90, 0x01, 0x03]), "TKSetShowPoint Not used 400 400" ) ,
          
 
-        //#endregion
+        #endregion
 
 
-        //#region TKSetShow
+        #region TKSetShow
         // serious
         ( new ArraySegment<byte>([0x02, 3, 0x14, 1, 0x03]), "TKSetShow Numeric" ) ,
          ( new ArraySegment<byte>([0x02, 3, 0x14, 2, 0x03]), "TKSetShow German" ) ,
          ( new ArraySegment<byte>([0x02, 3, 0x14, 3, 0x03]), "TKSetShow Not used" ) ,
 
         // // bullshit
-        //#endregion
+        #endregion
 
 
-        //#region TKSetHide
+        #region TKSetHide
            ( new ArraySegment<byte>([0x02, 2, 0x15,  0x03]), "TKSetHide" ) ,
-        //#endregion
+       #endregion
     };
 
     public async static Task Main(string[] args)
