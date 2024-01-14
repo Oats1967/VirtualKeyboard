@@ -1,224 +1,104 @@
 ﻿using System.Net;
 using System.Net.Sockets;
-using System.Text;
-using System.Windows;
 
 
 namespace TCPTest;
 
 public class Program
 {
+    
+    private static readonly List<(ArraySegment<byte> byteStream, string commandMessage)> Commands = new()
+     {
+        //#region TKSetSize
+          ( new ArraySegment<byte>([0x02, 7, 0x11, 1, 0x64, 0, 0, 0, 0x03]), "TKSetSize Numeric 100%" ) ,
+           ( new ArraySegment<byte>([0x02, 7, 0x11, 1, 0x4b, 0, 0, 0, 0x03]), "TKSetSize Numeric 75%" ) ,
+          ( new ArraySegment<byte>([0x02, 7, 0x11, 1, 0x32, 0, 0, 0, 0x03]), "TKSetSize Numeric 50%" ) ,
+         
+          ( new ArraySegment<byte>([0x02, 7, 0x11, 2, 0x64, 0, 0, 0, 0x03]), "TKSetSize German 100%" ) ,
+           ( new ArraySegment<byte>([0x02, 7, 0x11, 2, 0x4b, 0, 0, 0, 0x03]), "TKSetSize German 75%" ) ,
+          ( new ArraySegment<byte>([0x02, 7, 0x11, 2, 0x32, 0, 0, 0, 0x03]), "TKSetSize German 50%" ) ,
+         
+          ( new ArraySegment<byte>([0x02, 7, 0x11, 3, 0x64, 0, 0, 0, 0x03]), "TKSetSize Not used 100%" ) ,
+          ( new ArraySegment<byte>([0x02, 7, 0x11, 3, 0x4b, 0, 0, 0, 0x03]), "TKSetSize Not used 75%" ) ,
+          ( new ArraySegment<byte>([0x02, 7, 0x11, 3, 0x32, 0, 0, 0, 0x03]), "TKSetSize Not used 50%" ) ,
+           
+        //#endregion
+
+
+
+        //#region TKSetShowPoint
+           ( new ArraySegment<byte>([0x02, 7, 0x13, 1, 0, 0, 0, 0, 0x03]), "TKSetShowPoint Numeric 0 0" ) ,
+          ( new ArraySegment<byte>([0x02, 7, 0x13, 1, 0x90, 0x01, 0x90, 0x01, 0x03]), "TKSetShowPoint Numeric 400 400" ) ,
+
+          ( new ArraySegment<byte>([0x02, 7, 0x13, 2, 0, 0, 0, 0, 0x03]), "TKSetShowPoint German 0 0" ) ,
+          ( new ArraySegment<byte>([0x02, 7, 0x13, 2, 0x90, 0x01, 0x90, 0x01, 0x03]), "TKSetShowPoint German 400 400" ) ,
+
+          ( new ArraySegment<byte>([0x02, 7, 0x13, 3, 0, 0, 0, 0, 0x03]), "TKSetShowPoint Not used 0 0" ) ,
+          ( new ArraySegment<byte>([0x02, 7, 0x13, 3, 0x90, 0x01, 0x90, 0x01, 0x03]), "TKSetShowPoint Not used 400 400" ) ,
+         
+
+        //#endregion
+
+
+        //#region TKSetShow
+        // serious
+        ( new ArraySegment<byte>([0x02, 3, 0x14, 1, 0x03]), "TKSetShow Numeric" ) ,
+         ( new ArraySegment<byte>([0x02, 3, 0x14, 2, 0x03]), "TKSetShow German" ) ,
+         ( new ArraySegment<byte>([0x02, 3, 0x14, 3, 0x03]), "TKSetShow Not used" ) ,
+
+        // // bullshit
+        //#endregion
+
+
+        //#region TKSetHide
+           ( new ArraySegment<byte>([0x02, 2, 0x15, 2, 0x03]), "TKSetHide" ) ,
+        //#endregion
+    };
 
     public async static Task Main(string[] args)
     {
-
-
         
-        IPAddress ip = IPAddress.Loopback; // Use loopback address for local host
-        IPEndPoint iPEndPoint = new IPEndPoint(ip, 2000);
+        var logger = new ProcessLogger( "VirtualKeyboard", Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "LogFile.txt"), TimeSpan.FromSeconds(10)); 
+        logger.Start();
+        var ip = IPAddress.Loopback; // Use loopback address for local host
+        var iPEndPoint = new IPEndPoint(ip, 2000);
 
         // client socket
-        using Socket client = new(ip.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+        using var client = new Socket(ip.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
 
         await client.ConnectAsync(iPEndPoint);
-
-        while (true)
+        var random = new Random();
+        DateTime startTime = DateTime.Now;
+        DateTime endTime = startTime.AddHours(24);
+        while (DateTime.Now < endTime)
         {
-            Console.WriteLine("Please type in a number for your command.\n" +
-                "1 for TKSetSize\n" +
-                 "2 for TKSetShowPoint\n" +
-                 "3 for TKSetShow\n" +
-                 "4 for TKSetHide\n");
-            ConsoleKeyInfo userInput;
-            while ((userInput = Console.ReadKey()).Key != ConsoleKey.D1 && (userInput.Key != ConsoleKey.D2) && (userInput.Key != ConsoleKey.D3) && (userInput.Key != ConsoleKey.D4))
-            {
-                Console.WriteLine("\nInvalid input. Please type in a number for your command.\n" +
-                "1 for TKSetSize\n" +
-                 "2 for TKSetShowPoint\n" +
-                 "3 for TKSetShow\n" +
-                 "4 for TKSetHide\n");
-            }
-             Console.WriteLine();
-            ArraySegment<byte> buffer;
-            switch (userInput.Key)
-            {
-                case ConsoleKey.D1:
-                    await client.SendAsync(TKSetSize(), SocketFlags.None);
-                    break; 
-                case ConsoleKey.D2:
-                    await client.SendAsync(TKSetShowPoint(), SocketFlags.None);
-                    break;
-                case ConsoleKey.D3:
-                    await client.SendAsync(TKSetShow(), SocketFlags.None);
-                    break;
-                case ConsoleKey.D4:
-                    await client.SendAsync(TKSetHide(), SocketFlags.None);
-                    break;
-            }
 
-           
+            //var command = Commands[random.Next(0, Commands.Count)];
+            //Console.WriteLine($"{DateTime.Now}: {command.commandMessage}");
+            //await client.SendAsync(command.byteStream, SocketFlags.None);
+            //Thread.Sleep(2000);
+
+
+
+            var showGerman = new ArraySegment<byte>([0x02, 3, 0x14, 2, 0x03]);
+            await Console.Out.WriteLineAsync("ShowGerman");
+            await client.SendAsync(showGerman, SocketFlags.None);
+            Console.ReadLine();
+
+            await Console.Out.WriteLineAsync("ShowGerman");
+            await client.SendAsync(showGerman, SocketFlags.None);
+            Console.ReadLine();
+
+            var hide = new ArraySegment<byte>([0x02, 2, 0x15, 2, 0x03]);
+            await client.SendAsync(hide, SocketFlags.None);
+            await Console.Out.WriteLineAsync("Hide");
+            Console.ReadLine();
+
+            await client.SendAsync(hide, SocketFlags.None);
+            await Console.Out.WriteLineAsync("Hide");
+            Console.ReadLine();
         }
-    }
-    private static ArraySegment<byte> TKSetHide()
-    {
-        ConsoleKeyInfo userInput;
-        Console.WriteLine();
-        Console.WriteLine("Press enter to hide keyboard.");
-        while ((userInput = Console.ReadKey()).Key != ConsoleKey.Enter)
-        {
-            Console.WriteLine("\nInvalid input. Please press enter.");
-        }
-        Console.WriteLine("\n");
-        var byteStream = new ArraySegment<byte>(new byte[9]);
-        byteStream[0] = 0x02;
-        byteStream[1] = 2;
-        byteStream[2] = 0x15;
-        
-
-        return byteStream;
-    }
-    private static ArraySegment<byte> TKSetShow()
-    {
-        ConsoleKeyInfo userInput;
-        Console.WriteLine();
-        Console.WriteLine("Choose keyboard to show at desired position." +
-           "\n0 for Not used" +
-            "\n1 for NumericKeyboard" +
-            "\n2 for GermanKeyboard");
-        while (((userInput = Console.ReadKey()).Key != ConsoleKey.D0) && (userInput.Key != ConsoleKey.D1) && (userInput.Key != ConsoleKey.D2))
-        {
-            Console.WriteLine("\nInvalid input. Please enter '0' or '1' or '2'.");
-        }
-        var byteStream = new ArraySegment<byte>(new byte[4]);
-        byteStream[0] = 0x02;
-        byteStream[1] = 3;
-        byteStream[2] = 0x14;
-        byteStream[3] = Convert.ToByte(int.Parse(userInput.KeyChar.ToString()));
-        Console.WriteLine("\n");
-
-        Console.WriteLine("Press enter to show keyboard.");
-        while ((userInput = Console.ReadKey()).Key != ConsoleKey.Enter)
-        {
-            Console.WriteLine("\nInvalid input. Please press enter.");
-        }
-        Console.WriteLine("\n");
-
-        return byteStream;
-    }
-    private static ArraySegment<byte> TKSetShowPoint()
-    {
-        ConsoleKeyInfo userInput;
-        Console.WriteLine();
-        Console.WriteLine("Let's configure your keyboard! Press enter to continue.");
-        while ((userInput = Console.ReadKey()).Key != ConsoleKey.Enter)
-        {
-            Console.WriteLine("\nInvalid input. Please press enter.");
-        }
-        Console.WriteLine("\n");
-
-        // no config needed
-        var byteStream = new ArraySegment<byte>(new byte[9]);
-        byteStream[0] = 0x02;
-        byteStream[1] = 7;
-        byteStream[2] = 0x13;
-
-
-        // Layout
-        Console.WriteLine("Please choose your keyboard layout! " +
-           "\n0 for Not used" +
-            "\n1 for NumericKeyboard" +
-            "\n2 for GermanKeyboard");
-        while (((userInput = Console.ReadKey()).Key != ConsoleKey.D0) && (userInput.Key != ConsoleKey.D1) && (userInput.Key != ConsoleKey.D2))
-        {
-            Console.WriteLine("\nInvalid input. Please enter '0' or '1' or '2'.");
-        }
-        byteStream[3] = Convert.ToByte(int.Parse(userInput.KeyChar.ToString()));
-        Console.WriteLine("\n");
-
-        // X-Coordinate
-        const int lowerLimitX = 0;
-        const int upperLimitX = 1920;
-        Console.WriteLine($"Please choose your keyboard X-Coordinate! Please enter a number between {lowerLimitX} and {upperLimitX}");
-        int x;
-        while (!(int.TryParse(Console.ReadLine(), out x) && x >= lowerLimitX && x <= upperLimitX))
-        {
-            Console.WriteLine($"Invalid input. Please enter a number between {lowerLimitX} and {upperLimitX}");
-        }
-        byte[] xBytes = BitConverter.GetBytes(x);
-        byteStream[4] = xBytes[0];
-        byteStream[5] = xBytes[1]; 
-        Console.WriteLine();
-
-        //Y - Coordinate
-        const int lowerLimitY = 0;
-        const int upperLimitY = 1080;
-        Console.WriteLine($"Please choose your keyboard Y-Coordinate! Please enter a number between {lowerLimitY} and {upperLimitY}");
-        int y;
-        while (!(int.TryParse(Console.ReadLine(), out y) && y >= lowerLimitY && y <= upperLimitY))
-        {
-            Console.WriteLine($"Invalid input. Please enter a number between {lowerLimitY} and {upperLimitY}");
-        }
-        byte[] yBytes = BitConverter.GetBytes(y);
-        byteStream[6] = yBytes[0];
-        byteStream[7] = yBytes[1]; 
-        Console.WriteLine();
-
-
-        byteStream[8] = 0x03;
-
-
-        return byteStream;
+        logger.Stop();
     }
 
-    private static ArraySegment<byte> TKSetSize()
-    {
-
-        ConsoleKeyInfo userInput;
-        Console.WriteLine();
-        Console.WriteLine("Let's configure your keyboard! Press enter to continue.");
-        while((userInput = Console.ReadKey()).Key != ConsoleKey.Enter)
-        {
-            Console.WriteLine("\nInvalid input. Please press enter.");
-        }
-        Console.WriteLine("\n");
-
-        // no config needed
-        var byteStream = new ArraySegment<byte>(new byte[9]);
-        byteStream[0] = 0x02;
-        byteStream[1] = 7;
-        byteStream[2] = 0x11;
-
-
-        // Layout
-        Console.WriteLine("Please choose your keyboard layout! " +
-            "\n0 for Not used" +
-            "\n1 for NumericKeyboard" +
-            "\n2 for GermanKeyboard");
-        while (((userInput = Console.ReadKey()).Key != ConsoleKey.D0) && (userInput.Key != ConsoleKey.D1) && (userInput.Key != ConsoleKey.D2))
-        {
-            Console.WriteLine("\nInvalid input. Please enter '0' or '1' or '2'.");
-        }
-        byteStream[3] = Convert.ToByte(int.Parse(userInput.KeyChar.ToString()));
-        Console.WriteLine("\n");
-
-
-        // percentage
-        const int lowerLimit = 0;
-        const int upperLimit = 100;
-        Console.WriteLine($"Please choose your keyboard size percentage! Please enter a number between {lowerLimit} and {upperLimit}");
-        int percentage;
-        while (!(int.TryParse(Console.ReadLine(), out percentage) && percentage >= lowerLimit && percentage <= upperLimit))
-        {
-            Console.WriteLine($"Invalid input. Please enter a number between {lowerLimit} and {upperLimit}");
-        }
-        byte[] percentageBytes = BitConverter.GetBytes(percentage);
-        byteStream[4] = percentageBytes[0];
-        byteStream[5] = 0; // check if neccessary
-        Console.WriteLine();
-      
-        byteStream[8] = 0x03;
-        
-
-        return byteStream;
-    }
 }

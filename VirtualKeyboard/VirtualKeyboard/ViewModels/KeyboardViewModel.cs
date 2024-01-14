@@ -102,10 +102,13 @@ namespace VirtualKeyboard.ViewModels
             Width = message.Width;
             Height = message.Height;
             CorrectOutOfBounds();
-            if (Shell.Current!.CurrentPage is GermanKeyboardPage)
+            _logger.LogInformation($"Keyboard was resized to {X} {Y} {Width} {Height}");
+            if (Shell.Current!.CurrentPage.BindingContext is KeyboardViewModel viewModel)
             {
-                WindowSizeService.ResizeWindow(X, Y, Width, Height);
-                _logger.LogInformation($"Window was resized to {X} {Y} {Width} {Height}");
+                if (viewModel.Layout.Equals(Layout))
+                {
+                    WindowSizeService.ResizeWindow(X, Y, Width, Height);
+                }
             }
         }
 
@@ -116,10 +119,13 @@ namespace VirtualKeyboard.ViewModels
             X = message.X;
             Y = message.Y;
             CorrectOutOfBounds();
-            if (Shell.Current!.CurrentPage is GermanKeyboardPage)
+            _logger.LogInformation($"Keyboard was shifted to {X} {Y} {Width} {Height}");
+            if (Shell.Current!.CurrentPage.BindingContext is KeyboardViewModel viewModel)
             {
-                WindowSizeService.ResizeWindow(X, Y, Width, Height);
-                _logger.LogInformation($"Window was shifted to {X} {Y} {Width} {Height}");
+                if (viewModel.Layout.Equals(Layout))
+                {
+                    WindowSizeService.ResizeWindow(X, Y, Width, Height);
+                }
             }
         }
 

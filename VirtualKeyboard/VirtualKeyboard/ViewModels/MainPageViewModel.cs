@@ -28,10 +28,7 @@ namespace VirtualKeyboard.ViewModels
         async void IRecipient<TKSetShow>.Receive(TKSetShow message)
         {
             _logger.LogInformation($"TKSetShow received");
-            if (Shell.Current.CurrentPage is not MainPage)
-            {
-                await CloseKeyboardAsync();
-            };
+            
             switch (message.Layout)
             {
                 case Layouts.Numeric:
@@ -55,7 +52,7 @@ namespace VirtualKeyboard.ViewModels
         async void IRecipient<TKSetShowPoint>.Receive(TKSetShowPoint message)
         {
             _logger.LogInformation($"TKSetShowPoint received");
-            if (Shell.Current.CurrentPage is not MainPage) return;
+           
             switch (message.Layout)
             {
                 case Layouts.Numeric:
@@ -69,7 +66,7 @@ namespace VirtualKeyboard.ViewModels
         }
 
 
-        
+       
         private async Task OpenNumericKeyboardAsync()
         {
             _logger.LogInformation($"Opening {nameof(NumericKeyboardPage)}");
@@ -78,13 +75,16 @@ namespace VirtualKeyboard.ViewModels
         }
         private async Task CloseKeyboardAsync()
         {
+           
             _logger.LogInformation($"Opening {nameof(MainPage)}");
             await Shell.Current.GoToAsync("..");
         }
         private async Task OpenGermanKeyboardAsync()
         {
+            
             _logger.LogInformation($"Opening {nameof(GermanKeyboardPage)}");
             await Shell.Current.GoToAsync(nameof(GermanKeyboardPage));
+            
         }
     }
 }
