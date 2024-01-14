@@ -22,8 +22,8 @@ namespace VirtualKeyboard.Services
                     }
                     return false;
                 });
-            var platformView = window.Handler?.PlatformView as MauiWinUIWindow;
-            var winUiWindow = platformView.AppWindow;
+            var platformView = window!.Handler?.PlatformView as MauiWinUIWindow;
+            var winUiWindow = platformView!.AppWindow;
             if (winUiWindow.Presenter is OverlappedPresenter presenter)
             {
                 winUiWindow.SetPresenter(AppWindowPresenterKind.Overlapped);

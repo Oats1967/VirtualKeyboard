@@ -6,6 +6,7 @@
         VerticalOptions="FillAndExpand" 
         HorizontalOptions="FillAndExpand"
         FontAttributes="Bold"
+        FontFamily="OpenSansRegular"
         Padding="0"
         >
     

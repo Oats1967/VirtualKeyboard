@@ -104,15 +104,16 @@ namespace VirtualKeyboard
 
         
         
-        public static MauiAppBuilder RegisterPages(this MauiAppBuilder builder)
+        private static MauiAppBuilder RegisterPages(this MauiAppBuilder builder)
         {
-             builder.Services.AddSingleton<MainPage>();
+            builder.Services.AddSingleton<AppShell>();
+            builder.Services.AddSingleton<MainPage>();
             builder.Services.AddSingleton<NumericKeyboardPage>();
             builder.Services.AddSingleton<GermanKeyboardPage>();
             return builder;
         }
 
-        public static MauiAppBuilder RegisterViewModels(this MauiAppBuilder builder)
+        private static MauiAppBuilder RegisterViewModels(this MauiAppBuilder builder)
         {
             builder.Services.AddSingleton<MainPageViewModel>();
             builder.Services.AddSingleton<NumericKeyboardViewModel>();
@@ -120,7 +121,7 @@ namespace VirtualKeyboard
             return builder;
         }
 
-        public static MauiAppBuilder RegisterServices(this MauiAppBuilder builder)
+        private static MauiAppBuilder RegisterServices(this MauiAppBuilder builder)
         {
             builder.Services.AddSingleton<ITCPService,TCPService>();
             builder.Services.AddSingleton<IKeyboardService, KeyboardService>();

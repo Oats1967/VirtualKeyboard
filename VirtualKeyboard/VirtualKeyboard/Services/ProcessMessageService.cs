@@ -6,22 +6,33 @@ namespace VirtualKeyboard.Services
 {
     public class ProcessMessageService : IProcessMessageService
     {
-        
+        private const byte STX = 0x02;
+        private const byte ETX = 0x03;
+
+        private const byte TKSetSize = 0x11;
+        private const byte TKSetShowPoint = 0x13;
+        private const byte TKSetShow = 0x14;
+        private const byte TKHide = 0x15;
         public void Process(byte[] buffer)
         {
-            
+            if (buffer == null) return;
+            if (buffer.Length < 4) return;
+            if (buffer[0]!= STX) return;
+            if (buffer[buffer.Length-1]!= ETX) return;
+            if (buffer[1] != buffer.Length - 2) return;
+
             switch (buffer[2])
             {
-                case 0x11: // TKSetSize
+                case TKSetSize: 
                     NotifyTKSetSize(buffer);
                     break;
-                case 0x13: // TKSetShowPoint
+                case TKSetShowPoint: 
                     NotifyTKSetShowPoint(buffer);
                     break;
-                case 0x14: // TKSetShow
+                case TKSetShow: 
                     NotifyTKSetShow(buffer);
                     break;
-                case 0x15: // TKSetHide
+                case TKHide: 
                     NotifyTKSetHide(buffer);
                     break;
                 default: 
@@ -50,6 +61,7 @@ namespace VirtualKeyboard.Services
         }
 
         private void NotifyTKSetSize(byte[] buffer)
+        
         {
             var layout = (Layouts)buffer[3];
             var percentage = buffer[4];

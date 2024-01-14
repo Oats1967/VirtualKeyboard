@@ -73,30 +73,26 @@ public class Program
         while (DateTime.Now < endTime)
         {
 
-            var command = Commands[random.Next(0, Commands.Count)];
-            Console.WriteLine($"{DateTime.Now}: {command.commandMessage}");
-            await client.SendAsync(command.byteStream, SocketFlags.None);
-            Thread.Sleep(1000);
-           
+            //var command = Commands[random.Next(0, Commands.Count)];
+            //Console.WriteLine($"{DateTime.Now}: {command.commandMessage}");
+            //await client.SendAsync(command.byteStream, SocketFlags.None);
+            //Thread.Sleep(1000);
 
 
-            //var showGerman = new ArraySegment<byte>([0x02, 3, 0x14, 2, 0x03]);
-            //await Console.Out.WriteLineAsync("ShowGerman");
-            //await client.SendAsync(showGerman, SocketFlags.None);
-            //Console.ReadLine();
 
-            //await Console.Out.WriteLineAsync("ShowGerman");
-            //await client.SendAsync(showGerman, SocketFlags.None);
-            //Console.ReadLine();
+            var setSizeNumeric = new ArraySegment<byte>([0x02, 7, 0x11, 1, 0x64, 0, 0, 0, 0x03]);
+            await Console.Out.WriteLineAsync("SetSizeNumeric");
+            await client.SendAsync(setSizeNumeric, SocketFlags.None);
+            Console.ReadLine();
 
-            //var hide = new ArraySegment<byte>([0x02, 2, 0x15, 2, 0x03]);
-            //await client.SendAsync(hide, SocketFlags.None);
-            //await Console.Out.WriteLineAsync("Hide");
-            //Console.ReadLine();
+            var showNumeric = new ArraySegment<byte>([0x02, 3, 0x14, 1, 0x03]);
+            await Console.Out.WriteLineAsync("ShowNumeric");
+            await client.SendAsync(showNumeric, SocketFlags.None);
+            Console.ReadLine();
 
-            //await client.SendAsync(hide, SocketFlags.None);
-            //await Console.Out.WriteLineAsync("Hide");
-            //Console.ReadLine();
+
+
+
         }
         logger.Stop();
     }

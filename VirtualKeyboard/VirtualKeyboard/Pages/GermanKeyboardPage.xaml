@@ -10,7 +10,7 @@
     BackgroundColor="Grey">
     <ContentPage.Resources>
 
-        <converter:DoubleScaler x:Key="FontSizeScaler" Factor="2.0" />
+        <!--<converter:DoubleScaler x:Key="FontSizeScaler" Factor="2.0" />-->
 
         <toolkit:BoolToObjectConverter
             x:Key="CapsLockColorConverter"
@@ -239,7 +239,7 @@
             Grid.ColumnSpan="3"
             BackgroundColor="{StaticResource SmaDoTecRed}"
             Command="{Binding BackspacePressedCommand}"
-            FontSize="{Binding FontSize, Converter={StaticResource FontSizeScaler}}"
+             FontSize="{Binding FontSize}"
             Text="{StaticResource BackspaceIcon}" />
 
         <!--  Row 1  -->
@@ -346,7 +346,7 @@
             Grid.ColumnSpan="2"
             BackgroundColor="{StaticResource SmaDoTecGreen}"
             Command="{Binding EnterPressedCommand}"
-            FontSize="{Binding FontSize, Converter={StaticResource FontSizeScaler}}"
+ FontSize="{Binding FontSize}"
             Opacity="0.75"
             Text="{StaticResource EnterIcon}" />
 
@@ -454,7 +454,7 @@
             Grid.Column="0"
             Grid.ColumnSpan="2"
             BackgroundColor="{Binding CapsLock, Converter={StaticResource CapsLockColorConverter}}"
-            FontSize="{Binding FontSize, Converter={StaticResource FontSizeScaler}}"
+            FontSize="{Binding FontSize}"
             Text="{StaticResource ArrowUpIcon}">
             <Button.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding CapsLockPressedCommand}" NumberOfTapsRequired="1" />
@@ -573,7 +573,7 @@
             Grid.ColumnSpan="2"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding LeftPressedCommand}"
-            FontSize="{Binding FontSize, Converter={StaticResource FontSizeScaler}}"
+             FontSize="{Binding FontSize}"
             Text="{StaticResource ArrowLeftIcon}" />
         <controls:IconKey
             Grid.Row="4"
@@ -581,7 +581,7 @@
             Grid.ColumnSpan="2"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding RightPressedCommand}"
-            FontSize="{Binding FontSize, Converter={StaticResource FontSizeScaler}}"
+             FontSize="{Binding FontSize}"
             Text="{StaticResource ArrowRightIcon}" />
     </Grid>
 

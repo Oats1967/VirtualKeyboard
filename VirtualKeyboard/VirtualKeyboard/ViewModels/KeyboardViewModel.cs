@@ -50,14 +50,8 @@ namespace VirtualKeyboard.ViewModels
         double keySpacing;
 
 
-        public void SizeChanged(object? sender, EventArgs e)
-        {
-            _logger.LogInformation("SizeChanged");
-            var fontSize = ResolutionConfig.ResolutionToFontSize[(DeviceDisplay.Current.MainDisplayInfo.Width, DeviceDisplay.Current.MainDisplayInfo.Height)];
-            var keySpacing = ResolutionConfig.ResolutionToSpacing[(DeviceDisplay.Current.MainDisplayInfo.Width, DeviceDisplay.Current.MainDisplayInfo.Height)];
-            FontSize = ValueScaler.MapLinear(SizeRef.current, 0, SizeRef.max, fontSize.alphaMin, fontSize.alphaMax);
-            KeySpacing = ValueScaler.MapLinear(SizeRef.current, 0, SizeRef.max, keySpacing.alphaMin, keySpacing.alphaMax);
-        }
+        public abstract void SizeChanged(object? sender, EventArgs e);
+        
 
         public void NavigatedTo(object? sender, NavigatedToEventArgs e)
         {

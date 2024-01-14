@@ -11,7 +11,7 @@ namespace VirtualKeyboard.Pages
 
 
        // for dependency injection Pages have to be initialized through constructor
-        public MainPage(MainPageViewModel viewModel ,NumericKeyboardPage p1, GermanKeyboardPage p2)
+        public MainPage(MainPageViewModel viewModel, NumericKeyboardPage p1, GermanKeyboardPage p2)
         {
             InitializeComponent();
             BindingContext = viewModel;

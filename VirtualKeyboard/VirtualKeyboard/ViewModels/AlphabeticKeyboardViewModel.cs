@@ -61,7 +61,14 @@ namespace VirtualKeyboard.ViewModels
             _keyboardService.SendKey(0x08);
         }
 
-        
+        public override void SizeChanged(object? sender, EventArgs e)
+        {
+            _logger.LogInformation("SizeChanged");
+            var fontSize = ResolutionConfig.ResolutionToFontSize[(DeviceDisplay.Current.MainDisplayInfo.Width, DeviceDisplay.Current.MainDisplayInfo.Height)];
+            var keySpacing = ResolutionConfig.ResolutionToSpacing[(DeviceDisplay.Current.MainDisplayInfo.Width, DeviceDisplay.Current.MainDisplayInfo.Height)];
+            FontSize = ValueScaler.MapLinear(SizeRef.current, 0, SizeRef.max, fontSize.alphaMin, fontSize.alphaMax);
+            KeySpacing = ValueScaler.MapLinear(SizeRef.current, 0, SizeRef.max, keySpacing.alphaMin, keySpacing.alphaMax);
+        }
 
         protected override int InitWidth => (int)(DeviceDisplay.Current.MainDisplayInfo.Width / 2);
 

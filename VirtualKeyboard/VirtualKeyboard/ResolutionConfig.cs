@@ -27,13 +27,13 @@ namespace VirtualKeyboard
 
             {(1024,768),(0, 10, 0, 15) },
 
-            //{(800,600),(0, 15, 0, 15) },
+            {(800,600),(0, 7.5, 0, 15) },
 
         });
 
         public static readonly ReadOnlyDictionary<(double xRes, double yRes), (double alphaMin, double alphaMax, double numericMin, double numericMax)> ResolutionToFontSize = new(new Dictionary<(double xRes, double yRes), (double alphaMin, double alphaMax, double numericMin, double numericMax)>()
         {
-            { (1920,1080), (5, 60, 5, 60) },
+            { (1920,1080), (0, 60, 0, 100) },
             //{(1680,1050),(5, 60, 5, 60) },
             //{(1440,900),(5, 60, 5, 60) },
             //{(1400,1050),(5, 60, 5, 60) },
@@ -47,9 +47,9 @@ namespace VirtualKeyboard
             //{(1280,600),(5, 60, 5, 60)},
             // {(1152,864),(5, 60, 5, 60) },
 
-            {(1024,768),(1, 30, 1, 60) },
+            {(1024,768),(0, 40, 0, 100) },
 
-            //{(800,600),(5, 60, 5, 60) },
+            {(800,600),(0, 30, 0, 60) },
 
         });
 
@@ -72,7 +72,7 @@ namespace VirtualKeyboard
 
             {(1024,768),(0.35,1.2) },
 
-            //{(800,600),(5, 60, 5, 60) },
+            {(800,600),(0.35,1.2) },
 
         });
 
