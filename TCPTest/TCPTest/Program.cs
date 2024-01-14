@@ -58,7 +58,7 @@ public class Program
     public async static Task Main(string[] args)
     {
         
-        var logger = new ProcessLogger( "VirtualKeyboard", Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "LogFile.txt"), TimeSpan.FromSeconds(10)); 
+        var logger = new ProcessLogger( "VirtualKeyboard", Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "LogFile.txt"), TimeSpan.FromMinutes(30)); 
         logger.Start();
         var ip = IPAddress.Loopback; // Use loopback address for local host
         var iPEndPoint = new IPEndPoint(ip, 2000);
