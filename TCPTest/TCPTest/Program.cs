@@ -75,9 +75,8 @@ public class Program
 
             var command = Commands[random.Next(0, Commands.Count)];
             Console.WriteLine($"{DateTime.Now}: {command.commandMessage}");
-
+            await client.SendAsync(command.byteStream, SocketFlags.None);
             Thread.Sleep(1000);
-
 
 
         }
