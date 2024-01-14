@@ -44,7 +44,6 @@ namespace VirtualKeyboard.ViewModels
         async void IRecipient<TKSetHide>.Receive(TKSetHide message)
         {
             _logger.LogInformation($"TKSetHide received");
-            if (Shell.Current.CurrentPage is MainPage) return;
             await CloseKeyboardAsync();
 
         }

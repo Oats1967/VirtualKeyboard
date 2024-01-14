@@ -51,7 +51,7 @@ public class Program
 
 
         //#region TKSetHide
-           ( new ArraySegment<byte>([0x02, 2, 0x15, 2, 0x03]), "TKSetHide" ) ,
+           ( new ArraySegment<byte>([0x02, 2, 0x15,  0x03]), "TKSetHide" ) ,
         //#endregion
     };
 
@@ -73,10 +73,14 @@ public class Program
         while (DateTime.Now < endTime)
         {
 
-            var command = Commands[random.Next(0, Commands.Count)];
-            Console.WriteLine($"{DateTime.Now}: {command.commandMessage}");
-            await client.SendAsync(command.byteStream, SocketFlags.None);
-            Thread.Sleep(1000);
+            //var command = Commands[random.Next(0, Commands.Count)];
+            //Console.WriteLine($"{DateTime.Now}: {command.commandMessage}");
+           
+            //Thread.Sleep(1000);
+            
+            await client.SendAsync(new ArraySegment<byte>([0x02, 3, 0x14, 1, 0x03]), SocketFlags.None);
+            Console.ReadLine();
+            await client.SendAsync(new ArraySegment<byte>([0x02, 2, 0x15,  0x03]), SocketFlags.None);
 
         }
         logger.Stop();
