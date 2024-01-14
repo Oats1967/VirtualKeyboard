@@ -61,6 +61,8 @@ namespace VirtualKeyboard.ViewModels
             _keyboardService.SendKey(0x08);
         }
 
+        
+
         protected override int InitWidth => (int)(DeviceDisplay.Current.MainDisplayInfo.Width / 2);
 
        

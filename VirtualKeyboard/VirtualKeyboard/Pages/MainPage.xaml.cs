@@ -4,7 +4,7 @@ using VirtualKeyboard.Pages;
 using VirtualKeyboard.Services;
 using VirtualKeyboard.ViewModels;
 
-namespace VirtualKeyboard
+namespace VirtualKeyboard.Pages
 {
     public partial class MainPage : ContentPage
     {

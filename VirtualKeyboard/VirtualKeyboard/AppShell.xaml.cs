@@ -7,8 +7,7 @@ namespace VirtualKeyboard
         public AppShell()
         {
             InitializeComponent();
-            Routing.RegisterRoute(nameof(NumericKeyboardPage), typeof(NumericKeyboardPage));
-            Routing.RegisterRoute(nameof(GermanKeyboardPage), typeof(GermanKeyboardPage));
+           
         }
     }
 }

@@ -72,6 +72,8 @@ namespace VirtualKeyboard.ViewModels
             _logger.LogInformation($"Window was resized to {x} {y} {width} {height}");
         }
 
+       
+
 
 
         [RelayCommand]

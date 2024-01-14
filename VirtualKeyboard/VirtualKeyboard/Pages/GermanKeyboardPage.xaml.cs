@@ -17,7 +17,8 @@ public partial class GermanKeyboardPage : ContentPage
 		BindingContext = viewModel;
         viewModel.Layout = Layouts.German;
         SizeChanged += viewModel.SizeChanged;
-        NavigatedTo += viewModel.NavigatedTo; 
+        NavigatedTo += viewModel.NavigatedTo;
+       
         NavigatedFrom += viewModel.NavigatedFrom;
 	}
 

@@ -5,7 +5,8 @@
     xmlns:controls="clr-namespace:VirtualKeyboard.Controls"
     xmlns:converter="clr-namespace:VirtualKeyboard.Converter"
     BackgroundColor="{StaticResource Background}"
-    NavigationPage.HasNavigationBar="False"
+   
+    Shell.NavBarIsVisible="False"
     Shell.FlyoutBehavior="Disabled">
     <ContentPage.Resources>
         <converter:DoubleScaler

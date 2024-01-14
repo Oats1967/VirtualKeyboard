@@ -69,21 +69,22 @@ namespace VirtualKeyboard.ViewModels
        
         private async Task OpenNumericKeyboardAsync()
         {
+            
             _logger.LogInformation($"Opening {nameof(NumericKeyboardPage)}");
-            await Shell.Current.GoToAsync(nameof(NumericKeyboardPage));
+            await Shell.Current.GoToAsync($"//{nameof(NumericKeyboardPage)}");
             
         }
         private async Task CloseKeyboardAsync()
         {
            
             _logger.LogInformation($"Opening {nameof(MainPage)}");
-            await Shell.Current.GoToAsync("..");
+            await Shell.Current.GoToAsync($"//{nameof(MainPage)}");
         }
         private async Task OpenGermanKeyboardAsync()
         {
-            
+          
             _logger.LogInformation($"Opening {nameof(GermanKeyboardPage)}");
-            await Shell.Current.GoToAsync(nameof(GermanKeyboardPage));
+            await Shell.Current.GoToAsync($"//{nameof(GermanKeyboardPage)}");
             
         }
     }
