@@ -37,6 +37,9 @@ namespace VirtualKeyboard.ViewModels
                 case Layouts.German:
                     await OpenGermanKeyboardAsync();
                     break;
+                case Layouts.Dutch:
+                    await OpenDutchKeyboardAsync();
+                    break;
                 default: return;
             }
         }
@@ -59,6 +62,9 @@ namespace VirtualKeyboard.ViewModels
                     break;
                 case Layouts.German:
                     await OpenGermanKeyboardAsync();
+                    break;
+                case Layouts.Dutch:
+                    await OpenDutchKeyboardAsync();
                     break;
                 default: return;
             }
@@ -85,6 +91,15 @@ namespace VirtualKeyboard.ViewModels
             _logger.LogInformation($"Opening {nameof(GermanKeyboardPage)}");
             await Shell.Current.GoToAsync($"//{nameof(GermanKeyboardPage)}");
             
+        }
+
+
+        private async Task OpenDutchKeyboardAsync()
+        {
+
+            _logger.LogInformation($"Opening {nameof(DutchKeyboardPage)}");
+            await Shell.Current.GoToAsync($"//{nameof(DutchKeyboardPage)}");
+
         }
     }
 }

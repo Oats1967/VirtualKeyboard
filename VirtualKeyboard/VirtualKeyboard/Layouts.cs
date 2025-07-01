@@ -10,7 +10,7 @@ namespace VirtualKeyboard
     {
         NotUsed,
         Numeric,
-        German
-
+        German,
+        Dutch
     }
 }

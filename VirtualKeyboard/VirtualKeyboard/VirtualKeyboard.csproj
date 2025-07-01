@@ -81,6 +81,9 @@
 	  <MauiXaml Update="Controls\Key.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\DutchKeyboardPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\GermanKeyboardPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -98,6 +101,9 @@
 	<ItemGroup>
 	  <Compile Update="Controls\IconKey.xaml.cs">
 	    <DependentUpon>IconKey.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Pages\DutchKeyboardPage.xaml.cs">
+	    <DependentUpon>DutchKeyboardPage.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Pages\GermanKeyboardPage.xaml.cs">
 	    <DependentUpon>GermanKeyboardPage.xaml</DependentUpon>

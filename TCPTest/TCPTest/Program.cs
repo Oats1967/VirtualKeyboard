@@ -17,10 +17,14 @@ public class Program
           ( new ArraySegment<byte>([0x02, 7, 0x11, 2, 0x64, 0, 0, 0, 0x03]), "TKSetSize German 100%" ) ,
            ( new ArraySegment<byte>([0x02, 7, 0x11, 2, 0x4b, 0, 0, 0, 0x03]), "TKSetSize German 75%" ) ,
           ( new ArraySegment<byte>([0x02, 7, 0x11, 2, 0x32, 0, 0, 0, 0x03]), "TKSetSize German 50%" ) ,
-         
-          ( new ArraySegment<byte>([0x02, 7, 0x11, 3, 0x64, 0, 0, 0, 0x03]), "TKSetSize Not used 100%" ) ,
-          ( new ArraySegment<byte>([0x02, 7, 0x11, 3, 0x4b, 0, 0, 0, 0x03]), "TKSetSize Not used 75%" ) ,
-          ( new ArraySegment<byte>([0x02, 7, 0x11, 3, 0x32, 0, 0, 0, 0x03]), "TKSetSize Not used 50%" ) ,
+
+           ( new ArraySegment<byte>([0x02, 7, 0x11, 3, 0x64, 0, 0, 0, 0x03]), "TKSetSize Dutch 100%" ) ,
+           ( new ArraySegment<byte>([0x02, 7, 0x11, 3, 0x4b, 0, 0, 0, 0x03]), "TKSetSize Dutch 75%" ) ,
+          ( new ArraySegment<byte>([0x02, 7, 0x11, 3, 0x32, 0, 0, 0, 0x03]), "TKSetSize Dutch 50%" ) ,
+
+          ( new ArraySegment<byte>([0x02, 7, 0x11, 4, 0x64, 0, 0, 0, 0x03]), "TKSetSize Not used 100%" ) ,
+          ( new ArraySegment<byte>([0x02, 7, 0x11, 4, 0x4b, 0, 0, 0, 0x03]), "TKSetSize Not used 75%" ) ,
+          ( new ArraySegment<byte>([0x02, 7, 0x11, 4, 0x32, 0, 0, 0, 0x03]), "TKSetSize Not used 50%" ) ,
            
         #endregion
 
@@ -33,8 +37,11 @@ public class Program
           ( new ArraySegment<byte>([0x02, 7, 0x13, 2, 0, 0, 0, 0, 0x03]), "TKSetShowPoint German 0 0" ) ,
           ( new ArraySegment<byte>([0x02, 7, 0x13, 2, 0x90, 0x01, 0x90, 0x01, 0x03]), "TKSetShowPoint German 400 400" ) ,
 
-          ( new ArraySegment<byte>([0x02, 7, 0x13, 3, 0, 0, 0, 0, 0x03]), "TKSetShowPoint Not used 0 0" ) ,
-          ( new ArraySegment<byte>([0x02, 7, 0x13, 3, 0x90, 0x01, 0x90, 0x01, 0x03]), "TKSetShowPoint Not used 400 400" ) ,
+          ( new ArraySegment<byte>([0x02, 7, 0x13, 3, 0, 0, 0, 0, 0x03]), "TKSetShowPoint Dutch 0 0" ) ,
+          ( new ArraySegment<byte>([0x02, 7, 0x13, 3, 0x90, 0x01, 0x90, 0x01, 0x03]), "TKSetShowPoint Dutch 400 400" ) ,
+
+          ( new ArraySegment<byte>([0x02, 7, 0x13, 4, 0, 0, 0, 0, 0x03]), "TKSetShowPoint Not used 0 0" ) ,
+          ( new ArraySegment<byte>([0x02, 7, 0x13, 4, 0x90, 0x01, 0x90, 0x01, 0x03]), "TKSetShowPoint Not used 400 400" ) ,
          
 
         #endregion
@@ -44,7 +51,8 @@ public class Program
         // serious
         ( new ArraySegment<byte>([0x02, 3, 0x14, 1, 0x03]), "TKSetShow Numeric" ) ,
          ( new ArraySegment<byte>([0x02, 3, 0x14, 2, 0x03]), "TKSetShow German" ) ,
-         ( new ArraySegment<byte>([0x02, 3, 0x14, 3, 0x03]), "TKSetShow Not used" ) ,
+          ( new ArraySegment<byte>([0x02, 3, 0x14, 3, 0x03]), "TKSetShow German" ) ,
+         ( new ArraySegment<byte>([0x02, 3, 0x14, 4, 0x03]), "TKSetShow Not used" ) ,
 
         // // bullshit
         #endregion
@@ -70,7 +78,7 @@ public class Program
         var random = new Random();
         DateTime startTime = DateTime.Now;
         DateTime endTime = startTime.AddHours(24);
-        while (DateTime.Now < endTime)
+        /*while (DateTime.Now < endTime)
         {
 
             var command = Commands[random.Next(0, Commands.Count)];
@@ -79,7 +87,10 @@ public class Program
             Thread.Sleep(1000);
 
 
-        }
+        }*/
+        var command = Commands[16];
+        await client.SendAsync(command.byteStream, SocketFlags.None);
+        while (true) { }
         logger.Stop();
     }
 

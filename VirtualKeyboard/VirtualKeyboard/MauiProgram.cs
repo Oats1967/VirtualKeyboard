@@ -110,6 +110,7 @@ namespace VirtualKeyboard
             builder.Services.AddSingleton<MainPage>();
             builder.Services.AddSingleton<NumericKeyboardPage>();
             builder.Services.AddSingleton<GermanKeyboardPage>();
+            builder.Services.AddSingleton<DutchKeyboardPage>();
             return builder;
         }
 
