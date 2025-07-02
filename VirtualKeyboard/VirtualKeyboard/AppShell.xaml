@@ -18,6 +18,10 @@
         Route="GermanKeyboardPage"
         Shell.NavBarIsVisible="False" />
     <ShellContent
+      ContentTemplate="{DataTemplate local:EnglishKeyboardPage}"
+      Route="EnglishKeyboardPage"
+      Shell.NavBarIsVisible="False" />
+    <ShellContent
       ContentTemplate="{DataTemplate local:DutchKeyboardPage}"
       Route="DutchKeyboardPage"
       Shell.NavBarIsVisible="False" />

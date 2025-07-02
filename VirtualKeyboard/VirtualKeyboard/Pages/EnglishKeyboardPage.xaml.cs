@@ -1,3 +1,6 @@
+using CommunityToolkit.Mvvm.Messaging;
+using VirtualKeyboard.Commands;
+using VirtualKeyboard.Services;
 using VirtualKeyboard.ViewModels;
 
 
@@ -6,13 +9,13 @@ using VirtualKeyboard.ViewModels;
 namespace VirtualKeyboard.Pages;
 
 
-public partial class GermanKeyboardPage : ContentPage 
+public partial class EnglishKeyboardPage : ContentPage 
 {
-    public GermanKeyboardPage(AlphabeticKeyboardViewModel viewModel)
+    public EnglishKeyboardPage(AlphabeticKeyboardViewModel viewModel)
 	{
         InitializeComponent();
 		BindingContext = viewModel;
-        viewModel.Layout = Layouts.German;
+        viewModel.Layout = Layouts.English;
         SizeChanged += viewModel.SizeChanged;
         NavigatedTo += viewModel.NavigatedTo;
        

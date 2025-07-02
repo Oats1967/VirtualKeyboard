@@ -28,20 +28,15 @@ namespace VirtualKeyboard.ViewModels
         async void IRecipient<TKSetShow>.Receive(TKSetShow message)
         {
             _logger.LogInformation($"TKSetShow received");
-            
-            switch (message.Layout)
-            {
-                case Layouts.Numeric:
-                    await OpenNumericKeyboardAsync();
-                    break;
-                case Layouts.German:
-                    await OpenGermanKeyboardAsync();
-                    break;
-                case Layouts.Dutch:
-                    await OpenDutchKeyboardAsync();
-                    break;
-                default: return;
-            }
+            await OpenKeyboardAsync(message.Layout);
+
+        }
+
+        async void IRecipient<TKSetShowPoint>.Receive(TKSetShowPoint message)
+        {
+            _logger.LogInformation($"TKSetShowPoint received");
+            await OpenKeyboardAsync(message.Layout);
+
         }
 
         async void IRecipient<TKSetHide>.Receive(TKSetHide message)
@@ -51,11 +46,12 @@ namespace VirtualKeyboard.ViewModels
 
         }
 
-        async void IRecipient<TKSetShowPoint>.Receive(TKSetShowPoint message)
+        
+
+
+        private async Task OpenKeyboardAsync(Layouts layout)
         {
-            _logger.LogInformation($"TKSetShowPoint received");
-           
-            switch (message.Layout)
+            switch (layout)
             {
                 case Layouts.Numeric:
                     await OpenNumericKeyboardAsync();
@@ -63,13 +59,15 @@ namespace VirtualKeyboard.ViewModels
                 case Layouts.German:
                     await OpenGermanKeyboardAsync();
                     break;
+                case Layouts.English:
+                    await OpenEnglishKeyboardAsync();
+                    break;
                 case Layouts.Dutch:
                     await OpenDutchKeyboardAsync();
                     break;
                 default: return;
             }
         }
-
 
        
         private async Task OpenNumericKeyboardAsync()
@@ -89,8 +87,15 @@ namespace VirtualKeyboard.ViewModels
         {
           
             _logger.LogInformation($"Opening {nameof(GermanKeyboardPage)}");
-            await Shell.Current.GoToAsync($"//{nameof(GermanKeyboardPage)}");
-            
+            await Shell.Current.GoToAsync($"//{nameof(GermanKeyboardPage)}");  
+        }
+
+        private async Task OpenEnglishKeyboardAsync()
+        {
+
+            _logger.LogInformation($"Opening {nameof(EnglishKeyboardPage)}");
+            await Shell.Current.GoToAsync($"//{nameof(EnglishKeyboardPage)}");
+
         }
 
 

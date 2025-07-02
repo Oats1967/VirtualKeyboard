@@ -16,6 +16,9 @@ namespace VirtualKeyboard.ViewModels
 
         protected abstract int InitX { get; }
         protected abstract int InitY { get;  }
+
+
+      
         public Layouts Layout { get; set; }
 
         protected abstract (double current, double max) SizeRef { get; }
@@ -90,6 +93,7 @@ namespace VirtualKeyboard.ViewModels
         }
         public abstract void BackspacePressed();
         public abstract void KeyPressed(string key);
+        
 
         public void Receive(TKSetSize message)
         {

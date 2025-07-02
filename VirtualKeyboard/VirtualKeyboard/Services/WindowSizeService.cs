@@ -14,7 +14,8 @@ namespace VirtualKeyboard.Services
 
 #if WINDOWS
             var window = Application.Current?.Windows.First(uiWindow =>
-                {
+                
+            {
                     if (uiWindow.Handler?.PlatformView is MauiWinUIWindow winUIWindow)
                     {
 

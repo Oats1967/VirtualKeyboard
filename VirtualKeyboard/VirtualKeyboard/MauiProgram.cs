@@ -54,11 +54,18 @@ namespace VirtualKeyboard
                             p.IsResizable = false;
                             p.IsAlwaysOnTop = true;
                             p.SetBorderAndTitleBar(false, false);   
+                          
                         }
                         SetWindowLong(nativeWindowHandle, GWL_EXSTYLE, GetWindowLong(nativeWindowHandle, GWL_EXSTYLE) | WS_EX_NOACTIVATE);
-                        
+
                        
-                       WindowSizeService.ResizeWindow(0,0,0,0);
+                       
+
+                        WindowSizeService.ResizeWindow(0,0,0,0);
+
+
+                       
+
 
                     });
                    
@@ -110,6 +117,7 @@ namespace VirtualKeyboard
             builder.Services.AddSingleton<MainPage>();
             builder.Services.AddSingleton<NumericKeyboardPage>();
             builder.Services.AddSingleton<GermanKeyboardPage>();
+            builder.Services.AddSingleton<EnglishKeyboardPage>();
             builder.Services.AddSingleton<DutchKeyboardPage>();
             return builder;
         }
@@ -118,7 +126,7 @@ namespace VirtualKeyboard
         {
             builder.Services.AddSingleton<MainPageViewModel>();
             builder.Services.AddSingleton<NumericKeyboardViewModel>();
-            builder.Services.AddSingleton<AlphabeticKeyboardViewModel>();
+            builder.Services.AddTransient<AlphabeticKeyboardViewModel>();
             return builder;
         }
 
@@ -133,12 +141,18 @@ namespace VirtualKeyboard
         //Invoke declarations for setting window styles
         private const int GWL_EXSTYLE = -20;
         private const int WS_EX_NOACTIVATE = 0x08000000;
+        
 
         [DllImport("user32.dll")]
         private static extern int GetWindowLong(IntPtr hwnd, int index);
 
         [DllImport("user32.dll")]
         private static extern int SetWindowLong(IntPtr hwnd, int index, int newStyle);
+
+      
+
+
+
     }
 
    

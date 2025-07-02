@@ -11,6 +11,10 @@ namespace VirtualKeyboard
         NotUsed,
         Numeric,
         German,
-        Dutch
+        English,
+        Dutch,
+        French,
+        Polish,
+       
     }
 }
