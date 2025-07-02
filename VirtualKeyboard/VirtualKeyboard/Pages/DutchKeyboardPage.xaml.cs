@@ -15,10 +15,13 @@ public partial class DutchKeyboardPage : ContentPage
 	{
         InitializeComponent();
 		BindingContext = viewModel;
-        viewModel.Layout = Layouts.Dutch;
-        SizeChanged += viewModel.SizeChanged;
-        NavigatedTo += viewModel.NavigatedTo;
        
+        SizeChanged += viewModel.SizeChanged;
+      
+        NavigatedTo += (s, e) => {
+            viewModel.Layout = Layouts.Dutch;
+            viewModel.NavigatedTo(s,e);
+        };
         NavigatedFrom += viewModel.NavigatedFrom;
 	}
 

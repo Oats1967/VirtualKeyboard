@@ -12,10 +12,14 @@ public partial class GermanKeyboardPage : ContentPage
 	{
         InitializeComponent();
 		BindingContext = viewModel;
-        viewModel.Layout = Layouts.German;
+
         SizeChanged += viewModel.SizeChanged;
-        NavigatedTo += viewModel.NavigatedTo;
-       
+        NavigatedTo += (s, e) => {
+            viewModel.Layout = Layouts.German;
+            viewModel.NavigatedTo(s, e);
+
+        };
+
         NavigatedFrom += viewModel.NavigatedFrom;
 	}
 

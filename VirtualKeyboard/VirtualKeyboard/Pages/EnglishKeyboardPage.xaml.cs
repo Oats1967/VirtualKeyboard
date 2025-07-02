@@ -15,10 +15,14 @@ public partial class EnglishKeyboardPage : ContentPage
 	{
         InitializeComponent();
 		BindingContext = viewModel;
-        viewModel.Layout = Layouts.English;
+        
         SizeChanged += viewModel.SizeChanged;
-        NavigatedTo += viewModel.NavigatedTo;
-       
+        NavigatedTo += (s, e) => {
+            viewModel.Layout = Layouts.English;
+            viewModel.NavigatedTo(s, e);
+           
+        };
+
         NavigatedFrom += viewModel.NavigatedFrom;
 	}
 

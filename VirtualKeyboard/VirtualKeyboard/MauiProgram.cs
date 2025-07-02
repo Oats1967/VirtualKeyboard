@@ -126,7 +126,7 @@ namespace VirtualKeyboard
         {
             builder.Services.AddSingleton<MainPageViewModel>();
             builder.Services.AddSingleton<NumericKeyboardViewModel>();
-            builder.Services.AddTransient<AlphabeticKeyboardViewModel>();
+            builder.Services.AddSingleton<AlphabeticKeyboardViewModel>();
             return builder;
         }
 
