@@ -59,6 +59,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Pages\GermanKeyboardPage.xaml.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Remove="Pages\GermanKeyboardPage.xaml" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <None Remove="Resources\Fonts\MaterialIcons-Regular.ttf" />
 	  <None Remove="Resources\Images\enter.png" />
 	  <None Remove="Resources\Images\erase.png" />
@@ -75,22 +83,22 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Controls\DutchKeyboard.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\EnglishKeyboard.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\GermanKeyboard.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Controls\IconKey.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Controls\Key.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\EnglishKeyboardPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Pages\DutchKeyboardPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Pages\GermanKeyboardPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Pages\NumericKeyboardPage.xaml">
+	  <MauiXaml Update="Controls\NumericKeyboard.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Resources\Styles\Resolutions.xaml">
@@ -104,15 +112,6 @@
 	<ItemGroup>
 	  <Compile Update="Controls\IconKey.xaml.cs">
 	    <DependentUpon>IconKey.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="Pages\EnglishKeyboardPage.xaml.cs">
-	    <DependentUpon>EnglishKeyboardPage.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="Pages\DutchKeyboardPage.xaml.cs">
-	    <DependentUpon>DutchKeyboardPage.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="Pages\GermanKeyboardPage.xaml.cs">
-	    <DependentUpon>GermanKeyboardPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 

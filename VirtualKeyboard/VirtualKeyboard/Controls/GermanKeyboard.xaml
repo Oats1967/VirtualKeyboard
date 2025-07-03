@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage
-    x:Class="VirtualKeyboard.Pages.EnglishKeyboardPage"
-            xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:controls="clr-namespace:VirtualKeyboard.Controls"
-    xmlns:converter="clr-namespace:VirtualKeyboard.Converter"
-    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-    BackgroundColor="Transparent"
-
-    Shell.NavBarIsVisible="False">
-    <ContentPage.Resources>
+<ContentView 
+             x:Class="VirtualKeyboard.Controls.GermanKeyboard"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:VirtualKeyboard.Controls"
+             xmlns:converter="clr-namespace:VirtualKeyboard.Converter"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">     
+    <ContentView.Resources>
 
         <!--<converter:DoubleScaler x:Key="FontSizeScaler" Factor="2.0" />-->
 
@@ -22,7 +19,7 @@
         <converter:CharCaseConverter x:Key="CharCaseConverter" />
 
 
-    </ContentPage.Resources>
+    </ContentView.Resources>
     <Frame
         BackgroundColor="{StaticResource Background}"
         Padding="0"
@@ -120,8 +117,10 @@
             Grid.Row="0"
             Grid.Column="10"
             BackgroundColor="{StaticResource NormalKey}"
-            IsEnabled="False"
+            Command="{Binding KeyPressedCommand}"
+            CommandParameter="ß"
             FontSize="{Binding FontSize}"
+            Text="ß"
             />
 
             <controls:IconKey
@@ -179,9 +178,9 @@
             Grid.Column="5"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
-            CommandParameter="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='y'}"
+            CommandParameter="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='z'}"
             FontSize="{Binding FontSize}"
-            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='y'}" />
+            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='z'}" />
             <controls:Key
             Grid.Row="1"
             Grid.Column="6"
@@ -219,9 +218,9 @@
             Grid.Column="10"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
-            CommandParameter="-"
+            CommandParameter="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='ü'}"
             FontSize="{Binding FontSize}"
-            Text="-" />
+            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='ü'}" />
             <controls:Key
             Grid.Row="1"
             Grid.Column="11"
@@ -319,17 +318,17 @@
             Grid.Column="9"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
-            CommandParameter=";"
+            CommandParameter="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='ö'}"
             FontSize="{Binding FontSize}"
-            Text=";" />
+            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='ö'}" />
             <controls:Key
             Grid.Row="2"
             Grid.Column="10"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
-            CommandParameter="&apos;"
+            CommandParameter="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='ä'}"
             FontSize="{Binding FontSize}"
-            Text="	&apos;" />
+            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='ä'}" />
 
             <controls:Key
             Grid.Row="2"
@@ -367,9 +366,9 @@
             Grid.Column="2"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
-            CommandParameter="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='z'}"
+            CommandParameter="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='y'}"
             FontSize="{Binding FontSize}"
-            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='z'}" />
+            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='y'}" />
             <controls:Key
             Grid.Row="3"
             Grid.Column="3"
@@ -439,9 +438,9 @@
             Grid.Column="11"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
-            CommandParameter="/"
+            CommandParameter="-"
             FontSize="{Binding FontSize}"
-            Text="/" />
+            Text="-" />
 
             <!--  Row 4  -->
             <Image
@@ -477,5 +476,5 @@
             Text="{StaticResource ArrowRightIcon}" />
         </Grid>
     </Frame>
-
-</ContentPage>
+</ContentView>
+   

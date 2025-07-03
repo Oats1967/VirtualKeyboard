@@ -1,0 +1,12 @@
+using Controls;
+
+namespace VirtualKeyboard.Controls;
+
+public partial class NumericKeyboard : ContentView
+{
+	public NumericKeyboard(KeyboardViewModel viewModel)
+	{
+		BindingContext =  viewModel;
+		InitializeComponent();
+	}
+}

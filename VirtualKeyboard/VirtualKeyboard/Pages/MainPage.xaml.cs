@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.Messaging;
 using VirtualKeyboard.Commands;
+using VirtualKeyboard.Converter;
 using VirtualKeyboard.Pages;
 using VirtualKeyboard.Services;
 using VirtualKeyboard.ViewModels;
@@ -11,11 +12,13 @@ namespace VirtualKeyboard.Pages
 
 
        // for dependency injection Pages have to be initialized through constructor
-        public MainPage(MainPageViewModel viewModel, NumericKeyboardPage p1, GermanKeyboardPage p2, EnglishKeyboardPage p3, DutchKeyboardPage p4)
+        public MainPage(MainPageViewModel viewModel, LayoutToKeyboardConverter layoutConverter)
         {
-            InitializeComponent();
             BindingContext = viewModel;
-            Appearing += viewModel.Appearing;
+            Resources.Add("LayoutConverter", layoutConverter);
+            InitializeComponent();
+            
+
         }
 
         

@@ -13,22 +13,7 @@
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage"
         Shell.NavBarIsVisible="False" />
-    <ShellContent
-        ContentTemplate="{DataTemplate local:GermanKeyboardPage}"
-        Route="GermanKeyboardPage"
-        Shell.NavBarIsVisible="False" />
-    <ShellContent
-      ContentTemplate="{DataTemplate local:EnglishKeyboardPage}"
-      Route="EnglishKeyboardPage"
-      Shell.NavBarIsVisible="False" />
-    <ShellContent
-      ContentTemplate="{DataTemplate local:DutchKeyboardPage}"
-      Route="DutchKeyboardPage"
-      Shell.NavBarIsVisible="False" />
-    <ShellContent
-        ContentTemplate="{DataTemplate local:NumericKeyboardPage}"
-        Route="NumericKeyboardPage"
-        Shell.NavBarIsVisible="False" />
+    
 
 
 

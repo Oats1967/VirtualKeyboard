@@ -6,6 +6,12 @@ using System.Runtime.InteropServices;
 using VirtualKeyboard.Pages;
 using VirtualKeyboard.Services;
 using VirtualKeyboard.ViewModels;
+using Controls;
+using VirtualKeyboard.Controls;
+using VirtualKeyboard.Converter;
+
+
+
 
 
 #if WINDOWS
@@ -33,7 +39,8 @@ namespace VirtualKeyboard
                 })
                 .RegisterServices()
                 .RegisterViewModels()
-                .RegisterPages();
+                .RegisterPages()
+                .RegisterContentViews();
 
 #if WINDOWS
             builder.ConfigureLifecycleEvents(events =>
@@ -115,18 +122,20 @@ namespace VirtualKeyboard
         {
             builder.Services.AddSingleton<AppShell>();
             builder.Services.AddSingleton<MainPage>();
-            builder.Services.AddSingleton<NumericKeyboardPage>();
-            builder.Services.AddSingleton<GermanKeyboardPage>();
-            builder.Services.AddSingleton<EnglishKeyboardPage>();
-            builder.Services.AddSingleton<DutchKeyboardPage>();
             return builder;
         }
-
+        private static MauiAppBuilder RegisterContentViews(this MauiAppBuilder builder)
+        {
+            builder.Services.AddSingleton<NumericKeyboard>();
+            builder.Services.AddSingleton<GermanKeyboard>();
+            builder.Services.AddSingleton<EnglishKeyboard>();
+            builder.Services.AddSingleton<DutchKeyboard>();
+            return builder;
+        }
         private static MauiAppBuilder RegisterViewModels(this MauiAppBuilder builder)
         {
             builder.Services.AddSingleton<MainPageViewModel>();
-            builder.Services.AddSingleton<NumericKeyboardViewModel>();
-            builder.Services.AddSingleton<AlphabeticKeyboardViewModel>();
+            builder.Services.AddSingleton<KeyboardViewModel>();
             return builder;
         }
 
@@ -135,6 +144,7 @@ namespace VirtualKeyboard
             builder.Services.AddSingleton<ITCPService,TCPService>();
             builder.Services.AddSingleton<IKeyboardService, KeyboardService>();
             builder.Services.AddSingleton<IProcessMessageService, ProcessMessageService>();
+            builder.Services.AddSingleton<LayoutToKeyboardConverter>();
             return builder;
         }
 
