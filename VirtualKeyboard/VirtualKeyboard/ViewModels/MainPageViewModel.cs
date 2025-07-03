@@ -33,8 +33,7 @@ namespace VirtualKeyboard.ViewModels
             }
         }
 
-        protected (double current, double max) SizeRef =>
-            (Application.Current!.Windows[0].Width, DeviceDisplay.Current.MainDisplayInfo.Width);
+        
 
         protected int DefaultX => (int)((DeviceDisplay.Current.MainDisplayInfo.Width - Width) / 2);
         protected int DefaultY => (int)((DeviceDisplay.Current.MainDisplayInfo.Height - Height) / 2);

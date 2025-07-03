@@ -108,42 +108,52 @@ namespace Controls
             
         }
 
-      
+        protected (double current, double max) SizeRef =>
+            (Application.Current!.Windows[0].Width, DeviceDisplay.Current.MainDisplayInfo.Width);
 
-       
+
+        // Besser in Main und dann Binding iregndwie!!!
+        [RelayCommand]
+        public void OnLoaded()
+        {
+            _logger.LogInformation("OnLoaded View");
+            var fontSize = ResolutionConfig.ResolutionToFontSize[(DeviceDisplay.Current.MainDisplayInfo.Width, DeviceDisplay.Current.MainDisplayInfo.Height)];
+            var keySpacing = ResolutionConfig.ResolutionToSpacing[(DeviceDisplay.Current.MainDisplayInfo.Width, DeviceDisplay.Current.MainDisplayInfo.Height)];
+            var fontsizeMin = Layout switch
+            {
+                Layouts.Numeric => fontSize.numericMin,
+                _ => fontSize.alphaMin
+            };
+            var fontsizeMax = Layout switch
+            {
+                Layouts.Numeric => fontSize.numericMax,
+                _ => fontSize.alphaMax
+            };
+            var keySpacingMin = Layout switch
+            {
+                Layouts.Numeric => keySpacing.numericMin,
+                _ => keySpacing.alphaMin
+            };
+            var keySpacingMax = Layout switch
+            {
+                Layouts.Numeric => keySpacing.numericMax,
+                _ => keySpacing.alphaMax
+            };
+            FontSize = ValueScaler.MapLinear(SizeRef.current, 0, SizeRef.max, fontSize.alphaMin, fontSize.alphaMax);
+            KeySpacing = ValueScaler.MapLinear(SizeRef.current, 0, SizeRef.max, keySpacing.alphaMin, keySpacing.alphaMax);
+        }
+
 
 
         //
 
 
-        //// From Alpha VM
-        //public override void SizeChanged(object? sender, EventArgs e)
-        //{
-        //    _logger.LogInformation("SizeChanged");
-        //    var fontSize = ResolutionConfig.ResolutionToFontSize[(DeviceDisplay.Current.MainDisplayInfo.Width, DeviceDisplay.Current.MainDisplayInfo.Height)];
-        //    var keySpacing = ResolutionConfig.ResolutionToSpacing[(DeviceDisplay.Current.MainDisplayInfo.Width, DeviceDisplay.Current.MainDisplayInfo.Height)];
-
-        //    FontSize = ValueScaler.MapLinear(SizeRef.current, 0, SizeRef.max, fontSize.alphaMin, fontSize.alphaMax);
-        //    KeySpacing = ValueScaler.MapLinear(SizeRef.current, 0, SizeRef.max, keySpacing.alphaMin, keySpacing.alphaMax);
-        //}
-
-        ////
-
-        //// From Numeric VM
-        //public override void SizeChanged(object? sender, EventArgs e)
-        //{
-        //    _logger.LogInformation("SizeChanged");
-        //    var fontSize = ResolutionConfig.ResolutionToFontSize[(DeviceDisplay.Current.MainDisplayInfo.Width, DeviceDisplay.Current.MainDisplayInfo.Height)];
-        //    var keySpacing = ResolutionConfig.ResolutionToSpacing[(DeviceDisplay.Current.MainDisplayInfo.Width, DeviceDisplay.Current.MainDisplayInfo.Height)];
-        //    FontSize = ValueScaler.MapLinear(SizeRef.current, 0, SizeRef.max, fontSize.numericMin, fontSize.numericMax);
-        //    KeySpacing = ValueScaler.MapLinear(SizeRef.current, 0, SizeRef.max, keySpacing.numericMin, keySpacing.numericMax);
-        //}
-        ////
+        
 
 
 
 
 
-       
+
     }
 }
