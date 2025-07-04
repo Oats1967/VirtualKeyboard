@@ -59,6 +59,8 @@ namespace VirtualKeyboard.ViewModels
             var width = _layoutService.Dictionary[message.Layout].width;
             var height = _layoutService.Dictionary[message.Layout].height;
 
+            x = CalculateCoordinate(x, width, (int)DeviceDisplay.MainDisplayInfo.Width);
+            y = CalculateCoordinate(y, height, (int)DeviceDisplay.MainDisplayInfo.Height);
             WindowSizeService.ResizeWindow(x, y, width, height);
 
             _logger.LogInformation($"Window was opened: x: {x} , y: {y} , w: {width}, h: {height}");
@@ -82,14 +84,17 @@ namespace VirtualKeyboard.ViewModels
             }
             Layout = message.Layout;
 
-            var x = CalculateCoordinate(message.X, _layoutService.Dictionary[message.Layout].width, (int)DeviceDisplay.MainDisplayInfo.Width);
-            var y = CalculateCoordinate(message.Y, _layoutService.Dictionary[message.Layout].height, (int)DeviceDisplay.MainDisplayInfo.Height);
             var width = _layoutService.Dictionary[message.Layout].width;
             var height = _layoutService.Dictionary[message.Layout].height;
+            var x = message.X;
+            var y = message.Y;
+           
 
             _layoutService.Dictionary[message.Layout] = (x,y,width,height);
             _logger.LogInformation($"{message.Layout} coordinates were set to x: {x} , y: {y} ");
 
+            x = CalculateCoordinate(x, width, (int)DeviceDisplay.MainDisplayInfo.Width);
+            y = CalculateCoordinate(y, height, (int)DeviceDisplay.MainDisplayInfo.Height);
             WindowSizeService.ResizeWindow(x, y, width, height);
             _logger.LogInformation($"Window was opened: x: {x} , y: {y} , w: {width}, h: {height}");
 
@@ -132,11 +137,11 @@ namespace VirtualKeyboard.ViewModels
         }
         #endregion
 
-       
 
 
 
 
+        #region Properties changed when wndow is resized
 
         private void Window_SizeChanged(object? sender, EventArgs e)
         {
@@ -148,8 +153,6 @@ namespace VirtualKeyboard.ViewModels
         // Adjusts FontSize and KeySpacing Properties depending on Layout and Displaysize
         private double GetMappedFontSize(Window window)
         {
-            _logger.LogInformation("SizeChanged: GetMappedFontSize");
-
             var resolution = (DeviceDisplay.Current.MainDisplayInfo.Width, DeviceDisplay.Current.MainDisplayInfo.Height);
             var fontSize = ResolutionConfig.ResolutionToFontSize[resolution];
 
@@ -164,8 +167,6 @@ namespace VirtualKeyboard.ViewModels
 
         private double GetMappedKeySpacing(Window window)
         {
-            _logger.LogInformation("SizeChanged: GetMappedKeySpacing");
-
             var resolution = (DeviceDisplay.Current.MainDisplayInfo.Width, DeviceDisplay.Current.MainDisplayInfo.Height);
             var spacing = ResolutionConfig.ResolutionToSpacing[resolution];
 
@@ -177,7 +178,7 @@ namespace VirtualKeyboard.ViewModels
 
             return ValueScaler.MapLinear(currentWidth, 0, maxWidth, min, max);
         }
-
+        #endregion
 
 
     }

@@ -11,7 +11,7 @@ namespace VirtualKeyboard
     {
         public static readonly ReadOnlyDictionary<(double xRes, double yRes), (double alphaMin, double alphaMax, double numericMin, double numericMax)> ResolutionToSpacing = new(new Dictionary<(double xRes, double yRes), (double alphaMin, double alphaMax, double numericMin, double numericMax)>()
         {
-            { (1920,1080), (0,15,0,15)},
+            { (1920,1080), (0,15,0,20)},
             //{(1680,1050),(0,15,0,15) },
             //{(1440,900),(0, 15, 0, 15) },
             //{(1400,1050),(0, 15, 0, 15) },

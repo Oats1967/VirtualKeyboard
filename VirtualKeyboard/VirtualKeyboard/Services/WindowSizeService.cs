@@ -51,10 +51,6 @@ namespace VirtualKeyboard.Services
             }
             winUiWindow.MoveAndResize(new RectInt32(x, y, width, height));
 
-
-            if (platformView == null)
-                return;
-
             IntPtr region = CreateRoundRectRgn(
               0,
               0,
@@ -69,6 +65,8 @@ namespace VirtualKeyboard.Services
             // Apply region to window
             SetWindowRgn(nativeWindowHandle, region, true);
 
+#else
+            throw new NotImplementedException();
 #endif
         }
 
