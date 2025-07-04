@@ -6,7 +6,7 @@
     xmlns:controls="clr-namespace:VirtualKeyboard.Controls"
     xmlns:converter="clr-namespace:VirtualKeyboard.Converter"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-    >
+    x:DataType="controls:KeyboardViewModel">
     <ContentView.Resources>
         <!--<converter:DoubleScaler x:Key="FontSizeScaler" Factor="2.0" />-->
         <toolkit:BoolToObjectConverter
@@ -16,9 +16,7 @@
         <converter:CharCaseConverter x:Key="CharCaseConverter" />
     </ContentView.Resources>
     <ContentView.Behaviors>
-        <toolkit:EventToCommandBehavior
-            EventName="Loaded"
-            Command="{Binding OnLoadedCommand}" />
+        <toolkit:EventToCommandBehavior Command="{Binding SizeChangedCommand}" EventName="SizeChanged" />
     </ContentView.Behaviors>
 
 

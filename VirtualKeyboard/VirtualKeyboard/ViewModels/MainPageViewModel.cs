@@ -13,13 +13,11 @@ namespace VirtualKeyboard.ViewModels
     {
 
         protected ILogger _logger;
-
         protected int DefaultWidth => Layout switch
         {
             Layouts.Numeric => (int)(DeviceDisplay.Current.MainDisplayInfo.Height / 2),
             _ => (int)(DeviceDisplay.Current.MainDisplayInfo.Width / 2)
         };
-
         protected int DefaultHeight
         {
             get
@@ -32,11 +30,10 @@ namespace VirtualKeyboard.ViewModels
                 };
             }
         }
-
-        
-
-        protected int DefaultX => (int)((DeviceDisplay.Current.MainDisplayInfo.Width - Width) / 2);
-        protected int DefaultY => (int)((DeviceDisplay.Current.MainDisplayInfo.Height - Height) / 2);
+        protected int DefaultX 
+            => (int)((DeviceDisplay.Current.MainDisplayInfo.Width - Width) / 2);
+        protected int DefaultY 
+            => (int)((DeviceDisplay.Current.MainDisplayInfo.Height - Height) / 2);
 
 
         [ObservableProperty]
@@ -58,12 +55,10 @@ namespace VirtualKeyboard.ViewModels
         {
             _logger = logger;
             Layout = Layouts.Numeric;
-            
-            
             WeakReferenceMessenger.Default.RegisterAll(this);
         }
 
-        // On First Apperance
+        // Hide WIndow on first Appearance
         public void Appearing(object? sender, EventArgs e)
         {
             var x = 0; var y = 0; var width = 0; var height = 0;    

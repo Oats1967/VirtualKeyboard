@@ -2,13 +2,11 @@
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.Extensions.Logging;
-using System.Net.Sockets;
 using VirtualKeyboard;
-using VirtualKeyboard.Commands;
 
 using VirtualKeyboard.Services;
 
-namespace Controls
+namespace VirtualKeyboard.Controls
 {
     public partial class KeyboardViewModel : ObservableObject
     {
@@ -21,15 +19,12 @@ namespace Controls
         [ObservableProperty]
         private Layouts layout;
 
-
-
-        // From Keyboard VM
         [ObservableProperty]
         private double fontSize;
 
         [ObservableProperty]
         private double keySpacing;
-        //
+     
 
 
 
@@ -104,8 +99,6 @@ namespace Controls
         {
             _logger = logger;
             _keyboardService = service;
-            WeakReferenceMessenger.Default.RegisterAll(this);
-            
         }
 
         protected (double current, double max) SizeRef =>
@@ -114,9 +107,9 @@ namespace Controls
 
         // Besser in Main und dann Binding iregndwie!!!
         [RelayCommand]
-        public void OnLoaded()
+        public void SizeChanged()
         {
-            _logger.LogInformation("OnLoaded View");
+            _logger.LogInformation("SizeChanged KeyboardViewModel");
             var fontSize = ResolutionConfig.ResolutionToFontSize[(DeviceDisplay.Current.MainDisplayInfo.Width, DeviceDisplay.Current.MainDisplayInfo.Height)];
             var keySpacing = ResolutionConfig.ResolutionToSpacing[(DeviceDisplay.Current.MainDisplayInfo.Width, DeviceDisplay.Current.MainDisplayInfo.Height)];
             var fontsizeMin = Layout switch
@@ -139,8 +132,8 @@ namespace Controls
                 Layouts.Numeric => keySpacing.numericMax,
                 _ => keySpacing.alphaMax
             };
-            FontSize = ValueScaler.MapLinear(SizeRef.current, 0, SizeRef.max, fontSize.alphaMin, fontSize.alphaMax);
-            KeySpacing = ValueScaler.MapLinear(SizeRef.current, 0, SizeRef.max, keySpacing.alphaMin, keySpacing.alphaMax);
+            FontSize = ValueScaler.MapLinear(SizeRef.current, 0, SizeRef.max, fontsizeMin, fontsizeMax);
+            KeySpacing = ValueScaler.MapLinear(SizeRef.current, 0, SizeRef.max,keySpacingMin, keySpacingMax);
         }
 
 

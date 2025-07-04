@@ -1,4 +1,4 @@
-using Controls;
+
 
 namespace VirtualKeyboard.Controls;
 
@@ -9,7 +9,7 @@ public partial class DutchKeyboard : ContentView
 		BindingContext = viewModel;
 		
 		InitializeComponent();
-        Loaded += DutchKeyboard_Loaded;
+       //Loaded += DutchKeyboard_Loaded;
 	}
 
     private void DutchKeyboard_Loaded(object? sender, EventArgs e)
