@@ -12,47 +12,12 @@ namespace VirtualKeyboard.ViewModels
 {
     public partial class MainPageViewModel : ObservableObject, IRecipient<TKSetShow>, IRecipient<TKSetHide>, IRecipient<TKSetShowPoint>, IRecipient<TKSetSize>
     {
-
         protected ILogger _logger;
-        protected int DefaultWidth => Layout switch
-        {
-            Layouts.Numeric => (int)(DeviceDisplay.Current.MainDisplayInfo.Height / 2),
-            _ => (int)(DeviceDisplay.Current.MainDisplayInfo.Width / 2)
-        };
-        protected int DefaultHeight
-        {
-            get
-            {
-                var resolution = (DeviceDisplay.Current.MainDisplayInfo.Width, DeviceDisplay.Current.MainDisplayInfo.Height);
-                return Layout switch
-                {
-                    Layouts.Numeric => (int)(DefaultWidth * ResolutionConfig.ResolutionToKeyboardRatio[resolution].numericRatio),
-                    _ => (int)(DefaultWidth * ResolutionConfig.ResolutionToKeyboardRatio[resolution].alphaRatio)
-                };
-            }
-        }
-        protected int DefaultX 
-            => (int)((DeviceDisplay.Current.MainDisplayInfo.Width - Width) / 2);
-        protected int DefaultY 
-            => (int)((DeviceDisplay.Current.MainDisplayInfo.Height - Height) / 2);
-        protected (double current, double max) SizeRef =>
-           (Application.Current!.Windows[0].Width, DeviceDisplay.Current.MainDisplayInfo.Width);
 
+        protected ILayoutService _layoutService;
 
         [ObservableProperty]
         protected Layouts layout;
-
-        [ObservableProperty]
-        private int x;
-
-        [ObservableProperty]
-        private int y;
-
-        [ObservableProperty]
-        private int width;
-
-        [ObservableProperty]
-        private int height;
 
         [ObservableProperty]
         private double fontSize;
@@ -62,61 +27,72 @@ namespace VirtualKeyboard.ViewModels
 
       
 
-        public MainPageViewModel(ILogger<MainPageViewModel> logger)
+        public MainPageViewModel(ILogger<MainPageViewModel> logger, ILayoutService layoutService)
         {
-            // Default initialization
-            Layout = Layouts.Numeric; 
-            X = 0; Y = 0; Width = 0; Height = 0;
             _logger = logger;
-            ResizeWindow(X, Y, Width, Height);
+            _layoutService = layoutService;
+
+            // Default initialization
+            Layout = Layouts.Numeric;
+            var window = Application.Current!.Windows[0];
+            window.SizeChanged += Window_SizeChanged;
+
+            WindowSizeService.ResizeWindow(0,0,0,0);
             WeakReferenceMessenger.Default.RegisterAll(this);
         }
 
-   
         
+
         public void Receive(TKSetShow message)
         {
             _logger.LogInformation($"TKSetShow received");
-            if (message.Layout.Equals(Layouts.NotUsed))
+            if (!_layoutService.Dictionary.ContainsKey(message.Layout))
             {
-                _logger.LogInformation($"TKSetShow: Layout NotUsed is not supported");
+                _logger.LogInformation($"TKSetShow: Layout {message.Layout} not supported");
                 return;
             }
-            ResizeWindow(X, Y, Width, Height);
-            _logger.LogInformation($"Window was resized to {x} {y} {width} {height}");
+
+            Layout = message.Layout;
+
+            var x = _layoutService.Dictionary[message.Layout].x;
+            var y = _layoutService.Dictionary[message.Layout].y;
+            var width = _layoutService.Dictionary[message.Layout].width;
+            var height = _layoutService.Dictionary[message.Layout].height;
+
+            WindowSizeService.ResizeWindow(x, y, width, height);
+
+            _logger.LogInformation($"Window was opened: x: {x} , y: {y} , w: {width}, h: {height}");
         }
 
         public void Receive(TKSetHide message)
         {
             _logger.LogInformation($"TKSetHide received");
-            ResizeWindow(0, 0, 0, 0);
-            _logger.LogInformation($"Window was resized to {x} {y} {width} {height}");
+            WindowSizeService.ResizeWindow(0,0,0,0);
+            _logger.LogInformation($"Window was closed: x: {0} , y: {0} , w: {0}, h: {0}");
         }
 
         public void Receive(TKSetShowPoint message)
         {
             _logger.LogInformation($"TKSetShowPoint received");
 
-            if (message.Layout.Equals(Layouts.NotUsed))
+            if(!_layoutService.Dictionary.ContainsKey(message.Layout))
             {
-                _logger.LogInformation($"TKSetShow: Layout NotUsed is not supported");
+                _logger.LogInformation($"TKSetShowPoint: Layout {message.Layout} not supported");
                 return;
             }
-            // Unexpected Layout-Change
-            if (!Layout.Equals(message.Layout))
-            {
-                Layout = message.Layout;
-                Height = DefaultHeight; Width = DefaultWidth;
-            }
+            Layout = message.Layout;
 
-            // Size was not set
-            if (Height == 0) Height = DefaultHeight;
-            if (Width == 0) Width = DefaultWidth;
+            var x = CalculateCoordinate(message.X, _layoutService.Dictionary[message.Layout].width, (int)DeviceDisplay.MainDisplayInfo.Width);
+            var y = CalculateCoordinate(message.Y, _layoutService.Dictionary[message.Layout].height, (int)DeviceDisplay.MainDisplayInfo.Height);
+            var width = _layoutService.Dictionary[message.Layout].width;
+            var height = _layoutService.Dictionary[message.Layout].height;
 
-            (X,Y,Width,Height) = CalculateWindow(message.X,message.Y, Width ,Height);
-           
-            ResizeWindow(X, Y, Width, Height);
-            _logger.LogInformation($"Keyboard was shifted to {X} {Y} {Width} {Height}");
+            _layoutService.Dictionary[message.Layout] = (x,y,width,height);
+            _logger.LogInformation($"{message.Layout} coordinates were set to x: {x} , y: {y} ");
+
+            WindowSizeService.ResizeWindow(x, y, width, height);
+            _logger.LogInformation($"Window was opened: x: {x} , y: {y} , w: {width}, h: {height}");
+
 
         }
 
@@ -124,39 +100,24 @@ namespace VirtualKeyboard.ViewModels
         {
             _logger.LogInformation($"TKSetSize received");
 
-            if (message.Layout.Equals(Layouts.NotUsed))
+            if (!_layoutService.Dictionary.ContainsKey(message.Layout))
             {
-                _logger.LogInformation($"TKSetShow: Layout NotUsed is not supported");
+                _logger.LogInformation($"TKSetSize: Layout {message.Layout} not supported");
                 return;
             }
 
-            // Unexpected Layout-Change
-            if (!Layout.Equals( message.Layout))
-            {
-                Layout = message.Layout;
-                X = DefaultX; Y = DefaultY;
-            }
-            
-            // ShowPoint was not set
-            if (X == 0) X = DefaultX;
-            if (Y == 0) Y = DefaultY;
+            var x = _layoutService.Dictionary[message.Layout].x;
+            var y = _layoutService.Dictionary[message.Layout].y;
+            var width = message.Width;
+            var height = message.Height;
 
-            // Set size
-            (X,Y,Width,Height) = CalculateWindow(X,Y, message.Width, message.Height);
-         
-            ResizeWindow(X,Y,Width,Height);
-            _logger.LogInformation($"Keyboard was resized to {X} {Y} {Width} {Height}");
+            _layoutService.Dictionary[message.Layout] = (x, y, width, height);
+            _logger.LogInformation($"Keyboard size was set to width: {width} , height: {height}");
+
         }
 
 
         #region X,Y Transform 
-        // Returns the window depending on the Displaysize
-        private (int x, int y, int width, int height) CalculateWindow(int x, int y, int width, int height)
-        {
-            x = CalculateCoordinate(x, width, (int)DeviceDisplay.MainDisplayInfo.Width);
-            y = CalculateCoordinate(y, height, (int)DeviceDisplay.MainDisplayInfo.Height);
-            return (x, y, width, height);
-        }
 
         // Gets the real X and Y depending on the Displaysize
         private int CalculateCoordinate(int coordinate, int size, int screenSize)
@@ -171,41 +132,52 @@ namespace VirtualKeyboard.ViewModels
         }
         #endregion
 
-        private void ResizeWindow(int x, int y, int width , int height)
+       
+
+
+
+
+
+        private void Window_SizeChanged(object? sender, EventArgs e)
         {
-            WindowSizeService.ResizeWindow(x, y, width, height);
-            (FontSize, KeySpacing) = ApplyKeyAdjustments();
+            var window = (Window)sender;
+            FontSize = GetMappedFontSize(window);
+            KeySpacing = GetMappedKeySpacing(window);
         }
+
         // Adjusts FontSize and KeySpacing Properties depending on Layout and Displaysize
-        private (double fontSize,double keySpacing) ApplyKeyAdjustments()
+        private double GetMappedFontSize(Window window)
         {
-            _logger.LogInformation("SizeChanged KeyboardViewModel");
-            var fontSize = ResolutionConfig.ResolutionToFontSize[(DeviceDisplay.Current.MainDisplayInfo.Width, DeviceDisplay.Current.MainDisplayInfo.Height)];
-            var keySpacing = ResolutionConfig.ResolutionToSpacing[(DeviceDisplay.Current.MainDisplayInfo.Width, DeviceDisplay.Current.MainDisplayInfo.Height)];
-            var fontsizeMin = Layout switch
-            {
-                Layouts.Numeric => fontSize.numericMin,
-                _ => fontSize.alphaMin
-            };
-            var fontsizeMax = Layout switch
-            {
-                Layouts.Numeric => fontSize.numericMax,
-                _ => fontSize.alphaMax
-            };
-            var keySpacingMin = Layout switch
-            {
-                Layouts.Numeric => keySpacing.numericMin,
-                _ => keySpacing.alphaMin
-            };
-            var keySpacingMax = Layout switch
-            {
-                Layouts.Numeric => keySpacing.numericMax,
-                _ => keySpacing.alphaMax
-            };
-            var mappedFontSize = ValueScaler.MapLinear(SizeRef.current, 0, SizeRef.max, fontsizeMin, fontsizeMax);
-            var mappedKeySpacing = ValueScaler.MapLinear(SizeRef.current, 0, SizeRef.max, keySpacingMin, keySpacingMax);
-            return (mappedFontSize, mappedKeySpacing);
+            _logger.LogInformation("SizeChanged: GetMappedFontSize");
+
+            var resolution = (DeviceDisplay.Current.MainDisplayInfo.Width, DeviceDisplay.Current.MainDisplayInfo.Height);
+            var fontSize = ResolutionConfig.ResolutionToFontSize[resolution];
+
+            var min = Layout == Layouts.Numeric ? fontSize.numericMin : fontSize.alphaMin;
+            var max = Layout == Layouts.Numeric ? fontSize.numericMax : fontSize.alphaMax;
+
+            var currentWidth = window!.Width;
+            var maxWidth = DeviceDisplay.Current.MainDisplayInfo.Width;
+
+            return ValueScaler.MapLinear(currentWidth, 0, maxWidth, min, max);
         }
+
+        private double GetMappedKeySpacing(Window window)
+        {
+            _logger.LogInformation("SizeChanged: GetMappedKeySpacing");
+
+            var resolution = (DeviceDisplay.Current.MainDisplayInfo.Width, DeviceDisplay.Current.MainDisplayInfo.Height);
+            var spacing = ResolutionConfig.ResolutionToSpacing[resolution];
+
+            var min = Layout == Layouts.Numeric ? spacing.numericMin : spacing.alphaMin;
+            var max = Layout == Layouts.Numeric ? spacing.numericMax : spacing.alphaMax;
+
+            var currentWidth = window.Width;
+            var maxWidth = DeviceDisplay.Current.MainDisplayInfo.Width;
+
+            return ValueScaler.MapLinear(currentWidth, 0, maxWidth, min, max);
+        }
+
 
 
     }

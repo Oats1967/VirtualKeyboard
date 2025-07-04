@@ -11,10 +11,22 @@ namespace VirtualKeyboard.Services
 {
     internal static class WindowSizeService
     {
-        
 
-        
-            public static void ResizeWindow(int x, int y, int width, int height, int cornerRadius = 16)
+
+        [DllImport("gdi32.dll")]
+        private static extern IntPtr CreateRoundRectRgn(
+            int nLeftRect,
+            int nTopRect,
+            int nRightRect,
+            int nBottomRect,
+            int nWidthEllipse,
+            int nHeightEllipse);
+
+        [DllImport("user32.dll")]
+        private static extern int SetWindowRgn(IntPtr hWnd, IntPtr hRgn, bool bRedraw);
+
+
+        public static void ResizeWindow(int x, int y, int width, int height, int cornerRadius = 16)
             {
 
 #if WINDOWS
@@ -62,17 +74,7 @@ namespace VirtualKeyboard.Services
 
        
 
-        [DllImport("gdi32.dll")]
-        private static extern IntPtr CreateRoundRectRgn(
-            int nLeftRect,
-            int nTopRect,
-            int nRightRect,
-            int nBottomRect,
-            int nWidthEllipse,
-            int nHeightEllipse);
-
-        [DllImport("user32.dll")]
-        private static extern int SetWindowRgn(IntPtr hWnd, IntPtr hRgn, bool bRedraw);
+        
 
        
 

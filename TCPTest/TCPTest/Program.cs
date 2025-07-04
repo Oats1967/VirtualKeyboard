@@ -90,30 +90,30 @@ public class Program
         var random = new Random();
         DateTime startTime = DateTime.Now;
         DateTime endTime = startTime.AddHours(24);
-        while (DateTime.Now < endTime)
-        {
-            var randomIndex = random.Next(0, Commands.Count);
-            var pair = Commands.ElementAt(randomIndex);
-            var command = pair.Key;
-            var byteStream = pair.Value;
+        //while (DateTime.Now < endTime)
+        //{
+        //    var randomIndex = random.Next(0, Commands.Count);
+        //    var pair = Commands.ElementAt(randomIndex);
+        //    var command = pair.Key;
+        //    var byteStream = pair.Value;
 
-            Console.WriteLine($"{DateTime.Now}: {command}");
-            await client.SendAsync(byteStream, SocketFlags.None);
-            Thread.Sleep(1000);
+        //    Console.WriteLine($"{DateTime.Now}: {command}");
+        //    await client.SendAsync(byteStream, SocketFlags.None);
+        //    Thread.Sleep(1000);
 
 
-        }
-        //Console.Write("1 - PRESS KEY TO CONTINUE");
-        //Console.ReadKey();
-        //await client.SendAsync(Commands["1"], SocketFlags.None);
+        //}
+        Console.Write("1 - PRESS KEY TO CONTINUE");
+        Console.ReadKey();
+        await client.SendAsync(Commands["1"], SocketFlags.None);
 
-        //Console.Write("2 - PRESS KEY TO CONTINUE");
-        //Console.ReadKey();
-        //await client.SendAsync(Commands["2"], SocketFlags.None);
+        Console.Write("2 - PRESS KEY TO CONTINUE");
+        Console.ReadKey();
+        await client.SendAsync(Commands["2"], SocketFlags.None);
 
-        //Console.Write("3 - PRESS KEY TO CONTINUE");
-        //Console.ReadKey();
-        //await client.SendAsync(Commands["3"], SocketFlags.None);
+        Console.Write("3 - PRESS KEY TO CONTINUE");
+        Console.ReadKey();
+        await client.SendAsync(Commands["3"], SocketFlags.None);
 
 
         //Console.Write("German - PRESS KEY TO CONTINUE");
