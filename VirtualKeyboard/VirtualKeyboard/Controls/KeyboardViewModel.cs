@@ -16,15 +16,21 @@ namespace VirtualKeyboard.Controls
         protected readonly IKeyboardService _keyboardService;
 
 
-        [ObservableProperty]
-        private Layouts layout;
+       
 
         [ObservableProperty]
         private double fontSize;
 
         [ObservableProperty]
         private double keySpacing;
-     
+
+       
+        [ObservableProperty]
+        private bool locked;
+
+        [ObservableProperty]
+        private bool capsLock;
+
 
 
 
@@ -47,14 +53,6 @@ namespace VirtualKeyboard.Controls
             _keyboardService.SendKey(0x0D);
 
         }
-
-
-        // Alpha
-        [ObservableProperty]
-        private bool locked;
-
-        [ObservableProperty]
-        private bool capsLock;
 
 
         [RelayCommand]
@@ -91,8 +89,6 @@ namespace VirtualKeyboard.Controls
             }
             _keyboardService.SendKey(0x08);
         }
-        
-
 
 
         public KeyboardViewModel(IKeyboardService service, ILogger<KeyboardViewModel> logger) 
@@ -100,51 +96,6 @@ namespace VirtualKeyboard.Controls
             _logger = logger;
             _keyboardService = service;
         }
-
-        protected (double current, double max) SizeRef =>
-            (Application.Current!.Windows[0].Width, DeviceDisplay.Current.MainDisplayInfo.Width);
-
-
-        // Besser in Main und dann Binding iregndwie!!!
-        [RelayCommand]
-        public void SizeChanged()
-        {
-            _logger.LogInformation("SizeChanged KeyboardViewModel");
-            var fontSize = ResolutionConfig.ResolutionToFontSize[(DeviceDisplay.Current.MainDisplayInfo.Width, DeviceDisplay.Current.MainDisplayInfo.Height)];
-            var keySpacing = ResolutionConfig.ResolutionToSpacing[(DeviceDisplay.Current.MainDisplayInfo.Width, DeviceDisplay.Current.MainDisplayInfo.Height)];
-            var fontsizeMin = Layout switch
-            {
-                Layouts.Numeric => fontSize.numericMin,
-                _ => fontSize.alphaMin
-            };
-            var fontsizeMax = Layout switch
-            {
-                Layouts.Numeric => fontSize.numericMax,
-                _ => fontSize.alphaMax
-            };
-            var keySpacingMin = Layout switch
-            {
-                Layouts.Numeric => keySpacing.numericMin,
-                _ => keySpacing.alphaMin
-            };
-            var keySpacingMax = Layout switch
-            {
-                Layouts.Numeric => keySpacing.numericMax,
-                _ => keySpacing.alphaMax
-            };
-            FontSize = ValueScaler.MapLinear(SizeRef.current, 0, SizeRef.max, fontsizeMin, fontsizeMax);
-            KeySpacing = ValueScaler.MapLinear(SizeRef.current, 0, SizeRef.max,keySpacingMin, keySpacingMax);
-        }
-
-
-
-        //
-
-
-        
-
-
-
 
 
 

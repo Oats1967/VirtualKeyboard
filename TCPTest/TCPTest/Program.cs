@@ -12,6 +12,11 @@ public class Program
     {
 
         // TKSetSize
+
+        ["TKSetSize Not used 100%"] = new ArraySegment<byte>([0x02, 7, 0x11, 0, 0x64, 0, 0, 0, 0x03]),
+        ["TKSetSize Not used 75%"] = new ArraySegment<byte>([0x02, 7, 0x11, 0, 0x4b, 0, 0, 0, 0x03]),
+        ["TKSetSize Not used 50%"] = new ArraySegment<byte>([0x02, 7, 0x11, 0, 0x32, 0, 0, 0, 0x03]),
+
         ["TKSetSize Numeric 100%"] = new ArraySegment<byte>([0x02, 7, 0x11, 1, 0x64, 0, 0, 0, 0x03]),
         ["TKSetSize Numeric 75%"] = new ArraySegment<byte>([0x02, 7, 0x11, 1, 0x4b, 0, 0, 0, 0x03]),
         ["TKSetSize Numeric 50%"] = new ArraySegment<byte>([0x02, 7, 0x11, 1, 0x32, 0, 0, 0, 0x03]),
@@ -28,11 +33,12 @@ public class Program
         ["TKSetSize Dutch 75%"] = new ArraySegment<byte>([0x02, 7, 0x11, 4, 0x4b, 0, 0, 0, 0x03]),
         ["TKSetSize Dutch 50%"] = new ArraySegment<byte>([0x02, 7, 0x11, 4, 0x32, 0, 0, 0, 0x03]),
 
-        ["TKSetSize Not used 100%"] = new ArraySegment<byte>([0x02, 7, 0x11, 5, 0x64, 0, 0, 0, 0x03]),
-        ["TKSetSize Not used 75%"] = new ArraySegment<byte>([0x02, 7, 0x11, 5, 0x4b, 0, 0, 0, 0x03]),
-        ["TKSetSize Not used 50%"] = new ArraySegment<byte>([0x02, 7, 0x11, 5, 0x32, 0, 0, 0, 0x03]),
+
 
         // TKSetShowPoint
+        ["TKSetShowPoint Not used 0 0"] = new ArraySegment<byte>([0x02, 7, 0x13, 0, 0, 0, 0, 0, 0x03]),
+        ["TKSetShowPoint Not used 400 400"] = new ArraySegment<byte>([0x02, 7, 0x13, 0, 0x90, 0x01, 0x90, 0x01, 0x03]),
+
         ["TKSetShowPoint Numeric 0 0"] = new ArraySegment<byte>([0x02, 7, 0x13, 1, 0, 0, 0, 0, 0x03]),
         ["TKSetShowPoint Numeric 400 400"] = new ArraySegment<byte>([0x02, 7, 0x13, 1, 0x90, 0x01, 0x90, 0x01, 0x03]),
 
@@ -45,15 +51,15 @@ public class Program
         ["TKSetShowPoint Dutch 0 0"] = new ArraySegment<byte>([0x02, 7, 0x13, 4, 0, 0, 0, 0, 0x03]),
         ["TKSetShowPoint Dutch 400 400"] = new ArraySegment<byte>([0x02, 7, 0x13, 4, 0x90, 0x01, 0x90, 0x01, 0x03]),
 
-        ["TKSetShowPoint Not used 0 0"] = new ArraySegment<byte>([0x02, 7, 0x13, 5, 0, 0, 0, 0, 0x03]),
-        ["TKSetShowPoint Not used 400 400"] = new ArraySegment<byte>([0x02, 7, 0x13, 5, 0x90, 0x01, 0x90, 0x01, 0x03]),
+
 
         // TKSetShow
+        ["TKSetShow Not used"] = new ArraySegment<byte>([0x02, 3, 0x14, 0, 0x03]),
         ["TKSetShow Numeric"] = new ArraySegment<byte>([0x02, 3, 0x14, 1, 0x03]),
         ["TKSetShow German"] = new ArraySegment<byte>([0x02, 3, 0x14, 2, 0x03]),
         ["TKSetShow English"] = new ArraySegment<byte>([0x02, 3, 0x14, 3, 0x03]),
         ["TKSetShow Dutch"] = new ArraySegment<byte>([0x02, 3, 0x14, 4, 0x03]),
-        ["TKSetShow Not used"] = new ArraySegment<byte>([0x02, 3, 0x14, 5, 0x03]),
+        
 
         // TKSetHide
         ["TKSetHide"] = new ArraySegment<byte>([0x02, 2, 0x15, 0x03]),
@@ -84,30 +90,30 @@ public class Program
         var random = new Random();
         DateTime startTime = DateTime.Now;
         DateTime endTime = startTime.AddHours(24);
-        //while (DateTime.Now < endTime)
-        //{
-        //    var randomIndex = random.Next(0, Commands.Count);
-        //    var pair = Commands.ElementAt(randomIndex);
-        //    var command = pair.Key;
-        //    var byteStream = pair.Value;
+        while (DateTime.Now < endTime)
+        {
+            var randomIndex = random.Next(0, Commands.Count);
+            var pair = Commands.ElementAt(randomIndex);
+            var command = pair.Key;
+            var byteStream = pair.Value;
 
-        //    Console.WriteLine($"{DateTime.Now}: {command}");
-        //    await client.SendAsync(byteStream, SocketFlags.None);
-        //    Thread.Sleep(1000);
+            Console.WriteLine($"{DateTime.Now}: {command}");
+            await client.SendAsync(byteStream, SocketFlags.None);
+            Thread.Sleep(1000);
 
 
-        //}
-        Console.Write("1 - PRESS KEY TO CONTINUE");
-        Console.ReadKey();
-        await client.SendAsync(Commands["TKSetShowPoint Numeric 400 400"], SocketFlags.None);
+        }
+        //Console.Write("1 - PRESS KEY TO CONTINUE");
+        //Console.ReadKey();
+        //await client.SendAsync(Commands["1"], SocketFlags.None);
 
-        Console.Write("2 - PRESS KEY TO CONTINUE");
-        Console.ReadKey();
-        await client.SendAsync(Commands["2"], SocketFlags.None);
+        //Console.Write("2 - PRESS KEY TO CONTINUE");
+        //Console.ReadKey();
+        //await client.SendAsync(Commands["2"], SocketFlags.None);
 
-        Console.Write("3 - PRESS KEY TO CONTINUE");
-        Console.ReadKey();
-        await client.SendAsync(Commands["3"], SocketFlags.None);
+        //Console.Write("3 - PRESS KEY TO CONTINUE");
+        //Console.ReadKey();
+        //await client.SendAsync(Commands["3"], SocketFlags.None);
 
 
         //Console.Write("German - PRESS KEY TO CONTINUE");

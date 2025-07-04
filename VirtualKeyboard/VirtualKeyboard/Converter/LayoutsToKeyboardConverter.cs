@@ -27,7 +27,7 @@ namespace VirtualKeyboard.Converter
                 Layouts.German => _services.GetService<GermanKeyboard>(),
                 Layouts.English => _services.GetService<EnglishKeyboard>(),
                 Layouts.Dutch => _services.GetService<DutchKeyboard>(),
-                _ => throw new NotSupportedException()
+                _ => throw new NotImplementedException($"{value} layout is not implemented.")
             };
         }
 

@@ -2,12 +2,12 @@
 <ContentPage
     x:Class="VirtualKeyboard.Pages.MainPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:VirtualKeyboard.Controls"
     xmlns:converter="clr-namespace:VirtualKeyboard.Converter"
-    Shell.NavBarIsVisible="False">
-    
-   
-    <ContentView
-        Content="{Binding Layout, Converter={StaticResource LayoutConverter}}">
-    </ContentView>
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="Transparent">
+
+
+    <ContentView x:Name="Template" Content="{Binding Layout, Converter={StaticResource LayoutConverter}}" />
 </ContentPage>

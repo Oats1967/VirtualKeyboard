@@ -14,11 +14,16 @@ using VirtualKeyboard.Converter;
 
 
 
+
+
 #if WINDOWS
 using Microsoft.Maui.LifecycleEvents;
 using Microsoft.UI;
 using Microsoft.UI.Windowing;
 using Windows.Graphics;
+using WinRT.Interop;
+
+
 #endif
 
 namespace VirtualKeyboard
@@ -65,11 +70,11 @@ namespace VirtualKeyboard
                         }
                         SetWindowLong(nativeWindowHandle, GWL_EXSTYLE, GetWindowLong(nativeWindowHandle, GWL_EXSTYLE) | WS_EX_NOACTIVATE);
 
-                       
-                       
 
+
+                        
                         WindowSizeService.ResizeWindow(0,0,0,0);
-
+                        
 
                        
 
@@ -159,11 +164,12 @@ namespace VirtualKeyboard
         [DllImport("user32.dll")]
         private static extern int SetWindowLong(IntPtr hwnd, int index, int newStyle);
 
-      
 
+
+       
 
 
     }
 
-   
+
 }

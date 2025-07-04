@@ -1,7 +1,10 @@
 ﻿#if WINDOWS
+using Microsoft.UI;
 using Microsoft.UI.Windowing;
+using System.Runtime.InteropServices;
 using Windows.Graphics;
-using Windows.UI.WindowManagement;
+
+using WinRT.Interop;
 #endif
 
 namespace VirtualKeyboard.Services
@@ -9,7 +12,9 @@ namespace VirtualKeyboard.Services
     internal static class WindowSizeService
     {
         
-            public static void ResizeWindow(int x, int y, int width, int height)
+
+        
+            public static void ResizeWindow(int x, int y, int width, int height, int cornerRadius = 16)
             {
 
 #if WINDOWS
@@ -29,14 +34,49 @@ namespace VirtualKeyboard.Services
             {
                 winUiWindow.SetPresenter(AppWindowPresenterKind.Overlapped);
                 presenter.IsAlwaysOnTop = true;
+               
 
             }
             winUiWindow.MoveAndResize(new RectInt32(x, y, width, height));
 
+
+            if (platformView == null)
+                return;
+
+            IntPtr region = CreateRoundRectRgn(
+              0,
+              0,
+              width + 1,
+              height + 1,
+              cornerRadius,
+              cornerRadius);
+
+            IntPtr nativeWindowHandle = WindowNative.GetWindowHandle(platformView);
+
+           
+            // Apply region to window
+            SetWindowRgn(nativeWindowHandle, region, true);
+
 #endif
         }
 
-        
+       
+
+        [DllImport("gdi32.dll")]
+        private static extern IntPtr CreateRoundRectRgn(
+            int nLeftRect,
+            int nTopRect,
+            int nRightRect,
+            int nBottomRect,
+            int nWidthEllipse,
+            int nHeightEllipse);
+
+        [DllImport("user32.dll")]
+        private static extern int SetWindowRgn(IntPtr hWnd, IntPtr hRgn, bool bRedraw);
+
+       
+
+
 
 
 

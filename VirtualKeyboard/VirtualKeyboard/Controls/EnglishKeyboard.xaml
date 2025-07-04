@@ -19,9 +19,7 @@
 
 
     </ContentView.Resources>
-    <ContentView.Behaviors>
-        <toolkit:EventToCommandBehavior Command="{Binding SizeChangedCommand}" EventName="SizeChanged" />
-    </ContentView.Behaviors>
+    
     <Frame
         Padding="0"
         BackgroundColor="{StaticResource Background}"

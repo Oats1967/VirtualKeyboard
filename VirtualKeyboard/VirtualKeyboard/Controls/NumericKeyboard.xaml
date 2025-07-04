@@ -15,9 +15,7 @@
             TrueObject="#6B6B6B" />
         <converter:CharCaseConverter x:Key="CharCaseConverter" />
     </ContentView.Resources>
-    <ContentView.Behaviors>
-        <toolkit:EventToCommandBehavior Command="{Binding SizeChangedCommand}" EventName="SizeChanged" />
-    </ContentView.Behaviors>
+   
 
 
     <Frame
