@@ -10,7 +10,7 @@ using WinRT.Interop;
 
 namespace VirtualKeyboard.Services
 {
-    internal static class WindowSizeService
+    internal static class WindowService
     {
         
 
@@ -88,7 +88,7 @@ namespace VirtualKeyboard.Services
             IntPtr nativeWindowHandle = WindowNative.GetWindowHandle(platformView);
             var winUiWindow = platformView!.AppWindow;
             
-            // This is to remove white borders bug !!!
+            // This is used to round windowcorners and remove white borders bug !!!
 
             IntPtr region = CreateRoundRectRgn(
               0 + 3,

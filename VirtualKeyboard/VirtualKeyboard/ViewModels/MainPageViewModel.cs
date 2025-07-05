@@ -62,7 +62,7 @@ namespace VirtualKeyboard.ViewModels
 
             x = CalculateCoordinate(x, width, (int)DeviceDisplay.MainDisplayInfo.Width);
             y = CalculateCoordinate(y, height, (int)DeviceDisplay.MainDisplayInfo.Height);
-            WindowSizeService.ResizeWindow(x, y, width, height);
+            WindowService.ResizeWindow(x, y, width, height);
 
             _logger.LogInformation($"Window was opened: x: {x} , y: {y} , w: {width}, h: {height}");
         }
@@ -70,7 +70,7 @@ namespace VirtualKeyboard.ViewModels
         public void Receive(TKSetHide message)
         {
             _logger.LogInformation($"TKSetHide received");
-            WindowSizeService.ResizeWindow(0,0,0,0);
+            WindowService.ResizeWindow(0,0,0,0);
             _logger.LogInformation($"Window was closed: x: {0} , y: {0} , w: {0}, h: {0}");
         }
 
@@ -97,7 +97,7 @@ namespace VirtualKeyboard.ViewModels
 
             x = CalculateCoordinate(x, width, (int)DeviceDisplay.MainDisplayInfo.Width);
             y = CalculateCoordinate(y, height, (int)DeviceDisplay.MainDisplayInfo.Height);
-            WindowSizeService.ResizeWindow(x, y, width, height);
+            WindowService.ResizeWindow(x, y, width, height);
             _logger.LogInformation($"Window was opened: x: {x} , y: {y} , w: {width}, h: {height}");
 
 

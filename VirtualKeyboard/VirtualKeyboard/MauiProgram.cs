@@ -49,7 +49,7 @@ namespace VirtualKeyboard
 
 #if WINDOWS
 
-            WindowSizeService.Setup(builder);
+            WindowService.Setup(builder);
             
 
 #endif
