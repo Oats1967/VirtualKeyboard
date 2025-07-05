@@ -87,19 +87,25 @@ namespace VirtualKeyboard.Services
             var platformView = window!.Handler?.PlatformView as MauiWinUIWindow;
             IntPtr nativeWindowHandle = WindowNative.GetWindowHandle(platformView);
             var winUiWindow = platformView!.AppWindow;
-            
-            // This is used to round windowcorners and remove white borders bug !!!
 
+            // This is used to round windowcorners and remove white borders bug !!!
+            var a = 0; var b = 0; var c = 0; var d = 0;
+            if (width > 0 && height > 0) 
+            {
+                 a = 3;  b = 3;  c = -2;  d = -2;
+            }
+           
             IntPtr region = CreateRoundRectRgn(
-              0 + 3,
-              0 +3,
-              width - 2,
-              height -2,
-              cornerRadius,
-              cornerRadius);
+                0 + a,
+                0 + b,
+                width + c,
+                height + d,
+                cornerRadius,
+                cornerRadius);
 
             // Apply region to window
              SetWindowRgn(nativeWindowHandle, region, true);
+                
             winUiWindow.MoveAndResize(new RectInt32(x, y, width, height));
           
 
