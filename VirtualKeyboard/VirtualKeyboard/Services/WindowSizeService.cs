@@ -1,4 +1,5 @@
 ﻿#if WINDOWS
+using Microsoft.Maui.LifecycleEvents;
 using Microsoft.UI;
 using Microsoft.UI.Windowing;
 using System.Runtime.InteropServices;
@@ -11,6 +12,9 @@ namespace VirtualKeyboard.Services
 {
     internal static class WindowSizeService
     {
+        
+
+
 
 
         [DllImport("gdi32.dll")]
@@ -26,63 +30,87 @@ namespace VirtualKeyboard.Services
         private static extern int SetWindowRgn(IntPtr hWnd, IntPtr hRgn, bool bRedraw);
 
 
+        //Invoke declarations for setting window styles
+        private const int GWL_EXSTYLE = -20;
+        private const int WS_EX_NOACTIVATE = 0x08000000;
+
+
+        [DllImport("user32.dll")]
+        private static extern int GetWindowLong(IntPtr hwnd, int index);
+
+        [DllImport("user32.dll")]
+        private static extern int SetWindowLong(IntPtr hwnd, int index, int newStyle);
+
+        public static void Setup(MauiAppBuilder builder)
+        {
+            builder.ConfigureLifecycleEvents(events =>
+            {
+                events.AddWindows(wndLifeCycleBuilder =>
+                {
+                    wndLifeCycleBuilder.OnWindowCreated(window =>
+                    {
+                        
+                       
+                        IntPtr nativeWindowHandle = WinRT.Interop.WindowNative.GetWindowHandle(window);
+                        WindowId win32WindowsId = Win32Interop.GetWindowIdFromWindow(nativeWindowHandle);
+                        AppWindow winuiAppWindow = AppWindow.GetFromWindowId(win32WindowsId);
+                        
+                        winuiAppWindow.SetPresenter(AppWindowPresenterKind.Overlapped);
+                        
+                        if (winuiAppWindow.Presenter is OverlappedPresenter p)
+                        {
+                            p.IsMinimizable = false;
+                            p.IsMaximizable = false;
+                            p.IsResizable = false;
+                            p.IsAlwaysOnTop = true;               
+                            p.SetBorderAndTitleBar(false, false); 
+                        }
+                        SetWindowLong(nativeWindowHandle, GWL_EXSTYLE, GetWindowLong(nativeWindowHandle, GWL_EXSTYLE) | WS_EX_NOACTIVATE);
+                        ResizeWindow(0, 0, 0, 0);
+                    });
+                    
+                });
+            });
+           
+        }
+
+
         public static void ResizeWindow(int x, int y, int width, int height, int cornerRadius = 16)
             {
 
 #if WINDOWS
             var window = Application.Current?.Windows.First(uiWindow =>
-                
             {
-                    if (uiWindow.Handler?.PlatformView is MauiWinUIWindow winUIWindow)
-                    {
+                return uiWindow.Handler?.PlatformView is MauiWinUIWindow;   
+            });
 
-                        return true;
-                    }
-                    return false;
-                });
             var platformView = window!.Handler?.PlatformView as MauiWinUIWindow;
+            IntPtr nativeWindowHandle = WindowNative.GetWindowHandle(platformView);
             var winUiWindow = platformView!.AppWindow;
-            if (winUiWindow.Presenter is OverlappedPresenter p)
-            {
-                winUiWindow.SetPresenter(AppWindowPresenterKind.Overlapped);
-               
-                p.IsMinimizable = false;
-                p.IsMaximizable = false;
-                p.IsResizable = false;
-                p.IsAlwaysOnTop = true;
-                 p.SetBorderAndTitleBar(false, false);
-                var a = p.HasBorder;
-
-               // p.SetBorderAndTitleBar(false, false);
-
-
-            }
-            winUiWindow.MoveAndResize(new RectInt32(x, y, width, height));
-
+            
             IntPtr region = CreateRoundRectRgn(
-              0,
-              0,
-              width+1,
-              height+1,
+              0 + 3,
+              0 +3,
+              width - 2,
+              height -2,
               cornerRadius,
               cornerRadius);
 
-            IntPtr nativeWindowHandle = WindowNative.GetWindowHandle(platformView);
-
-           
             // Apply region to window
-            SetWindowRgn(nativeWindowHandle, region, true);
+             SetWindowRgn(nativeWindowHandle, region, true);
+            winUiWindow.MoveAndResize(new RectInt32(x, y, width, height));
+          
 
 #else
             throw new NotImplementedException();
 #endif
         }
 
-       
+
 
         
 
-       
+
 
 
 

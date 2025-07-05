@@ -37,7 +37,7 @@ namespace VirtualKeyboard.ViewModels
             var window = Application.Current!.Windows[0];
             window.SizeChanged += Window_SizeChanged;
 
-            WindowSizeService.ResizeWindow(0,0,0,0);
+            //WindowSizeService.ResizeWindow(0,0,0,0);
             WeakReferenceMessenger.Default.RegisterAll(this);
         }
 

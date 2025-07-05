@@ -6,9 +6,16 @@
     xmlns:local="clr-namespace:VirtualKeyboard"
     
     >
+
+    
     <Application.Resources>
         <x:Double x:Key="AlphaRatio">0.35</x:Double>
         <x:Double x:Key="NumericRatio">1.2</x:Double>
+
+        <Style TargetType="ContentPage">
+            <Setter Property="Padding" Value="0" />
+             
+        </Style>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />

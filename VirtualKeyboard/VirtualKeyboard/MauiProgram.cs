@@ -48,42 +48,9 @@ namespace VirtualKeyboard
                 .RegisterContentViews();
 
 #if WINDOWS
-            builder.ConfigureLifecycleEvents(events =>
-            {
-                events.AddWindows(wndLifeCycleBuilder =>
-                {
-                    wndLifeCycleBuilder.OnWindowCreated(window =>
-                    {
-                        window.ExtendsContentIntoTitleBar = false; /*This is important to prevent your app content extends into the title bar area.*/
-                        IntPtr nativeWindowHandle = WinRT.Interop.WindowNative.GetWindowHandle(window);
-                        WindowId win32WindowsId = Win32Interop.GetWindowIdFromWindow(nativeWindowHandle);
-                        AppWindow winuiAppWindow = AppWindow.GetFromWindowId(win32WindowsId);
-                        winuiAppWindow.SetPresenter(AppWindowPresenterKind.Overlapped);
-                        if (winuiAppWindow.Presenter is OverlappedPresenter p)
-                        {
-                            p.IsMinimizable = false;
-                            p.IsMaximizable = false;
-                            p.IsResizable = false;
-                            p.IsAlwaysOnTop = true;
-                            p.SetBorderAndTitleBar(false, false);   
-                          
-                        }
-                        SetWindowLong(nativeWindowHandle, GWL_EXSTYLE, GetWindowLong(nativeWindowHandle, GWL_EXSTYLE) | WS_EX_NOACTIVATE);
 
-
-
-                        
-                        WindowSizeService.ResizeWindow(0,0,0,0);
-                        
-
-                       
-
-
-                    });
-                   
-
-                });
-            });
+            WindowSizeService.Setup(builder);
+            
 
 #endif
 
@@ -154,16 +121,7 @@ namespace VirtualKeyboard
             return builder;
         }
 
-        //Invoke declarations for setting window styles
-        private const int GWL_EXSTYLE = -20;
-        private const int WS_EX_NOACTIVATE = 0x08000000;
-        
-
-        [DllImport("user32.dll")]
-        private static extern int GetWindowLong(IntPtr hwnd, int index);
-
-        [DllImport("user32.dll")]
-        private static extern int SetWindowLong(IntPtr hwnd, int index, int newStyle);
+      
 
 
 
