@@ -42,11 +42,19 @@ namespace VirtualKeyboard.Services
                 });
             var platformView = window!.Handler?.PlatformView as MauiWinUIWindow;
             var winUiWindow = platformView!.AppWindow;
-            if (winUiWindow.Presenter is OverlappedPresenter presenter)
+            if (winUiWindow.Presenter is OverlappedPresenter p)
             {
                 winUiWindow.SetPresenter(AppWindowPresenterKind.Overlapped);
-                presenter.IsAlwaysOnTop = true;
                
+                p.IsMinimizable = false;
+                p.IsMaximizable = false;
+                p.IsResizable = false;
+                p.IsAlwaysOnTop = true;
+                 p.SetBorderAndTitleBar(false, false);
+                var a = p.HasBorder;
+
+               // p.SetBorderAndTitleBar(false, false);
+
 
             }
             winUiWindow.MoveAndResize(new RectInt32(x, y, width, height));
@@ -54,8 +62,8 @@ namespace VirtualKeyboard.Services
             IntPtr region = CreateRoundRectRgn(
               0,
               0,
-              width + 1,
-              height + 1,
+              width+1,
+              height+1,
               cornerRadius,
               cornerRadius);
 

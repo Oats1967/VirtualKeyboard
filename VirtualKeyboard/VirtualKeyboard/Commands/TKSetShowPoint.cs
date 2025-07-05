@@ -8,11 +8,14 @@ namespace VirtualKeyboard.Commands
 {
     public class TKSetShowPoint
     {
-        public TKSetShowPoint(Layouts layout, int x, int y)
+        public TKSetShowPoint(int layout, int x, int y)
         {
-            Layout = layout;
-            X =  Math.Max(0, Math.Min(x, (int)DeviceDisplay.MainDisplayInfo.Width));
-            Y = Math.Max(0, Math.Min(y, (int)DeviceDisplay.MainDisplayInfo.Height));
+            Layout = Enum.IsDefined(typeof(Layouts), layout)
+             ? (Layouts)layout
+             : Layouts.NotUsed;
+            X = Math.Clamp(x, 0, (int)DeviceDisplay.Current.MainDisplayInfo.Width);
+            Y = Math.Clamp(y, 0, (int)DeviceDisplay.Current.MainDisplayInfo.Height);
+
         }
         public int X { get; private set; }
         public int Y { get; private set; }

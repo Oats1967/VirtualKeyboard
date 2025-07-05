@@ -8,9 +8,11 @@ namespace VirtualKeyboard.Commands
 {
     public class TKSetShow
     {
-        public TKSetShow(Layouts layout)
+        public TKSetShow(int layout)
         {
-            Layout = layout;
+            Layout = Enum.IsDefined(typeof(Layouts), layout)
+            ? (Layouts)layout
+            : Layouts.NotUsed;
         }
         public Layouts Layout { get; private set; }
     }

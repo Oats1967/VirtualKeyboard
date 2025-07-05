@@ -6,6 +6,8 @@
     xmlns:controls="clr-namespace:VirtualKeyboard.Controls"
     xmlns:converter="clr-namespace:VirtualKeyboard.Converter"
     Shell.NavBarIsVisible="False"
+    
+   
    >
 
 

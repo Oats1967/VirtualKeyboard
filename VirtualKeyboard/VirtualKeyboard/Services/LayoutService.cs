@@ -12,40 +12,19 @@ namespace VirtualKeyboard.Services
 
         public LayoutService()
         {
-            var displayInfo = DeviceDisplay.Current.MainDisplayInfo;
-
-            int screenWidth = (int)displayInfo.Width;
-            int screenHeight = (int)displayInfo.Height;
-            var resolution = (screenWidth, screenHeight);
-
+          
             Dictionary = new Dictionary<Layouts, (int x, int y, int width, int height)>
             {
-                [Layouts.Numeric] = GetLayoutData(Layouts.Numeric, screenWidth, screenHeight, resolution),
-                [Layouts.German] = GetLayoutData(Layouts.German, screenWidth, screenHeight, resolution),
-                [Layouts.English] = GetLayoutData(Layouts.English, screenWidth, screenHeight, resolution),
-                [Layouts.Dutch] = GetLayoutData(Layouts.Dutch, screenWidth, screenHeight, resolution),
-                [Layouts.French] = GetLayoutData(Layouts.French, screenWidth, screenHeight, resolution),
-                [Layouts.Polish] = GetLayoutData(Layouts.Polish, screenWidth, screenHeight, resolution),
+                [Layouts.Numeric] = (0,0,0,0),
+                [Layouts.German] = (0, 0, 0, 0),
+                [Layouts.English] = (0, 0, 0, 0),
+                [Layouts.Dutch] = (0, 0, 0, 0),
+                [Layouts.French] = (0, 0, 0, 0),
+                [Layouts.Polish] = (0, 0, 0, 0),
             };
         }
 
-        private (int x, int y, int width, int height) GetLayoutData(Layouts layout, int screenWidth, int screenHeight, (int, int) resolution)
-        {
-            int width = layout == Layouts.Numeric
-                ? screenHeight / 2
-                : screenWidth / 2;
-
-            double ratio = layout == Layouts.Numeric
-                ? ResolutionConfig.ResolutionToKeyboardRatio[resolution].numericRatio
-                : ResolutionConfig.ResolutionToKeyboardRatio[resolution].alphaRatio;
-
-            int height = (int)(width * ratio);
-
-            int x = (screenWidth - width) / 2;
-            int y = (screenHeight - height) / 2;
-
-            return (x, y, width, height);
-        }
+       
     }
 
 

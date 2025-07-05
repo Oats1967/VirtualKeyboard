@@ -54,27 +54,7 @@ namespace VirtualKeyboard
         });
 
 
-        public static readonly ReadOnlyDictionary<(double xRes, double yRes), (double alphaRatio, double numericRatio)> ResolutionToKeyboardRatio = new(new Dictionary<(double xRes, double yRes), (double alphaRatio, double numericRatio)>()
-        {
-            { (1920,1080), (0.35,1.2) },
-            //{(1680,1050),(5, 60, 5, 60) },
-            //{(1440,900),(5, 60, 5, 60) },
-            //{(1400,1050),(5, 60, 5, 60) },
-            //{(1366,768),(5, 60, 5, 60) },
-            //{(1369,768),(5, 60, 5, 60) },
-            //{(1280,1024),(5, 60, 5, 60) },
-            //{(1280,960),(5, 60, 5, 60) },
-            // {(1280,800),(5, 60, 5, 60) },
-            //{(1280,768),(5, 60, 5, 60) },
-            //{(1280,720),(5, 60, 5, 60) },
-            //{(1280,600),(5, 60, 5, 60)},
-            // {(1152,864),(5, 60, 5, 60) },
-
-            {(1024,768),(0.35,1.2) },
-
-            {(800,600),(0.35,1.2) },
-
-        });
+       
 
     }
 }

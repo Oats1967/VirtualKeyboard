@@ -44,6 +44,7 @@ namespace VirtualKeyboard.ViewModels
         
 
         public void Receive(TKSetShow message)
+        
         {
             _logger.LogInformation($"TKSetShow received");
             if (!_layoutService.Dictionary.ContainsKey(message.Layout))
@@ -93,6 +94,7 @@ namespace VirtualKeyboard.ViewModels
             _layoutService.Dictionary[message.Layout] = (x,y,width,height);
             _logger.LogInformation($"{message.Layout} coordinates were set to x: {x} , y: {y} ");
 
+
             x = CalculateCoordinate(x, width, (int)DeviceDisplay.MainDisplayInfo.Width);
             y = CalculateCoordinate(y, height, (int)DeviceDisplay.MainDisplayInfo.Height);
             WindowSizeService.ResizeWindow(x, y, width, height);
@@ -111,10 +113,12 @@ namespace VirtualKeyboard.ViewModels
                 return;
             }
 
+            var size = CalculateSize(message.Layout, message.Percentage);
+
             var x = _layoutService.Dictionary[message.Layout].x;
             var y = _layoutService.Dictionary[message.Layout].y;
-            var width = message.Width;
-            var height = message.Height;
+            var width = size.width;
+            var height = size.height;
 
             _layoutService.Dictionary[message.Layout] = (x, y, width, height);
             _logger.LogInformation($"Keyboard size was set to width: {width} , height: {height}");
@@ -122,7 +126,7 @@ namespace VirtualKeyboard.ViewModels
         }
 
 
-        #region X,Y Transform 
+        #region Transform funcs
 
         // Gets the real X and Y depending on the Displaysize
         private int CalculateCoordinate(int coordinate, int size, int screenSize)
@@ -134,6 +138,33 @@ namespace VirtualKeyboard.ViewModels
                 return Math.Max(0, coordinate - (endCoordinate - screenSize));
             }
             return coordinate;
+        }
+
+
+        public (int width, int height) CalculateSize(Layouts layout, int percentage)
+        {
+            var displayInfo = DeviceDisplay.Current.MainDisplayInfo;
+            var screenWidth = displayInfo.Width;
+            var screenHeight = displayInfo.Height;
+
+            var alphaRatio = (double)Application.Current!.Resources["AlphaRatio"];
+            var numericRatio = (double)Application.Current!.Resources["NumericRatio"];
+
+            double ratio = layout == Layouts.Numeric ? numericRatio : alphaRatio;
+           
+
+            if (layout == Layouts.Numeric)
+            {
+                var height = (int)(screenHeight * percentage/100);
+                var width = (int)(height / ratio);
+                return (width, height);
+            }
+            else
+            {
+                var width = (int)(screenWidth * percentage/100);
+                var height = (int)(width * ratio);
+                return (width, height);
+            }
         }
         #endregion
 
