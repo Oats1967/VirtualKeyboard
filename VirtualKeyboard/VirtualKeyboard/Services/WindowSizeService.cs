@@ -88,6 +88,8 @@ namespace VirtualKeyboard.Services
             IntPtr nativeWindowHandle = WindowNative.GetWindowHandle(platformView);
             var winUiWindow = platformView!.AppWindow;
             
+            // This is to remove white borders bug !!!
+
             IntPtr region = CreateRoundRectRgn(
               0 + 3,
               0 +3,

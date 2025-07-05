@@ -20,17 +20,14 @@
 
     </ContentView.Resources>
     
-    <Frame
-        Padding="0"
-        BackgroundColor="{StaticResource Background}"
-        CornerRadius="0">
+    
         <Grid
             Padding="{Binding KeySpacing}"
             ColumnDefinitions="*,*,*,*,*,*,*,*,*,*,*,*,*,*"
             ColumnSpacing="{Binding KeySpacing}"
             RowDefinitions="*,*,*,*,*"
-            RowSpacing="{Binding KeySpacing}">
-
+            RowSpacing="{Binding KeySpacing}"
+            BackgroundColor="{StaticResource Background}">
             <!--  Row 0  -->
             <controls:Key
                 Grid.Row="0"
@@ -472,6 +469,5 @@
                 FontSize="{Binding FontSize}"
                 Text="{StaticResource ArrowRightIcon}" />
         </Grid>
-    </Frame>
-
+   
 </ContentView>
