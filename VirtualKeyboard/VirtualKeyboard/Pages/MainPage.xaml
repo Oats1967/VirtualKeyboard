@@ -6,11 +6,7 @@
     xmlns:controls="clr-namespace:VirtualKeyboard.Controls"
     xmlns:converter="clr-namespace:VirtualKeyboard.Converter"
     Shell.NavBarIsVisible="False"
-    Padding="0"
-    
-   
+    Padding="0"   
    >
-
-
     <ContentView x:Name="Template" Content="{Binding Layout, Converter={StaticResource LayoutConverter}}" />
 </ContentPage>

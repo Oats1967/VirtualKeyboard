@@ -12,7 +12,7 @@ namespace VirtualKeyboard.Services
 
         public LayoutService()
         {
-          
+            // Add new Layouts here
             Dictionary = new Dictionary<Layouts, (int x, int y, int width, int height)>
             {
                 [Layouts.Numeric] = (0,0,0,0),

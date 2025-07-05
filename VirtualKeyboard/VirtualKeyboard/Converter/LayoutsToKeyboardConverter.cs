@@ -23,6 +23,7 @@ namespace VirtualKeyboard.Converter
         {
             return value switch
             {
+                // Add new Layout here
                 Layouts.Numeric => _services.GetService<NumericKeyboard>(),
                 Layouts.German => _services.GetService<GermanKeyboard>(),
                 Layouts.English => _services.GetService<EnglishKeyboard>(),

@@ -48,10 +48,7 @@ namespace VirtualKeyboard
                 .RegisterContentViews();
 
 #if WINDOWS
-
             WindowService.Setup(builder);
-            
-
 #endif
 
             builder.Logging
@@ -73,9 +70,6 @@ namespace VirtualKeyboard
 #endif
 
 #if RELEASE
-
-
-                       
                         .AddConsoleLogger(
                             options =>
                             {
@@ -98,6 +92,7 @@ namespace VirtualKeyboard
         }
         private static MauiAppBuilder RegisterContentViews(this MauiAppBuilder builder)
         {
+            // Add new Contentviews here
             builder.Services.AddSingleton<NumericKeyboard>();
             builder.Services.AddSingleton<GermanKeyboard>();
             builder.Services.AddSingleton<EnglishKeyboard>();
@@ -107,7 +102,7 @@ namespace VirtualKeyboard
         private static MauiAppBuilder RegisterViewModels(this MauiAppBuilder builder)
         {
             builder.Services.AddSingleton<MainPageViewModel>();
-            builder.Services.AddSingleton<KeyboardViewModel>();
+            builder.Services.AddSingleton<KeyboardViewModel>(); // only one for all keyboards
             return builder;
         }
 
