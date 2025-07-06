@@ -66,7 +66,7 @@ namespace VirtualKeyboard.Services
                             p.SetBorderAndTitleBar(false, false); 
                         }
                         SetWindowLong(nativeWindowHandle, GWL_EXSTYLE, GetWindowLong(nativeWindowHandle, GWL_EXSTYLE) | WS_EX_NOACTIVATE);
-                        ResizeWindow(0, 0, 800, 400);
+                        ResizeWindow(0, 0, 0, 0);
                     });
                     
                 });
@@ -92,7 +92,7 @@ namespace VirtualKeyboard.Services
             var a = 0; var b = 0; var c = 0; var d = 0;
             if (width > 0 && height > 0) 
             {
-                 a = 3;  b = 3;  c = -2;  d = -2;
+                 a = 4;  b = 4;  c = -3;  d = -3;
             }
            
             IntPtr region = CreateRoundRectRgn(

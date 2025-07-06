@@ -237,7 +237,7 @@
                 BackgroundColor="{StaticResource NormalKey}"
                 Command="{Binding EnterPressedCommand}"
                 FontSize="{Binding FontSize}"
-                Opacity="0.75"
+               
                 Text="{StaticResource EnterIcon}" />
 
             <!--  Row 2  -->
@@ -449,7 +449,7 @@
                 Grid.Column="0"
                 Grid.ColumnSpan="4"
                 Aspect="Fill"
-                Source="firmenlogo_grey.jpg" />
+                Source="smadotec_logo.png" />
             <controls:Key
                 Grid.Row="4"
                 Grid.Column="4"

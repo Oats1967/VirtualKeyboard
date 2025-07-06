@@ -90,25 +90,26 @@ public class Program
         var random = new Random();
         DateTime startTime = DateTime.Now;
         DateTime endTime = startTime.AddHours(24);
-        while (DateTime.Now < endTime)
-        {
-            var randomIndex = random.Next(0, Commands.Count);
-            var pair = Commands.ElementAt(randomIndex);
-            var command = pair.Key;
-            var byteStream = pair.Value;
+        //while (DateTime.Now < endTime)
+        //{
+        //    var randomIndex = random.Next(0, Commands.Count);
+        //    var pair = Commands.ElementAt(randomIndex);
+        //    var command = pair.Key;
+        //    var byteStream = pair.Value;
 
-            Console.WriteLine($"{DateTime.Now}: {command}");
-            await client.SendAsync(byteStream, SocketFlags.None);
-            Thread.Sleep(2000);
-
-
-        }
+        //    Console.WriteLine($"{DateTime.Now}: {command}");
+        //    await client.SendAsync(byteStream, SocketFlags.None);
+        //    Thread.Sleep(2000);
 
 
+        //}
 
-        //Console.Write("1 - PRESS KEY TO CONTINUE");
-        //Console.ReadKey();
-        //await client.SendAsync(Commands["TKSetShowPoint Numeric 400 400"], SocketFlags.None);
+
+        await client.SendAsync(Commands["TKSetSize German 50%"], SocketFlags.None);
+
+        Console.Write("1 - PRESS KEY TO CONTINUE");
+        Console.ReadKey();
+        await client.SendAsync(Commands["TKSetShowPoint German 0 0"], SocketFlags.None);
 
         //Console.Write("2 - PRESS KEY TO CONTINUE");
         //Console.ReadKey();
