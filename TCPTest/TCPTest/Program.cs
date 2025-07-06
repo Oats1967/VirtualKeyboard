@@ -105,11 +105,11 @@ public class Program
         //}
 
 
-        await client.SendAsync(Commands["TKSetSize German 50%"], SocketFlags.None);
+        await client.SendAsync(Commands["TKSetSize Numeric 100%"], SocketFlags.None);
 
         Console.Write("1 - PRESS KEY TO CONTINUE");
         Console.ReadKey();
-        await client.SendAsync(Commands["TKSetShowPoint German 0 0"], SocketFlags.None);
+        await client.SendAsync(Commands["TKSetShowPoint Numeric 0 0"], SocketFlags.None);
 
         //Console.Write("2 - PRESS KEY TO CONTINUE");
         //Console.ReadKey();

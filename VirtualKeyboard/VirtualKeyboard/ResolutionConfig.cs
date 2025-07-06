@@ -11,7 +11,7 @@ namespace VirtualKeyboard
     {
         public static readonly ReadOnlyDictionary<(double xRes, double yRes), (double alphaMin, double alphaMax, double numericMin, double numericMax)> ResolutionToSpacing = new(new Dictionary<(double xRes, double yRes), (double alphaMin, double alphaMax, double numericMin, double numericMax)>()
         {
-            { (1920,1080), (0,15,0,30)},
+            { (1920,1080), (0,15,0,40)},
             //{(1680,1050),(0,15,0,15) },
             //{(1440,900),(0, 15, 0, 15) },
             //{(1400,1050),(0, 15, 0, 15) },
@@ -33,7 +33,7 @@ namespace VirtualKeyboard
 
         public static readonly ReadOnlyDictionary<(double xRes, double yRes), (double alphaMin, double alphaMax, double numericMin, double numericMax)> ResolutionToFontSize = new(new Dictionary<(double xRes, double yRes), (double alphaMin, double alphaMax, double numericMin, double numericMax)>()
         {
-            { (1920,1080), (0, 60, 0, 120) },
+            { (1920,1080), (0, 60, 0, 180) },
             //{(1680,1050),(5, 60, 5, 60) },
             //{(1440,900),(5, 60, 5, 60) },
             //{(1400,1050),(5, 60, 5, 60) },
@@ -47,9 +47,9 @@ namespace VirtualKeyboard
             //{(1280,600),(5, 60, 5, 60)},
             // {(1152,864),(5, 60, 5, 60) },
 
-            {(1024,768),(0, 40, 0, 100) },
+            {(1024,768),(0, 25, 0, 100) },
 
-            {(800,600),(0, 30, 0, 60) },
+            {(800,600),(0, 20, 0, 90) },
 
         });
 
