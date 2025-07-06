@@ -13,9 +13,15 @@
         <!--<converter:DoubleScaler x:Key="FontSizeScaler" Factor="2.0" />-->
 
         <toolkit:BoolToObjectConverter
-            x:Key="CapsLockColorConverter"
-            FalseObject="#F5F5F5"
-            TrueObject="#6B6B6B" />
+        x:Key="CapsLockKeyColorConverter"
+        FalseObject="{StaticResource NormalKey}"
+        TrueObject="{StaticResource CapsLockKey}" />
+
+
+        <toolkit:BoolToObjectConverter
+        x:Key="CapsLockKeyBorderColorConverter"
+        FalseObject="{StaticResource KeyBorder}"
+        TrueObject="{StaticResource CapsLockKeyBorder}" />
         <converter:CharCaseConverter x:Key="CharCaseConverter" />
 
     </ContentView.Resources>
@@ -230,7 +236,7 @@
                 Grid.RowSpan="3"
                 Grid.Column="12"
                 Grid.ColumnSpan="2"
-                BackgroundColor="{StaticResource SmaDoTecGreen}"
+                BackgroundColor="{StaticResource NormalKey}"
                 Command="{Binding EnterPressedCommand}"
                 FontSize="{Binding FontSize}"
                 Opacity="0.75"
@@ -340,7 +346,8 @@
                 Grid.Row="3"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
-                BackgroundColor="{Binding CapsLock, Converter={StaticResource CapsLockColorConverter}}"
+                BackgroundColor="{Binding CapsLock, Converter={StaticResource CapsLockKeyColorConverter}}"
+                BorderColor="{Binding CapsLock, Converter={StaticResource CapsLockKeyBorderColorConverter}}"
                 FontSize="{Binding FontSize}"
                 Text="{StaticResource ArrowUpIcon}">
                 <Button.GestureRecognizers>

@@ -57,6 +57,7 @@
                 Grid.Row="0"
                 Grid.Column="3"
                 BackgroundColor="{StaticResource SmaDoTecRed}"
+                 BorderColor="{StaticResource SmaDoTecRed}"
                 Command="{Binding BackspacePressedCommand}"
                 FontSize="{Binding FontSize}"
                 Text="{StaticResource BackspaceIcon}" />
@@ -90,7 +91,8 @@
                 Grid.Row="1"
                 Grid.RowSpan="2"
                 Grid.Column="3"
-                BackgroundColor="{StaticResource SmaDoTecGreen}"
+               
+                BackgroundColor="{StaticResource NormalKey}"
                 Command="{Binding EnterPressedCommand}"
                 FontSize="{Binding FontSize}"
                 Text="{StaticResource EnterIcon}" />

@@ -12,13 +12,17 @@
         <!--<converter:DoubleScaler x:Key="FontSizeScaler" Factor="2.0" />-->
 
         <toolkit:BoolToObjectConverter
-            x:Key="CapsLockColorConverter"
-            FalseObject="#F5F5F5"
-            TrueObject="#6B6B6B" />
+            x:Key="CapsLockKeyColorConverter"
+            FalseObject="{StaticResource NormalKey}"
+            TrueObject="{StaticResource CapsLockKey}" />
+       
 
+        <toolkit:BoolToObjectConverter
+        x:Key="CapsLockKeyBorderColorConverter"
+        FalseObject="{StaticResource KeyBorder}"
+        TrueObject="{StaticResource CapsLockKeyBorder}" />
 
         <converter:CharCaseConverter x:Key="CharCaseConverter" />
-
 
     </ContentView.Resources>
    
@@ -127,6 +131,7 @@
             Grid.Row="0"
             Grid.Column="11"
             Grid.ColumnSpan="3"
+            BorderColor="{StaticResource SmaDoTecRed_2}"
             BackgroundColor="{StaticResource SmaDoTecRed}"
             Command="{Binding BackspacePressedCommand}"
             FontSize="{Binding FontSize}"
@@ -234,11 +239,10 @@
             Grid.RowSpan="3"
             Grid.Column="12"
             Grid.ColumnSpan="2"
-            BackgroundColor="{StaticResource SmaDoTecGreen}"
+            BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding EnterPressedCommand}"
             FontSize="{Binding FontSize}"
-            Opacity="0.75"
-            Text="{StaticResource EnterIcon}" />
+                     Text="{StaticResource EnterIcon}" />
 
             <!--  Row 2  -->
             <controls:Key
@@ -344,7 +348,8 @@
             Grid.Row="3"
             Grid.Column="0"
             Grid.ColumnSpan="2"
-            BackgroundColor="{Binding CapsLock, Converter={StaticResource CapsLockColorConverter}}"
+            BackgroundColor="{Binding CapsLock, Converter={StaticResource CapsLockKeyColorConverter}}"
+            BorderColor="{Binding CapsLock, Converter={StaticResource CapsLockKeyBorderColorConverter}}"
             FontSize="{Binding FontSize}"
             Text="{StaticResource ArrowUpIcon}">
                 <Button.GestureRecognizers>
@@ -448,7 +453,7 @@
             Grid.Column="0"
             Grid.ColumnSpan="4"
             Aspect="Fill"
-            Source="firmenlogo_grey.jpg" />
+            Source="smadotec_logo.png" />
             <controls:Key
             Grid.Row="4"
             Grid.Column="4"

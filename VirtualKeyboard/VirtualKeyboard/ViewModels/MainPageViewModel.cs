@@ -33,7 +33,7 @@ namespace VirtualKeyboard.ViewModels
             _layoutService = layoutService;
 
             // Default initialization
-            Layout = Layouts.Numeric;
+            Layout = Layouts.German;
             var window = Application.Current!.Windows[0];
             window.SizeChanged += Window_SizeChanged;
             WeakReferenceMessenger.Default.RegisterAll(this);

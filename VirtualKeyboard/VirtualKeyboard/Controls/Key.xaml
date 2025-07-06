@@ -7,9 +7,12 @@
     FontAttributes="Bold"
     FontFamily="SairaRegular"
     TextColor="{StaticResource NormalKeyText}"
+    BorderWidth="1.5"
+    BorderColor="{StaticResource KeyBorder}"
+   
    >
     <Button.Shadow>
-        <Shadow Brush="Black" Opacity="0.8" />
+        <Shadow Brush="{StaticResource KeyBorder}" Opacity="0.15"/>
     </Button.Shadow>
     <VisualStateManager.VisualStateGroups>
         <VisualStateGroupList>
