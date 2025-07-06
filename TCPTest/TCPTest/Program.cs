@@ -105,7 +105,7 @@ public class Program
         //}
 
 
-        await client.SendAsync(Commands["TKSetSize Numeric 100%"], SocketFlags.None);
+        await client.SendAsync(Commands["TKSetSize Numeric 50%"], SocketFlags.None);
 
         Console.Write("1 - PRESS KEY TO CONTINUE");
         Console.ReadKey();
