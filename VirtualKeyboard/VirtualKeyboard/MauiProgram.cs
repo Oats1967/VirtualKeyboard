@@ -41,6 +41,10 @@ namespace VirtualKeyboard
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                     fonts.AddFont("MaterialIcons-Regular.ttf", "MaterialIcon");
+                    fonts.AddFont("JetBrainsMono-VariableFont_wght.ttf", "JetBrainsMono");
+                    fonts.AddFont("JetBrainsMono-Italic-VariableFont_wght.ttf", "JetBrainsMonoItalic");
+                    fonts.AddFont("Saira-Bold.ttf", "SairaBold");
+                    fonts.AddFont("Saira-Regular.ttf", "SairaRegular");
                 })
                 .RegisterServices()
                 .RegisterViewModels()
