@@ -239,7 +239,8 @@
             Grid.RowSpan="3"
             Grid.Column="12"
             Grid.ColumnSpan="2"
-            BackgroundColor="{StaticResource NormalKey}"
+            BackgroundColor="{StaticResource EnterKey}"
+            BorderColor="{StaticResource EnterKeyBorder}"
             Command="{Binding EnterPressedCommand}"
             FontSize="{Binding FontSize}"
                      Text="{StaticResource EnterIcon}" />

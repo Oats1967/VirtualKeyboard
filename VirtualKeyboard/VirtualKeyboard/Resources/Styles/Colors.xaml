@@ -6,8 +6,18 @@
     <Color x:Key="SmaDoTecRed">#A62327</Color>
     <Color x:Key="SmaDoTecRed_2">#8B0000</Color>
     <!--<Color x:Key="SmaDoTecRed">#A62327</Color>-->
-    <Color x:Key="Background">#5A5A60</Color>
-    <Color x:Key="CapsLockKey">#5A5A60</Color>
+    <!--<Color x:Key="Background">#5A5A60</Color>
+    <Color x:Key="CapsLockKey">#5A5A60</Color>-->
+
+    <Color x:Key="Background">#6A6A70</Color>
+    <Color x:Key="CapsLockKey">#6A6A70</Color>
+
+
+    <Color x:Key="EnterKey">#196B3F</Color>
+    <Color x:Key="EnterKeyBorder">#145634</Color>
+
+   
+
     <Color x:Key="CapsLockKeyBorder">#2E2E2E</Color>
     <Color x:Key="KeyBorder">Black</Color>
     <Color x:Key="NormalKey">#1C1C22</Color>
