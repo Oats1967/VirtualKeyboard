@@ -1,9 +1,11 @@
 
+using VirtualKeyboard.ViewModels;
+
 namespace VirtualKeyboard.Controls;
 
 public partial class GermanKeyboard : ContentView
 {
-	public GermanKeyboard(KeyboardViewModel viewModel)
+	public GermanKeyboard(MainPageViewModel viewModel)
 	{
 		BindingContext = viewModel;
 		InitializeComponent();

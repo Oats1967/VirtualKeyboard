@@ -50,10 +50,8 @@ namespace VirtualKeyboard
                 .RegisterViewModels()
                 .RegisterPages()
                 .RegisterContentViews();
+            
 
-#if WINDOWS
-            WindowService.Setup(builder);
-#endif
 
             builder.Logging
 #if DEBUG
@@ -83,7 +81,10 @@ namespace VirtualKeyboard
 #endif
             builder.Services.AddSingleton(LogOperatorRetriever.Instance);
             return builder.Build();
-          
+
+            
+
+
         }
 
         
@@ -105,8 +106,8 @@ namespace VirtualKeyboard
         }
         private static MauiAppBuilder RegisterViewModels(this MauiAppBuilder builder)
         {
-            builder.Services.AddSingleton<MainPageViewModel>();
-            builder.Services.AddSingleton<KeyboardViewModel>(); // only one for all keyboards
+            builder.Services.AddSingleton<MainPageViewModel>(); // only one for all keyboards
+            // builder.Services.AddSingleton<KeyboardViewModel>(); 
             return builder;
         }
 
@@ -115,8 +116,29 @@ namespace VirtualKeyboard
             builder.Services.AddSingleton<ITCPService,TCPService>();
             builder.Services.AddSingleton<IKeyboardService, KeyboardService>();
             builder.Services.AddSingleton<IProcessMessageService, ProcessMessageService>();
-            builder.Services.AddSingleton<ILayoutService, LayoutService>();
+            builder.Services.AddSingleton<ILayoutService>(sp =>
+            {
+                var layouts = new Dictionary<Layouts, (int x, int y, int width, int height)>
+                {
+                    [Layouts.Numeric] = (0, 0, 0, 0),
+                    [Layouts.German] = (0, 0, 0, 0),
+                    [Layouts.English] = (0, 0, 0, 0),
+                    [Layouts.Dutch] = (0, 0, 0, 0),
+                    [Layouts.French] = (0, 0, 0, 0),
+                    [Layouts.Polish] = (0, 0, 0, 0),
+                };
+
+                return new LayoutService(layouts);
+            });
+            
+           
             builder.Services.AddSingleton<LayoutToKeyboardConverter>();
+
+
+            var windowManager = new WindowsWindowManager();
+            windowManager.Setup(builder);
+            builder.Services.AddSingleton<IWindowManager>(windowManager);
+
             return builder;
         }
 

@@ -10,11 +10,11 @@ using WinRT.Interop;
 
 namespace VirtualKeyboard.Services
 {
-    internal static class WindowService
+    public class WindowsWindowManager : IWindowManager
     {
-        
 
 
+       
 
 
         [DllImport("gdi32.dll")]
@@ -41,7 +41,7 @@ namespace VirtualKeyboard.Services
         [DllImport("user32.dll")]
         private static extern int SetWindowLong(IntPtr hwnd, int index, int newStyle);
 
-        public static void Setup(MauiAppBuilder builder)
+        public void Setup(MauiAppBuilder builder)
         {
             builder.ConfigureLifecycleEvents(events =>
             {
@@ -66,16 +66,15 @@ namespace VirtualKeyboard.Services
                             p.SetBorderAndTitleBar(false, false); 
                         }
                         SetWindowLong(nativeWindowHandle, GWL_EXSTYLE, GetWindowLong(nativeWindowHandle, GWL_EXSTYLE) | WS_EX_NOACTIVATE);
-                        ResizeWindow(0, 0, 0, 0);
+                        ResizeWindow(0, 0, 800, 1000);
                     });
                     
                 });
-            });
-           
+            });       
         }
 
 
-        public static void ResizeWindow(int x, int y, int width, int height, int cornerRadius = 16)
+        public void ResizeWindow(int x, int y, int width, int height, int cornerRadius = 16)
             {
 
 #if WINDOWS

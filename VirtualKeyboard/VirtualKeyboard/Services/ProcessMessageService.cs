@@ -6,6 +6,9 @@ namespace VirtualKeyboard.Services
 {
     public class ProcessMessageService : IProcessMessageService
     {
+
+      
+
         private const byte STX = 0x02;
         private const byte ETX = 0x03;
 

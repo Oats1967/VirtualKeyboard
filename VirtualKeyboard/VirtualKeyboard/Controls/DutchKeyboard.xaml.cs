@@ -1,10 +1,12 @@
 
 
+using VirtualKeyboard.ViewModels;
+
 namespace VirtualKeyboard.Controls;
 
 public partial class DutchKeyboard : ContentView
 {
-	public DutchKeyboard(KeyboardViewModel viewModel)
+	public DutchKeyboard(MainPageViewModel viewModel)
 	{
 		BindingContext = viewModel;
 		
