@@ -41,8 +41,7 @@ namespace VirtualKeyboard.ViewModels
 
             // Default initialization
             Layout = Layouts.Numeric;
-            var window = Application.Current!.Windows[0];
-            window.SizeChanged += Window_SizeChanged;
+            
             WeakReferenceMessenger.Default.RegisterAll(this);
         }
 
@@ -135,7 +134,7 @@ namespace VirtualKeyboard.ViewModels
 
             x = CalculateCoordinate(x, width, (int)DeviceDisplay.MainDisplayInfo.Width);
             y = CalculateCoordinate(y, height, (int)DeviceDisplay.MainDisplayInfo.Height);
-            _windowManager.ResizeWindow(x, y, width, height, 16);
+            _windowManager.ResizeWindow(x, y, width, height);
 
             _logger.LogInformation($"Window was opened: x: {x} , y: {y} , w: {width}, h: {height}");
         }
@@ -170,7 +169,7 @@ namespace VirtualKeyboard.ViewModels
 
             x = CalculateCoordinate(x, width, (int)DeviceDisplay.MainDisplayInfo.Width);
             y = CalculateCoordinate(y, height, (int)DeviceDisplay.MainDisplayInfo.Height);
-            _windowManager.ResizeWindow(x, y, width, height, 16);
+            _windowManager.ResizeWindow(x, y, width, height);
             _logger.LogInformation($"Window was opened: x: {x} , y: {y} , w: {width}, h: {height}");
 
 

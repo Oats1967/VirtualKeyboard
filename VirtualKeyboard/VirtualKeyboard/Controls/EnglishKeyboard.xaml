@@ -3,10 +3,12 @@
     x:Class="VirtualKeyboard.Controls.EnglishKeyboard"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:controls="clr-namespace:VirtualKeyboard.Controls"
+    xmlns:vm="clr-namespace:VirtualKeyboard.ViewModels"
     xmlns:converter="clr-namespace:VirtualKeyboard.Converter"
+    xmlns:controls="clr-namespace:VirtualKeyboard.Controls"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-    x:DataType="controls:KeyboardViewModel">
+    Padding="0"
+    x:DataType="vm:MainPageViewModel">
     <ContentView.Resources>
 
         <!--<converter:DoubleScaler x:Key="FontSizeScaler" Factor="2.0" />-->

@@ -8,5 +8,8 @@
     Shell.NavBarIsVisible="False"
     Padding="0"   
    >
+    <ContentPage.Behaviors>
+        
+    </ContentPage.Behaviors>
     <ContentView x:Name="Template" Content="{Binding Layout, Converter={StaticResource LayoutConverter}}" />
 </ContentPage>

@@ -107,7 +107,7 @@ namespace VirtualKeyboard
         private static MauiAppBuilder RegisterViewModels(this MauiAppBuilder builder)
         {
             builder.Services.AddSingleton<MainPageViewModel>(); // only one for all keyboards
-            // builder.Services.AddSingleton<KeyboardViewModel>(); 
+            
             return builder;
         }
 
