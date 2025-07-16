@@ -3,16 +3,22 @@
     x:Class="VirtualKeyboard.Controls.Key"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converter="clr-namespace:VirtualKeyboard.Converter"
+
     Padding="0"
-   
-    FontFamily="SairaRegular"
-    TextColor="{StaticResource NormalKeyText}"
-    BorderWidth="1.5"
     BorderColor="{StaticResource KeyBorder}"
-   
-   >
+    BorderWidth="1.5"
+    FontFamily="SairaRegular"
+    TextColor="{StaticResource NormalKeyText}">
+    <Button.Resources>
+        <ResourceDictionary>
+            <converter:ValueScaler x:Key="ValueScaler" />
+        </ResourceDictionary>
+    </Button.Resources>
+
+
     <Button.Shadow>
-        <Shadow Brush="{StaticResource KeyBorder}" Opacity="0.15"/>
+        <Shadow Brush="{StaticResource KeyBorder}" Opacity="0.15" />
     </Button.Shadow>
     <VisualStateManager.VisualStateGroups>
         <VisualStateGroupList>

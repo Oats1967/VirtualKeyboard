@@ -3,10 +3,10 @@
     x:Class="VirtualKeyboard.Controls.EnglishKeyboard"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:vm="clr-namespace:VirtualKeyboard.ViewModels"
-    xmlns:converter="clr-namespace:VirtualKeyboard.Converter"
     xmlns:controls="clr-namespace:VirtualKeyboard.Controls"
+    xmlns:converter="clr-namespace:VirtualKeyboard.Converter"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:vm="clr-namespace:VirtualKeyboard.ViewModels"
     Padding="0"
     x:DataType="vm:MainPageViewModel">
     <ContentView.Resources>
@@ -24,18 +24,21 @@
             FalseObject="{StaticResource KeyBorder}"
             TrueObject="{StaticResource CapsLockKeyBorder}" />
         <converter:CharCaseConverter x:Key="CharCaseConverter" />
-
+        <converter:ValueScaler x:Key="ValueScaler" />
 
     </ContentView.Resources>
 
 
     <Grid
-        Padding="{Binding KeySpacing}"
+        x:Name="Grid"
+        Padding="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.02}"
         BackgroundColor="{StaticResource Background}"
         ColumnDefinitions="*,*,*,*,*,*,*,*,*,*,*,*,*,*"
-        ColumnSpacing="{Binding KeySpacing}"
+        ColumnSpacing="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.02}"
         RowDefinitions="*,*,*,*,*"
-        RowSpacing="{Binding KeySpacing}">
+        RowSpacing="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.02}">
+
+
         <!--  Row 0  -->
         <controls:Key
             Grid.Row="0"
@@ -43,87 +46,87 @@
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="1"
-            FontSize="{Binding FontSize}"
-            Text="1" />
+            Text="1" 
+           FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"/>
         <controls:Key
             Grid.Row="0"
             Grid.Column="1"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="2"
-            FontSize="{Binding FontSize}"
-            Text="2" />
+            Text="2" 
+           FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"/>
         <controls:Key
             Grid.Row="0"
             Grid.Column="2"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="3"
-            FontSize="{Binding FontSize}"
-            Text="3" />
+            Text="3" 
+           FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"/>
         <controls:Key
             Grid.Row="0"
             Grid.Column="3"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="4"
-            FontSize="{Binding FontSize}"
-            Text="4" />
+            Text="4" 
+           FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"/>
         <controls:Key
             Grid.Row="0"
             Grid.Column="4"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="5"
-            FontSize="{Binding FontSize}"
-            Text="5" />
+            Text="5" 
+           FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"/>
         <controls:Key
             Grid.Row="0"
             Grid.Column="5"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="6"
-            FontSize="{Binding FontSize}"
-            Text="6" />
+            Text="6"
+           FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"/>
         <controls:Key
             Grid.Row="0"
             Grid.Column="6"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="7"
-            FontSize="{Binding FontSize}"
-            Text="7" />
+            Text="7" 
+           FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"/>
         <controls:Key
             Grid.Row="0"
             Grid.Column="7"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="8"
-            FontSize="{Binding FontSize}"
-            Text="8" />
+            Text="8" 
+           FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"/>
         <controls:Key
             Grid.Row="0"
             Grid.Column="8"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="9"
-            FontSize="{Binding FontSize}"
-            Text="9" />
+            Text="9" 
+           FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"/>
         <controls:Key
             Grid.Row="0"
             Grid.Column="9"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="0"
-            FontSize="{Binding FontSize}"
-            Text="0" />
+            Text="0" 
+           FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"/>
 
         <controls:Key
             Grid.Row="0"
             Grid.Column="10"
             BackgroundColor="{StaticResource NormalKey}"
-            FontSize="{Binding FontSize}"
-            IsEnabled="False" />
+            IsEnabled="False" 
+           FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"/>
 
         <controls:IconKey
             Grid.Row="0"
@@ -131,8 +134,8 @@
             Grid.ColumnSpan="3"
             BackgroundColor="{StaticResource SmaDoTecRed}"
             Command="{Binding BackspacePressedCommand}"
-            FontSize="{Binding FontSize}"
-            Text="{StaticResource BackspaceIcon}" />
+            Text="{StaticResource BackspaceIcon}" 
+           FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"/>
 
         <!--  Row 1  -->
         <controls:Key
@@ -141,96 +144,96 @@
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='q'}"
-            FontSize="{Binding FontSize}"
-            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='q'}" />
+            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='q'}" 
+           FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"/>
         <controls:Key
             Grid.Row="1"
             Grid.Column="1"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='w'}"
-            FontSize="{Binding FontSize}"
-            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='w'}" />
+            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='w'}" 
+           FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"/>
         <controls:Key
             Grid.Row="1"
             Grid.Column="2"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='e'}"
-            FontSize="{Binding FontSize}"
-            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='e'}" />
+            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='e'}" 
+           FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"/>
         <controls:Key
             Grid.Row="1"
             Grid.Column="3"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='r'}"
-            FontSize="{Binding FontSize}"
-            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='r'}" />
+            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='r'}" 
+           FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"/>
         <controls:Key
             Grid.Row="1"
             Grid.Column="4"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='t'}"
-            FontSize="{Binding FontSize}"
-            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='t'}" />
+            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='t'}" 
+           FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"/>
         <controls:Key
             Grid.Row="1"
             Grid.Column="5"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='y'}"
-            FontSize="{Binding FontSize}"
-            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='y'}" />
+            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='y'}" 
+           FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"/>
         <controls:Key
             Grid.Row="1"
             Grid.Column="6"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='u'}"
-            FontSize="{Binding FontSize}"
-            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='u'}" />
+            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='u'}" 
+           FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"/>
         <controls:Key
             Grid.Row="1"
             Grid.Column="7"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='i'}"
-            FontSize="{Binding FontSize}"
-            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='i'}" />
+            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='i'}" 
+           FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"/>
         <controls:Key
             Grid.Row="1"
             Grid.Column="8"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='o'}"
-            FontSize="{Binding FontSize}"
-            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='o'}" />
+            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='o'}" 
+           FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"/>
         <controls:Key
             Grid.Row="1"
             Grid.Column="9"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='p'}"
-            FontSize="{Binding FontSize}"
-            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='p'}" />
+            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='p'}" 
+           FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"/>
         <controls:Key
             Grid.Row="1"
             Grid.Column="10"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="-"
-            FontSize="{Binding FontSize}"
-            Text="-" />
+            Text="-" 
+           FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"/>
         <controls:Key
             Grid.Row="1"
             Grid.Column="11"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="+"
-            FontSize="{Binding FontSize}"
-            Text="+" />
+            Text="+" 
+           FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"/>
         <controls:IconKey
             Grid.Row="1"
             Grid.RowSpan="3"
@@ -239,8 +242,8 @@
             BackgroundColor="{StaticResource EnterKey}"
             BorderColor="{StaticResource EnterKeyBorder}"
             Command="{Binding EnterPressedCommand}"
-            FontSize="{Binding FontSize}"
-            Text="{StaticResource EnterIcon}" />
+            Text="{StaticResource EnterIcon}"
+           FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"/>
 
         <!--  Row 2  -->
         <controls:Key
@@ -249,88 +252,88 @@
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='a'}"
-            FontSize="{Binding FontSize}"
-            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='a'}" />
+            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='a'}" 
+           FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"/>
         <controls:Key
             Grid.Row="2"
             Grid.Column="1"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='s'}"
-            FontSize="{Binding FontSize}"
-            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='s'}" />
+            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='s'}" 
+           FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"/>
         <controls:Key
             Grid.Row="2"
             Grid.Column="2"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='d'}"
-            FontSize="{Binding FontSize}"
-            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='d'}" />
+            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='d'}" 
+           FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"/>
         <controls:Key
             Grid.Row="2"
             Grid.Column="3"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='f'}"
-            FontSize="{Binding FontSize}"
-            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='f'}" />
+            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='f'}"
+           FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"/>
         <controls:Key
             Grid.Row="2"
             Grid.Column="4"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='g'}"
-            FontSize="{Binding FontSize}"
-            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='g'}" />
+            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='g'}" 
+           FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"/>
         <controls:Key
             Grid.Row="2"
             Grid.Column="5"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='h'}"
-            FontSize="{Binding FontSize}"
-            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='h'}" />
+            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='h'}" 
+           FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"/>
         <controls:Key
             Grid.Row="2"
             Grid.Column="6"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='j'}"
-            FontSize="{Binding FontSize}"
-            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='j'}" />
+            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='j'}" 
+           FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"/>
         <controls:Key
             Grid.Row="2"
             Grid.Column="7"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='k'}"
-            FontSize="{Binding FontSize}"
-            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='k'}" />
+            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='k'}" 
+           FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"/>
         <controls:Key
             Grid.Row="2"
             Grid.Column="8"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='l'}"
-            FontSize="{Binding FontSize}"
-            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='l'}" />
+            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='l'}" 
+           FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"/>
         <controls:Key
             Grid.Row="2"
             Grid.Column="9"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter=";"
-            FontSize="{Binding FontSize}"
-            Text=";" />
+            Text=";" 
+           FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"/>
         <controls:Key
             Grid.Row="2"
             Grid.Column="10"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="&apos;"
-            FontSize="{Binding FontSize}"
-            Text=" &apos;" />
+            Text=" &apos;" 
+           FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"/>
 
         <controls:Key
             Grid.Row="2"
@@ -338,8 +341,8 @@
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="#"
-            FontSize="{Binding FontSize}"
-            Text="#" />
+            Text="#" 
+           FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"/>
 
         <!--  Row 3  -->
         <controls:IconKey
@@ -348,8 +351,8 @@
             Grid.ColumnSpan="2"
             BackgroundColor="{Binding CapsLock, Converter={StaticResource CapsLockKeyColorConverter}}"
             BorderColor="{Binding CapsLock, Converter={StaticResource CapsLockKeyBorderColorConverter}}"
-            FontSize="{Binding FontSize}"
-            Text="{StaticResource ArrowUpIcon}">
+            Text="{StaticResource ArrowUpIcon}"
+           FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}">
             <Button.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding CapsLockPressedCommand}" NumberOfTapsRequired="1" />
                 <TapGestureRecognizer Command="{Binding LockCommand}" NumberOfTapsRequired="2" />
@@ -370,80 +373,80 @@
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='z'}"
-            FontSize="{Binding FontSize}"
-            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='z'}" />
+            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='z'}" 
+           FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"/>
         <controls:Key
             Grid.Row="3"
             Grid.Column="3"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='x'}"
-            FontSize="{Binding FontSize}"
-            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='x'}" />
+            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='x'}" 
+           FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"/>
         <controls:Key
             Grid.Row="3"
             Grid.Column="4"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='c'}"
-            FontSize="{Binding FontSize}"
-            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='c'}" />
+            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='c'}" 
+           FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"/>
         <controls:Key
             Grid.Row="3"
             Grid.Column="5"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='v'}"
-            FontSize="{Binding FontSize}"
-            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='v'}" />
+            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='v'}" 
+           FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"/>
         <controls:Key
             Grid.Row="3"
             Grid.Column="6"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='b'}"
-            FontSize="{Binding FontSize}"
-            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='b'}" />
+            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='b'}" 
+           FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"/>
         <controls:Key
             Grid.Row="3"
             Grid.Column="7"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='n'}"
-            FontSize="{Binding FontSize}"
-            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='n'}" />
+            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='n'}" 
+           FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"/>
         <controls:Key
             Grid.Row="3"
             Grid.Column="8"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='m'}"
-            FontSize="{Binding FontSize}"
-            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='m'}" />
+            Text="{Binding CapsLock, Converter={StaticResource CharCaseConverter}, ConverterParameter='m'}" 
+           FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"/>
         <controls:Key
             Grid.Row="3"
             Grid.Column="9"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter=","
-            FontSize="{Binding FontSize}"
-            Text="," />
+            Text="," 
+           FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"/>
         <controls:Key
             Grid.Row="3"
             Grid.Column="10"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="."
-            FontSize="{Binding FontSize}"
-            Text="." />
+            Text="." 
+           FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"/>
         <controls:Key
             Grid.Row="3"
             Grid.Column="11"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter="/"
-            FontSize="{Binding FontSize}"
-            Text="/" />
+            Text="/" 
+           FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"/>
 
         <!--  Row 4  -->
         <Image
@@ -459,24 +462,24 @@
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding KeyPressedCommand}"
             CommandParameter=" "
-            FontSize="{Binding FontSize}"
-            Text=" " />
+            Text=" " 
+           FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"/>
         <controls:IconKey
             Grid.Row="4"
             Grid.Column="10"
             Grid.ColumnSpan="2"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding LeftPressedCommand}"
-            FontSize="{Binding FontSize}"
-            Text="{StaticResource ArrowLeftIcon}" />
+            Text="{StaticResource ArrowLeftIcon}" 
+           FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"/>
         <controls:IconKey
             Grid.Row="4"
             Grid.Column="12"
             Grid.ColumnSpan="2"
             BackgroundColor="{StaticResource NormalKey}"
             Command="{Binding RightPressedCommand}"
-            FontSize="{Binding FontSize}"
-            Text="{StaticResource ArrowRightIcon}" />
+            Text="{StaticResource ArrowRightIcon}"
+           FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"/>
     </Grid>
 
 </ContentView>

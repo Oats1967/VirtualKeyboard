@@ -41,7 +41,7 @@ namespace VirtualKeyboard.ViewModels
             _windowManager = windowManager;
 
             // Default initialization
-            Layout = Layouts.Numeric;
+            Layout = Layouts.Dutch;
             
             WeakReferenceMessenger.Default.RegisterAll(this);
         }

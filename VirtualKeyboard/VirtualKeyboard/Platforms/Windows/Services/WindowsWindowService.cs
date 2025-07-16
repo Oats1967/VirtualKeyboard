@@ -68,7 +68,9 @@ namespace VirtualKeyboard.Platforms.Windows.Services
                             p.SetBorderAndTitleBar(false, false); 
                         }
                         SetWindowLong(nativeWindowHandle, GWL_EXSTYLE, GetWindowLong(nativeWindowHandle, GWL_EXSTYLE) | WS_EX_NOACTIVATE);
-                        ResizeWindow(0, 0, 800, 1000);
+                        ResizeWindow(0, 0, 1300, 500);
+                       // ResizeWindow(0, 0, 760, 1000);
+
                     });
                     
                 });
