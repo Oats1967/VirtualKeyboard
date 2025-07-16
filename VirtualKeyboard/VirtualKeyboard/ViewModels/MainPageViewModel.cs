@@ -41,7 +41,7 @@ namespace VirtualKeyboard.ViewModels
             _windowManager = windowManager;
 
             // Default initialization
-            Layout = Layouts.Dutch;
+            Layout = Layouts.German;
             
             WeakReferenceMessenger.Default.RegisterAll(this);
         }
@@ -237,30 +237,7 @@ namespace VirtualKeyboard.ViewModels
         }
         #endregion
 
-
-
-
-
-        #region Properties changed when window is resized
-
-        // Adjusts FontSize and KeySpacing Properties depending on Layout and Displaysize
-      
-
-        /*private double GetMappedKeySpacing(Window window)
-        {
-            var resolution = (DeviceDisplay.Current.MainDisplayInfo.Width, DeviceDisplay.Current.MainDisplayInfo.Height);
-            var spacing = ResolutionConfig.ResolutionToSpacing[resolution];
-
-            var min = Layout == Layouts.Numeric ? spacing.numericMin : spacing.alphaMin;
-            var max = Layout == Layouts.Numeric ? spacing.numericMax : spacing.alphaMax;
-
-            var currentWidth = window.Width;
-            var maxWidth = DeviceDisplay.Current.MainDisplayInfo.Width;
-
-            return ValueScaler.MapLinear(currentWidth, 0, maxWidth, min, max);
-        }*/
-        #endregion
-
+        
 
     }
 }
