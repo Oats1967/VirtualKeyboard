@@ -133,6 +133,7 @@
             Grid.Column="11"
             Grid.ColumnSpan="3"
             BackgroundColor="{StaticResource SmaDoTecRed}"
+            BorderColor="{StaticResource SmaDoTecRed_2}"
             Command="{Binding BackspacePressedCommand}"
             Text="{StaticResource BackspaceIcon}" 
            FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"/>

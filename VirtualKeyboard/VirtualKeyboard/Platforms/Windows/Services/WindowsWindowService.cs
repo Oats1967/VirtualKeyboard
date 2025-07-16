@@ -68,7 +68,7 @@ namespace VirtualKeyboard.Platforms.Windows.Services
                             p.SetBorderAndTitleBar(false, false); 
                         }
                         SetWindowLong(nativeWindowHandle, GWL_EXSTYLE, GetWindowLong(nativeWindowHandle, GWL_EXSTYLE) | WS_EX_NOACTIVATE);
-                        ResizeWindow(0, 0, 1300, 500);
+                        ResizeWindow(0, 0, 1250, 500);
                        // ResizeWindow(0, 0, 760, 1000);
 
                     });
@@ -109,7 +109,7 @@ namespace VirtualKeyboard.Platforms.Windows.Services
             // Apply region to window
              SetWindowRgn(nativeWindowHandle, region, true);
                 
-            winUiWindow.MoveAndResize(new RectInt32(x, y, width, height));
+            winUiWindow.MoveAndResize(new RectInt32(x-4, y-4, width, height));
           
 
 #else
