@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.Extensions.Logging;
 using VirtualKeyboard.Commands;
 using VirtualKeyboard.Controls;
+using VirtualKeyboard.Platforms.Windows;
 using VirtualKeyboard.Services;
 
 
@@ -15,14 +16,14 @@ namespace VirtualKeyboard.ViewModels
     {
         protected ILogger _logger;
 
-        protected ILayoutService _layoutService;
+        protected ILayoutSettings _layoutSettings;
 
         protected IKeyboardService _keyboardService;
 
-        protected IWindowManager _windowManager;
+        protected IWindowService _windowManager;
 
         [ObservableProperty]
-        protected Layouts layout;
+        private Layouts layout;
 
         [ObservableProperty]
         private double fontSize;
@@ -32,10 +33,10 @@ namespace VirtualKeyboard.ViewModels
 
       
 
-        public MainPageViewModel(ILogger<MainPageViewModel> logger, IKeyboardService keyboardService, ILayoutService layoutService, IWindowManager windowManager)
+        public MainPageViewModel(ILogger<MainPageViewModel> logger, IKeyboardService keyboardService, ILayoutSettings layoutSettings, IWindowService windowManager)
         {
             _logger = logger;
-            _layoutService = layoutService;
+            _layoutSettings = layoutSettings;
             _keyboardService = keyboardService;
             _windowManager = windowManager;
 
@@ -92,21 +93,23 @@ namespace VirtualKeyboard.ViewModels
         [RelayCommand]
         public void KeyPressed(string key)
         {
-            if (!Locked)
-            {
-                CapsLock = false;
-            }
+            ResetCapsLockIfNotLocked();
             _keyboardService.SendKey(Convert.ToChar(key));
         }
 
         [RelayCommand]
         public void BackspacePressed()
         {
+            ResetCapsLockIfNotLocked();
+            _keyboardService.SendKey(0x08);
+        }
+
+        private void ResetCapsLockIfNotLocked()
+        {
             if (!Locked)
             {
                 CapsLock = false;
             }
-            _keyboardService.SendKey(0x08);
         }
 
         #endregion
@@ -119,7 +122,7 @@ namespace VirtualKeyboard.ViewModels
         
         {
             _logger.LogInformation($"TKSetShow received");
-            if (!_layoutService.Layouts.ContainsKey(message.Layout))
+            if (!_layoutSettings.ContainsKey(message.Layout))
             {
                 _logger.LogInformation($"TKSetShow: Layout {message.Layout} not supported");
                 return;
@@ -127,13 +130,13 @@ namespace VirtualKeyboard.ViewModels
 
             Layout = message.Layout;
 
-            var x = _layoutService.Layouts[message.Layout].x;
-            var y = _layoutService.Layouts[message.Layout].y;
-            var width = _layoutService.Layouts[message.Layout].width;
-            var height = _layoutService.Layouts[message.Layout].height;
+            var x = _layoutSettings[message.Layout].x;
+            var y = _layoutSettings[message.Layout].y;
+            var width = _layoutSettings[message.Layout].width;
+            var height = _layoutSettings[message.Layout].height;
 
-            x = CalculateCoordinate(x, width, (int)DeviceDisplay.MainDisplayInfo.Width);
-            y = CalculateCoordinate(y, height, (int)DeviceDisplay.MainDisplayInfo.Height);
+            x = ClampCoordinateToScreen(x, width, (int)DeviceDisplay.MainDisplayInfo.Width);
+            y = ClampCoordinateToScreen(y, height, (int)DeviceDisplay.MainDisplayInfo.Height);
             _windowManager.ResizeWindow(x, y, width, height);
 
             _logger.LogInformation($"Window was opened: x: {x} , y: {y} , w: {width}, h: {height}");
@@ -142,7 +145,7 @@ namespace VirtualKeyboard.ViewModels
         public void Receive(TKSetHide message)
         {
             _logger.LogInformation($"TKSetHide received");
-            _windowManager.ResizeWindow(0,0,0,0,16);
+            _windowManager.ResizeWindow(0,0,0,0);
             _logger.LogInformation($"Window was closed: x: {0} , y: {0} , w: {0}, h: {0}");
         }
 
@@ -150,25 +153,25 @@ namespace VirtualKeyboard.ViewModels
         {
             _logger.LogInformation($"TKSetShowPoint received");
 
-            if(!_layoutService.Layouts.ContainsKey(message.Layout))
+            if(!_layoutSettings.ContainsKey(message.Layout))
             {
                 _logger.LogInformation($"TKSetShowPoint: Layout {message.Layout} not supported");
                 return;
             }
             Layout = message.Layout;
 
-            var width = _layoutService.Layouts[message.Layout].width;
-            var height = _layoutService.Layouts[message.Layout].height;
+            var width = _layoutSettings[message.Layout].width;
+            var height = _layoutSettings[message.Layout].height;
             var x = message.X;
             var y = message.Y;
            
 
-            _layoutService.Layouts[message.Layout] = (x,y,width,height);
+            _layoutSettings[message.Layout] = (x,y,width,height);
             _logger.LogInformation($"{message.Layout} coordinates were set to x: {x} , y: {y} ");
 
 
-            x = CalculateCoordinate(x, width, (int)DeviceDisplay.MainDisplayInfo.Width);
-            y = CalculateCoordinate(y, height, (int)DeviceDisplay.MainDisplayInfo.Height);
+            x = ClampCoordinateToScreen(x, width, (int)DeviceDisplay.MainDisplayInfo.Width);
+            y = ClampCoordinateToScreen(y, height, (int)DeviceDisplay.MainDisplayInfo.Height);
             _windowManager.ResizeWindow(x, y, width, height);
             _logger.LogInformation($"Window was opened: x: {x} , y: {y} , w: {width}, h: {height}");
 
@@ -179,7 +182,7 @@ namespace VirtualKeyboard.ViewModels
         {
             _logger.LogInformation($"TKSetSize received");
 
-            if (!_layoutService.Layouts.ContainsKey(message.Layout))
+            if (!_layoutSettings.ContainsKey(message.Layout))
             {
                 _logger.LogInformation($"TKSetSize: Layout {message.Layout} not supported");
                 return;
@@ -187,30 +190,24 @@ namespace VirtualKeyboard.ViewModels
 
             var size = CalculateSize(message.Layout, message.Percentage);
 
-            var x = _layoutService.Layouts[message.Layout].x;
-            var y = _layoutService.Layouts[message.Layout].y;
+            var x = _layoutSettings[message.Layout].x;
+            var y = _layoutSettings[message.Layout].y;
             var width = size.width;
             var height = size.height;
 
-            _layoutService.Layouts[message.Layout] = (x, y, width, height);
+            _layoutSettings[message.Layout] = (x, y, width, height);
             _logger.LogInformation($"Keyboard size was set to width: {width} , height: {height}");
 
         }
 
 
+
         #region Transform funcs
 
         // Gets the real X and Y depending on the Displaysize
-        private int CalculateCoordinate(int coordinate, int size, int screenSize)
-        {
-            var endCoordinate = coordinate + size;
+        private int ClampCoordinateToScreen(int coordinate, int size, int screenSize) =>
+            (coordinate + size) > screenSize ? Math.Max(0, coordinate - ((coordinate + size) - screenSize)) : coordinate;
 
-            if (endCoordinate > screenSize)
-            {
-                return Math.Max(0, coordinate - (endCoordinate - screenSize));
-            }
-            return coordinate;
-        }
 
 
         public (int width, int height) CalculateSize(Layouts layout, int percentage)
@@ -246,29 +243,10 @@ namespace VirtualKeyboard.ViewModels
 
         #region Properties changed when window is resized
 
-        private void Window_SizeChanged(object? sender, EventArgs e)
-        {
-            var window = (Window)sender;
-            FontSize = GetMappedFontSize(window);
-            KeySpacing = GetMappedKeySpacing(window);
-        }
-
         // Adjusts FontSize and KeySpacing Properties depending on Layout and Displaysize
-        private double GetMappedFontSize(Window window)
-        {
-            var resolution = (DeviceDisplay.Current.MainDisplayInfo.Width, DeviceDisplay.Current.MainDisplayInfo.Height);
-            var fontSize = ResolutionConfig.ResolutionToFontSize[resolution];
+      
 
-            var min = Layout == Layouts.Numeric ? fontSize.numericMin : fontSize.alphaMin;
-            var max = Layout == Layouts.Numeric ? fontSize.numericMax : fontSize.alphaMax;
-
-            var currentWidth = window!.Width;
-            var maxWidth = DeviceDisplay.Current.MainDisplayInfo.Width;
-
-            return ValueScaler.MapLinear(currentWidth, 0, maxWidth, min, max);
-        }
-
-        private double GetMappedKeySpacing(Window window)
+        /*private double GetMappedKeySpacing(Window window)
         {
             var resolution = (DeviceDisplay.Current.MainDisplayInfo.Width, DeviceDisplay.Current.MainDisplayInfo.Height);
             var spacing = ResolutionConfig.ResolutionToSpacing[resolution];
@@ -280,7 +258,7 @@ namespace VirtualKeyboard.ViewModels
             var maxWidth = DeviceDisplay.Current.MainDisplayInfo.Width;
 
             return ValueScaler.MapLinear(currentWidth, 0, maxWidth, min, max);
-        }
+        }*/
         #endregion
 
 

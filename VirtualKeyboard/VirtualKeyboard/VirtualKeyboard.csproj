@@ -69,36 +69,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Controls\DutchKeyboard.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Controls\EnglishKeyboard.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Controls\GermanKeyboard.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Controls\IconKey.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Controls\Key.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Controls\NumericKeyboard.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="Resources\Styles\Resolutions.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Resources\Styles\Icons.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Compile Update="Controls\IconKey.xaml.cs">
-	    <DependentUpon>IconKey.xaml</DependentUpon>
-	  </Compile>
 	</ItemGroup>
 
 </Project>

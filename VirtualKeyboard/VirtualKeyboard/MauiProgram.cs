@@ -9,11 +9,7 @@ using VirtualKeyboard.ViewModels;
 
 using VirtualKeyboard.Controls;
 using VirtualKeyboard.Converter;
-
-
-
-
-
+using VirtualKeyboard.Platforms.Windows.Services;
 
 
 #if WINDOWS
@@ -116,7 +112,7 @@ namespace VirtualKeyboard
             builder.Services.AddSingleton<ITCPService,TCPService>();
             builder.Services.AddSingleton<IKeyboardService, KeyboardService>();
             builder.Services.AddSingleton<IProcessMessageService, ProcessMessageService>();
-            builder.Services.AddSingleton<ILayoutService>(sp =>
+            builder.Services.AddSingleton<ILayoutSettings>(sp =>
             {
                 var layouts = new Dictionary<Layouts, (int x, int y, int width, int height)>
                 {
@@ -128,16 +124,16 @@ namespace VirtualKeyboard
                     [Layouts.Polish] = (0, 0, 0, 0),
                 };
 
-                return new LayoutService(layouts);
+                return new LayoutSettings(layouts);
             });
             
            
             builder.Services.AddSingleton<LayoutToKeyboardConverter>();
 
 
-            var windowManager = new WindowsWindowManager();
+            var windowManager = new WindowsWindowService();
             windowManager.Setup(builder);
-            builder.Services.AddSingleton<IWindowManager>(windowManager);
+            builder.Services.AddSingleton<IWindowService>(windowManager);
 
             return builder;
         }

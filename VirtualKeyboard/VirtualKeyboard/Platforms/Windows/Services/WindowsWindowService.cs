@@ -1,16 +1,18 @@
-﻿#if WINDOWS
-using Microsoft.Maui.LifecycleEvents;
-using Microsoft.UI;
-using Microsoft.UI.Windowing;
+﻿
+
 using System.Runtime.InteropServices;
 using Windows.Graphics;
-
+using Microsoft.UI;
+using Microsoft.UI.Windowing;
+using VirtualKeyboard.Services;
 using WinRT.Interop;
+#if WINDOWS
+using Microsoft.Maui.LifecycleEvents;
 #endif
 
-namespace VirtualKeyboard.Services
+namespace VirtualKeyboard.Platforms.Windows.Services
 {
-    public class WindowsWindowManager : IWindowManager
+    public class WindowsWindowService : IWindowService
     {
 
 

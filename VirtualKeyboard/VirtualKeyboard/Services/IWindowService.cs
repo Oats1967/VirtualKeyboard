@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace VirtualKeyboard.Services
 {
-    public interface IWindowManager
+    public interface IWindowService
     {
-        public void Setup(MauiAppBuilder builder);
+        
 
         public void ResizeWindow(int x, int y, int width, int height, int cornerRadius = 16);
     }
