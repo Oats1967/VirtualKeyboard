@@ -5,11 +5,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:VirtualKeyboard.Controls"
     xmlns:converter="clr-namespace:VirtualKeyboard.Converter"
+      xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Shell.NavBarIsVisible="False"
-    Padding="0"   
+    Padding="0"  
+    x:Name="Root"
+    
+    
    >
-    <ContentPage.Behaviors>
-        
-    </ContentPage.Behaviors>
+    
     <ContentView x:Name="Template" Content="{Binding Layout, Converter={StaticResource LayoutConverter}}" />
 </ContentPage>

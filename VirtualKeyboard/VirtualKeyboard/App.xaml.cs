@@ -8,7 +8,7 @@ namespace VirtualKeyboard
     public partial class App : Application
     {
         
-        
+        // is this necessary)
         public App(ITCPService tcpService , AppShell shell)
         {
             InitializeComponent();
