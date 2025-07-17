@@ -18,9 +18,9 @@ namespace VirtualKeyboard.Commands
             Percentage = Math.Clamp(percentage, 0, 100);
         }
 
-        public int Percentage { get; private set; }
+        public int Percentage { get; }
         
-        public Layouts Layout { get; private set; }
+        public Layouts Layout { get; }
 
     }
 }

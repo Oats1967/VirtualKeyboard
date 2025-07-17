@@ -17,8 +17,8 @@ namespace VirtualKeyboard.Commands
             Y = Math.Clamp(y, 0, (int)DeviceDisplay.Current.MainDisplayInfo.Height);
 
         }
-        public int X { get; private set; }
-        public int Y { get; private set; }
-        public Layouts Layout { get; private set; }
+        public int X { get; }
+        public int Y { get; }
+        public Layouts Layout { get; }
     }
 }

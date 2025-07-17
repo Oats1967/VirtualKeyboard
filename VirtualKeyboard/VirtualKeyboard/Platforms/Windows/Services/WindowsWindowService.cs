@@ -1,15 +1,16 @@
 ﻿
 
 using System.Runtime.InteropServices;
+#if WINDOWS
 using Windows.Graphics;
 using Microsoft.Extensions.Logging;
 using Microsoft.UI;
 using Microsoft.UI.Windowing;
 using VirtualKeyboard.Services;
 using WinRT.Interop;
-#if WINDOWS
+
 using Microsoft.Maui.LifecycleEvents;
-#endif
+
 
 namespace VirtualKeyboard.Platforms.Windows.Services
 {
@@ -43,7 +44,7 @@ namespace VirtualKeyboard.Platforms.Windows.Services
         [DllImport("user32.dll")]
         private static extern int SetWindowLong(IntPtr hwnd, int index, int newStyle);
 
-        public void Setup(MauiAppBuilder builder)
+        public static void Setup(MauiAppBuilder builder)
         {
             builder.ConfigureLifecycleEvents(events =>
             {
@@ -68,8 +69,29 @@ namespace VirtualKeyboard.Platforms.Windows.Services
                             p.SetBorderAndTitleBar(false, false); 
                         }
                         SetWindowLong(nativeWindowHandle, GWL_EXSTYLE, GetWindowLong(nativeWindowHandle, GWL_EXSTYLE) | WS_EX_NOACTIVATE);
-                        ResizeWindow(50, 50, 1250, 500);
-                       // ResizeWindow(0, 0, 760, 1000);
+
+#if DEBUG
+                        // Apply region to window
+                        var x = 0;
+                        var y = 0; 
+                        var width = 0;
+                        var height = 0;
+#else
+                        var x = 0;
+                        var y = 0; 
+                        var width = 0;
+                        var height = 0;
+
+#endif
+                        // Close window on initialization with bug workaround
+                        var a = 0; var b = 0; var c = 0; var d = 0;
+                        if (width > 0 && height > 0)
+                        {
+                            a = 4; b = 4; c = -2; d = -2;
+                        }
+
+                        SetWindowRgn(nativeWindowHandle, CreateRoundRectRgn(0 + a, 0 +b, width + c, height + d, 0, 0), true);
+                        winuiAppWindow.MoveAndResize(new RectInt32(x - c, y -d, width, height));
 
                     });
                     
@@ -77,28 +99,26 @@ namespace VirtualKeyboard.Platforms.Windows.Services
             });       
         }
 
+        
 
         public override void ResizeWindow(int x, int y, int width, int height, int cornerRadius = 16)
             {
 
-#if WINDOWS
-            var window = Application.Current?.Windows.First(uiWindow =>
-            {
-                return uiWindow.Handler?.PlatformView is MauiWinUIWindow;   
-            });
+
+            var window = Application.Current?.Windows.First(uiWindow => uiWindow.Handler?.PlatformView is MauiWinUIWindow);
 
             var platformView = window!.Handler?.PlatformView as MauiWinUIWindow;
-            IntPtr nativeWindowHandle = WindowNative.GetWindowHandle(platformView);
+            var nativeWindowHandle = WindowNative.GetWindowHandle(platformView);
             var winUiWindow = platformView!.AppWindow;
 
-            // This is used to round windowcorners and remove white borders bug !!!
+            // This is used to round windowcorners and remove white borders bug workaround!!!
             var a = 0; var b = 0; var c = 0; var d = 0;
             if (width > 0 && height > 0) 
             {
                  a = 4;  b = 4;  c = -2;  d = -2;
             }
            
-            IntPtr region = CreateRoundRectRgn(
+            var region = CreateRoundRectRgn(
                 0 + a,
                 0 + b,
                 width + c,
@@ -109,15 +129,16 @@ namespace VirtualKeyboard.Platforms.Windows.Services
             // Apply region to window
              SetWindowRgn(nativeWindowHandle, region, true);
                 
-            winUiWindow.MoveAndResize(new RectInt32(x-4, y-4, width, height));
+            winUiWindow.MoveAndResize(new RectInt32(x-c, y-d, width, height));
           
 
-#else
-            throw new NotImplementedException();
-#endif
+
+           
+
         }
 
 
         
     }
 }
+#endif

@@ -4,7 +4,7 @@ using VirtualKeyboard.Commands;
 
 namespace VirtualKeyboard.Services
 {
-    public class ProcessMessageService : IProcessMessageService
+    public class ProcessTCPMessageService : IProcessMessageService
     {
 
       
@@ -68,8 +68,6 @@ namespace VirtualKeyboard.Services
         {
             var layout = buffer[3];
             var percentage = buffer[4];
-            
-           
             WeakReferenceMessenger.Default.Send(new TKSetSize(layout, percentage));
         }
     }

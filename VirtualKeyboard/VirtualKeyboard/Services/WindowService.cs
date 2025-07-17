@@ -7,7 +7,7 @@ using ILogger = Microsoft.Extensions.Logging.ILogger;
 
 namespace VirtualKeyboard.Services
 {
-    public abstract class WindowService : IWindowService, IRecipient<TKSetShow>, IRecipient<TKSetHide>, IRecipient<TKSetShowPoint>, IRecipient<TKSetSize>
+    public abstract class WindowService : IWindowService
     {
 
         protected ILogger _logger;
@@ -19,6 +19,8 @@ namespace VirtualKeyboard.Services
         {
             _logger = logger;
             _layoutSettings = layoutSettings;
+            WeakReferenceMessenger.Default.RegisterAll(this);
+
         }
         public abstract void ResizeWindow(int x, int y, int width, int height, int cornerRadius = 0);   // needs to access platform specific APIs
         public void Receive(TKSetShow message)
@@ -31,8 +33,7 @@ namespace VirtualKeyboard.Services
                 return;
             }
 
-            var viewModel = Application.Current?.MainPage?.BindingContext as MainPageViewModel;
-            viewModel.Layout = message.Layout;
+            WeakReferenceMessenger.Default.Send(new LayoutChangedMessage(layout));
 
             var x = _layoutSettings[message.Layout].x;
             var y = _layoutSettings[message.Layout].y;
@@ -62,8 +63,7 @@ namespace VirtualKeyboard.Services
                 _logger.LogInformation($"TKSetShowPoint: Layout {message.Layout} not supported");
                 return;
             }
-            var viewModel = Application.Current?.MainPage?.BindingContext as MainPageViewModel;
-            viewModel.Layout = message.Layout;
+            WeakReferenceMessenger.Default.Send(new LayoutChangedMessage(layout));
 
             var width = _layoutSettings[message.Layout].width;
             var height = _layoutSettings[message.Layout].height;

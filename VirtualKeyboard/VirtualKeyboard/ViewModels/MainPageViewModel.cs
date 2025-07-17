@@ -12,7 +12,7 @@ using VirtualKeyboard.Services;
 
 namespace VirtualKeyboard.ViewModels
 {
-    public partial class MainPageViewModel : ObservableObject
+    public partial class MainPageViewModel : ObservableObject, IRecipient<Layouts>
     {
         
 
@@ -32,9 +32,14 @@ namespace VirtualKeyboard.ViewModels
         
 
             // Default initialization
-            Layout = Layouts.German;
+            Layout = Layouts.Numeric;
             
             WeakReferenceMessenger.Default.RegisterAll(this);
+        }
+
+        public void Receive(Layouts layout)
+        {
+            Layout = layout;
         }
 
 
@@ -108,13 +113,6 @@ namespace VirtualKeyboard.ViewModels
         // Windowsize
 
 
-
-       
-
-
-
-       
         
-
     }
 }

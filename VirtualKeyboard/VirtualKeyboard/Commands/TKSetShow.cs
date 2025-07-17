@@ -14,6 +14,6 @@ namespace VirtualKeyboard.Commands
             ? (Layouts)layout
             : Layouts.NotUsed;
         }
-        public Layouts Layout { get; private set; }
+        public Layouts Layout { get; }
     }
 }
