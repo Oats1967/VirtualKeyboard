@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VirtualKeyboard.Services
 {
-    public interface IWindowService
+    public interface IWindowService 
     {
         
 

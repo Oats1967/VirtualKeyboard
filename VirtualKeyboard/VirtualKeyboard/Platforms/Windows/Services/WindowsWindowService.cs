@@ -2,6 +2,7 @@
 
 using System.Runtime.InteropServices;
 using Windows.Graphics;
+using Microsoft.Extensions.Logging;
 using Microsoft.UI;
 using Microsoft.UI.Windowing;
 using VirtualKeyboard.Services;
@@ -12,12 +13,11 @@ using Microsoft.Maui.LifecycleEvents;
 
 namespace VirtualKeyboard.Platforms.Windows.Services
 {
-    public class WindowsWindowService : IWindowService
+    public class WindowsWindowService : WindowService
     {
-
-
-       
-
+        public WindowsWindowService(ILogger<WindowService> logger, ILayoutSettings layoutSettings) : base(logger, layoutSettings)
+        {
+        }
 
         [DllImport("gdi32.dll")]
         private static extern IntPtr CreateRoundRectRgn(
@@ -78,7 +78,7 @@ namespace VirtualKeyboard.Platforms.Windows.Services
         }
 
 
-        public void ResizeWindow(int x, int y, int width, int height, int cornerRadius = 16)
+        public override void ResizeWindow(int x, int y, int width, int height, int cornerRadius = 16)
             {
 
 #if WINDOWS
@@ -118,14 +118,6 @@ namespace VirtualKeyboard.Platforms.Windows.Services
         }
 
 
-
         
-
-
-
-
-
-
-
     }
 }

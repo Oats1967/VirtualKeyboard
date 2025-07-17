@@ -4,13 +4,13 @@ using VirtualKeyboard.ViewModels;
 
 namespace VirtualKeyboard.Controls;
 
-public partial class NumericKeyboard : ContentView
+public partial class NumericKeyboard : Grid
 {
 	public NumericKeyboard(MainPageViewModel viewModel)
 	{
 		BindingContext =  viewModel;
 		InitializeComponent();
-        //Loaded += NumericKeyboard_Loaded;
+       
 	}
 
    

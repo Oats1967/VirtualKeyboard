@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentView
+
+<Grid
     x:Class="VirtualKeyboard.Controls.NumericKeyboard"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -7,9 +8,16 @@
     xmlns:converter="clr-namespace:VirtualKeyboard.Converter"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:vm="clr-namespace:VirtualKeyboard.ViewModels"
-    Padding="0"
-    x:DataType="vm:MainPageViewModel">
-    <ContentView.Resources>
+    x:Name="Grid"
+    Padding="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.02}"
+    x:DataType="vm:MainPageViewModel"
+    BackgroundColor="{StaticResource Background}"
+    ColumnDefinitions="*,*,*,*"
+    ColumnSpacing="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.02}"
+    RowDefinitions="*,*,*,*,*"
+    RowSpacing="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.02}">
+
+    <Grid.Resources>
         <!--<converter:DoubleScaler x:Key="FontSizeScaler" Factor="2.0" />-->
         <toolkit:BoolToObjectConverter
             x:Key="CapsLockColorConverter"
@@ -17,174 +25,161 @@
             TrueObject="#6B6B6B" />
         <converter:CharCaseConverter x:Key="CharCaseConverter" />
         <converter:ValueScaler x:Key="ValueScaler" />
-    </ContentView.Resources>
+    </Grid.Resources>
+
+    <!--  Row 0  -->
+    <controls:Key
+        Grid.Row="0"
+        Grid.Column="0"
+        BackgroundColor="{StaticResource NormalKey}"
+        Command="{Binding KeyPressedCommand}"
+        CommandParameter="7"
+        FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"
+        Text="7" />
+    <controls:Key
+        Grid.Row="0"
+        Grid.Column="1"
+        BackgroundColor="{StaticResource NormalKey}"
+        Command="{Binding KeyPressedCommand}"
+        CommandParameter="8"
+        FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"
+        Text="8" />
+    <controls:Key
+        Grid.Row="0"
+        Grid.Column="2"
+        BackgroundColor="{StaticResource NormalKey}"
+        Command="{Binding KeyPressedCommand}"
+        CommandParameter="9"
+        FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"
+        Text="9" />
+    <controls:IconKey
+        Grid.Row="0"
+        Grid.Column="3"
+        BackgroundColor="{StaticResource SmaDoTecRed}"
+        BorderColor="{StaticResource SmaDoTecRed_2}"
+        Command="{Binding BackspacePressedCommand}"
+        FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"
+        Text="{StaticResource BackspaceIcon}" />
+
+    <!--  Row 1  -->
+    <controls:Key
+        Grid.Row="1"
+        Grid.Column="0"
+        BackgroundColor="{StaticResource NormalKey}"
+        Command="{Binding KeyPressedCommand}"
+        CommandParameter="4"
+        FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"
+        Text="4" />
+    <controls:Key
+        Grid.Row="1"
+        Grid.Column="1"
+        BackgroundColor="{StaticResource NormalKey}"
+        Command="{Binding KeyPressedCommand}"
+        CommandParameter="5"
+        FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"
+        Text="5" />
+    <controls:Key
+        Grid.Row="1"
+        Grid.Column="2"
+        BackgroundColor="{StaticResource NormalKey}"
+        Command="{Binding KeyPressedCommand}"
+        CommandParameter="6"
+        FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"
+        Text="6" />
+    <controls:IconKey
+        Grid.Row="1"
+        Grid.RowSpan="2"
+        Grid.Column="3"
+        BackgroundColor="{StaticResource EnterKey}"
+        BorderColor="{StaticResource EnterKeyBorder}"
+        Command="{Binding EnterPressedCommand}"
+        FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"
+        Text="{StaticResource EnterIcon}" />
+
+
+    <!--  Row 2  -->
+    <controls:Key
+        Grid.Row="2"
+        Grid.Column="0"
+        BackgroundColor="{StaticResource NormalKey}"
+        Command="{Binding KeyPressedCommand}"
+        CommandParameter="1"
+        FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"
+        Text="1" />
+    <controls:Key
+        Grid.Row="2"
+        Grid.Column="1"
+        BackgroundColor="{StaticResource NormalKey}"
+        Command="{Binding KeyPressedCommand}"
+        CommandParameter="2"
+        FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"
+        Text="2" />
+    <controls:Key
+        Grid.Row="2"
+        Grid.Column="2"
+        BackgroundColor="{StaticResource NormalKey}"
+        Command="{Binding KeyPressedCommand}"
+        CommandParameter="3"
+        FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"
+        Text="3" />
+
+
+    <!--  Row 3  -->
+    <controls:Key
+        Grid.Row="3"
+        Grid.Column="0"
+        BackgroundColor="{StaticResource NormalKey}"
+        Command="{Binding KeyPressedCommand}"
+        CommandParameter="0"
+        FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"
+        Text="0" />
+    <controls:Key
+        Grid.Row="3"
+        Grid.Column="1"
+        BackgroundColor="{StaticResource NormalKey}"
+        Command="{Binding KeyPressedCommand}"
+        CommandParameter="."
+        FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"
+        Text="." />
+    <controls:Key
+        Grid.Row="3"
+        Grid.Column="2"
+        BackgroundColor="{StaticResource NormalKey}"
+        Command="{Binding KeyPressedCommand}"
+        CommandParameter="-"
+        FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"
+        Text="-" />
+    <controls:Key
+        Grid.Row="3"
+        Grid.Column="3"
+        BackgroundColor="{StaticResource NormalKey}"
+        Command="{Binding KeyPressedCommand}"
+        CommandParameter="+"
+        FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"
+        Text="+" />
+
+    <!--  Row 4  -->
+    <Image
+        Grid.Row="4"
+        Grid.Column="0"
+        Grid.ColumnSpan="2"
+        Aspect="AspectFit"
+        Source="smadotec_logo.png" />
+    <controls:IconKey
+        Grid.Row="4"
+        Grid.Column="2"
+        BackgroundColor="{StaticResource NormalKey}"
+        Command="{Binding LeftPressedCommand}"
+        FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"
+        Text="{StaticResource ArrowLeftIcon}" />
+    <controls:IconKey
+        Grid.Row="4"
+        Grid.Column="3"
+        BackgroundColor="{StaticResource NormalKey}"
+        Command="{Binding RightPressedCommand}"
+        FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"
+        Text="{StaticResource ArrowRightIcon}" />
+</Grid>
 
 
 
-
-    <Grid
-        x:Name="Grid"
-        Padding="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.02}"
-        BackgroundColor="{StaticResource Background}"
-        ColumnDefinitions="*,*,*,*"
-        ColumnSpacing="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.02}"
-        RowDefinitions="*,*,*,*,*"
-        RowSpacing="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.02}">
-
-
-        <!--  Row 0  -->
-        <controls:Key
-            Grid.Row="0"
-            Grid.Column="0"
-            BackgroundColor="{StaticResource NormalKey}"
-            Command="{Binding KeyPressedCommand}"
-            CommandParameter="7"
-            FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"
-            Text="7" />
-        <controls:Key
-            Grid.Row="0"
-            Grid.Column="1"
-            BackgroundColor="{StaticResource NormalKey}"
-            Command="{Binding KeyPressedCommand}"
-            CommandParameter="8"
-            FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"
-            Text="8" />
-        <controls:Key
-            Grid.Row="0"
-            Grid.Column="2"
-            BackgroundColor="{StaticResource NormalKey}"
-            Command="{Binding KeyPressedCommand}"
-            CommandParameter="9"
-            FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"
-            Text="9" />
-        <controls:IconKey
-            Grid.Row="0"
-            Grid.Column="3"
-            BackgroundColor="{StaticResource SmaDoTecRed}"
-            BorderColor="{StaticResource SmaDoTecRed_2}"
-            Command="{Binding BackspacePressedCommand}"
-            FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"
-            Text="{StaticResource BackspaceIcon}" />
-
-        <!--  Row 1  -->
-        <controls:Key
-            Grid.Row="1"
-            Grid.Column="0"
-            BackgroundColor="{StaticResource NormalKey}"
-            Command="{Binding KeyPressedCommand}"
-            CommandParameter="4"
-            FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"
-            Text="4" />
-        <controls:Key
-            Grid.Row="1"
-            Grid.Column="1"
-            BackgroundColor="{StaticResource NormalKey}"
-            Command="{Binding KeyPressedCommand}"
-            CommandParameter="5"
-            FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"
-            Text="5" />
-        <controls:Key
-            Grid.Row="1"
-            Grid.Column="2"
-            BackgroundColor="{StaticResource NormalKey}"
-            Command="{Binding KeyPressedCommand}"
-            CommandParameter="6"
-            FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"
-            Text="6" />
-        <controls:IconKey
-            Grid.Row="1"
-            Grid.RowSpan="2"
-            Grid.Column="3"
-            BackgroundColor="{StaticResource EnterKey}"
-            BorderColor="{StaticResource EnterKeyBorder}"
-            Command="{Binding EnterPressedCommand}"
-            FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"
-            Text="{StaticResource EnterIcon}" />
-
-
-        <!--  Row 2  -->
-        <controls:Key
-            Grid.Row="2"
-            Grid.Column="0"
-            BackgroundColor="{StaticResource NormalKey}"
-            Command="{Binding KeyPressedCommand}"
-            CommandParameter="1"
-            FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"
-            Text="1" />
-        <controls:Key
-            Grid.Row="2"
-            Grid.Column="1"
-            BackgroundColor="{StaticResource NormalKey}"
-            Command="{Binding KeyPressedCommand}"
-            CommandParameter="2"
-            FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"
-            Text="2" />
-        <controls:Key
-            Grid.Row="2"
-            Grid.Column="2"
-            BackgroundColor="{StaticResource NormalKey}"
-            Command="{Binding KeyPressedCommand}"
-            CommandParameter="3"
-            FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"
-            Text="3" />
-
-
-        <!--  Row 3  -->
-        <controls:Key
-            Grid.Row="3"
-            Grid.Column="0"
-            BackgroundColor="{StaticResource NormalKey}"
-            Command="{Binding KeyPressedCommand}"
-            CommandParameter="0"
-            FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"
-            Text="0" />
-        <controls:Key
-            Grid.Row="3"
-            Grid.Column="1"
-            BackgroundColor="{StaticResource NormalKey}"
-            Command="{Binding KeyPressedCommand}"
-            CommandParameter="."
-            FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"
-            Text="." />
-        <controls:Key
-            Grid.Row="3"
-            Grid.Column="2"
-            BackgroundColor="{StaticResource NormalKey}"
-            Command="{Binding KeyPressedCommand}"
-            CommandParameter="-"
-            FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"
-            Text="-" />
-        <controls:Key
-            Grid.Row="3"
-            Grid.Column="3"
-            BackgroundColor="{StaticResource NormalKey}"
-            Command="{Binding KeyPressedCommand}"
-            CommandParameter="+"
-            FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"
-            Text="+" />
-
-        <!--  Row 4  -->
-        <Image
-            Grid.Row="4"
-            Grid.Column="0"
-            Grid.ColumnSpan="2"
-            Aspect="AspectFit"
-            Source="smadotec_logo.png" />
-        <controls:IconKey
-            Grid.Row="4"
-            Grid.Column="2"
-            BackgroundColor="{StaticResource NormalKey}"
-            Command="{Binding LeftPressedCommand}"
-            FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"
-            Text="{StaticResource ArrowLeftIcon}" />
-        <controls:IconKey
-            Grid.Row="4"
-            Grid.Column="3"
-            BackgroundColor="{StaticResource NormalKey}"
-            Command="{Binding RightPressedCommand}"
-            FontSize="{Binding Source={x:Reference Grid}, Path=Height, Converter={StaticResource ValueScaler}, ConverterParameter=0.1}"
-            Text="{StaticResource ArrowRightIcon}" />
-    </Grid>
-
-
-</ContentView>

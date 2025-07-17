@@ -4,7 +4,7 @@ using VirtualKeyboard.ViewModels;
 
 namespace VirtualKeyboard.Controls;
 
-public partial class EnglishKeyboard : ContentView
+public partial class EnglishKeyboard : Grid
 {
 	public EnglishKeyboard(MainPageViewModel viewModel)
 	{

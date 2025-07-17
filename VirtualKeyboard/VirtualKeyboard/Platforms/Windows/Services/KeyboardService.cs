@@ -1,6 +1,7 @@
 ﻿using System.Runtime.InteropServices;
+using VirtualKeyboard.Services;
 
-namespace VirtualKeyboard.Services
+namespace VirtualKeyboard.Platforms.Windows.Services
 {
     public class KeyboardService : IKeyboardService
     {
@@ -37,7 +38,7 @@ namespace VirtualKeyboard.Services
             public uint mouseData;
             public uint dwFlags;
             public uint time;
-            public IntPtr dwExtraInfo;
+            public nint dwExtraInfo;
         }
 
         [StructLayout(LayoutKind.Sequential)]
@@ -47,7 +48,7 @@ namespace VirtualKeyboard.Services
             public ushort wScan;
             public uint dwFlags;
             public uint time;
-            public IntPtr dwExtraInfo;
+            public nint dwExtraInfo;
         }
 
         [StructLayout(LayoutKind.Sequential)]
@@ -74,7 +75,7 @@ namespace VirtualKeyboard.Services
             inputs[0].U.ki.wScan = 0;
             inputs[0].U.ki.dwFlags = 0;
             inputs[0].U.ki.time = 0;
-            inputs[0].U.ki.dwExtraInfo = IntPtr.Zero;
+            inputs[0].U.ki.dwExtraInfo = nint.Zero;
 
             inputs[1] = new INPUT();
             inputs[1].type = INPUT_KEYBOARD;
@@ -82,7 +83,7 @@ namespace VirtualKeyboard.Services
             inputs[1].U.ki.wScan = 0;
             inputs[1].U.ki.dwFlags = KEYEVENTF_KEYUP;
             inputs[1].U.ki.time = 0;
-            inputs[1].U.ki.dwExtraInfo = IntPtr.Zero;
+            inputs[1].U.ki.dwExtraInfo = nint.Zero;
 
             SendInput(2, inputs, Marshal.SizeOf(typeof(INPUT)));
         }
@@ -96,7 +97,7 @@ namespace VirtualKeyboard.Services
             inputs[0].U.ki.wScan = key;
             inputs[0].U.ki.dwFlags = KEYEVENTF_UNICODE;
             inputs[0].U.ki.time = 0;
-            inputs[0].U.ki.dwExtraInfo = IntPtr.Zero;
+            inputs[0].U.ki.dwExtraInfo = nint.Zero;
 
             inputs[1] = new INPUT();
             inputs[1].type = INPUT_KEYBOARD;
@@ -104,7 +105,7 @@ namespace VirtualKeyboard.Services
             inputs[1].U.ki.wScan = key;
             inputs[1].U.ki.dwFlags = KEYEVENTF_UNICODE | KEYEVENTF_KEYUP;
             inputs[1].U.ki.time = 0;
-            inputs[1].U.ki.dwExtraInfo = IntPtr.Zero;
+            inputs[1].U.ki.dwExtraInfo = nint.Zero;
 
             SendInput(2, inputs, Marshal.SizeOf(typeof(INPUT)));
         }
