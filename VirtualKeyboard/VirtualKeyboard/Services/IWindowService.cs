@@ -11,6 +11,6 @@ namespace VirtualKeyboard.Services
 {
     public interface IWindowService : IRecipient<TKSetShow>, IRecipient<TKSetHide>, IRecipient<TKSetShowPoint>, IRecipient<TkSetSize>
     {
-        public void ResizeWindow(int x, int y, int width, int height, int cornerRadius = 16);
+        public void ResizeWindow(int x, int y, int width, int height, int cornerRadius);
     }
 }

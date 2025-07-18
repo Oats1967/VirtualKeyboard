@@ -46,9 +46,6 @@ namespace VirtualKeyboard
                 .RegisterViewModels()
                 .RegisterPages()
                 .RegisterTemplates();
-#if WINDOWS
-            WindowsWindowService.Setup(builder);
-#endif
 
             builder.Logging
 #if DEBUG
@@ -115,6 +112,7 @@ namespace VirtualKeyboard
 #if WINDOWS
             builder.Services.AddSingleton<IWindowService, WindowsWindowService>();
             builder.Services.AddSingleton<IKeyboardService, WindowsKeyboardService>();
+            WindowsWindowService.Setup(builder);
 #endif
 
             return builder;

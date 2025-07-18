@@ -17,7 +17,7 @@ namespace VirtualKeyboard.Services
     public class LayoutService : ILayoutService
     {
         private readonly Lazy<Dictionary<Layouts, LayoutData>> _layouts =
-            new(() => InitializeLayouts());
+            new(InitializeLayouts);
 
         private static Dictionary<Layouts, LayoutData> InitializeLayouts()
         {
