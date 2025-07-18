@@ -75,13 +75,13 @@ namespace VirtualKeyboard.Services
             var y = message.Y;
            
 
-            if ((x + width > DisplayWidth) || (y + height > DisplayHeight))
-            {
-                _logger.LogWarning(
-                    "Window position out of bounds: x={X}, y={Y}, width={Width}, height={Height} exceeds screen (DisplayWidth={DisplayWidth}, DisplayHeight={DisplayHeight})",
-                    x, y, width, height, DisplayWidth, DisplayHeight);
-                return;
-            }
+            //if ((x + width > DisplayWidth) || (y + height > DisplayHeight))
+            //{
+            //    _logger.LogWarning(
+            //        "Window position out of bounds: x={X}, y={Y}, width={Width}, height={Height} exceeds screen (DisplayWidth={DisplayWidth}, DisplayHeight={DisplayHeight})",
+            //        x, y, width, height, DisplayWidth, DisplayHeight);
+            //    return;
+            //}
             WeakReferenceMessenger.Default.Send(new LayoutChangedMessage(message.Layout));
 
 
@@ -91,6 +91,7 @@ namespace VirtualKeyboard.Services
 
             _logger.LogInformation("{LAYOUT} coordinates were set to x: {X} , y: {Y} ", message.Layout,x,y);
 
+            
             ResizeWindow(x, y, (int)width, (int)height);
             _logger.LogInformation($"Window was opened: x: {x} , y: {y} , w: {width}, h: {height}");
 
@@ -114,13 +115,13 @@ namespace VirtualKeyboard.Services
             var width = _layoutSettings[message.Layout].FullWidth * ((double)message.Percentage/100);
             var height = _layoutSettings[message.Layout].FullHeight * ((double)message.Percentage / 100);
 
-            if ((x + width > DisplayWidth) || (y + height > DisplayHeight))
-            {
-                _logger.LogWarning(
-                    "Resized window would exceed screen bounds: x={X}, y={Y}, width={Width}, height={Height} (DisplayWidth={DisplayWidth}, DisplayHeight={DisplayHeight})",
-                    x, y, width, height, DisplayWidth, DisplayHeight);
-                return;
-            }
+            //if ((x + width > DisplayWidth) || (y + height > DisplayHeight))
+            //{
+            //    _logger.LogWarning(
+            //        "Resized window would exceed screen bounds: x={X}, y={Y}, width={Width}, height={Height} (DisplayWidth={DisplayWidth}, DisplayHeight={DisplayHeight})",
+            //        x, y, width, height, DisplayWidth, DisplayHeight);
+            //    return;
+            //}
 
 
             _layoutSettings[message.Layout].Width = width;
