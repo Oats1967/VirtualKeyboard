@@ -50,7 +50,7 @@ namespace VirtualKeyboard.Platforms.Windows.Services
             {
                 events.AddWindows(wndLifeCycleBuilder =>
                 {
-                    wndLifeCycleBuilder.OnWindowCreated(window =>
+                    wndLifeCycleBuilder.OnWindowCreated(async window =>
                     {
                         
                        
@@ -84,14 +84,14 @@ namespace VirtualKeyboard.Platforms.Windows.Services
 
 #endif
                         // Close window on initialization with bug workaround
-                        var a = 0; var b = 0; var c = 0;
-                        if (width > 0 && height > 0)
-                        {
-                            a = 4; b = 5; c =7;
-                        }
+                        var a = 4; var b = 5; var c = 7;
+                        
 
+                        winuiAppWindow.MoveAndResize(new RectInt32(x - a, y - a, width + c, height + c));
+                       
                         SetWindowRgn(nativeWindowHandle, CreateRoundRectRgn(0 + a, 0 + a, width + b , height + b , 16, 16), true);
-                        winuiAppWindow.MoveAndResize(new RectInt32(x - a, y -a, width + c, height + c));
+                       
+
 
                     });
                     
@@ -109,14 +109,10 @@ namespace VirtualKeyboard.Platforms.Windows.Services
 
             var platformView = window!.Handler?.PlatformView as MauiWinUIWindow;
             var nativeWindowHandle = WindowNative.GetWindowHandle(platformView);
-            var winUiWindow = platformView!.AppWindow;
+            var w = platformView!.AppWindow;
 
-            // This is used to round windowcorners and remove white borders bug workaround!!!
-            var a = 0; var b = 0; var c = 0;
-            if (width > 0 && height > 0)
-            {
-                a = 4; b = 5; c = 7;
-            }
+            // This is used to round window-corners and remove white borders bug workaround!!!
+            var a = 4; var b = 5; var c = 7;
             var region = CreateRoundRectRgn(
                 0 + a,
                 0 + a,
@@ -126,10 +122,11 @@ namespace VirtualKeyboard.Platforms.Windows.Services
                 cornerRadius);
 
             // Apply region to window
-             SetWindowRgn(nativeWindowHandle, region, true);
+          
+            SetWindowRgn(nativeWindowHandle, region, true);
                 
-            winUiWindow.MoveAndResize(new RectInt32(x-a, y-a, width + c, height + c));
-            
+            w.MoveAndResize(new RectInt32(x-a, y-a, width + c, height + c));
+          
 
         }
 
