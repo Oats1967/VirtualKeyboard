@@ -3,7 +3,7 @@ using VirtualKeyboard.Services;
 
 namespace VirtualKeyboard.Platforms.Windows.Services
 {
-    public class KeyboardService : IKeyboardService
+    public class WindowsKeyboardService : IKeyboardService
     {
         // Import the SendInput function from user32.dll
         [DllImport("user32.dll")]

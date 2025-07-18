@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.Extensions.Logging;
 using VirtualKeyboard.Commands;
 using VirtualKeyboard.Controls;
+using VirtualKeyboard.Messages;
 using VirtualKeyboard.Platforms.Windows;
 using VirtualKeyboard.Services;
 
@@ -12,13 +13,12 @@ using VirtualKeyboard.Services;
 
 namespace VirtualKeyboard.ViewModels
 {
-    public partial class MainPageViewModel : ObservableObject, IRecipient<Layouts>
+    public partial class MainPageViewModel : ObservableObject, IRecipient<LayoutChangedMessage>
     {
         
 
         [ObservableProperty]
         private Layouts layout;
-
         private IKeyboardService _keyboardService;
         private ILogger _logger;
 
@@ -37,10 +37,7 @@ namespace VirtualKeyboard.ViewModels
             WeakReferenceMessenger.Default.RegisterAll(this);
         }
 
-        public void Receive(Layouts layout)
-        {
-            Layout = layout;
-        }
+       
 
 
         #region Keyboard - Control Behaviour
@@ -113,6 +110,11 @@ namespace VirtualKeyboard.ViewModels
         // Windowsize
 
 
-        
+      
+
+        public void Receive(LayoutChangedMessage message)
+        {
+            Layout = message.Layout;
+        }
     }
 }

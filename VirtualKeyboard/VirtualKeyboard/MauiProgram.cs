@@ -79,12 +79,7 @@ namespace VirtualKeyboard
             
             return builder.Build();
 
-            
-
-
         }
-
-        
         
         private static MauiAppBuilder RegisterPages(this MauiAppBuilder builder)
         {
@@ -94,7 +89,7 @@ namespace VirtualKeyboard
         }
         private static MauiAppBuilder RegisterTemplates(this MauiAppBuilder builder)
         {
-            // Add new Contentviews here
+            // Add new Templates here
             builder.Services.AddSingleton<NumericKeyboard>();
             builder.Services.AddSingleton<GermanKeyboard>();
             builder.Services.AddSingleton<EnglishKeyboard>();
@@ -111,26 +106,15 @@ namespace VirtualKeyboard
         private static MauiAppBuilder RegisterServices(this MauiAppBuilder builder)
         {
             builder.Services.AddSingleton<ITCPService,TCPService>();
-            builder.Services.AddSingleton<IKeyboardService, KeyboardService>();
+           
             builder.Services.AddSingleton<IProcessMessageService, ProcessTCPMessageService>();
             builder.Services.AddSingleton<LayoutToKeyboardConverter>();
             builder.Services.AddSingleton(LogOperatorRetriever.Instance);
-            builder.Services.AddSingleton<ILayoutSettings>(sp =>
-            {
-                var layouts = new Dictionary<Layouts, (int x, int y, int width, int height)>
-                {
-                    [Layouts.Numeric] = (0, 0, 0, 0),
-                    [Layouts.German] = (0, 0, 0, 0),
-                    [Layouts.English] = (0, 0, 0, 0),
-                    [Layouts.Dutch] = (0, 0, 0, 0),
-                    [Layouts.French] = (0, 0, 0, 0),
-                    [Layouts.Polish] = (0, 0, 0, 0),
-                };
-
-                return new LayoutSettings(layouts);
-            });
+            builder.Services.AddSingleton<ILayoutService,LayoutService>();
+            
 #if WINDOWS
             builder.Services.AddSingleton<IWindowService, WindowsWindowService>();
+            builder.Services.AddSingleton<IKeyboardService, WindowsKeyboardService>();
 #endif
 
             return builder;

@@ -16,7 +16,7 @@ namespace VirtualKeyboard.Platforms.Windows.Services
 {
     public class WindowsWindowService : WindowService
     {
-        public WindowsWindowService(ILogger<WindowService> logger, ILayoutSettings layoutSettings) : base(logger, layoutSettings)
+        public WindowsWindowService(ILogger<WindowsWindowService> logger, ILayoutService layoutSettings) : base(logger, layoutSettings)
         {
         }
 
@@ -54,8 +54,8 @@ namespace VirtualKeyboard.Platforms.Windows.Services
                     {
                         
                        
-                        IntPtr nativeWindowHandle = WinRT.Interop.WindowNative.GetWindowHandle(window);
-                        WindowId win32WindowsId = Win32Interop.GetWindowIdFromWindow(nativeWindowHandle);
+                        var nativeWindowHandle = WinRT.Interop.WindowNative.GetWindowHandle(window);
+                        var win32WindowsId = Win32Interop.GetWindowIdFromWindow(nativeWindowHandle);
                         AppWindow winuiAppWindow = AppWindow.GetFromWindowId(win32WindowsId);
                         
                         winuiAppWindow.SetPresenter(AppWindowPresenterKind.Overlapped);
@@ -72,10 +72,10 @@ namespace VirtualKeyboard.Platforms.Windows.Services
 
 #if DEBUG
                         // Apply region to window
-                        var x = 0;
-                        var y = 0; 
-                        var width = 0;
-                        var height = 0;
+                        const int x = 0;
+                        const int y = 0; 
+                        const int width = 0;
+                        const int height = 0;
 #else
                         var x = 0;
                         var y = 0; 
@@ -84,14 +84,14 @@ namespace VirtualKeyboard.Platforms.Windows.Services
 
 #endif
                         // Close window on initialization with bug workaround
-                        var a = 0; var b = 0; var c = 0; var d = 0;
+                        var a = 0; var b = 0; var c = 0;
                         if (width > 0 && height > 0)
                         {
-                            a = 4; b = 4; c = -2; d = -2;
+                            a = 4; b = 5; c =7;
                         }
 
-                        SetWindowRgn(nativeWindowHandle, CreateRoundRectRgn(0 + a, 0 +b, width + c, height + d, 0, 0), true);
-                        winuiAppWindow.MoveAndResize(new RectInt32(x - c, y -d, width, height));
+                        SetWindowRgn(nativeWindowHandle, CreateRoundRectRgn(0 + a, 0 + a, width + b , height + b , 16, 16), true);
+                        winuiAppWindow.MoveAndResize(new RectInt32(x - a, y -a, width + c, height + c));
 
                     });
                     
@@ -101,7 +101,7 @@ namespace VirtualKeyboard.Platforms.Windows.Services
 
         
 
-        public override void ResizeWindow(int x, int y, int width, int height, int cornerRadius = 16)
+        public override void ResizeWindow(int x, int y, int width, int height, int cornerRadius)
             {
 
 
@@ -112,28 +112,24 @@ namespace VirtualKeyboard.Platforms.Windows.Services
             var winUiWindow = platformView!.AppWindow;
 
             // This is used to round windowcorners and remove white borders bug workaround!!!
-            var a = 0; var b = 0; var c = 0; var d = 0;
-            if (width > 0 && height > 0) 
+            var a = 0; var b = 0; var c = 0;
+            if (width > 0 && height > 0)
             {
-                 a = 4;  b = 4;  c = -2;  d = -2;
+                a = 4; b = 5; c = 7;
             }
-           
             var region = CreateRoundRectRgn(
                 0 + a,
-                0 + b,
-                width + c,
-                height + d,
+                0 + a,
+                width + b,
+                height + b,
                 cornerRadius,
                 cornerRadius);
 
             // Apply region to window
              SetWindowRgn(nativeWindowHandle, region, true);
                 
-            winUiWindow.MoveAndResize(new RectInt32(x-c, y-d, width, height));
-          
-
-
-           
+            winUiWindow.MoveAndResize(new RectInt32(x-a, y-a, width + c, height + c));
+            
 
         }
 

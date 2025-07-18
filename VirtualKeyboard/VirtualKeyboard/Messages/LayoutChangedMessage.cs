@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VirtualKeyboard.Commands
+namespace VirtualKeyboard.Messages
 {
     public class LayoutChangedMessage
     {
-        public Layouts Layout { get; }
-
+        public Layouts Layout { get;  }
         public LayoutChangedMessage(Layouts layout)
         {
             Layout = layout;

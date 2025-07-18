@@ -9,10 +9,9 @@ namespace VirtualKeyboard
     {
         
         // is this necessary)
-        public App(ITCPService tcpService , IWindowService windowService, AppShell shell)
+        public App(ITCPService tcpService , IWindowService windowService,  AppShell shell)
         {
             InitializeComponent();
-           
             MainPage = shell;
 
             

@@ -8,9 +8,9 @@ using VirtualKeyboard.Pages;
 
 namespace VirtualKeyboard.Commands
 {
-    public class TKSetSize 
+    public class TkSetSize 
     {
-        public TKSetSize(int layout, int percentage)
+        public TkSetSize(int layout, int percentage)
         {
             Layout = Enum.IsDefined(typeof(Layouts), layout)
              ? (Layouts)layout

@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.Messaging;
 using VirtualKeyboard.Commands;
+using VirtualKeyboard.Messages;
 
 
 namespace VirtualKeyboard.Services
@@ -21,7 +22,7 @@ namespace VirtualKeyboard.Services
             if (buffer == null) return;
             if (buffer.Length < 4) return;
             if (buffer[0]!= STX) return;
-            if (buffer[buffer.Length-1]!= ETX) return;
+            if (buffer[^1]!= ETX) return;
             if (buffer[1] != buffer.Length - 2) return;
 
             switch (buffer[2])
@@ -68,7 +69,7 @@ namespace VirtualKeyboard.Services
         {
             var layout = buffer[3];
             var percentage = buffer[4];
-            WeakReferenceMessenger.Default.Send(new TKSetSize(layout, percentage));
+            WeakReferenceMessenger.Default.Send(new TkSetSize(layout, percentage));
         }
     }
 

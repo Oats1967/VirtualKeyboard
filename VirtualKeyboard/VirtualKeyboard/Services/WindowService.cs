@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.Extensions.Logging;
 using VirtualKeyboard.Commands;
+using VirtualKeyboard.Messages;
 using VirtualKeyboard.ViewModels;
 using ILogger = Microsoft.Extensions.Logging.ILogger;
 
@@ -12,46 +13,50 @@ namespace VirtualKeyboard.Services
 
         protected ILogger _logger;
 
-        protected ILayoutSettings _layoutSettings;
+        protected ILayoutService _layoutSettings;
 
-       
-        public WindowService(ILogger<WindowService> logger, ILayoutSettings layoutSettings)
+        private static int DisplayWidth => (int)DeviceDisplay.MainDisplayInfo.Width;
+        private static int DisplayHeight => (int)DeviceDisplay.MainDisplayInfo.Height;
+
+
+        public WindowService(ILogger<WindowService> logger, ILayoutService layoutSettings)
         {
             _logger = logger;
             _layoutSettings = layoutSettings;
+            
             WeakReferenceMessenger.Default.RegisterAll(this);
-
         }
-        public abstract void ResizeWindow(int x, int y, int width, int height, int cornerRadius = 0);   // needs to access platform specific APIs
+        public abstract void ResizeWindow(int x, int y, int width, int height, int cornerRadius = 16);   // needs to access platform specific APIs
         public void Receive(TKSetShow message)
 
         {
             _logger.LogInformation($"TKSetShow received");
             if (!_layoutSettings.ContainsKey(message.Layout))
             {
-                _logger.LogInformation($"TKSetShow: Layout {message.Layout} not supported");
+                _logger.LogWarning("TKSetShow: Layout {LAYOUT} not supported", message.Layout);
                 return;
             }
 
-            WeakReferenceMessenger.Default.Send(new LayoutChangedMessage(layout));
+            var x = _layoutSettings[message.Layout].X;
+            var y = _layoutSettings[message.Layout].Y;
+            var width = _layoutSettings[message.Layout].Width;
+            var height = _layoutSettings[message.Layout].Height;
 
-            var x = _layoutSettings[message.Layout].x;
-            var y = _layoutSettings[message.Layout].y;
-            var width = _layoutSettings[message.Layout].width;
-            var height = _layoutSettings[message.Layout].height;
+            WeakReferenceMessenger.Default.Send(new LayoutChangedMessage(message.Layout));
 
-            x = ClampCoordinateToScreen(x, width, (int)DeviceDisplay.MainDisplayInfo.Width);
-            y = ClampCoordinateToScreen(y, height, (int)DeviceDisplay.MainDisplayInfo.Height);
-            ResizeWindow(x, y, width, height);
 
-            _logger.LogInformation($"Window was opened: x: {x} , y: {y} , w: {width}, h: {height}");
+            ResizeWindow((int)x, (int)y, (int)width, (int)height);
+
+            _logger.LogInformation("Window was opened: x: {X} , y: {Y} , w: {Width}, h: {Height}",x,y,width,height);
+
+            
         }
 
         public void Receive(TKSetHide message)
         {
             _logger.LogInformation($"TKSetHide received");
             ResizeWindow(0, 0, 0, 0);
-            _logger.LogInformation($"Window was closed: x: {0} , y: {0} , w: {0}, h: {0}");
+            _logger.LogInformation($"Window was closed");
         }
 
         public void Receive(TKSetShowPoint message)
@@ -60,86 +65,73 @@ namespace VirtualKeyboard.Services
 
             if (!_layoutSettings.ContainsKey(message.Layout))
             {
-                _logger.LogInformation($"TKSetShowPoint: Layout {message.Layout} not supported");
+                _logger.LogWarning("TKSetShowPoint: Layout {LAYOUT} not supported", message.Layout);
                 return;
             }
-            WeakReferenceMessenger.Default.Send(new LayoutChangedMessage(layout));
+           
 
-            var width = _layoutSettings[message.Layout].width;
-            var height = _layoutSettings[message.Layout].height;
+            var width = _layoutSettings[message.Layout].Width;
+            var height = _layoutSettings[message.Layout].Height;
             var x = message.X;
             var y = message.Y;
+           
+
+            if ((x + width > DisplayWidth) || (y + height > DisplayHeight))
+            {
+                _logger.LogWarning(
+                    "Window position out of bounds: x={X}, y={Y}, width={Width}, height={Height} exceeds screen (DisplayWidth={DisplayWidth}, DisplayHeight={DisplayHeight})",
+                    x, y, width, height, DisplayWidth, DisplayHeight);
+                return;
+            }
+            WeakReferenceMessenger.Default.Send(new LayoutChangedMessage(message.Layout));
 
 
-            _layoutSettings[message.Layout] = (x, y, width, height);
-            _logger.LogInformation($"{message.Layout} coordinates were set to x: {x} , y: {y} ");
 
+            _layoutSettings[message.Layout].X = x;
+            _layoutSettings[message.Layout].Y = y;
 
-            x = ClampCoordinateToScreen(x, width, (int)DeviceDisplay.MainDisplayInfo.Width);
-            y = ClampCoordinateToScreen(y, height, (int)DeviceDisplay.MainDisplayInfo.Height);
-            ResizeWindow(x, y, width, height);
+            _logger.LogInformation("{LAYOUT} coordinates were set to x: {X} , y: {Y} ", message.Layout,x,y);
+
+            ResizeWindow((int)x, (int)y, (int)width, (int)height);
             _logger.LogInformation($"Window was opened: x: {x} , y: {y} , w: {width}, h: {height}");
 
+          
 
         }
 
-        public void Receive(TKSetSize message)
+        public void Receive(TkSetSize message)
         {
             _logger.LogInformation($"TKSetSize received");
 
             if (!_layoutSettings.ContainsKey(message.Layout))
             {
-                _logger.LogInformation($"TKSetSize: Layout {message.Layout} not supported");
+                _logger.LogWarning("TKSetSize: Layout {LAYOUT} not supported", message.Layout);
                 return;
             }
 
-            var size = CalculateSize(message.Layout, message.Percentage);
 
-            var x = _layoutSettings[message.Layout].x;
-            var y = _layoutSettings[message.Layout].y;
-            var width = size.width;
-            var height = size.height;
+            var x = _layoutSettings[message.Layout].X;
+            var y = _layoutSettings[message.Layout].Y;
+            var width = _layoutSettings[message.Layout].FullWidth * (message.Percentage/100);
+            var height = _layoutSettings[message.Layout].FullHeight * (message.Percentage / 100);
 
-            _layoutSettings[message.Layout] = (x, y, width, height);
-            _logger.LogInformation($"Keyboard size was set to width: {width} , height: {height}");
+            var percentage = message.Percentage;
+
+            if ((x + width > DisplayWidth) || (y + height > DisplayHeight))
+            {
+                _logger.LogWarning(
+                    "Resized window would exceed screen bounds: x={X}, y={Y}, width={Width}, height={Height} (DisplayWidth={DisplayWidth}, DisplayHeight={DisplayHeight})",
+                    x, y, width, height, DisplayWidth, DisplayHeight);
+                return;
+            }
+
+
+            _layoutSettings[message.Layout].Width = width;
+            _layoutSettings[message.Layout].Height = height;
+
+            _logger.LogInformation("Keyboard size was set to width: {Width} , height: {Height}",width,height);
 
         }
-
-
-        #region Transform funcs
-
-        // Gets the real X and Y depending on the Displaysize
-        private int ClampCoordinateToScreen(int coordinate, int size, int screenSize) =>
-            (coordinate + size) > screenSize ? Math.Max(0, coordinate - ((coordinate + size) - screenSize)) : coordinate;
-
-
-
-        public (int width, int height) CalculateSize(Layouts layout, int percentage)
-        {
-            var displayInfo = DeviceDisplay.Current.MainDisplayInfo;
-            var screenWidth = displayInfo.Width;
-            var screenHeight = displayInfo.Height;
-
-            var alphaRatio = (double)Application.Current!.Resources["AlphaRatio"];
-            var numericRatio = (double)Application.Current!.Resources["NumericRatio"];
-
-            double ratio = layout == Layouts.Numeric ? numericRatio : alphaRatio;
-
-
-            if (layout == Layouts.Numeric)
-            {
-                var height = (int)(screenHeight * percentage / 100);
-                var width = (int)(height / ratio);
-                return (width, height);
-            }
-            else
-            {
-                var width = (int)(screenWidth * percentage / 100);
-                var height = (int)(width * ratio);
-                return (width, height);
-            }
-        }
-        #endregion
 
     }
 }
