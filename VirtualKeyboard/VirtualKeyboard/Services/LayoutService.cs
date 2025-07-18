@@ -21,18 +21,20 @@ namespace VirtualKeyboard.Services
 
         private static Dictionary<Layouts, LayoutData> InitializeLayouts()
         {
-            var ratio = (alpha: 0.35, numeric: 1.2);
+            var ratio = (alpha: 0.35, numeric: 0.83);
             var screenWidth = DeviceDisplay.MainDisplayInfo.Width;
             var screenHeight = DeviceDisplay.MainDisplayInfo.Height;
 
             var fullNumericHeight = screenHeight;
-            var fullNumericWidth = fullNumericHeight / ratio.numeric;
+            var fullNumericWidth = fullNumericHeight * ratio.numeric;
 
             var fullAlphaWidth = screenWidth;
             var fullAlphaHeight = fullAlphaWidth * ratio.alpha;
 
             const double defaultX = 0;
             const double defaultY = 0;
+            const double defaultWidth = 0;
+            const double defaultHeight = 0;
 
             return new()
             {
@@ -40,8 +42,8 @@ namespace VirtualKeyboard.Services
                 {
                     X = defaultX,
                     Y = defaultY,
-                    Width = fullNumericWidth,
-                    Height = fullNumericHeight,
+                    Width = defaultWidth,
+                    Height = defaultHeight,
                     FullWidth = fullNumericWidth,
                     FullHeight = fullNumericHeight
                 },
@@ -49,8 +51,8 @@ namespace VirtualKeyboard.Services
                 {
                     X = defaultX,
                     Y = defaultY,
-                    Width = fullAlphaWidth,
-                    Height = fullAlphaHeight,
+                    Width = defaultWidth,
+                    Height = defaultHeight,
                     FullWidth = fullAlphaWidth,
                     FullHeight = fullAlphaHeight
                 },
@@ -58,8 +60,8 @@ namespace VirtualKeyboard.Services
                 {
                     X = defaultX,
                     Y = defaultY,
-                    Width = fullAlphaWidth,
-                    Height = fullAlphaHeight,
+                    Width = defaultWidth,
+                    Height = defaultHeight,
                     FullWidth = fullAlphaWidth,
                     FullHeight = fullAlphaHeight
                 },
@@ -67,8 +69,8 @@ namespace VirtualKeyboard.Services
                 {
                     X = defaultX,
                     Y = defaultY,
-                    Width = fullAlphaWidth,
-                    Height = fullAlphaHeight,
+                    Width = defaultWidth,
+                    Height = defaultHeight,
                     FullWidth = fullAlphaWidth,
                     FullHeight = fullAlphaHeight
                 },
@@ -76,8 +78,8 @@ namespace VirtualKeyboard.Services
                 {
                     X = defaultX,
                     Y = defaultY,
-                    Width = fullAlphaWidth,
-                    Height = fullAlphaHeight,
+                    Width = defaultWidth,
+                    Height = defaultHeight,
                     FullWidth = fullAlphaWidth,
                     FullHeight = fullAlphaHeight
                 },
@@ -85,8 +87,8 @@ namespace VirtualKeyboard.Services
                 {
                     X = defaultX,
                     Y = defaultY,
-                    Width = fullAlphaWidth,
-                    Height = fullAlphaHeight,
+                    Width = defaultWidth,
+                    Height = defaultHeight,
                     FullWidth = fullAlphaWidth,
                     FullHeight = fullAlphaHeight
                 },

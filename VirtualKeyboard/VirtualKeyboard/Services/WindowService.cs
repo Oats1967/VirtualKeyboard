@@ -11,9 +11,9 @@ namespace VirtualKeyboard.Services
     public abstract class WindowService : IWindowService
     {
 
-        protected ILogger _logger;
+        private readonly ILogger _logger;
 
-        protected ILayoutService _layoutSettings;
+        private readonly ILayoutService _layoutSettings;
 
         private static int DisplayWidth => (int)DeviceDisplay.MainDisplayInfo.Width;
         private static int DisplayHeight => (int)DeviceDisplay.MainDisplayInfo.Height;
@@ -43,7 +43,6 @@ namespace VirtualKeyboard.Services
             var height = _layoutSettings[message.Layout].Height;
 
             WeakReferenceMessenger.Default.Send(new LayoutChangedMessage(message.Layout));
-
 
             ResizeWindow((int)x, (int)y, (int)width, (int)height);
 
@@ -92,7 +91,7 @@ namespace VirtualKeyboard.Services
 
             _logger.LogInformation("{LAYOUT} coordinates were set to x: {X} , y: {Y} ", message.Layout,x,y);
 
-            ResizeWindow((int)x, (int)y, (int)width, (int)height);
+            ResizeWindow(x, y, (int)width, (int)height);
             _logger.LogInformation($"Window was opened: x: {x} , y: {y} , w: {width}, h: {height}");
 
           
@@ -112,10 +111,8 @@ namespace VirtualKeyboard.Services
 
             var x = _layoutSettings[message.Layout].X;
             var y = _layoutSettings[message.Layout].Y;
-            var width = _layoutSettings[message.Layout].FullWidth * (message.Percentage/100);
-            var height = _layoutSettings[message.Layout].FullHeight * (message.Percentage / 100);
-
-            var percentage = message.Percentage;
+            var width = _layoutSettings[message.Layout].FullWidth * ((double)message.Percentage/100);
+            var height = _layoutSettings[message.Layout].FullHeight * ((double)message.Percentage / 100);
 
             if ((x + width > DisplayWidth) || (y + height > DisplayHeight))
             {
