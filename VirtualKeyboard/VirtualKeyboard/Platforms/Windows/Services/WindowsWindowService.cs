@@ -75,7 +75,7 @@ namespace VirtualKeyboard.Platforms.Windows.Services
                         const int x = 0;
                         const int y = 0; 
                         const int width = 0;
-                        const int height = 0;
+                        const int height =0;
 #else
                         var x = 0;
                         var y = 0; 

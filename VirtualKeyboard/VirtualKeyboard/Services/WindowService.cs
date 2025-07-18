@@ -36,13 +36,14 @@ namespace VirtualKeyboard.Services
                 _logger.LogWarning("TKSetShow: Layout {LAYOUT} not supported", message.Layout);
                 return;
             }
+            WeakReferenceMessenger.Default.Send(new LayoutChangedMessage(message.Layout));
 
             var x = _layoutSettings[message.Layout].X;
             var y = _layoutSettings[message.Layout].Y;
             var width = _layoutSettings[message.Layout].Width;
             var height = _layoutSettings[message.Layout].Height;
 
-            WeakReferenceMessenger.Default.Send(new LayoutChangedMessage(message.Layout));
+           
 
             ResizeWindow((int)x, (int)y, (int)width, (int)height);
 
@@ -67,32 +68,19 @@ namespace VirtualKeyboard.Services
                 _logger.LogWarning("TKSetShowPoint: Layout {LAYOUT} not supported", message.Layout);
                 return;
             }
-           
-
-            var width = _layoutSettings[message.Layout].Width;
-            var height = _layoutSettings[message.Layout].Height;
-            var x = message.X;
-            var y = message.Y;
-           
-
-            //if ((x + width > DisplayWidth) || (y + height > DisplayHeight))
-            //{
-            //    _logger.LogWarning(
-            //        "Window position out of bounds: x={X}, y={Y}, width={Width}, height={Height} exceeds screen (DisplayWidth={DisplayWidth}, DisplayHeight={DisplayHeight})",
-            //        x, y, width, height, DisplayWidth, DisplayHeight);
-            //    return;
-            //}
             WeakReferenceMessenger.Default.Send(new LayoutChangedMessage(message.Layout));
 
+            _layoutSettings[message.Layout].X = ShiftInsideBounds(message.X, _layoutSettings[message.Layout].Width, DisplayWidth);
+            _layoutSettings[message.Layout].Y = ShiftInsideBounds(message.Y, _layoutSettings[message.Layout].Height, DisplayHeight);
 
+            var x = _layoutSettings[message.Layout].X;
+            var y = _layoutSettings[message.Layout].Y;
+            var width = _layoutSettings[message.Layout].Width;
+            var height = _layoutSettings[message.Layout].Height;
 
-            _layoutSettings[message.Layout].X = x;
-            _layoutSettings[message.Layout].Y = y;
+            _logger.LogInformation("{LAYOUT}\nx: {X} , y: {Y}\nwidth: {WIDTH} , height: {HEIGHT} ", message.Layout, x, y,width,height);
 
-            _logger.LogInformation("{LAYOUT} coordinates were set to x: {X} , y: {Y} ", message.Layout,x,y);
-
-            
-            ResizeWindow(x, y, (int)width, (int)height);
+            ResizeWindow((int)x, (int)y, (int)width, (int)height);
             _logger.LogInformation($"Window was opened: x: {x} , y: {y} , w: {width}, h: {height}");
 
           
@@ -109,27 +97,24 @@ namespace VirtualKeyboard.Services
                 return;
             }
 
+            _layoutSettings[message.Layout].Width = _layoutSettings[message.Layout].FullWidth * ((double)message.Percentage / 100); ;
+            _layoutSettings[message.Layout].Height = _layoutSettings[message.Layout].FullHeight * ((double)message.Percentage / 100); ;
+            _layoutSettings[message.Layout].X = ShiftInsideBounds(_layoutSettings[message.Layout].Width, _layoutSettings[message.Layout].Width, DisplayWidth);
+            _layoutSettings[message.Layout].Y = ShiftInsideBounds(_layoutSettings[message.Layout].Height, _layoutSettings[message.Layout].Height, DisplayHeight);
+            
 
             var x = _layoutSettings[message.Layout].X;
             var y = _layoutSettings[message.Layout].Y;
-            var width = _layoutSettings[message.Layout].FullWidth * ((double)message.Percentage/100);
-            var height = _layoutSettings[message.Layout].FullHeight * ((double)message.Percentage / 100);
+            var width = _layoutSettings[message.Layout].Width;
+            var height = _layoutSettings[message.Layout].Height;
 
-            //if ((x + width > DisplayWidth) || (y + height > DisplayHeight))
-            //{
-            //    _logger.LogWarning(
-            //        "Resized window would exceed screen bounds: x={X}, y={Y}, width={Width}, height={Height} (DisplayWidth={DisplayWidth}, DisplayHeight={DisplayHeight})",
-            //        x, y, width, height, DisplayWidth, DisplayHeight);
-            //    return;
-            //}
-
-
-            _layoutSettings[message.Layout].Width = width;
-            _layoutSettings[message.Layout].Height = height;
-
-            _logger.LogInformation("Keyboard size was set to width: {Width} , height: {Height}",width,height);
+            _logger.LogInformation("{LAYOUT}\nx: {X} , y: {Y}\nwidth: {WIDTH} , height: {HEIGHT} ", message.Layout, x, y, width, height);
 
         }
+
+
+        private static double ShiftInsideBounds(double c, double s, double max) => c + s > max ? Math.Max(0, c - (c + s - max)) : c;
+
 
     }
 }
