@@ -78,7 +78,7 @@ public class Program
     public async static Task Main(string[] args)
     {
         
-        var logger = new ProcessLogger( "VirtualKeyboard", Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "LogFile.txt"), TimeSpan.FromMinutes(30)); 
+        var logger = new ProcessLogger( "VirtualKeyboard", Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "LogFile.txt"), TimeSpan.FromMilliseconds(100)); 
         logger.Start();
         var ip = IPAddress.Loopback; // Use loopback address for local host
         var iPEndPoint = new IPEndPoint(ip, 2000);
@@ -88,8 +88,8 @@ public class Program
 
         await client.ConnectAsync(iPEndPoint);
         var random = new Random();
-        DateTime startTime = DateTime.Now;
-        DateTime endTime = startTime.AddHours(24);
+        //DateTime startTime = DateTime.Now;
+        //DateTime endTime = startTime.AddHours(24);
         //while (DateTime.Now < endTime)
         //{
         //    var randomIndex = random.Next(0, Commands.Count);
@@ -103,46 +103,61 @@ public class Program
 
 
         //}
+        await client.SendAsync(Commands["TKSetSize German 75%"], SocketFlags.None);
+        for (int i = 0; i < 5000;)
+        //var i = 0; while (true)
+        {
+            Console.WriteLine("Open");
+            
+            await client.SendAsync(Commands["TKSetShowPoint German 400 400"], SocketFlags.None);
+            Thread.Sleep(2000);
+
+            Console.WriteLine("Close");
+
+            await client.SendAsync(Commands["TKSetHide"], SocketFlags.None);
+            Thread.Sleep(2000);
+
+            Console.WriteLine($"Ex: {++i}");
+        }
+
+            //await client.SendAsync(Commands["TKSetSize German 100%"], SocketFlags.None);
+
+            //Console.Write("1 - PRESS KEY TO CONTINUE");
+            //Console.ReadKey();
+            //await client.SendAsync(Commands["TKSetShowPoint German 0 0"], SocketFlags.None);
+
+            //Console.Write("2 - PRESS KEY TO CONTINUE");
+            //Console.ReadKey();
+            //await client.SendAsync(Commands["TKSetShowPoint German 400 400"], SocketFlags.None);
+
+            //Console.Write("2 - PRESS KEY TO CONTINUE");
+            //Console.ReadKey();
+            //await client.SendAsync(Commands["2"], SocketFlags.None);
+
+            //Console.Write("3 - PRESS KEY TO CONTINUE");
+            //Console.ReadKey();
+            //await client.SendAsync(Commands["3"], SocketFlags.None);
 
 
-        await client.SendAsync(Commands["TKSetSize German 100%"], SocketFlags.None);
+            //Console.Write("German - PRESS KEY TO CONTINUE");
+            //Console.ReadKey();
+            //await client.SendAsync(Commands["TKSetShowPoint German 400 400"], SocketFlags.None);
 
-        Console.Write("1 - PRESS KEY TO CONTINUE");
-        Console.ReadKey();
-        await client.SendAsync(Commands["TKSetShowPoint German 0 0"], SocketFlags.None);
+            //Console.Write("English - PRESS KEY TO CONTINUE");
+            //Console.ReadKey();
+            //await client.SendAsync(Commands["TKSetShowPoint English 400 400"], SocketFlags.None);
 
-        Console.Write("2 - PRESS KEY TO CONTINUE");
-        Console.ReadKey();
-        await client.SendAsync(Commands["TKSetShowPoint German 400 400"], SocketFlags.None);
-
-        //Console.Write("2 - PRESS KEY TO CONTINUE");
-        //Console.ReadKey();
-        //await client.SendAsync(Commands["2"], SocketFlags.None);
-
-        //Console.Write("3 - PRESS KEY TO CONTINUE");
-        //Console.ReadKey();
-        //await client.SendAsync(Commands["3"], SocketFlags.None);
-
-
-        //Console.Write("German - PRESS KEY TO CONTINUE");
-        //Console.ReadKey();
-        //await client.SendAsync(Commands["TKSetShowPoint German 400 400"], SocketFlags.None);
-
-        //Console.Write("English - PRESS KEY TO CONTINUE");
-        //Console.ReadKey();
-        //await client.SendAsync(Commands["TKSetShowPoint English 400 400"], SocketFlags.None);
-
-        //Console.Write("Dutch - PRESS KEY TO CONTINUE");
-        //Console.ReadKey();
-        //await client.SendAsync(Commands["TKSetShowPoint Dutch 400 400"], SocketFlags.None);
+            //Console.Write("Dutch - PRESS KEY TO CONTINUE");
+            //Console.ReadKey();
+            //await client.SendAsync(Commands["TKSetShowPoint Dutch 400 400"], SocketFlags.None);
 
 
 
 
 
-        Console.ReadKey();
-
-        logger.Stop();
+          
+            logger.Stop();
+        
     }
 
 }
